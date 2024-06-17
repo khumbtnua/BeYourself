@@ -4,85 +4,68 @@
 }
 
 #navbar {
+  position: fixed;
+  z-index: 10000;
   user-select: none;
   width: 100%;
-  height: 60px;
+  height: 45px;
   display: flex;
   justify-content: space-between;
-  backdrop-filter: blur(10px);
+  background-color: rgba(50, 50, 50, 0.5);
+  backdrop-filter: blur(30px);
   -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
   -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
-  background-color: #3a3a3a;
 }
 
 a img {
-  width: 35px;
-  height: 35px;
+  width: 23px;
+  height: 23px;
 }
 
 nav button {
   appearance: none;
   border: none;
   background: none;
-  padding: 12px;
+  height: 100%;
+  padding-top: 10px;
+  padding-bottom: 6px;
+  padding-left: 8px;
   padding-right: 17px;
-  cursor: pointer;
   border-radius: 5px;
-  margin-top: 2px;
-}
-
-#name {
-  font-size: 1.1rem;
   cursor: pointer;
-  user-select: none;
 }
-
-.name-container {
-  display: flex;
-  flex-direction: row;
-  padding: 10px;
-}
-
 #extend-navbar img {
   width: 33px;
   height: 33px;
 }
-
 #extend-navbar a {
   width: 100%;
   height: 100%;
   display: flex;
-  color: white;
 }
-
 #extend-navbar h3 {
   margin-left: 15px;
   font-size: 30px;
   font-family: hywen;
-  color: white;
 }
-
 nav a {
   width: 100%;
   height: 100%;
   display: flex;
-  color: white;
 }
-
 nav h3 {
-  font-size: 16px;
-  margin-top: 15px;
+  font-size: 13px;
+  margin-top: 8px;
   margin-left: 5px;
-  color: white;
 }
 
 nav button:hover {
-  background-color: rgba(260, 260, 260, 0.6);
+  background-color: rgba(0, 0, 0, 0.6);
 }
-
 #extend-navbar button {
   width: 100%;
+  height: fit-content;
   border: none;
   background: none;
   padding: 10px;
@@ -91,19 +74,16 @@ nav button:hover {
   text-align: left;
   z-index: -999;
 }
-
 #extend-navbar {
   width: 100vw;
   height: 100vh;
-  background-color: white;
   transition: 0.3s ease-out;
   position: absolute;
   padding-top: 60px;
   background-color: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(20px);
   z-index: 1;
 }
-
 #name {
   font-size: 1.1rem;
   cursor: pointer;
@@ -112,10 +92,17 @@ nav button:hover {
   width: fit-content;
 }
 
+.name-container {
+  display: flex;
+  flex-direction: row;
+}
+.name-container img{
+  width: 45px;
+  height: 45px;
+}
 h1 {
   padding: 6px;
   font-size: 28px;
-  margin-right: 15px;
   color: white;
 }
 
@@ -132,26 +119,12 @@ h2 {
   margin-block-end: unset;
 }
 
-#extend-navbar {
-  width: 100vw;
-  height: 100vh;
-  background-color: white;
-  transition: 0.3s ease-out;
-  position: absolute;
-  padding-top: 60px;
-  background-color: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  z-index: 1;
-}
-
 .out {
   top: -100vh;
 }
-
 .appear {
   top: 0vh;
 }
-
 #extend-navbar button {
   width: 100%;
   border: none;
@@ -162,7 +135,6 @@ h2 {
   text-align: left;
   z-index: -999;
 }
-
 .hidden {
   display: none;
 }
@@ -177,7 +149,7 @@ h2 {
   height: 50px;
   font-size: 3rem;
   text-align: center;
-  z-index: 1;
+  z-index: 10001;
 }
 
 .fa-x {
@@ -190,7 +162,7 @@ h2 {
   height: 50px;
   font-size: 3rem;
   text-align: center;
-  z-index: 1;
+  z-index: 10001;
 }
 
 a {
@@ -198,17 +170,13 @@ a {
   color: black;
 }
 
-/*General CSS Style*/
 * {
   padding: 0px;
   margin: 0;
   box-sizing: border-box;
 }
 
-body {
-  height: 100vh;
-  overflow-x: hidden;
-}
+
 
 @font-face {
   font-family: hywen;
@@ -218,21 +186,14 @@ body {
 }
 
 /*Intro CSS Style*/
-#intro {
-  bottom: 10px;
-  right: 10px;
-  position: fixed;
-  width: 30px;
-  height: 30px;
-  background-color: white;
-  border-radius: 50%;
-  border: 3px solid black;
+#contai-intro{
   cursor: pointer;
-  z-index: 1000;
-}
-
-#intro:hover {
-  opacity: 0.8;
+  margin: auto 0px auto auto;
+  background-color: white;
+  border-radius: 15px;
+  width: 60px;
+  padding-left: 15px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0,0.6);
 }
 
 /*Quote CSS Style*/
@@ -304,26 +265,30 @@ body {
   opacity: 0.8;
 }
 
-.body {
-  position: absolute;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgb(73, 73, 73);
-  opacity: 0.6;
-}
 
 /*Setting CSS Style*/
+#overlay{
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  z-index: 100000;
+  background-color: rgb(50, 50, 50, 0.5);
+  display: none;
+  transition-duration: 0.5s;
+}
 #setting {
   bottom: 10px;
   right: 10px;
   position: fixed;
   width: 30px;
   height: 30px;
-  background-color: rgb(250, 250, 250, 0.2);
+  background-color: rgb(260, 260, 260, 0.2);
   backdrop-filter: blur(20px);
   border-radius: 50%;
   cursor: pointer;
-  z-index: 100000;
+  z-index: 99999;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
 }
 
@@ -333,23 +298,35 @@ body {
 }
 
 #setting2 {
-  transform: scale(0.5);
-  bottom: 50px;
-  right: -300px;
+  bottom:-300px;
+  right: 10px;
   position: fixed;
-  width: 300px;
-  height: fit-content;
-  padding: 5px;
-  background-color: rgb(260, 260, 260, 0.2);
+  width: 400px;
+  height: 202.8px;
+  padding-bottom: 8px;
+  padding-left: 8px;
+  padding-right: 8px;
+  background-color: rgb(122, 92, 65);
   backdrop-filter: blur(40px);
-  border-radius: 15px;
-  z-index: 100000;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  z-index: 100001;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
   transition: ease-in-out 0.5s;
 }
-
+#setting2 h2{
+  font-size: 20px;
+  padding: 8px;
+  width: fit-content;
+  margin: auto;
+}
+#in-setting2{
+  background-color: rgb(260, 260, 260,0.1);
+  border-radius: 21px;
+  padding: 8px;
+}
 #setting2.active {
-  right: 10px !important;
+  bottom: 0px !important;
   transform: scale(1) !important;
 }
 
@@ -360,12 +337,12 @@ body {
 
 .line {
   display: flex;
-  border-radius: 15px;
-  padding: 5px;
+  border-radius: 17px;
+  padding: 8px;
 }
 
 .line:hover {
-  background-color: rgb(260, 260, 260, 0.6);
+  background-color: rgb(260, 260, 260,0.2);
   cursor: pointer;
 }
 
@@ -382,6 +359,140 @@ body {
   margin: auto 0px auto auto;
 }
 
+.line label {
+  position: relative;
+  width: 60px;
+  height: 25px;
+  display: block;
+  background: #d9d9d9;
+  border-radius: 100px;
+  cursor: pointer;
+  box-shadow: inset 0px 5px 15px rgba(0, 0, 0, 0.3),
+    inset 0px -5px 15px rgba(255, 255, 255, 0.3);
+}
+
+.line label:after {
+  content: "";
+  position: absolute;
+  height: 25px;
+  width: 25px;
+  background: #f2f2f2;
+  border-radius: 100px;
+  top: 0;
+  left: 0;
+  transition: 0.5s;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+input:checked ~ label:after {
+  left: 60px;
+  transform: translateX(-100%);
+  background: linear-gradient(180deg, #777, #3a3a3a);
+}
+
+.line input:checked ~ label {
+  background: #242424;
+}
+
+.line input:checked + label + button {
+  background: #242424 !important;
+}
+
+.line input {
+  display: none;
+}
+
 /*Media CSS Style*/
+
+#footer{
+  position:absolute;
+  background-image: url("/img/others_imgs/footer.png");
+  color: rgb(2, 48, 33);
+  width: 100vw;
+  height: 300px;
+  z-index: -1;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 100vh;
+}
+#footer-ifo{
+  width: 60%;
+  display: flex;
+  flex-wrap: wrap;
+}
+.footer-col{
+  padding: 20px;
+  width: 33%;
+  height: fit-content;
+}
+#footer-logo{
+  width: 40%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 0px auto;
+  background-image: url("/img/others_imgs/footer1.png");
+  background-position:right center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+#footer-logo img{
+  margin-top: 30px;
+  width: 240px;
+  height: 240px;
+}
+#footer ul{
+  list-style: none;
+  margin-top: 20px;
+}
+#footer li{
+  font-size: 20px;
+  margin-bottom: 4px;
+}
+#footer h4{
+  color: rgb(2, 48, 33);
+  background-color: unset;
+  font-size: 25px;
+}
 @media only screen and (max-width: 850px) {
+  #footer h4{
+    font-size: 22px;
+  }
+  #footer li{
+    font-size: 20px;
+    margin-bottom: 4px;
+  }
+  .footer-col{
+    width: 50%;
+  }
+}
+@media only screen and (max-width: 550px) {
+  #footer{  
+    width: 100vw;
+    height: fit-content;
+    display: block;
+  }
+  #footer-logo{
+    width: 100%;
+    height: 40%;
+    background-image: url("/img/others_imgs/footer2.png");
+    background-position:bottom center;
+  }
+  #footer-logo img{
+    margin-top: 0px;
+  }
+  #footer-ifo{
+    width: 100%;
+    height: 60%;
+    display: block;
+  }
+  .footer-col{
+    padding: 20px;
+    width: 100%;
+    height: fit-content;
+  }
+  #setting2 {
+    width: 100vw;
+    right: 0px;
+  }
 }

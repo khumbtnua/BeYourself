@@ -6,8 +6,7 @@ const port = 5500;
 const route = require("./ROUTES");
 const db = require("./CONFIG/DB");
 
-// db.connect1();
-db.connect2();
+db.connect();
 
 app.engine(
   "hbs",

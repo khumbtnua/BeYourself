@@ -371,7 +371,7 @@ var autoNext = false;
 var modeValue = "light";
 var header = document.getElementById("header-link");
 var settingTable = document.getElementById("setting2");
-var turnAutoMode = document.querySelector(".auto");
+var turnAutoMode = document.getElementById("auto");
 var body = document.querySelector("body");
 var home1 = document.getElementById("home1");
 var story1 = document.getElementById("story1");
@@ -383,8 +383,6 @@ var firstNavbar = document.querySelector("nav");
 var secondNavbar = document.getElementById("extend-navbar");
 var titleElement = document.getElementById("name");
 secondNavbar.classList.add("out");
-var mode = document.getElementById("mode-link");
-var footer = document.getElementById("footer");
 
 introBtn.addEventListener("click", function () {
   startIntro();
@@ -392,6 +390,7 @@ introBtn.addEventListener("click", function () {
 
 turnAutoMode.addEventListener("click", function () {
   changeAutoMode();
+  turnAutoMode.classList.toggle("active");
 });
 
 function changeAutoMode() {
@@ -412,12 +411,10 @@ function changeTheme() {
   if (theme.getAttribute("href") === "/test-light.css") {
     theme.href = "/test-dark.css";
     header.href = "/header-dark.css";
-    mode.href = "/mode-dark.css";
     modeValue = "dark";
   } else if (theme.getAttribute("href") === "/test-dark.css") {
     theme.href = "/test-light.css";
     header.href = "/header-light.css";
-    mode.href = "/mode-light.css";
     modeValue = "light";
   }
   localStorage.setItem("mode", modeValue);
@@ -429,12 +426,10 @@ window.addEventListener("load", function () {
   if (constmodeValue === "light") {
   } else if (constmodeValue === "dark") {
     changeModeBtn.click();
-    changeModeBtn.checked = true;
   }
   var constautomodeValue = localStorage.getItem("auto");
   if (constautomodeValue === "true") {
     turnAutoMode.click();
-    turnAutoMode.checked = true;
   } else if (constautomodeValue === "false") {
   }
 });
@@ -1141,13 +1136,7 @@ function startIntro() {
   intro.start();
 }
 
-function openset() {
-  if (settingTable.className === "active") {
-    settingTable.classList.remove("active");
-  } else {
-    settingTable.classList.add("active");
-  }
-}
+
 
 function changeMode(modeValue) {
   var university1 = document.getElementById("university1");
@@ -1173,7 +1162,7 @@ equalsElement.addEventListener("click", function () {
 });
 
 function resizeHandle() {
-  if (window.innerWidth <= 800) {
+  if (window.innerWidth <= 600) {
     equalsElement.style.display = "block";
     firstNavbar.style.display = "none";
     window.onload = returnViewNavbar;

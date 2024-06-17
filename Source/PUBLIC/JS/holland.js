@@ -6,6 +6,7 @@ var secondNavbar = document.getElementById("extend-navbar");
 var titleElement = document.getElementById("name");
 var chosediv = document.getElementById("choose");
 var tescontai = document.getElementById("test-container");
+var overlay = document.getElementById("overlay");
 let s = 0;
 let w = 0;
 let x = "";
@@ -76,6 +77,21 @@ var HOLLAND = [
   "Câu 53) Có khả năng lên kế hoạch, điều phối công việc",
   "Câu 54) Thích làm việc với con số, theo hướng dẫn, quy trình",
 ];
+function openset() {
+    settingTable.classList.add("active");
+    overlay.style.display="block";
+    setTimeout(function(){
+    overlay.style.backgroundColor="rgb(50, 50, 50, 0.7)";
+  }, 10);
+}
+function clicklay(){
+  settingTable.classList.remove("active");
+  overlay.style.backgroundColor="rgb(50, 50, 50, 0)"
+  setTimeout(function(){
+  overlay.style.display="none";
+  }, 500);
+}
+
 var click = 0;
 var hollandBtn = document.getElementById("holland");
 hollandBtn.addEventListener("click", function () {
