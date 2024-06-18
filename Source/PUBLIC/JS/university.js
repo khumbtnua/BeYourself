@@ -4,12 +4,11 @@ var equalsElement = document.querySelector(".fa-equals");
 var xElement = document.querySelector(".fa-x");
 var firstNavbar = document.querySelector("nav");
 var secondNavbar = document.getElementById("extend-navbar");
-var collegeContainer = document.getElementById("list-sch");
 var header = document.getElementById("header-link");
 var theme = document.getElementById("theme-link");
 var modeValue = "light";
 var changeModeBtn = document.getElementById("mode");
-var turnAutoMode = document.getElementById("auto");
+var turnAutoMode = document.querySelector(".auto");
 var introBtn = document.getElementById("intro");
 var searchInput = document.getElementById("search-in");
 var settingTable = document.getElementById("setting2");
@@ -19,7 +18,6 @@ var story1 = document.getElementById("story1");
 var test1 = document.getElementById("test1");
 var university1 = document.getElementById("university1");
 var introBtn = document.getElementById("intro");
-var collegesAPI = "http://localhost:3000/colleges";
 var autoNext = false;
 var equalsElement = document.querySelector(".fa-equals");
 var xElement = document.querySelector(".fa-x");
@@ -27,6 +25,13 @@ var firstNavbar = document.querySelector("nav");
 var secondNavbar = document.getElementById("extend-navbar");
 var titleElement = document.getElementById("name");
 secondNavbar.classList.add("out");
+var collegeContainer = document.getElementById("list-sch");
+var dataContainer = document.getElementById("data-container");
+var universityData = JSON.parse(dataContainer.getAttribute("data-university"));
+var searchBtn = document.getElementById("search");
+var errorPage = document.getElementById("error-page");
+var mode = document.getElementById("mode-link");
+var footer = document.getElementById("footer");
 function openset() {
   settingTable.classList.add("active");
   overlay.style.display="block";
@@ -41,17 +46,8 @@ setTimeout(function(){
 overlay.style.display="none";
 }, 500);
 }
-searchInput.addEventListener("keyup", function (e) {
-  var inputValue = e.target.value.toLowerCase();
-  var filterCollege = colleges.filter((college) => {
-    return college.name.toLowerCase().includes(inputValue);
-  });
-  renderCollege(filterCollege);
-});
-
 turnAutoMode.addEventListener("click", function () {
   changeAutoMode();
-  turnAutoMode.classList.toggle("active");
 });
 
 function changeAutoMode() {
@@ -70,17 +66,18 @@ introBtn.addEventListener("click", function () {
 
 changeModeBtn.addEventListener("click", function () {
   changeTheme();
-  changeModeBtn.classList.toggle("active");
 });
 
 function changeTheme() {
   if (theme.getAttribute("href") === "/university-light.css") {
     theme.href = "/university-dark.css";
     header.href = "/header-dark.css";
+    mode.href = "/mode-dark.css";
     modeValue = "dark";
   } else if (theme.getAttribute("href") === "/university-dark.css") {
     theme.href = "/university-light.css";
     header.href = "/header-light.css";
+    mode.href = "/mode-light.css";
     modeValue = "light";
   }
   localStorage.setItem("mode", modeValue);
@@ -88,52 +85,19 @@ function changeTheme() {
 }
 
 
-function start() {
-  takeCollege(renderCollege);
-}
-
-function takeCollege(callback) {
-  fetch(collegesAPI)
-    .then(function (res) {
-      return res.json();
-    })
-    .then(function (data) {
-      colleges = data;
-      callback(data);
-    });
-}
-
-function renderCollege(data) {
-  var htmls = data.map(function (college) {
-    return `
-    <div class="sch">
-            <div class="sch-contai-img">
-                <img src="${college.img}">
-            </div>
-            <div class="info">
-                <div class="info-text">
-                    <h2>${college.name}</h2>
-                    <h5>${college.address}</h5>
-                </div>
-                <div class="info-label"><label>Nothing</label></div>
-            </div>
-        </div>
-    `;
-  });
-  collegeContainer.innerHTML = htmls.join("");
-}
-
 window.addEventListener("load", function () {
-  start();
+  renderCollege(universityData);
   var constmodeValue = localStorage.getItem("mode");
   if (constmodeValue === "light") {
   } else if (constmodeValue === "dark") {
     changeModeBtn.click();
+    changeModeBtn.checked = true;
   }
 
   var constautomodeValue = localStorage.getItem("auto");
   if (constautomodeValue === "true") {
     turnAutoMode.click();
+    turnAutoMode.checked = true;
   } else if (constautomodeValue === "false") {
   }
 });
@@ -209,7 +173,7 @@ equalsElement.addEventListener("click", function () {
 });
 
 function resizeHandle() {
-  if (window.innerWidth <= 600) {
+  if (window.innerWidth <= 800) {
     equalsElement.style.display = "block";
     firstNavbar.style.display = "none";
     window.onload = returnViewNavbar;
@@ -235,4 +199,42 @@ function returnViewNavbar() {
   equalsElement.style.display = "block";
   secondNavbar.classList.remove("appear");
   secondNavbar.classList.add("out");
+}
+var inputValue = "";
+searchInput.addEventListener("keyup", function (e) {
+  inputValue = e.target.value.toLowerCase();
+});
+
+searchBtn.addEventListener("click", function () {
+  var filterCollege = universityData.filter((university) => {
+    return university.name.toLowerCase().includes(inputValue);
+  });
+  if (Object.keys(filterCollege).length === 0) {
+    renderCollege(filterCollege);
+    collegeContainer.style.height = "500px";
+    errorPage.classList.remove("hide");
+    collegeContainer.appendChild(errorPage);
+  } else {
+    renderCollege(filterCollege);
+  }
+});
+
+function renderCollege(data) {
+  var htmls = data.map(function (college) {
+    return `
+    <div class="sch">
+            <div class="sch-contai-img">
+                <a href="/university/${college.slug}"><img src="${college.img}"></a>
+            </div>
+            <div class="info">
+                <div class="info-text">
+                    <h2>${college.name}</h2>
+                    <h5>${college.address}</h5>
+                </div>
+                <div class="info-label"><label>Nothing</label></div>
+            </div>
+        </div>
+    `;
+  });
+  collegeContainer.innerHTML = htmls.join("");
 }

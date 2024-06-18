@@ -167,11 +167,18 @@ function startIntro() {
 }
 
 function openset() {
-  if (settingTable.className === "active") {
-    settingTable.classList.remove("active");
-  } else {
-    settingTable.classList.add("active");
-  }
+  settingTable.classList.add("active");
+  overlay.style.display="block";
+  setTimeout(function(){
+  overlay.style.backgroundColor="rgb(50, 50, 50, 0.7)";
+}, 10);
+}
+function clicklay(){
+settingTable.classList.remove("active");
+overlay.style.backgroundColor="rgb(50, 50, 50, 0)"
+setTimeout(function(){
+overlay.style.display="none";
+}, 500);
 }
 
 function changeMode(modeValue) {
