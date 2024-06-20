@@ -8,7 +8,7 @@
 /*------------------------------------------------------------------------------------Basic------------------------------------------------------------------*/
 
 body {
-  background-color: rgb(200, 200, 200);
+  background-color: rgb(260, 260, 260);
   overflow: hidden;
 }
 
@@ -57,7 +57,7 @@ h4 {
   width: 180px;
   height: 180px;
   border: 3px solid black;
-  background-color: rgba(260, 260, 260);
+  background-color: rgba(240, 240, 240);
   transform-style: preserve-3d;
   transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), background 150ms cubic-bezier(0, 0, 0.58, 1);
 }
@@ -112,8 +112,7 @@ h4 {
 
 .divide button {
   width: 100%;
-  height: 42%;
-  margin-bottom: 30px;
+  height: 47%;
   cursor: pointer;
   background-color: rgba(250, 250, 250);
 }
@@ -123,11 +122,11 @@ h4 {
   height: 50px;
   display: flex !important;
   flex-direction: row-reverse;
-  margin-top: 0px;
 }
 
 #fistest1 img {
-  margin-right: 10px;
+ width: 50px;
+ height: 50px;
 }
 
 .arrowright {
@@ -137,8 +136,8 @@ h4 {
   border: none;
   margin-top: 10px;
   cursor: pointer;
-  margin-right: 10px;
   margin-left: 5px;
+  margin-right: 10px;
 }
 
 .arrowright img {
@@ -172,7 +171,7 @@ h4 {
   color: black;
   padding: 10px;
   border: 3px solid black;
-  background: rgb(250, 250, 250);
+  background: rgb(240, 240, 240);
   border-radius: 15px;
   transform-style: preserve-3d;
   transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), background 150ms cubic-bezier(0, 0, 0.58, 1);
@@ -223,7 +222,7 @@ h4 {
   color: black;
   padding: 20px;
   border: 3px solid black;
-  background: rgb(250, 250, 250);
+  background: rgb(240, 240, 240);
   border-radius: 20px;
   transform-style: preserve-3d;
   transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), background 150ms cubic-bezier(0, 0, 0.58, 1);
@@ -268,7 +267,7 @@ h4 {
 #demo {
   cursor: pointer;
   border: 3px solid black;
-  background: rgb(250, 250, 250);
+  background: rgb(240, 240, 240);
   transform-style: preserve-3d;
   transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), background 150ms cubic-bezier(0, 0, 0.58, 2);
 }
@@ -309,14 +308,6 @@ h4 {
 }
 
 /*------------------------------------------------------------------------------hover&focus---------------------------------------------------------------------------*/
-
-.quesans button:hover {
-  transform: scale(1.08);
-  background-color: rgba(260, 260, 260);
-  border: 4px solid black;
-  cursor: pointer;
-}
-
 
 .arrowleft img:hover {
   background-color: rgba(250, 250, 250);
@@ -405,18 +396,19 @@ h4 {
 }
 
 .quesans {
-  margin-top: 15vh;
   padding: 10px;
   width: 50%;
-  height: 50%;
+  height: 85%;
   display: flex;
   justify-content: space-around;
 }
 
 .divide {
-  display: block;
+  display: flex;
+  flex-direction: column;
   height: 100%;
   width: 31%;
+  justify-content: space-between;
 }
 
 .quesans2 {
@@ -616,9 +608,8 @@ h4 {
   }
   .testc {
     display: flex;
-    flex-direction: column;
     flex-wrap: wrap;
-    padding: 5vw;
+    padding: 5%;
     height: 84vh;
   }
   .quesans2 {
@@ -633,14 +624,6 @@ h4 {
     width: 200vw;
   }
 
-  .quesans2 {
-    margin-top: 0px;
-    padding-top: 0px;
-    padding-bottom: 0px;
-    width: 50%;
-    height: 85%;
-  }
-
   .dividem {
     flex-direction: column;
     height: fit-content;
@@ -651,6 +634,32 @@ h4 {
     width: 100%;
     margin-top: 20px;
     margin-bottom: 20px;
+  }
+
+  .quesans {  
+    margin-top: 0px;
+    margin-bottom: 20%;
+    width: 50%;
+    height: 60%;
+    flex-wrap: wrap;
+  }
+
+  .quesans button {
+    width: 95%;
+    height: 35%;
+  }
+  #fistest1{
+    height: 50px;
+  }
+  .divide {
+    height: 100%;
+    width: 45%;
+    margin-bottom: 25px;
+  }
+
+  .divide button {
+    width: 100%;
+    height: 46%;
   }
 }
 
@@ -702,17 +711,19 @@ h4 {
     width: 95%;
     height: 35%;
   }
-
+  #fistest1{
+    margin: 0;
+    height: 50px;
+  }
   .divide {
     height: 90%;
     width: 45%;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
   }
 
   .divide button {
     width: 100%;
-    height: 45%;
-    margin-bottom: 25px;
+    height: 44%;
   }
 
   .submitBtnContainer {
