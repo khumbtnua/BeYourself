@@ -1,5 +1,5 @@
 var bg = document.querySelector("body");
-var introBtn = document.getElementById("intro");
+var introBtn = document.getElementById("contai-intro");
 var changeModeBtn = document.getElementById("mode");
 var home1 = document.getElementById("home1");
 var story1 = document.getElementById("story1");
@@ -205,7 +205,7 @@ equalsElement.addEventListener("click", function () {
 });
 
 function resizeHandle() {
-  if (window.innerWidth <= 800) {
+  if (window.innerWidth <= 600) {
     equalsElement.style.display = "block";
     firstNavbar.style.display = "none";
     window.onload = returnViewNavbar;

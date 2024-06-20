@@ -366,7 +366,7 @@ alertInfo.classList.add("hide");
 var closealertBtn = document.querySelector(".close-btn");
 var changeModeBtn = document.getElementById("mode");
 var theme = document.querySelector("#theme-link");
-var introBtn = document.getElementById("intro");
+var introBtn = document.getElementById("contai-intro");
 var autoNext = false;
 var modeValue = "light";
 var header = document.getElementById("header-link");
@@ -1180,7 +1180,7 @@ equalsElement.addEventListener("click", function () {
 });
 
 function resizeHandle() {
-  if (window.innerWidth <= 800) {
+  if (window.innerWidth <= 600) {
     equalsElement.style.display = "block";
     firstNavbar.style.display = "none";
     window.onload = returnViewNavbar;

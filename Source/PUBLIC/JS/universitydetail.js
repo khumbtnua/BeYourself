@@ -9,13 +9,13 @@ var theme = document.getElementById("theme-link");
 // var modeValue = "light";
 // var changeModeBtn = document.getElementById("mode");
 // var turnAutoMode = document.getElementById("auto");
-// var introBtn = document.getElementById("intro");
+
 // var settingTable = document.getElementById("setting2");
 var home1 = document.getElementById("home1");
 var story1 = document.getElementById("story1");
 var test1 = document.getElementById("test1");
 var university1 = document.getElementById("university1");
-var introBtn = document.getElementById("intro");
+var introBtn = document.getElementById("contai-intro");
 var autoNext = false;
 var equalsElement = document.querySelector(".fa-equals");
 var xElement = document.querySelector(".fa-x");
@@ -156,7 +156,7 @@ equalsElement.addEventListener("click", function () {
 });
 
 function resizeHandle() {
-  if (window.innerWidth <= 800) {
+  if (window.innerWidth <= 600) {
     equalsElement.style.display = "block";
     firstNavbar.style.display = "none";
     window.onload = returnViewNavbar;
