@@ -2,6 +2,7 @@
 
 body {
   background-color: rgba(200, 200, 200);
+  width: 100%;
 }
 
 @font-face {
@@ -27,38 +28,68 @@ a {
   text-decoration: none;
   color: black;
 }
-
-#search-area {
-  padding-top: 45vh;
-  padding-bottom: 50px;
+#navbar {
+  box-shadow: none !important;
 }
-
-#contai-search {
-  position: relative;
-  left: 50vw;
-  margin-left: -35vw;
-  background-color: white;
-  width: 70vw;
-  height: 55px;
+#blur{
+  position: absolute;
+  width: 100%;
+  height: 94vh;
+  right: 0;
+  top: 6vh;
+  background-color: rgba(260, 260, 260, 0.5);
+  backdrop-filter: blur(20px);
+  z-index: 1;
+}
+#sidebar{
   display: flex;
-  border-radius: 30px;
+  flex-direction: column;
+ position: absolute;
+ padding-bottom: 1vh;
+ left: 0px;
+ top:6vh;
+ width: 25%;
+ height: 94vh;
+ z-index: 2;
+}
+#school-detail{
+  position: absolute;
+  width: 74.5%;
+  height: 92vh;
+  right: 0.5%;
+  top:7vh;
+  background-color: white;
+  border-radius: 20px;
+  z-index: 3;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+}
+#contai-search {
+  margin: 5%;
+  padding-right: 20px;
+  background-color: white;
+  width: 90%;
+  background-color: rgba(240, 240, 240);
+  height: 50px;
+  display: flex;
+  border-radius:15px;
   -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
   -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
 }
 
 #search-in {
-  width: 85%;
+  width: 100%;
   height: 100%;
   border: none;
   font-size: 20px;
+  background-color: rgba(240, 240, 240);
 }
 
 #search-img {
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   margin: 7.5px;
-  margin-left: 10px;
+  margin-left: 7.5px;
 }
 
 #location {
@@ -97,6 +128,7 @@ a {
 h4 {
   background-color: black;
   width: 100%;
+  height: 100%;
   border-radius: 20px;
   padding: 6.5px;
   font-size: 20px;
@@ -140,24 +172,22 @@ select:focus {
 }
 
 #list-sch {
-  background-color:rgba(260, 260, 260, 0.1);
-  margin: 0 auto;
-  backdrop-filter: blur(30px);
-  padding-top: 20px;
-  padding-bottom: 20px;
-  border-radius: 40px;
-  width: 70vw;
+  margin-left: 2.5%;
+  width: 95%;
+  height: 100%;
+  overflow-y:auto;
+  border-radius:15px ;
 }
 
 .sch {
   color: black;
   display: flex;
   flex-direction: row;
-  background-color: rgba(260, 260, 260, 0.6);
-  border-radius: 25px;
-  width: 65vw;
-  margin: 30px auto;
-  height: 150px;
+  background-color: rgba(240, 240, 240, 0.8);
+  border-radius: 15px;
+  width: 100%;
+  margin-bottom:  10px;
+  height: 75px;
   -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
   -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
@@ -168,19 +198,16 @@ select:focus {
   flex-direction: column;
   flex-wrap: wrap;
   width: 100%;
-  border-radius: 20px;
-  padding: 10px;
-  border-radius: 25px;
 }
 
 .info-text {
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 70%;
+  height: 60%;
 }
 .sch-contai-img {
-  padding: 15px;
+  padding: 10px;
   height: 100%;
   object-fit: contain;
 }
@@ -189,39 +216,32 @@ select:focus {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 120px;
-  height: 120px;
+  width: 60px;
+  height: 60px;
   object-fit: contain;
 }
 
 .info h2 {
   width: 100%;
   font-size: 20px;
-  margin-bottom: 5px;
+  margin-top: 2px;
+  margin-bottom: 2px;
 }
 
-.info h5 {
-  font-size: 18px;
-  width: 100%;
-  margin-bottom: 5px;
-}
 
 .info-label {
   display: flex;
   flex-direction: row;
-  height: 30%;
-  border-radius: 20px;
-  background-color: rgba(260, 260, 260, 0.4);
-  box-shadow: 0 0px 2px rgba(0, 0, 0, 0.3);
+  height: 25px;
 }
 
 .info-label label {
   display: block;
   background-color: aqua;
-  padding: 8px;
-  padding-right: 10px;
-  padding-left: 10px;
   border-radius: 25px;
+  padding: 2px;
+  padding-right: 6px;
+  padding-left: 6px;
   font-size: 17px;
   margin-right: 12px;
   width: fit-content;

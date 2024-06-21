@@ -228,7 +228,6 @@ function renderCollege(data) {
             <div class="info">
                 <div class="info-text">
                     <h2>${college.name}</h2>
-                    <h5>${college.address}</h5>
                 </div>
                 <div class="info-label"><label>Nothing</label></div>
             </div>

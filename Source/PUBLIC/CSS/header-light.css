@@ -7,7 +7,7 @@
   position: fixed;
   z-index: 10000;
   user-select: none;
-  width: 100%;
+  width: 100vw;
   height: 6vh;
   display: flex;
   justify-content: space-between;
@@ -374,7 +374,7 @@ a {
   position:absolute;
   background-image: url("/img/others_imgs/footer.png");
   color: rgb(2, 48, 33);
-  width: 100vw;
+  width: 100%;
   height: 300px;
   z-index: -1;
   display: flex;
