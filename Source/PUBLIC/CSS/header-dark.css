@@ -794,7 +794,23 @@ a {
 #button-3 .checkbox:checked ~ .layer {
   background-color: #6bcefc;
 }
-
+::-webkit-scrollbar{
+  width: 5px;
+}
+::-webkit-scrollbar-thumb{
+  background-color: rgb(100, 100, 100);
+  border-radius: 15px;
+}
+::-webkit-scrollbar-thumb:hover{
+  cursor: pointer;
+}
+::-webkit-scrollbar-track{
+  border-radius: 15px;
+}
+::-webkit-scrollbar-track-piece{
+  background-color: rgba(260, 260, 260, 0.2);
+  border-radius: 15px;
+}
 @media only screen and (max-width: 850px) {
   #footer h4{
     font-size: 22px;
