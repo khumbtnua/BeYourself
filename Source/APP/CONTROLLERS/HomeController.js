@@ -9,9 +9,9 @@ class HomeController {
       res.render("home", {
         style: "home-light.css",
         function1: "home.js",
+        username: req.session.username,
         quotes: JSON.stringify(mutipleMongooseToObject(data)),
       });
-      console.log(mutipleMongooseToObject(data));
     } catch (err) {
       res.status(400).json({ error: "FAILED!!!" });
     }

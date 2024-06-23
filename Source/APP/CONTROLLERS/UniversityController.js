@@ -1,4 +1,3 @@
-const College = require("../MODELS/College");
 const University = require("../MODELS/University");
 const { mongooseToObject } = require("../../UTIL/mongoose");
 const { mutipleMongooseToObject } = require("../../UTIL/mongoose");
@@ -10,6 +9,7 @@ class UniversityController {
       res.render("university", {
         style: "university-light.css",
         function1: "university.js",
+        username: req.session.username,
         universities: JSON.stringify(mutipleMongooseToObject(data)),
       });
     } catch (err) {
@@ -23,6 +23,7 @@ class UniversityController {
         res.render("college", {
           style: "universitydetail-light.css",
           function1: "universitydetail.js",
+          username: req.session.username,
           college: mongooseToObject(college),
         });
       })
