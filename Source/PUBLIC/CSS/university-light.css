@@ -1,24 +1,10 @@
-#myVideo {
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  min-width: 100%;
-  min-height: 100%;
-  z-index: -10;
-}
-
 body {
-background-color: white;
+background-color: rgb(232, 234, 239);
   width: 100%;
 }
-
-@font-face {
-  font-family: hywen;
-  src: url("/img/zhcn.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
+#navbar {
+  background-color: unset;
 }
-
 h1 {
   padding: 6px;
   font-size: 28px;
@@ -258,6 +244,7 @@ select:focus {
 }
 
 .info h2 {
+  font-weight: 200;
   width: 100%;
   font-size: 18px;
   margin-top: 2px;
