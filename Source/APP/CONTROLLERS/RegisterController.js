@@ -19,15 +19,16 @@ class RegisterController {
     }
 
     res.render("register", {
-      style: "register-light.css",
+      style: "login-register.css",
       layout: "extend",
     });
   }
 
   registerForm(req, res) {
     res.render("register", {
-      style: "register-light.css",
-      layout: "extend",
+      style: "login-register.css",
+      function1:"login-register.js",
+      layout: "extend"
     });
   }
 }
