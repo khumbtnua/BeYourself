@@ -410,6 +410,20 @@ select:focus {
     border-radius: 10px;
     flex-grow: 5;
   }
+  #contai-search img {
+    margin: 15px;
+  }
+  #search-pre {
+    display: none;
+  }
+  #contai-list-sch {
+    margin: auto 0;
+    height: 90%;
+    width: 1px;
+    padding: 3px;
+    border-radius: 10px;
+    flex-grow: 5;
+  }
   #list-sch {
     height: 100%;
     width: unset;
