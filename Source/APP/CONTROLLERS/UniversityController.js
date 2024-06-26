@@ -9,7 +9,8 @@ class UniversityController {
       res.render("university", {
         style: "university-light.css",
         function1: "university.js",
-        username: req.session.username,
+        username: req.user.name,
+        userimg: req.user.img,
         universities: JSON.stringify(mutipleMongooseToObject(data)),
       });
     } catch (err) {

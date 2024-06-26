@@ -1,4 +1,4 @@
-const Account = require("../MODELS/Account");
+const Account = require("../MODELS/Accountbs");
 const bcrypt = require("bcrypt");
 
 class RegisterController {
@@ -18,15 +18,13 @@ class RegisterController {
       const userdata = await Account.insertMany(data);
     }
 
-    res.render("register", {
-      style: "register-light.css",
-      layout: "extend",
-    });
+    res.redirect("/createaccount");
   }
 
   registerForm(req, res) {
-    res.render("register", {
-      style: "register-light.css",
+    res.render("createaccount", {
+      style: "login-register.css",
+      function1: "login-register.js",
       layout: "extend",
     });
   }
