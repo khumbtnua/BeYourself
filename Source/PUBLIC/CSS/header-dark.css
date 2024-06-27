@@ -97,7 +97,7 @@ nav button:hover {
   display: flex;
   flex-direction: row;
 }
-.name-container img{
+.name-container img {
   width: 45px;
   height: 45px;
 }
@@ -177,15 +177,12 @@ a {
   box-sizing: border-box;
 }
 
-
-
 @font-face {
   font-family: hywen;
   src: url("/img/zhcn.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
-
 
 /*Quote CSS Style*/
 .quote-container {
@@ -256,9 +253,8 @@ a {
   opacity: 0.8;
 }
 
-
 /*Setting CSS Style*/
-#overlay{
+#overlay {
   width: 100vw;
   height: 100vh;
   position: fixed;
@@ -291,7 +287,7 @@ a {
 }
 
 #setting2 {
-  bottom:-300px;
+  bottom: -300px;
   right: 10px;
   position: fixed;
   width: 400px;
@@ -307,14 +303,14 @@ a {
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
   transition: ease-in-out 0.5s;
 }
-#setting2 h2{
+#setting2 h2 {
   font-size: 20px;
   padding: 8px;
   width: fit-content;
   margin: auto;
 }
-#in-setting2{
-  background-color: rgb(260, 260, 260,0.1);
+#in-setting2 {
+  background-color: rgb(260, 260, 260, 0.1);
   border-radius: 21px;
   padding: 8px;
 }
@@ -335,7 +331,7 @@ a {
 }
 
 .line:hover {
-  background-color: rgb(260, 260, 260,0.2);
+  background-color: rgb(260, 260, 260, 0.2);
   cursor: pointer;
 }
 
@@ -352,7 +348,7 @@ a {
   margin: auto 0px auto auto;
 }
 /*Intro CSS Style*/
-#contai-intro{
+#contai-intro {
   cursor: pointer;
   margin: auto 0px auto auto;
   background-color: white;
@@ -360,20 +356,20 @@ a {
   width: 60px;
   padding: 4px;
   padding-left: 20px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0,0.6);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
 }
-#contai-intro img{
+#contai-intro img {
   width: 20px;
   height: 20px;
 }
-#contai-intro:active{
+#contai-intro:active {
   box-shadow: none;
 }
 
 /*Media CSS Style*/
 
-#footer{
-  position:absolute;
+#footer {
+  position: absolute;
   background-image: url("/img/others_imgs/footer.png");
   color: rgb(2, 48, 33);
   width: 100%;
@@ -383,41 +379,41 @@ a {
   flex-wrap: wrap;
   margin-top: 100vh;
 }
-#footer-ifo{
+#footer-ifo {
   width: 60%;
   display: flex;
   flex-wrap: wrap;
 }
-.footer-col{
+.footer-col {
   padding: 20px;
   width: 33%;
   height: fit-content;
 }
-#footer-logo{
+#footer-logo {
   width: 40%;
   height: 100%;
   display: flex;
   justify-content: center;
   margin: 0px auto;
   background-image: url("/img/others_imgs/footer1.png");
-  background-position:right center;
+  background-position: right center;
   background-size: cover;
   background-repeat: no-repeat;
 }
-#footer-logo img{
+#footer-logo img {
   margin-top: 30px;
   width: 240px;
   height: 240px;
 }
-#footer ul{
+#footer ul {
   list-style: none;
   margin-top: 20px;
 }
-#footer li{
+#footer li {
   font-size: 20px;
   margin-bottom: 4px;
 }
-#footer h4{
+#footer h4 {
   color: rgb(2, 48, 33);
   background-color: unset;
   font-size: 25px;
@@ -795,57 +791,57 @@ a {
 #button-3 .checkbox:checked ~ .layer {
   background-color: #6bcefc;
 }
-::-webkit-scrollbar{
+::-webkit-scrollbar {
   width: 5px;
   height: 3px;
 }
-::-webkit-scrollbar-thumb{
+::-webkit-scrollbar-thumb {
   background-color: rgb(0, 0, 0);
   border-radius: 15px;
 }
-::-webkit-scrollbar-thumb:hover{
+::-webkit-scrollbar-thumb:hover {
   cursor: pointer;
 }
-::-webkit-scrollbar-track{
+::-webkit-scrollbar-track {
   border-radius: 15px;
 }
-::-webkit-scrollbar-track-piece{
-  background-color: rgba(100,100, 100);
+::-webkit-scrollbar-track-piece {
+  background-color: rgba(100, 100, 100);
   border-radius: 15px;
 }
 @media only screen and (max-width: 850px) {
-  #footer h4{
+  #footer h4 {
     font-size: 22px;
   }
-  #footer li{
+  #footer li {
     font-size: 20px;
     margin-bottom: 4px;
   }
-  .footer-col{
+  .footer-col {
     width: 50%;
   }
 }
 @media only screen and (max-width: 550px) {
-  #footer{  
+  #footer {
     width: 100%;
     height: fit-content;
     display: block;
   }
-  #footer-logo{
+  #footer-logo {
     width: 100%;
     height: 40%;
     background-image: url("/img/others_imgs/footer2.png");
-    background-position:bottom center;
+    background-position: bottom center;
   }
-  #footer-logo img{
+  #footer-logo img {
     margin-top: 0px;
   }
-  #footer-ifo{
+  #footer-ifo {
     width: 100%;
     height: 60%;
     display: block;
   }
-  .footer-col{
+  .footer-col {
     padding: 20px;
     width: 100%;
     height: fit-content;

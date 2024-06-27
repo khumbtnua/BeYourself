@@ -1,16 +1,8 @@
-const Account = require("../MODELS/Account");
+const Account = require("../MODELS/Accountbs");
 const bcrypt = require("bcrypt");
 const { mutipleMongooseToObject } = require("../../UTIL/mongoose");
-const Quote = require("../MODELS/Quote");
 
 class LoginController {
-  loginForm(req, res) {
-    res.render("login", {
-      style: "login-light.css",
-      layout: "extend",
-    });
-  }
-
   async login(req, res) {
     try {
       const username = req.body.username;
@@ -31,7 +23,7 @@ class LoginController {
         }
       }
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
       res.send("Wrong Details!");
     }
   }

@@ -4,7 +4,8 @@ class TestController {
       style: "test-light.css",
       function1: "mbti.js",
       function2: "holland.js",
-      username: req.session.username,
+      username: req.user.name,
+      userimg: req.user.img,
     });
   }
 }
