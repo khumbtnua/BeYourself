@@ -20,7 +20,6 @@ var university1 = document.getElementById("university1");
 var autoNext = false;
 var equalsElement = document.querySelector(".fa-equals");
 var xElement = document.querySelector(".fa-x");
-var firstNavbar = document.querySelector("nav");
 var secondNavbar = document.getElementById("extend-navbar");
 var titleElement = document.getElementById("name");
 secondNavbar.classList.add("out");
@@ -178,7 +177,7 @@ function resizeHandle() {
   } else {
     equalsElement.style.display = "none";
     xElement.style.display = "none";
-    firstNavbar.style.display = "block";
+    firstNavbar.style.display = "flex";
   }
 }
 

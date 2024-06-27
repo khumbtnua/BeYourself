@@ -417,9 +417,7 @@ select:focus {
     flex-direction: row;
     overflow-x: scroll;
     overflow-y: hidden;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    border-bottom-left-radius: 0px;
+    border-radius: 10px;
   }
   .sch {
     height: 90%;

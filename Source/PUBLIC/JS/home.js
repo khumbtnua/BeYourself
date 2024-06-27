@@ -212,7 +212,7 @@ function resizeHandle() {
   } else {
     equalsElement.style.display = "none";
     xElement.style.display = "none";
-    firstNavbar.style.display = "block";
+    firstNavbar.style.display = "flex";
   }
 }
 
