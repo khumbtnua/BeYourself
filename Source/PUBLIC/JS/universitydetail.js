@@ -10,7 +10,7 @@ var theme = document.getElementById("theme-link");
 // var changeModeBtn = document.getElementById("mode");
 // var turnAutoMode = document.getElementById("auto");
 
-// var settingTable = document.getElementById("setting2");
+// var userexpand = document.getElementById("user-expand");
 var home1 = document.getElementById("home1");
 var story1 = document.getElementById("story1");
 var test1 = document.getElementById("test1");
@@ -62,10 +62,10 @@ secondNavbar.classList.add("out");
 // }
 
 // function openset() {
-//   if (settingTable.className === "active") {
-//     settingTable.classList.remove("active");
+//   if (userexpand.className === "active") {
+//     userexpand.classList.remove("active");
 //   } else {
-//     settingTable.classList.add("active");
+//     userexpand.classList.add("active");
 //   }
 // }
 

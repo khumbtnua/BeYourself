@@ -11,7 +11,7 @@ var changeModeBtn = document.getElementById("mode");
 var turnAutoMode = document.querySelector(".auto");
 var introBtn = document.getElementById("contai-intro");
 var searchInput = document.getElementById("search-in");
-var settingTable = document.getElementById("setting2");
+var userexpand = document.getElementById("user-expand");
 var colleges = [];
 var home1 = document.getElementById("home1");
 var story1 = document.getElementById("story1");
@@ -31,18 +31,18 @@ var errorPage = document.getElementById("error-page");
 var mode = document.getElementById("mode-link");
 var footer = document.getElementById("footer");
 function openset() {
-  settingTable.classList.add("active");
-  overlay.style.display = "block";
-  setTimeout(function () {
-    overlay.style.backgroundColor = "rgb(50, 50, 50, 0.7)";
-  }, 10);
+  userexpand.classList.add("active");
+  overlay.style.display="block";
+  setTimeout(function(){
+  overlay.style.backgroundColor="rgb(50, 50, 50, 0.7)";
+}, 10);
 }
-function clicklay() {
-  settingTable.classList.remove("active");
-  overlay.style.backgroundColor = "rgb(50, 50, 50, 0)";
-  setTimeout(function () {
-    overlay.style.display = "none";
-  }, 500);
+function clicklay(){
+  userexpand.classList.remove("active");
+overlay.style.backgroundColor="rgb(50, 50, 50, 0)"
+setTimeout(function(){
+overlay.style.display="none";
+}, 500);
 }
 turnAutoMode.addEventListener("click", function () {
   changeAutoMode();
@@ -170,7 +170,7 @@ equalsElement.addEventListener("click", function () {
 });
 
 function resizeHandle() {
-  if (window.innerWidth <= 800) {
+  if (window.innerWidth <= 850) {
     equalsElement.style.display = "block";
     firstNavbar.style.display = "none";
     window.onload = returnViewNavbar;

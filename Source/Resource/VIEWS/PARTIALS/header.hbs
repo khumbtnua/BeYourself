@@ -30,10 +30,11 @@
         <h3>Story</h3>
       </a>
     </button>
-    <button id="user-avar">
+  </nav>
+  <button id="user-avar">
       {{#if username}}
           {{#if userimg}}
-          <img src="{{userimg}}" />
+          <img src="{{userimg}}" onclick="openset()"/>
           {{else}}
           <img src="https://scontent.fsgn5-15.fna.fbcdn.net/v/t1.30497-1/143086968_2856368904622192_1959732218791162458_n.png?_nc_cat=1&ccb=1-7&_nc_sid=136b72&_nc_eui2=AeFDln0uGNr2ftT3JD4lMqVlso2H55p0AlGyjYfnmnQCUTFM01ydBlQovol_D0_d_Xx0OSHzHWGhFRGAnH-ibHvh&_nc_ohc=ajY79JSPPYMQ7kNvgFBSqJA&_nc_ht=scontent.fsgn5-15.fna&oh=00_AYCrj_D6rIhxkOnzVsZISaJBl7EXsTPj8H9bCBd5KO75LQ&oe=66A34878" />
           {{/if}}
@@ -43,7 +44,6 @@
         </a>
       {{/if}}
     </button>
-  </nav>
 </div>
 <div id="user-expand">
   <div id="account-set">
@@ -57,15 +57,27 @@
       <span>{{username}}</span>
       {{/if}}
     </div>
-    <div class="line">
-      <a href="/logout">Logout</a>
+    <a href="/logout">
+    <div class="line" >
+      <img src="/img/tool_imgs/logout.png">
+      <h3>Log out</h3>
+      <img src="/img/tool_imgs/lauch.png" class="lauch">
     </div>
-     <div class="line">
-      <a href="/logout">Logout</a>
+    </a>
+    <a href="/logout">
+    <div class="line" >
+      <img src="/img/tool_imgs/logout.png">
+      <h3>Log out</h3>
+      <img src="/img/tool_imgs/lauch.png" class="lauch">
     </div>
-     <div class="line">
-      <a href="/logout">Logout</a>
+    </a>
+    <a href="/logout">
+    <div class="line" >
+      <img src="/img/tool_imgs/logout.png">
+      <h3>Log out</h3>
+      <img src="/img/tool_imgs/lauch.png" class="lauch">
     </div>
+    </a>
     </div>
   <div id="setting">
     <div class="line">
@@ -144,5 +156,6 @@
     </a>
   </button>
 </div>
+<div id="overlay" onclick="clicklay()"></div>
 <i class="fa-solid fa-equals"></i>
 <i class="fa-solid fa-x"></i>

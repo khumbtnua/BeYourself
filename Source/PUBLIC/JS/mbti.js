@@ -370,7 +370,7 @@ var introBtn = document.getElementById("contai-intro");
 var autoNext = false;
 var modeValue = "light";
 var header = document.getElementById("header-link");
-var settingTable = document.getElementById("setting2");
+var userexpand = document.getElementById("user-expand");
 var turnAutoMode = document.querySelector(".auto");
 var body = document.querySelector("body");
 var home1 = document.getElementById("home1");
@@ -1142,14 +1142,14 @@ function startIntro() {
 }
 
 function openset() {
-  settingTable.classList.add("active");
+  userexpand.classList.add("active");
   overlay.style.display="block";
   setTimeout(function(){
   overlay.style.backgroundColor="rgb(50, 50, 50, 0.7)";
 }, 10);
 }
 function clicklay(){
-settingTable.classList.remove("active");
+  userexpand.classList.remove("active");
 overlay.style.backgroundColor="rgb(50, 50, 50, 0)"
 setTimeout(function(){
 overlay.style.display="none";
@@ -1180,7 +1180,7 @@ equalsElement.addEventListener("click", function () {
 });
 
 function resizeHandle() {
-  if (window.innerWidth <= 600) {
+  if (window.innerWidth <= 850) {
     equalsElement.style.display = "block";
     firstNavbar.style.display = "none";
     window.onload = returnViewNavbar;
