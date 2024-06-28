@@ -29,7 +29,7 @@
   border-top-left-radius: 30px;
   border-bottom-left-radius: 30px;
   height: fit-content;
-  background-color: #efefe9;
+  background-color: rgb(122, 92, 65);
   padding: 10px;
   z-index: 100001;
   transition-duration: 0.5s;
@@ -45,10 +45,10 @@
   height: fit-content;
   border-radius: 20px;
   overflow: hidden;
-  background-color: #e8d9cd;
+  background-color: rgb(260, 260, 260,0.2);
 }
 #account-set{
-  background-color: #e8d9cd;
+  background-color: rgb(260, 260, 260,0.2);
   border-radius: 20px;
   overflow: hidden;
 }
@@ -59,7 +59,7 @@
 #user-line{
   border-radius: 20px;
   height: 70px;
-  background-color:#bba58f ;
+  background-color:rgb(260, 260, 260,0.2);
 }
 #user-line img{
   width: 45px;
@@ -78,7 +78,7 @@
   display: flex;
   padding: 10px;
   height: fit-content;
-  background-color: #e8d9cd;
+  background-color: none;
 }
 
 .line:hover {
