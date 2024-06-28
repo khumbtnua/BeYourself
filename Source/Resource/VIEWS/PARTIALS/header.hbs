@@ -32,23 +32,41 @@
     </button>
     <button id="user-avar">
       {{#if username}}
-      <span>{{username}}</span>
-      {{#if userimg}}
-      <img src="{{userimg}}" />
-      {{else}}
-      <img
-        src="https://scontent.fsgn5-15.fna.fbcdn.net/v/t1.30497-1/143086968_2856368904622192_1959732218791162458_n.png?_nc_cat=1&ccb=1-7&_nc_sid=136b72&_nc_eui2=AeFDln0uGNr2ftT3JD4lMqVlso2H55p0AlGyjYfnmnQCUTFM01ydBlQovol_D0_d_Xx0OSHzHWGhFRGAnH-ibHvh&_nc_ohc=ajY79JSPPYMQ7kNvgFBSqJA&_nc_ht=scontent.fsgn5-15.fna&oh=00_AYCrj_D6rIhxkOnzVsZISaJBl7EXsTPj8H9bCBd5KO75LQ&oe=66A34878" />
-      {{/if}}
-      <button><a href="/logout">Logout</a></button>
-      {{else}}
-      <button><a href="/createaccount">
+          {{#if userimg}}
+          <img src="{{userimg}}" />
+          {{else}}
+          <img src="https://scontent.fsgn5-15.fna.fbcdn.net/v/t1.30497-1/143086968_2856368904622192_1959732218791162458_n.png?_nc_cat=1&ccb=1-7&_nc_sid=136b72&_nc_eui2=AeFDln0uGNr2ftT3JD4lMqVlso2H55p0AlGyjYfnmnQCUTFM01ydBlQovol_D0_d_Xx0OSHzHWGhFRGAnH-ibHvh&_nc_ohc=ajY79JSPPYMQ7kNvgFBSqJA&_nc_ht=scontent.fsgn5-15.fna&oh=00_AYCrj_D6rIhxkOnzVsZISaJBl7EXsTPj8H9bCBd5KO75LQ&oe=66A34878" />
+          {{/if}}
+        {{else}}
+        <a href="/createaccount">
           <h3>Create Account</h3>
-        </a></button>
+        </a>
       {{/if}}
     </button>
   </nav>
 </div>
 <div id="user-expand">
+  <div id="account-set">
+  <div class="line" id="user-line">
+      {{#if username}}
+        {{#if userimg}}
+          <img src="{{userimg}}" />
+          {{else}}
+          <img src="https://scontent.fsgn5-15.fna.fbcdn.net/v/t1.30497-1/143086968_2856368904622192_1959732218791162458_n.png?_nc_cat=1&ccb=1-7&_nc_sid=136b72&_nc_eui2=AeFDln0uGNr2ftT3JD4lMqVlso2H55p0AlGyjYfnmnQCUTFM01ydBlQovol_D0_d_Xx0OSHzHWGhFRGAnH-ibHvh&_nc_ohc=ajY79JSPPYMQ7kNvgFBSqJA&_nc_ht=scontent.fsgn5-15.fna&oh=00_AYCrj_D6rIhxkOnzVsZISaJBl7EXsTPj8H9bCBd5KO75LQ&oe=66A34878" />
+        {{/if}}
+      <span>{{username}}</span>
+      {{/if}}
+    </div>
+    <div class="line">
+      <a href="/logout">Logout</a>
+    </div>
+     <div class="line">
+      <a href="/logout">Logout</a>
+    </div>
+     <div class="line">
+      <a href="/logout">Logout</a>
+    </div>
+    </div>
   <div id="setting">
     <div class="line">
       <img src="/img/tool_imgs/theme.png" />
