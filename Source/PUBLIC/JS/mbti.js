@@ -1219,13 +1219,19 @@ function returnViewNavbar() {
   secondNavbar.classList.remove("appear");
   secondNavbar.classList.add("out");
 }
+var text = document.createElement("h4");
+var buttonset =document.createElement("button");
+var line = document.createElement("div");
+line.classList.add("line2")
+var titleset = document.createElement("h3");
 var movesetting = 0;
 var contaiexpand = document.getElementById("contai-page-expand");
+var backsetimg =document.createElement("img");
+backsetimg.src = "/img/tool_imgs/back.png";
+
 function feedclick() {
-  var backsetimg =document.createElement("img");
   var inputfeed = document.createElement("input");
   var feedpage= document.createElement("div");
-  backsetimg.src = "/img/tool_imgs/back.png";
   backsetimg.onclick=function(){back(feedpage)};
   feedpage.appendChild(backsetimg);
   feedpage.appendChild(inputfeed);
@@ -1244,4 +1250,26 @@ function back(e) {
   setTimeout(function () {
     e.remove();
   }, 500);
+}
+function passclick() {
+  titleset.innerHTML="Đổi mật khẩu";
+  buttonset.innerHTML="Đổi mật khẩu";
+  text.innerHTML="Mật khẩu của bạn phải có tối thiểu 6 ký tự, đồng thời bao gồm cả chữ số, chữ cái và ký tự đặc biệt.";
+  var inputpassnow = document.createElement("input");
+  var inputpassnew = document.createElement("input");
+  inputpassnow.placeholder="mật khẩu hiện tại";
+  inputpassnew.placeholder="mật khẩu mới";
+  var passpage= document.createElement("div");
+  backsetimg.onclick=function(){back(passpage)};
+  line.appendChild(backsetimg);
+  line.appendChild(titleset);
+  passpage.appendChild(line);
+  passpage.appendChild(text);
+  passpage.appendChild(inputpassnow);
+  passpage.appendChild(inputpassnew);
+  passpage.appendChild(buttonset);
+  passpage.classList.add("page-expand");
+  contaiexpand.appendChild(passpage);
+  movesetting = movesetting - 100;
+  moveset();
 }

@@ -38,11 +38,12 @@
   position: relative;
   transition-duration: 0.5s;
 }
+
 #user-expand{
   position: fixed;
-  right: -300px;
+  right: -350px;
   top:8vh;
-  width: 300px;
+  width: 350px;
   border-top-left-radius: 30px;
   border-bottom-left-radius: 30px;
   height: fit-content;
@@ -51,6 +52,29 @@
   z-index: 100001;
   transition-duration: 0.5s;
   overflow: hidden;
+}
+#user-expand button{
+  border: none;
+  background-color: #bba58f;
+  color: white;
+  padding: 10px;
+  width: 90%;
+  height: 40px;
+  margin: 10px 5%;
+  border-radius: 20px;
+  font-size: 16px;
+  font-family: hywen;
+}
+
+#user-expand input{
+  padding: 10px;
+  border: 1px solid #bba58f;
+  width: 90%;
+  height: 60px;
+  border-radius: 15px;
+  margin: 10px 5%;
+  font-size: 16px;
+  font-family: hywen;
 }
 #user-expand.active {
   right: 0px;
@@ -65,7 +89,14 @@
   overflow: hidden;
   background-color: #e8d9cd;
 }
-
+#user-expand h4{
+  font-weight: 100;
+  font-size: 15px;
+  padding-left: 5%;
+  padding-right: 5%;
+  line-height: 20px;
+  letter-spacing: 0.3px;
+}
 #user-expand img {
   height: 30px;
   width: 30px;
@@ -94,7 +125,15 @@
   height: fit-content;
   background-color: #e8d9cd;
 }
-
+.line2{
+  display: flex;
+  padding: 10px;
+  height: fit-content;
+}
+.line2 h3 {
+  padding-left: 10px;
+  margin: auto 0;
+}
 .line:hover {
   background-color: rgb(260, 260, 260,0.3);
   cursor: pointer;
