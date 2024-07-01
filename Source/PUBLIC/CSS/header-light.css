@@ -16,10 +16,27 @@
   -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
 }
+.page-expand{
+ flex-basis: 100%;
+ flex-grow: 0;
+ flex-shrink:0 ;
+ padding: 10px;
+ overflow-y: auto;
+ height: fit-content;
+ max-height:90vh ;
+}
 .lauch{
   margin: auto 0px auto auto;
   width: 20px !important;
   height: 20px !important;
+}
+#contai-page-expand{
+  height: 100%;
+  left: 0px;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  transition-duration: 0.5s;
 }
 #user-expand{
   position: fixed;
@@ -29,17 +46,18 @@
   border-top-left-radius: 30px;
   border-bottom-left-radius: 30px;
   height: fit-content;
+  max-height: 90vh;
   background-color: #efefe9;
-  padding: 10px;
   z-index: 100001;
   transition-duration: 0.5s;
+  overflow: hidden;
 }
 #user-expand.active {
   right: 0px;
   top:8vh;
 }
 
-#setting {
+.setting {
   margin-top: 10px;
   width: 100%;
   height: fit-content;
@@ -47,11 +65,7 @@
   overflow: hidden;
   background-color: #e8d9cd;
 }
-#account-set{
-  background-color: #e8d9cd;
-  border-radius: 20px;
-  overflow: hidden;
-}
+
 #user-expand img {
   height: 30px;
   width: 30px;
@@ -849,6 +863,24 @@ a {
   }
 }
 @media only screen and (max-width: 550px) {
+  #user-expand{
+    width: 100%;
+    border-radius: 0px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    top:unset;
+    right: 0px;
+    bottom: -100%;
+  }
+  #user-expand.active{
+    top: unset;
+    right: 0px;
+    bottom: 0vh;
+    max-height: 70vh;
+  }
+  .page-expand{
+    max-height: 70vh;
+  }
   #footer {
     width: 100%;
     height: fit-content;

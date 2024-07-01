@@ -373,10 +373,7 @@ var header = document.getElementById("header-link");
 var userexpand = document.getElementById("user-expand");
 var turnAutoMode = document.querySelector(".auto");
 var body = document.querySelector("body");
-var home1 = document.getElementById("home1");
 var story1 = document.getElementById("story1");
-var test1 = document.getElementById("test1");
-var university1 = document.getElementById("university1");
 var equalsElement = document.querySelector(".fa-equals");
 var xElement = document.querySelector(".fa-x");
 var firstNavbar = document.querySelector("nav");
@@ -1158,12 +1155,27 @@ overlay.style.display="none";
 
 function changeMode(modeValue) {
   var university1 = document.getElementById("university1");
+  var home1 = document.getElementById("home1");
+  var story1 = document.getElementById("story1");
+  var test1 = document.getElementById("test1");
+  var logoutimg1 = document.getElementById("logoutimg");
+  var themeimg1 = document.getElementById("themeimg");
+  var autoimg1 = document.getElementById("autoimg");
+  var turtoimg1 = document.getElementById("turtoimg");
   if (modeValue === "light") {
+    logoutimg1.scr="/img/tool_imgs/logout2.png";
+    themeimg1.scr ="/img/tool_imgs/theme2.png";
+    autoimg1.scr ="/img/tool_imgs/auto2.png";
+    turtoimg1.scr ="img/tool_imgs/video-lesson2.png";
     home1.src = "/img/navbar_imgs/black_imgs/home_black.png";
     test1.src = "/img/navbar_imgs/black_imgs/test_black.png";
     university1.src = "/img/navbar_imgs/black_imgs/university_black.png";
     story1.src = "/img/navbar_imgs/black_imgs/story_black.png";
   } else if (modeValue === "dark") {
+    logoutimg1.scr="/img/tool_imgs/logout1.png";
+    themeimg1.scr ="/img/tool_imgs/theme1.png";
+    autoimg1.scr ="/img/tool_imgs/auto1.png";
+    turtoimg1.scr ="img/tool_imgs/video-lesson1.png";
     home1.src = "/img/navbar_imgs/white_imgs/home_white.png";
     test1.src = "/img/navbar_imgs/white_imgs/test_white.png";
     university1.src = "/img/navbar_imgs/white_imgs/university_white.png";
@@ -1206,4 +1218,30 @@ function returnViewNavbar() {
   equalsElement.style.display = "block";
   secondNavbar.classList.remove("appear");
   secondNavbar.classList.add("out");
+}
+var movesetting = 0;
+var contaiexpand = document.getElementById("contai-page-expand");
+function feedclick() {
+  var backsetimg =document.createElement("img");
+  var inputfeed = document.createElement("input");
+  var feedpage= document.createElement("div");
+  backsetimg.src = "/img/tool_imgs/back.png";
+  backsetimg.onclick=function(){back(feedpage)};
+  feedpage.appendChild(backsetimg);
+  feedpage.appendChild(inputfeed);
+  feedpage.classList.add("page-expand");
+  contaiexpand.appendChild(feedpage);
+  movesetting = movesetting - 100;
+  moveset();
+}
+function moveset(){
+  move = movesetting + "%";
+  contaiexpand.style.left=move;
+}
+function back(e) {
+  movesetting = movesetting + 100;
+  moveset()
+  setTimeout(function () {
+    e.remove();
+  }, 500);
 }

@@ -13,10 +13,7 @@ var introBtn = document.getElementById("contai-intro");
 var searchInput = document.getElementById("search-in");
 var userexpand = document.getElementById("user-expand");
 var colleges = [];
-var home1 = document.getElementById("home1");
 var story1 = document.getElementById("story1");
-var test1 = document.getElementById("test1");
-var university1 = document.getElementById("university1");
 var autoNext = false;
 var equalsElement = document.querySelector(".fa-equals");
 var xElement = document.querySelector(".fa-x");
@@ -148,12 +145,27 @@ function startIntro() {
 
 function changeMode(modeValue) {
   var university1 = document.getElementById("university1");
+  var home1 = document.getElementById("home1");
+  var story1 = document.getElementById("story1");
+  var test1 = document.getElementById("test1");
+  var logoutimg = document.getElementById("logoutimg");
+  var themeimg = document.getElementById("themeimg");
+  var autoimg = document.getElementById("autoimg");
+  var turtoimg = document.getElementById("turtoimg");
   if (modeValue === "light") {
+    logoutimg.scr="/img/tool_imgs/logout2.png";
+    themeimg.scr ="/img/tool_imgs/theme2.png";
+    autoimg.scr ="/img/tool_imgs/auto2.png";
+    turtoimg.scr ="img/tool_imgs/video-lesson2.png";
     home1.src = "/img/navbar_imgs/black_imgs/home_black.png";
     test1.src = "/img/navbar_imgs/black_imgs/test_black.png";
     university1.src = "/img/navbar_imgs/black_imgs/university_black.png";
     story1.src = "/img/navbar_imgs/black_imgs/story_black.png";
   } else if (modeValue === "dark") {
+    logoutimg.scr="/img/tool_imgs/logout1.png";
+    themeimg.scr ="/img/tool_imgs/theme1.png";
+    autoimg.scr ="/img/tool_imgs/auto1.png";
+    turtoimg.scr ="img/tool_imgs/video-lesson1.png";
     home1.src = "/img/navbar_imgs/white_imgs/home_white.png";
     test1.src = "/img/navbar_imgs/white_imgs/test_white.png";
     university1.src = "/img/navbar_imgs/white_imgs/university_white.png";
