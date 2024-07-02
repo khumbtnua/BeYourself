@@ -1230,11 +1230,16 @@ var backsetimg =document.createElement("img");
 backsetimg.src = "/img/tool_imgs/back.png";
 
 function feedclick() {
+  buttonset.innerHTML="Gửi"; 
+  titleset.innerHTML="Đóng góp ý kiến"
   var inputfeed = document.createElement("input");
   var feedpage= document.createElement("div");
   backsetimg.onclick=function(){back(feedpage)};
-  feedpage.appendChild(backsetimg);
+  line.appendChild(backsetimg);
+  line.appendChild(titleset);
+  feedpage.appendChild(line);
   feedpage.appendChild(inputfeed);
+  feedpage.appendChild(buttonset);
   feedpage.classList.add("page-expand");
   contaiexpand.appendChild(feedpage);
   movesetting = movesetting - 100;

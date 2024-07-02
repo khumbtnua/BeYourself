@@ -55,7 +55,7 @@
 }
 #user-expand button{
   border: none;
-  background-color: #e8d9cd;
+  background-color: #bba58f;
   color: white;
   padding: 10px;
   width: 90%;
@@ -68,7 +68,8 @@
 
 #user-expand input{
   padding: 10px;
-  border: 1px solid #bba58f;
+  border: 2px solid black;
+  background-color: #e8d9cd;
   width: 90%;
   height: 60px;
   border-radius: 15px;
@@ -87,7 +88,7 @@
   height: fit-content;
   border-radius: 20px;
   overflow: hidden;
-  background-color: #e8d9cd;
+  background-color: rgb(149, 123, 94);
 }
 #user-expand h4{
   font-weight: 100;
@@ -104,7 +105,7 @@
 #user-line{
   border-radius: 20px;
   height: 70px;
-  background-color:rgb(260, 260, 260,0.2 );
+  background-color:rgb(117, 77, 54);
 }
 #user-line img{
   width: 45px;
@@ -123,7 +124,7 @@
   display: flex;
   padding: 10px;
   height: fit-content;
-  background-color: none;
+  background-color: transparent;
 }
 .line2{
   display: flex;
