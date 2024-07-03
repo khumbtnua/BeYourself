@@ -3,27 +3,15 @@
     "bcrypt": "^5.1.1",
     "body-parser": "^1.20.2",
     "browserify-shim": "^3.8.16",
-<<<<<<< HEAD
-=======
-    "cors": "^2.8.5",
->>>>>>> 8e7d628 (Nothing)
     "darkmode-js": "^1.5.7",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "express-handlebars": "^7.1.3",
     "express-session": "^1.18.0",
-<<<<<<< HEAD
-=======
-    "http-proxy-middleware": "^3.0.0",
->>>>>>> 8e7d628 (Nothing)
     "introjs": "^0.2.2",
     "json-server": "^1.0.0-beta.0",
     "mongoose": "^8.4.1",
     "node-fetch": "^3.3.2",
-<<<<<<< HEAD
-=======
-    "nodemailer": "^6.9.14",
->>>>>>> 8e7d628 (Nothing)
     "passport": "^0.7.0",
     "passport-facebook": "^3.0.0",
     "passport-google-oauth2": "^0.2.0",
