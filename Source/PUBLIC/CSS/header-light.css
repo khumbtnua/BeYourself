@@ -256,11 +256,19 @@ nav button:hover {
   width: 100vw;
   height: 100vh;
   transition: 0.3s ease-out;
+<<<<<<< HEAD
   position: fixed;
   padding-top: 60px;
   background-color: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(20px);
   z-index: 9999;
+=======
+  position: absolute;
+  padding-top: 60px;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  z-index: 1;
+>>>>>>> 8e7d628 (Nothing)
 }
 #name {
   font-size: 1.1rem;
@@ -319,7 +327,11 @@ h2 {
 
 .fa-equals {
   display: none;
+<<<<<<< HEAD
   position: fixed;
+=======
+  position: absolute;
+>>>>>>> 8e7d628 (Nothing)
   right: 10px;
   top: 0px;
   cursor: pointer;
@@ -332,7 +344,11 @@ h2 {
 
 .fa-x {
   display: none;
+<<<<<<< HEAD
   position: fixed;
+=======
+  position: absolute;
+>>>>>>> 8e7d628 (Nothing)
   right: 10px;
   top: 0px;
   cursor: pointer;

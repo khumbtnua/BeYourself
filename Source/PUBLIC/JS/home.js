@@ -1,18 +1,24 @@
 var bg = document.querySelector("body");
+<<<<<<< HEAD
 var introBtn = document.getElementById("contai-intro");
 var changeModeBtn = document.getElementById("mode");
 var theme = document.querySelector("#theme-link");
+=======
+>>>>>>> 8e7d628 (Nothing)
 var closeQuoteBtn = document.getElementById("closequote");
 var quoteBackground = document.getElementById("quotebackground");
 var quoteContainer = document.getElementById("quotecontainer");
 var bodyE = document.querySelector(".body");
 var navbar = document.querySelector(".full-navbar");
+<<<<<<< HEAD
 var footer = document.getElementById("footer");
 var modeValue = "light";
 var header = document.getElementById("header-link");
 var userexpand = document.getElementById("user-expand");
 var turnAutoMode = document.querySelector(".auto");
 var autoNext = false;
+=======
+>>>>>>> 8e7d628 (Nothing)
 var quoteContent = document.getElementById("quote");
 var equalsElement = document.querySelector(".fa-equals");
 var xElement = document.querySelector(".fa-x");
@@ -22,13 +28,17 @@ var titleElement = document.getElementById("name");
 secondNavbar.classList.add("out");
 var dataContainer = document.getElementById("data-container");
 var quoteData = JSON.parse(dataContainer.getAttribute("data-quote"));
+<<<<<<< HEAD
 var mode = document.getElementById("mode-link");
+=======
+>>>>>>> 8e7d628 (Nothing)
 
 function createQuoteContent() {
   var numerbOfQuote = Math.floor(Math.random() * quoteData.length + 1);
   quoteContent.innerText = quoteData[numerbOfQuote].quote;
 }
 
+<<<<<<< HEAD
 turnAutoMode.addEventListener("click", function () {
   changeAutoMode();
 });
@@ -43,6 +53,8 @@ function changeAutoMode() {
   }
 }
 
+=======
+>>>>>>> 8e7d628 (Nothing)
 closeQuoteBtn.addEventListener("mouseover", function () {
   quoteBackground.classList.remove("hidden");
 });
@@ -64,6 +76,7 @@ closeQuoteBtn.addEventListener("click", function () {
   bg.style.overflowX = "hidden";
 });
 
+<<<<<<< HEAD
 introBtn.addEventListener("click", function () {
   startIntro();
 });
@@ -88,6 +101,8 @@ function changeTheme() {
   changeMode(modeValue);
 }
 
+=======
+>>>>>>> 8e7d628 (Nothing)
 window.addEventListener("load", function () {
   createQuoteContent();
   quoteContainer.style.display = "flex";
@@ -100,6 +115,7 @@ window.addEventListener("load", function () {
   footer.style.zIndex = "-999";
   footer.style.opacity = "0.9";
   bg.style.overflow = "hidden";
+<<<<<<< HEAD
   var constmodeValue = localStorage.getItem("mode");
   if (constmodeValue === "light") {
   } else if (constmodeValue === "dark") {
@@ -113,6 +129,8 @@ window.addEventListener("load", function () {
     turnAutoMode.checked = true;
   } else if (constautomodeValue === "false") {
   }
+=======
+>>>>>>> 8e7d628 (Nothing)
 });
 
 function startIntro() {
@@ -162,6 +180,7 @@ function startIntro() {
   intro.start();
 }
 
+<<<<<<< HEAD
 function openset() {
   userexpand.classList.add("active");
   overlay.style.display="block";
@@ -207,6 +226,8 @@ function changeMode(modeValue) {
   }
 }
 
+=======
+>>>>>>> 8e7d628 (Nothing)
 xElement.addEventListener("click", function () {
   returnViewNavbar();
 });

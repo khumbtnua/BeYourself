@@ -1,6 +1,19 @@
 const Account = require("../MODELS/Accountbs");
 const bcrypt = require("bcrypt");
+<<<<<<< HEAD
 const { mutipleMongooseToObject } = require("../../UTIL/mongoose");
+=======
+const nodemailer = require("nodemailer");
+const transporter = nodemailer.createTransport({
+  host: "smtp.gmail.com",
+  port: 587,
+  secure: false,
+  auth: {
+    user: "BeYourselfEducationPlatform@gmail.com",
+    pass: "qvne jevn nzme zcqu",
+  },
+});
+>>>>>>> 8e7d628 (Nothing)
 
 class LoginController {
   async login(req, res) {
@@ -37,6 +50,43 @@ class LoginController {
       console.log(error.message);
     }
   }
+<<<<<<< HEAD
+=======
+
+  async forgotpassword(req, res, next) {
+    try {
+      res.render("forgetpassword", {
+        layout: "extend",
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
+  async resetpassword(req, res, next) {
+    try {
+      const email = req.body.email;
+      const checkemail = await Account.findOne({ email });
+      if (checkemail) {
+        async function main() {
+          const info = await transporter.sendMail({
+            from: '"BeYourself Education Platform"',
+            to: email,
+            subject: "Reset Password",
+            html: "<p>Please click <a href=`http://localhost:5500/createaccount`>here</a> to reset your password</p>",
+          });
+          console.log("Message sent: %s", info.messageId);
+        }
+        main().catch(console.error);
+        res.send("Email has been sent. Please check your email!");
+      } else {
+        res.send("Email doesn't exist");
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+>>>>>>> 8e7d628 (Nothing)
 }
 
 module.exports = new LoginController();
