@@ -364,6 +364,7 @@ var abcM = [];
 var alertInfo = document.querySelector(".alert");
 alertInfo.classList.add("hide");
 var closealertBtn = document.querySelector(".close-btn");
+<<<<<<< HEAD
 var changeModeBtn = document.getElementById("mode");
 var theme = document.querySelector("#theme-link");
 var introBtn = document.getElementById("contai-intro");
@@ -374,12 +375,16 @@ var userexpand = document.getElementById("user-expand");
 var turnAutoMode = document.querySelector(".auto");
 var body = document.querySelector("body");
 var story1 = document.getElementById("story1");
+=======
+var body = document.querySelector("body");
+>>>>>>> 8e7d628 (Nothing)
 var equalsElement = document.querySelector(".fa-equals");
 var xElement = document.querySelector(".fa-x");
 var firstNavbar = document.querySelector("nav");
 var secondNavbar = document.getElementById("extend-navbar");
 var titleElement = document.getElementById("name");
 secondNavbar.classList.add("out");
+<<<<<<< HEAD
 var mode = document.getElementById("mode-link");
 var footer = document.getElementById("footer");
 
@@ -435,6 +440,8 @@ window.addEventListener("load", function () {
   } else if (constautomodeValue === "false") {
   }
 });
+=======
+>>>>>>> 8e7d628 (Nothing)
 
 closealertBtn.addEventListener("click", function () {
   alertInfo.classList.remove("show");
@@ -1138,6 +1145,7 @@ function startIntro() {
   intro.start();
 }
 
+<<<<<<< HEAD
 function openset() {
   userexpand.classList.add("active");
   overlay.style.display="block";
@@ -1183,6 +1191,8 @@ function changeMode(modeValue) {
   }
 }
 
+=======
+>>>>>>> 8e7d628 (Nothing)
 xElement.addEventListener("click", function () {
   returnViewNavbar();
 });
@@ -1219,6 +1229,7 @@ function returnViewNavbar() {
   secondNavbar.classList.remove("appear");
   secondNavbar.classList.add("out");
 }
+<<<<<<< HEAD
 var text = document.createElement("h4");
 var buttonset =document.createElement("button");
 var line = document.createElement("div");
@@ -1278,3 +1289,5 @@ function passclick() {
   movesetting = movesetting - 100;
   moveset();
 }
+=======
+>>>>>>> 8e7d628 (Nothing)

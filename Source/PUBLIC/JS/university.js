@@ -4,6 +4,7 @@ var equalsElement = document.querySelector(".fa-equals");
 var xElement = document.querySelector(".fa-x");
 var firstNavbar = document.querySelector("nav");
 var secondNavbar = document.getElementById("extend-navbar");
+<<<<<<< HEAD
 var header = document.getElementById("header-link");
 var theme = document.getElementById("theme-link");
 var modeValue = "light";
@@ -15,6 +16,10 @@ var userexpand = document.getElementById("user-expand");
 var colleges = [];
 var story1 = document.getElementById("story1");
 var autoNext = false;
+=======
+var searchInput = document.getElementById("search-in");
+var colleges = [];
+>>>>>>> 8e7d628 (Nothing)
 var equalsElement = document.querySelector(".fa-equals");
 var xElement = document.querySelector(".fa-x");
 var secondNavbar = document.getElementById("extend-navbar");
@@ -25,6 +30,7 @@ var dataContainer = document.getElementById("data-container");
 var universityData = JSON.parse(dataContainer.getAttribute("data-university"));
 var searchBtn = document.getElementById("search");
 var errorPage = document.getElementById("error-page");
+<<<<<<< HEAD
 var mode = document.getElementById("mode-link");
 var footer = document.getElementById("footer");
 function openset() {
@@ -94,6 +100,11 @@ window.addEventListener("load", function () {
     turnAutoMode.checked = true;
   } else if (constautomodeValue === "false") {
   }
+=======
+
+window.addEventListener("load", function () {
+  renderCollege(universityData);
+>>>>>>> 8e7d628 (Nothing)
 });
 
 function startIntro() {
@@ -143,6 +154,7 @@ function startIntro() {
   intro.start();
 }
 
+<<<<<<< HEAD
 function changeMode(modeValue) {
   var university1 = document.getElementById("university1");
   var home1 = document.getElementById("home1");
@@ -173,6 +185,8 @@ function changeMode(modeValue) {
   }
 }
 
+=======
+>>>>>>> 8e7d628 (Nothing)
 xElement.addEventListener("click", function () {
   returnViewNavbar();
 });
@@ -214,6 +228,7 @@ searchInput.addEventListener("keyup", function (e) {
   inputValue = e.target.value.toLowerCase();
 });
 
+<<<<<<< HEAD
 searchBtn.addEventListener("click", function () {
   var filterCollege = universityData.filter((university) => {
     return university.name.toLowerCase().includes(inputValue);
@@ -227,6 +242,21 @@ searchBtn.addEventListener("click", function () {
     renderCollege(filterCollege);
   }
 });
+=======
+// searchBtn.addEventListener("click", function () {
+//   var filterCollege = universityData.filter((university) => {
+//     return university.name.toLowerCase().includes(inputValue);
+//   });
+//   if (Object.keys(filterCollege).length === 0) {
+//     renderCollege(filterCollege);
+//     collegeContainer.style.height = "500px";
+//     errorPage.classList.remove("hide");
+//     collegeContainer.appendChild(errorPage);
+//   } else {
+//     renderCollege(filterCollege);
+//   }
+// });
+>>>>>>> 8e7d628 (Nothing)
 
 function renderCollege(data) {
   var htmls = data.map(function (college) {

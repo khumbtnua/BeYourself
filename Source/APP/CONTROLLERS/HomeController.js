@@ -9,6 +9,10 @@ class HomeController {
       res.render("home", {
         style: "home-light.css",
         function1: "home.js",
+<<<<<<< HEAD
+=======
+        navbar: "navbar.js",
+>>>>>>> 8e7d628 (Nothing)
         username: req.user.name,
         userimg: req.user.img,
         quotes: JSON.stringify(mutipleMongooseToObject(data)),

@@ -11,6 +11,10 @@ const passportgg = require("passport-google-oauth2").Strategy;
 const passportfb = require("passport-facebook").Strategy;
 const route = require("./ROUTES");
 const db = require("./CONFIG/DB");
+<<<<<<< HEAD
+=======
+const cors = require("cors");
+>>>>>>> 8e7d628 (Nothing)
 require("dotenv").config();
 
 app.engine(
@@ -20,6 +24,16 @@ app.engine(
     defaultLayout: "main",
   })
 );
+<<<<<<< HEAD
+=======
+
+const corsOptions = {
+  origin: "https://graph.facebook.com/",
+  optionsSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
+>>>>>>> 8e7d628 (Nothing)
 app.set("view engine", "hbs");
 app.set("views", path.join(__dirname, "Resource/VIEWS"));
 app.use("/img", express.static("img"));
@@ -90,7 +104,11 @@ passport.use(
         if (user) {
           return done(null, user);
         }
+<<<<<<< HEAD
         const highResPhotoURL = `https://graph.facebook.com/${profile.id}/picture?type=large&width=500&height=500&access_token=${accessToken}`;
+=======
+        const highResPhotoURL = `https://graph.facebook.com/${profile.id}/picture?&access_token=${accessToken}`;
+>>>>>>> 8e7d628 (Nothing)
         profile.photos = [{ value: highResPhotoURL }];
         const newUser = new accountfbdb({
           id: profile._json.id,
