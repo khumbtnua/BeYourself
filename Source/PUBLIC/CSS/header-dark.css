@@ -55,11 +55,7 @@
 }
 #user-expand button{
   border: none;
-<<<<<<< HEAD
   background-color: #bba58f;
-=======
-  background-color: #e8d9cd;
->>>>>>> 8e7d628 (Nothing)
   color: white;
   padding: 10px;
   width: 90%;
@@ -72,12 +68,8 @@
 
 #user-expand input{
   padding: 10px;
-<<<<<<< HEAD
   border: 2px solid black;
   background-color: #e8d9cd;
-=======
-  border: 1px solid #bba58f;
->>>>>>> 8e7d628 (Nothing)
   width: 90%;
   height: 60px;
   border-radius: 15px;
@@ -96,11 +88,7 @@
   height: fit-content;
   border-radius: 20px;
   overflow: hidden;
-<<<<<<< HEAD
   background-color: rgb(149, 123, 94);
-=======
-  background-color: #e8d9cd;
->>>>>>> 8e7d628 (Nothing)
 }
 #user-expand h4{
   font-weight: 100;
@@ -117,11 +105,7 @@
 #user-line{
   border-radius: 20px;
   height: 70px;
-<<<<<<< HEAD
   background-color:rgb(117, 77, 54);
-=======
-  background-color:rgb(260, 260, 260,0.2 );
->>>>>>> 8e7d628 (Nothing)
 }
 #user-line img{
   width: 45px;
@@ -140,11 +124,7 @@
   display: flex;
   padding: 10px;
   height: fit-content;
-<<<<<<< HEAD
   background-color: transparent;
-=======
-  background-color: none;
->>>>>>> 8e7d628 (Nothing)
 }
 .line2{
   display: flex;
@@ -278,19 +258,11 @@ nav button:hover {
   width: 100vw;
   height: 100vh;
   transition: 0.3s ease-out;
-<<<<<<< HEAD
   position: fixed;
   padding-top: 60px;
   background-color: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(20px);
   z-index: 9999;
-=======
-  position: absolute;
-  padding-top: 60px;
-  background-color: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(20px);
-  z-index: 1;
->>>>>>> 8e7d628 (Nothing)
 }
 #name {
   font-size: 1.1rem;
@@ -350,11 +322,7 @@ h2 {
 
 .fa-equals {
   display: none;
-<<<<<<< HEAD
   position: fixed;
-=======
-  position: absolute;
->>>>>>> 8e7d628 (Nothing)
   right: 10px;
   top: 0px;
   cursor: pointer;
@@ -367,11 +335,7 @@ h2 {
 
 .fa-x {
   display: none;
-<<<<<<< HEAD
   position: fixed;
-=======
-  position: absolute;
->>>>>>> 8e7d628 (Nothing)
   right: 10px;
   top: 0px;
   cursor: pointer;

@@ -11,10 +11,7 @@ class UniversityController {
         function1: "university.js",
         username: req.user.name,
         userimg: req.user.img,
-<<<<<<< HEAD
-=======
         navbar: "navbar.js",
->>>>>>> 8e7d628 (Nothing)
         universities: JSON.stringify(mutipleMongooseToObject(data)),
       });
     } catch (err) {

@@ -1,8 +1,5 @@
 const Account = require("../MODELS/Accountbs");
 const bcrypt = require("bcrypt");
-<<<<<<< HEAD
-const { mutipleMongooseToObject } = require("../../UTIL/mongoose");
-=======
 const nodemailer = require("nodemailer");
 const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
@@ -13,7 +10,6 @@ const transporter = nodemailer.createTransport({
     pass: "qvne jevn nzme zcqu",
   },
 });
->>>>>>> 8e7d628 (Nothing)
 
 class LoginController {
   async login(req, res) {
@@ -50,8 +46,6 @@ class LoginController {
       console.log(error.message);
     }
   }
-<<<<<<< HEAD
-=======
 
   async forgotpassword(req, res, next) {
     try {
@@ -86,7 +80,6 @@ class LoginController {
       console.log(error.message);
     }
   }
->>>>>>> 8e7d628 (Nothing)
 }
 
 module.exports = new LoginController();

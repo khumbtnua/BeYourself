@@ -364,84 +364,13 @@ var abcM = [];
 var alertInfo = document.querySelector(".alert");
 alertInfo.classList.add("hide");
 var closealertBtn = document.querySelector(".close-btn");
-<<<<<<< HEAD
-var changeModeBtn = document.getElementById("mode");
-var theme = document.querySelector("#theme-link");
-var introBtn = document.getElementById("contai-intro");
-var autoNext = false;
-var modeValue = "light";
-var header = document.getElementById("header-link");
-var userexpand = document.getElementById("user-expand");
-var turnAutoMode = document.querySelector(".auto");
 var body = document.querySelector("body");
-var story1 = document.getElementById("story1");
-=======
-var body = document.querySelector("body");
->>>>>>> 8e7d628 (Nothing)
 var equalsElement = document.querySelector(".fa-equals");
 var xElement = document.querySelector(".fa-x");
 var firstNavbar = document.querySelector("nav");
 var secondNavbar = document.getElementById("extend-navbar");
 var titleElement = document.getElementById("name");
 secondNavbar.classList.add("out");
-<<<<<<< HEAD
-var mode = document.getElementById("mode-link");
-var footer = document.getElementById("footer");
-
-introBtn.addEventListener("click", function () {
-  startIntro();
-});
-
-turnAutoMode.addEventListener("click", function () {
-  changeAutoMode();
-});
-
-function changeAutoMode() {
-  if (autoNext === true) {
-    autoNext = false;
-    localStorage.setItem("auto", autoNext);
-  } else if (autoNext === false) {
-    autoNext = true;
-    localStorage.setItem("auto", autoNext);
-  }
-}
-
-changeModeBtn.addEventListener("click", function () {
-  changeTheme();
-});
-
-function changeTheme() {
-  if (theme.getAttribute("href") === "/test-light.css") {
-    theme.href = "/test-dark.css";
-    header.href = "/header-dark.css";
-    mode.href = "/mode-dark.css";
-    modeValue = "dark";
-  } else if (theme.getAttribute("href") === "/test-dark.css") {
-    theme.href = "/test-light.css";
-    header.href = "/header-light.css";
-    mode.href = "/mode-light.css";
-    modeValue = "light";
-  }
-  localStorage.setItem("mode", modeValue);
-  changeMode(modeValue);
-}
-
-window.addEventListener("load", function () {
-  var constmodeValue = localStorage.getItem("mode");
-  if (constmodeValue === "light") {
-  } else if (constmodeValue === "dark") {
-    changeModeBtn.click();
-    changeModeBtn.checked = true;
-  }
-  var constautomodeValue = localStorage.getItem("auto");
-  if (constautomodeValue === "true") {
-    turnAutoMode.click();
-    turnAutoMode.checked = true;
-  } else if (constautomodeValue === "false") {
-  }
-});
-=======
->>>>>>> 8e7d628 (Nothing)
 
 closealertBtn.addEventListener("click", function () {
   alertInfo.classList.remove("show");
@@ -1145,54 +1074,6 @@ function startIntro() {
   intro.start();
 }
 
-<<<<<<< HEAD
-function openset() {
-  userexpand.classList.add("active");
-  overlay.style.display="block";
-  setTimeout(function(){
-  overlay.style.backgroundColor="rgb(50, 50, 50, 0.7)";
-}, 10);
-}
-function clicklay(){
-  userexpand.classList.remove("active");
-overlay.style.backgroundColor="rgb(50, 50, 50, 0)"
-setTimeout(function(){
-overlay.style.display="none";
-}, 500);
-}
-
-function changeMode(modeValue) {
-  var university1 = document.getElementById("university1");
-  var home1 = document.getElementById("home1");
-  var story1 = document.getElementById("story1");
-  var test1 = document.getElementById("test1");
-  var logoutimg1 = document.getElementById("logoutimg");
-  var themeimg1 = document.getElementById("themeimg");
-  var autoimg1 = document.getElementById("autoimg");
-  var turtoimg1 = document.getElementById("turtoimg");
-  if (modeValue === "light") {
-    logoutimg1.scr="/img/tool_imgs/logout2.png";
-    themeimg1.scr ="/img/tool_imgs/theme2.png";
-    autoimg1.scr ="/img/tool_imgs/auto2.png";
-    turtoimg1.scr ="img/tool_imgs/video-lesson2.png";
-    home1.src = "/img/navbar_imgs/black_imgs/home_black.png";
-    test1.src = "/img/navbar_imgs/black_imgs/test_black.png";
-    university1.src = "/img/navbar_imgs/black_imgs/university_black.png";
-    story1.src = "/img/navbar_imgs/black_imgs/story_black.png";
-  } else if (modeValue === "dark") {
-    logoutimg1.scr="/img/tool_imgs/logout1.png";
-    themeimg1.scr ="/img/tool_imgs/theme1.png";
-    autoimg1.scr ="/img/tool_imgs/auto1.png";
-    turtoimg1.scr ="img/tool_imgs/video-lesson1.png";
-    home1.src = "/img/navbar_imgs/white_imgs/home_white.png";
-    test1.src = "/img/navbar_imgs/white_imgs/test_white.png";
-    university1.src = "/img/navbar_imgs/white_imgs/university_white.png";
-    story1.src = "/img/navbar_imgs/white_imgs/story_white.png";
-  }
-}
-
-=======
->>>>>>> 8e7d628 (Nothing)
 xElement.addEventListener("click", function () {
   returnViewNavbar();
 });
@@ -1229,65 +1110,3 @@ function returnViewNavbar() {
   secondNavbar.classList.remove("appear");
   secondNavbar.classList.add("out");
 }
-<<<<<<< HEAD
-var text = document.createElement("h4");
-var buttonset =document.createElement("button");
-var line = document.createElement("div");
-line.classList.add("line2")
-var titleset = document.createElement("h3");
-var movesetting = 0;
-var contaiexpand = document.getElementById("contai-page-expand");
-var backsetimg =document.createElement("img");
-backsetimg.src = "/img/tool_imgs/back.png";
-
-function feedclick() {
-  buttonset.innerHTML="Gửi"; 
-  titleset.innerHTML="Đóng góp ý kiến"
-  var inputfeed = document.createElement("input");
-  var feedpage= document.createElement("div");
-  backsetimg.onclick=function(){back(feedpage)};
-  line.appendChild(backsetimg);
-  line.appendChild(titleset);
-  feedpage.appendChild(line);
-  feedpage.appendChild(inputfeed);
-  feedpage.appendChild(buttonset);
-  feedpage.classList.add("page-expand");
-  contaiexpand.appendChild(feedpage);
-  movesetting = movesetting - 100;
-  moveset();
-}
-function moveset(){
-  move = movesetting + "%";
-  contaiexpand.style.left=move;
-}
-function back(e) {
-  movesetting = movesetting + 100;
-  moveset()
-  setTimeout(function () {
-    e.remove();
-  }, 500);
-}
-function passclick() {
-  titleset.innerHTML="Đổi mật khẩu";
-  buttonset.innerHTML="Đổi mật khẩu";
-  text.innerHTML="Mật khẩu của bạn phải có tối thiểu 6 ký tự, đồng thời bao gồm cả chữ số, chữ cái và ký tự đặc biệt.";
-  var inputpassnow = document.createElement("input");
-  var inputpassnew = document.createElement("input");
-  inputpassnow.placeholder="mật khẩu hiện tại";
-  inputpassnew.placeholder="mật khẩu mới";
-  var passpage= document.createElement("div");
-  backsetimg.onclick=function(){back(passpage)};
-  line.appendChild(backsetimg);
-  line.appendChild(titleset);
-  passpage.appendChild(line);
-  passpage.appendChild(text);
-  passpage.appendChild(inputpassnow);
-  passpage.appendChild(inputpassnew);
-  passpage.appendChild(buttonset);
-  passpage.classList.add("page-expand");
-  contaiexpand.appendChild(passpage);
-  movesetting = movesetting - 100;
-  moveset();
-}
-=======
->>>>>>> 8e7d628 (Nothing)

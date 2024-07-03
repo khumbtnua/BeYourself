@@ -1,24 +1,9 @@
 var bg = document.querySelector("body");
-<<<<<<< HEAD
-var introBtn = document.getElementById("contai-intro");
-var changeModeBtn = document.getElementById("mode");
-var theme = document.querySelector("#theme-link");
-=======
->>>>>>> 8e7d628 (Nothing)
 var closeQuoteBtn = document.getElementById("closequote");
 var quoteBackground = document.getElementById("quotebackground");
 var quoteContainer = document.getElementById("quotecontainer");
 var bodyE = document.querySelector(".body");
 var navbar = document.querySelector(".full-navbar");
-<<<<<<< HEAD
-var footer = document.getElementById("footer");
-var modeValue = "light";
-var header = document.getElementById("header-link");
-var userexpand = document.getElementById("user-expand");
-var turnAutoMode = document.querySelector(".auto");
-var autoNext = false;
-=======
->>>>>>> 8e7d628 (Nothing)
 var quoteContent = document.getElementById("quote");
 var equalsElement = document.querySelector(".fa-equals");
 var xElement = document.querySelector(".fa-x");
@@ -28,33 +13,12 @@ var titleElement = document.getElementById("name");
 secondNavbar.classList.add("out");
 var dataContainer = document.getElementById("data-container");
 var quoteData = JSON.parse(dataContainer.getAttribute("data-quote"));
-<<<<<<< HEAD
-var mode = document.getElementById("mode-link");
-=======
->>>>>>> 8e7d628 (Nothing)
 
 function createQuoteContent() {
   var numerbOfQuote = Math.floor(Math.random() * quoteData.length + 1);
   quoteContent.innerText = quoteData[numerbOfQuote].quote;
 }
 
-<<<<<<< HEAD
-turnAutoMode.addEventListener("click", function () {
-  changeAutoMode();
-});
-
-function changeAutoMode() {
-  if (autoNext === true) {
-    autoNext = false;
-    localStorage.setItem("auto", autoNext);
-  } else if (autoNext === false) {
-    autoNext = true;
-    localStorage.setItem("auto", autoNext);
-  }
-}
-
-=======
->>>>>>> 8e7d628 (Nothing)
 closeQuoteBtn.addEventListener("mouseover", function () {
   quoteBackground.classList.remove("hidden");
 });
@@ -76,33 +40,6 @@ closeQuoteBtn.addEventListener("click", function () {
   bg.style.overflowX = "hidden";
 });
 
-<<<<<<< HEAD
-introBtn.addEventListener("click", function () {
-  startIntro();
-});
-
-changeModeBtn.addEventListener("click", function () {
-  changeTheme();
-});
-
-function changeTheme() {
-  if (theme.getAttribute("href") === "/home-light.css") {
-    theme.href = "/home-dark.css";
-    header.href = "/header-dark.css";
-    mode.href = "/mode-dark.css";
-    modeValue = "dark";
-  } else if (theme.getAttribute("href") === "/home-dark.css") {
-    theme.href = "/home-light.css";
-    header.href = "/header-light.css";
-    mode.href = "/mode-light.css";
-    modeValue = "light";
-  }
-  localStorage.setItem("mode", modeValue);
-  changeMode(modeValue);
-}
-
-=======
->>>>>>> 8e7d628 (Nothing)
 window.addEventListener("load", function () {
   createQuoteContent();
   quoteContainer.style.display = "flex";
@@ -115,22 +52,6 @@ window.addEventListener("load", function () {
   footer.style.zIndex = "-999";
   footer.style.opacity = "0.9";
   bg.style.overflow = "hidden";
-<<<<<<< HEAD
-  var constmodeValue = localStorage.getItem("mode");
-  if (constmodeValue === "light") {
-  } else if (constmodeValue === "dark") {
-    changeModeBtn.click();
-    changeModeBtn.checked = true;
-  }
-
-  var constautomodeValue = localStorage.getItem("auto");
-  if (constautomodeValue === "true") {
-    turnAutoMode.click();
-    turnAutoMode.checked = true;
-  } else if (constautomodeValue === "false") {
-  }
-=======
->>>>>>> 8e7d628 (Nothing)
 });
 
 function startIntro() {
@@ -180,54 +101,6 @@ function startIntro() {
   intro.start();
 }
 
-<<<<<<< HEAD
-function openset() {
-  userexpand.classList.add("active");
-  overlay.style.display="block";
-  setTimeout(function(){
-  overlay.style.backgroundColor="rgb(50, 50, 50, 0.7)";
-}, 10);
-}
-function clicklay(){
-  userexpand.classList.remove("active");
-overlay.style.backgroundColor="rgb(50, 50, 50, 0)"
-setTimeout(function(){
-overlay.style.display="none";
-}, 500);
-}
-
-function changeMode(modeValue) {
-  var university1 = document.getElementById("university1");
-  var home1 = document.getElementById("home1");
-  var story1 = document.getElementById("story1");
-  var test1 = document.getElementById("test1");
-  var logoutimg = document.getElementById("logoutimg");
-  var themeimg = document.getElementById("themeimg");
-  var autoimg = document.getElementById("autoimg");
-  var turtoimg = document.getElementById("turtoimg");
-  if (modeValue === "light") {
-    logoutimg.scr="/img/tool_imgs/logout2.png";
-    themeimg.scr ="/img/tool_imgs/theme2.png";
-    autoimg.scr ="/img/tool_imgs/auto2.png";
-    turtoimg.scr ="img/tool_imgs/video-lesson2.png";
-    home1.src = "/img/navbar_imgs/black_imgs/home_black.png";
-    test1.src = "/img/navbar_imgs/black_imgs/test_black.png";
-    university1.src = "/img/navbar_imgs/black_imgs/university_black.png";
-    story1.src = "/img/navbar_imgs/black_imgs/story_black.png";
-  } else if (modeValue === "dark") {
-    logoutimg.scr="/img/tool_imgs/logout1.png";
-    themeimg.scr ="/img/tool_imgs/theme1.png";
-    autoimg.scr ="/img/tool_imgs/auto1.png";
-    turtoimg.scr ="img/tool_imgs/video-lesson1.png";
-    home1.src = "/img/navbar_imgs/white_imgs/home_white.png";
-    test1.src = "/img/navbar_imgs/white_imgs/test_white.png";
-    university1.src = "/img/navbar_imgs/white_imgs/university_white.png";
-    story1.src = "/img/navbar_imgs/white_imgs/story_white.png";
-  }
-}
-
-=======
->>>>>>> 8e7d628 (Nothing)
 xElement.addEventListener("click", function () {
   returnViewNavbar();
 });

@@ -10,11 +10,8 @@ const passport = require("passport");
 
 function route(app) {
   app.get("/report", ReportController.report);
-<<<<<<< HEAD
-=======
   app.get("/login/forgetpassword", loginController.forgotpassword);
   app.post("/login/forgetpassword", loginController.resetpassword);
->>>>>>> 8e7d628 (Nothing)
   app.get("/user/account", account.isLogin, userController.user);
   app.post("/login", loginController.login);
   app.get("/logout", account.isLogOut, loginController.logout);

@@ -199,10 +199,6 @@ select:focus {
   overflow-x: hidden;
   border-radius: 15px;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> 8e7d628 (Nothing)
 .sch {
   color: white;
   display: flex;
@@ -218,7 +214,6 @@ select:focus {
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
   animation: scroll linear;
   animation-timeline: view();
-<<<<<<< HEAD
 
 }
 @keyframes scroll{
@@ -239,28 +234,6 @@ select:focus {
       opacity: 0.2;
     }
 }
-=======
-}
-@keyframes scroll {
-  0% {
-    scale: 0.9;
-    opacity: 0.2;
-  }
-  10% {
-    scale: 1;
-    opacity: 1;
-  }
-  90% {
-    scale: 1;
-    opacity: 1;
-  }
-  100% {
-    scale: 0.9;
-    opacity: 0.2;
-  }
-}
-
->>>>>>> 8e7d628 (Nothing)
 .info {
   display: flex;
   flex-direction: column;
