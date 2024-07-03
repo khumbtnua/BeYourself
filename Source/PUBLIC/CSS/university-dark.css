@@ -199,7 +199,7 @@ select:focus {
   overflow-x: hidden;
   border-radius: 15px;
 }
-@media (prefers-reduced-motion: no-preference){
+
 .sch {
   color: white;
   display: flex;
@@ -234,7 +234,6 @@ select:focus {
       scale: 0.9;
       opacity: 0.2;
     }
-  }
 }
 .info {
   display: flex;
