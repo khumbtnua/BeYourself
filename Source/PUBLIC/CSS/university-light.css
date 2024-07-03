@@ -239,7 +239,6 @@ select:focus {
 .info {
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
   width: 100%;
 }
 
@@ -462,11 +461,11 @@ select:focus {
   }
 
   .info h2 {
-    font-size: 14px;
+    font-size: 12px;
   }
 
   .info-label label {
-    font-size: 14px;
+    font-size: 12px;
   }
   #pop-search {
     width: 525px;

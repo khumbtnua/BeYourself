@@ -322,7 +322,7 @@ h2 {
 
 .fa-equals {
   display: none;
-  position: absolute;
+  position: fixed;
   right: 10px;
   top: 0px;
   cursor: pointer;
@@ -335,7 +335,7 @@ h2 {
 
 .fa-x {
   display: none;
-  position: absolute;
+  position: fixed;
   right: 10px;
   top: 0px;
   cursor: pointer;
