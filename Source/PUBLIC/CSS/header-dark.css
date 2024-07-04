@@ -193,12 +193,16 @@
   padding-right: 10px;
   appearance: none;
   border: none;
-  background: none;
-  border-radius: 5px;
   cursor: pointer;
+  background:unset;
 }
+
 #user-avar h3{
   margin: auto 0;
+  font-size: 12px;
+  color: white;
+  font-weight: 200;
+  letter-spacing: 1px;
 }
 #user-avar:hover{
   background: rgb(260, 260, 260,0.5);
