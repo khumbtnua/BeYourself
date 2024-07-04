@@ -264,7 +264,7 @@ select:focus {
 .info h2 {
   font-weight: 200;
   width: 100%;
-  font-size: 18px;
+  font-size: 15px;
   margin-top: 2px;
   margin-bottom: 2px;
 }
@@ -391,6 +391,12 @@ select:focus {
   #main-pic {
     width: 140vw;
   }
+  #school-detail {
+    width: 64.5%;
+  }
+  #sidebar {
+    width: 35%;
+  }
 }
 
 @media only screen and (max-width: 850px) {
@@ -476,9 +482,7 @@ select:focus {
   #main-pic {
     width: 250vw;
   }
-  .sch {
-    flex-basis: 200px;
-  }
+
   #pop-search {
     width: 90%;
     height: 300px;

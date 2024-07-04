@@ -13,17 +13,7 @@ var autoNext = false;
 var modeValue = "light";
 var changeModeBtn = document.getElementById("mode");
 var introBtn = document.getElementById("contai-intro");
-var userexpand = document.getElementById("user-expand");
 var turnAutoMode = document.querySelector(".auto");
-var text = document.createElement("h4");
-var buttonset = document.createElement("button");
-var line = document.createElement("div");
-line.classList.add("line2");
-var titleset = document.createElement("h3");
-var movesetting = 0;
-var contaiexpand = document.getElementById("contai-page-expand");
-var backsetimg = document.createElement("img");
-backsetimg.src = "/img/tool_imgs/back.png";
 
 introBtn.addEventListener("click", function () {
   startIntro();
@@ -33,13 +23,7 @@ turnAutoMode.addEventListener("click", function () {
   changeAutoMode();
 });
 
-function clicklay() {
-  userexpand.classList.remove("active");
-  overlay.style.backgroundColor = "rgb(50, 50, 50, 0)";
-  setTimeout(function () {
-    overlay.style.display = "none";
-  }, 500);
-}
+
 
 function changeAutoMode() {
   if (autoNext === true) {
@@ -130,14 +114,6 @@ function changeMode(modeValue) {
   }
 }
 
-function openset() {
-  userexpand.classList.add("active");
-  overlay.style.display = "block";
-  setTimeout(function () {
-    overlay.style.backgroundColor = "rgb(50, 50, 50, 0.7)";
-  }, 10);
-}
-
 window.addEventListener("load", function () {
   var constmodeValue = localStorage.getItem("mode");
   if (constmodeValue === "light") {
@@ -152,41 +128,60 @@ window.addEventListener("load", function () {
   } else if (constautomodeValue === "false") {
   }
 });
+//var for setting
+var userexpand = document.getElementById("user-expand");
+var text = document.createElement("h4");
+var line = document.createElement("div");
+line.classList.add("line2");
+var titleset = document.createElement("h3");
+var movesetting = 0;
+var move = 0;
+var contaiexpand = document.getElementById("contai-page-expand");
+var backsetimg = document.createElement("img");
+backsetimg.src = "/img/tool_imgs/back.png";
+//open setting
+function openset() {
+  userexpand.classList.add("active");
+  overlay.style.display = "block";
+  setTimeout(function () {
+    overlay.style.backgroundColor = "rgb(50, 50, 50, 0.7)";
+  }, 10);
+}
 
+//feedback
+var feedpage = document.createElement("div");
 function feedclick() {
-  var inputfeed = document.createElement("input");
-  var feedpage = document.createElement("div");
+  var buttonfeed = document.createElement("button");
+  buttonfeed.innerHTML="Gửi"
+  text.innerHTML="Chúng tôi có thể cải thiện như thế nào?"
+  titleset.innerHTML="Đóng góp ý kiến";
+  var inputfeed = document.createElement("textarea");
   backsetimg.onclick = function () {
     back(feedpage);
   };
-  feedpage.appendChild(backsetimg);
+  line.appendChild(backsetimg);
+  line.appendChild(titleset);
+  feedpage.appendChild(line);
+  feedpage.appendChild(text);
   feedpage.appendChild(inputfeed);
+  feedpage.appendChild(buttonfeed);
   feedpage.classList.add("page-expand");
   contaiexpand.appendChild(feedpage);
   movesetting = movesetting - 100;
   moveset();
 }
-function moveset() {
-  move = movesetting + "%";
-  contaiexpand.style.left = move;
-}
-function back(e) {
-  movesetting = movesetting + 100;
-  moveset();
-  setTimeout(function () {
-    e.remove();
-  }, 500);
-}
+//change password
+var passpage = document.createElement("div");
 function passclick() {
+  var buttonpass = document.createElement("button");
   titleset.innerHTML = "Đổi mật khẩu";
-  buttonset.innerHTML = "Đổi mật khẩu";
+  buttonpass.innerHTML = "Đổi mật khẩu";
   text.innerHTML =
     "Mật khẩu của bạn phải có tối thiểu 6 ký tự, đồng thời bao gồm cả chữ số, chữ cái và ký tự đặc biệt.";
   var inputpassnow = document.createElement("input");
   var inputpassnew = document.createElement("input");
   inputpassnow.placeholder = "mật khẩu hiện tại";
   inputpassnew.placeholder = "mật khẩu mới";
-  var passpage = document.createElement("div");
   backsetimg.onclick = function () {
     back(passpage);
   };
@@ -196,9 +191,38 @@ function passclick() {
   passpage.appendChild(text);
   passpage.appendChild(inputpassnow);
   passpage.appendChild(inputpassnew);
-  passpage.appendChild(buttonset);
+  passpage.appendChild(buttonpass);
   passpage.classList.add("page-expand");
   contaiexpand.appendChild(passpage);
   movesetting = movesetting - 100;
   moveset();
+}
+//sub for setting move
+function moveset() {
+  move = movesetting + "%";
+  contaiexpand.style.left = move;
+}
+function back(e) {
+  movesetting = movesetting + 100;
+  moveset();
+  setTimeout(function () {
+    e.innerHTML="";
+    e.remove();
+  }, 500);
+}
+function deletes(e){
+  e.innerHTML="";
+  e.remove();
+}
+//clicklay setting
+function clicklay() {
+  userexpand.classList.remove("active");
+  overlay.style.backgroundColor = "rgb(50, 50, 50, 0)";
+  movesetting = 0;
+  moveset()
+  setTimeout(function () {
+    overlay.style.display = "none";
+  }, 500);
+  deletes(passpage);
+  deletes(feedpage);
 }
