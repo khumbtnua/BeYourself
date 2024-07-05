@@ -75,13 +75,15 @@
   border-radius: 20px;
   font-size: 16px;
   font-family: hywen;
+  cursor: pointer;
 }
 
 #user-expand input{
+  letter-spacing: 1px;
   padding: 10px;
   border: 1px solid #bba58f;
   width: 90%;
-  height: 60px;
+  height: 50px;
   border-radius: 15px;
   margin: 10px 5%;
   font-size: 16px;
@@ -113,7 +115,9 @@
 #user-expand img {
   height: 30px;
   width: 30px;
+  cursor: pointer;
 }
+
 #user-line{
   border-radius: 20px;
   height: 70px;

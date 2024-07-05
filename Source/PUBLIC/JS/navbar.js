@@ -1,11 +1,11 @@
-var university1 = document.getElementById("university1");
-var home1 = document.getElementById("home1");
-var story1 = document.getElementById("story1");
-var test1 = document.getElementById("test1");
-var logoutimg1 = document.getElementById("logoutimg");
-var themeimg1 = document.getElementById("themeimg");
-var autoimg1 = document.getElementById("autoimg");
-var turtoimg1 = document.getElementById("turtoimg");
+var university = document.getElementById("university1");
+var home = document.getElementById("home1");
+var story = document.getElementById("story1");
+var test = document.getElementById("test1");
+var logoutimg = document.getElementById("logoutimg");
+var themeimg = document.getElementById("themeimg");
+var autoimg = document.getElementById("autoimg");
+var turtoimg = document.getElementById("turtoimg");
 var mode = document.getElementById("mode-link");
 var theme = document.querySelector("#theme-link");
 var header = document.getElementById("header-link");
@@ -14,7 +14,10 @@ var modeValue = "light";
 var changeModeBtn = document.getElementById("mode");
 var introBtn = document.getElementById("contai-intro");
 var turnAutoMode = document.querySelector(".auto");
-
+var avartaimg = document.getElementById("avartaimg");
+var passimg = document.getElementById("passimg");
+var feedimg = document.getElementById("feedimg");
+var lauchimg = document.querySelectorAll(".lauch");
 introBtn.addEventListener("click", function () {
   startIntro();
 });
@@ -94,23 +97,35 @@ function changeTheme() {
 
 function changeMode(modeValue) {
   if (modeValue === "light") {
-    home1.src = "/img/navbar_imgs/black_imgs/home_black.png";
-    test1.src = "/img/navbar_imgs/black_imgs/test_black.png";
-    university1.src = "/img/navbar_imgs/black_imgs/university_black.png";
-    story1.src = "/img/navbar_imgs/black_imgs/story_black.png";
-    logoutimg1.src = "/img/tool_imgs/logout2.png";
-    themeimg1.src = "/img/tool_imgs/theme2.png";
-    autoimg1.src = "/img/tool_imgs/auto2.png";
-    turtoimg1.src = "/img/tool_imgs/video-lesson2.png";
+    home.src = "/img/navbar_imgs/black_imgs/home_black.png";
+    test.src = "/img/navbar_imgs/black_imgs/test_black.png";
+    university.src = "/img/navbar_imgs/black_imgs/university_black.png";
+    story.src = "/img/navbar_imgs/black_imgs/story_black.png";
+    logoutimg.src = "/img/tool_imgs/logout2.png";
+    themeimg.src = "/img/tool_imgs/theme2.png";
+    autoimg.src = "/img/tool_imgs/auto2.png";
+    turtoimg.src = "/img/tool_imgs/video-lesson2.png";
+    feedimg.src="/img/tool_imgs/review2.png";
+    passimg.src="/img/tool_imgs/key2.png";
+    avartaimg.src="/img/tool_imgs/avatar2.png";
+    lauchimg.forEach((e) => {
+      e.src="/img/tool_imgs/lauch2.png";; 
+    });
   } else if (modeValue === "dark") {
-    home1.src = "/img/navbar_imgs/white_imgs/home_white.png";
-    test1.src = "/img/navbar_imgs/white_imgs/test_white.png";
-    university1.src = "/img/navbar_imgs/white_imgs/university_white.png";
-    story1.src = "/img/navbar_imgs/white_imgs/story_white.png";
-    logoutimg1.src = "/img/tool_imgs/logout1.png";
-    themeimg1.src = "/img/tool_imgs/theme1.png";
-    autoimg1.src = "/img/tool_imgs/auto1.png";
-    turtoimg1.src = "/img/tool_imgs/video-lesson1.png";
+    home.src = "/img/navbar_imgs/white_imgs/home_white.png";
+    test.src = "/img/navbar_imgs/white_imgs/test_white.png";
+    university.src = "/img/navbar_imgs/white_imgs/university_white.png";
+    story.src = "/img/navbar_imgs/white_imgs/story_white.png";
+    logoutimg.src = "/img/tool_imgs/logout1.png";
+    themeimg.src = "/img/tool_imgs/theme1.png";
+    autoimg.src = "/img/tool_imgs/auto1.png";
+    turtoimg.src = "/img/tool_imgs/video-lesson1.png";
+    feedimg.src="/img/tool_imgs/review1.png";
+    passimg.src="/img/tool_imgs/key1.png";
+    avartaimg.src="/img/tool_imgs/avatar1.png";
+    lauchimg.forEach((e) => {
+      e.src="/img/tool_imgs/lauch1.png";; 
+    });
   }
 }
 
