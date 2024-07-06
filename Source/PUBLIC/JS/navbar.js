@@ -1,7 +1,7 @@
-var university = document.getElementById("university1");
-var home = document.getElementById("home1");
-var story = document.getElementById("story1");
-var test = document.getElementById("test1");
+var university = document.querySelectorAll(".university1");
+var home = document.querySelectorAll(".home1");
+var story = document.querySelectorAll(".story1");
+var test = document.querySelectorAll(".test1");
 var logoutimg = document.getElementById("logoutimg");
 var themeimg = document.getElementById("themeimg");
 var autoimg = document.getElementById("autoimg");
@@ -18,6 +18,7 @@ var avartaimg = document.getElementById("avartaimg");
 var passimg = document.getElementById("passimg");
 var feedimg = document.getElementById("feedimg");
 var lauchimg = document.querySelectorAll(".lauch");
+var backimg = document.querySelectorAll(".backimg")
 introBtn.addEventListener("click", function () {
   startIntro();
 });
@@ -97,10 +98,18 @@ function changeTheme() {
 
 function changeMode(modeValue) {
   if (modeValue === "light") {
-    home.src = "/img/navbar_imgs/black_imgs/home_black.png";
-    test.src = "/img/navbar_imgs/black_imgs/test_black.png";
-    university.src = "/img/navbar_imgs/black_imgs/university_black.png";
-    story.src = "/img/navbar_imgs/black_imgs/story_black.png";
+    home.forEach((e) => {
+      e.src="/img/navbar_imgs/black_imgs/home_black.png";
+    });
+    test.forEach((e) => {
+      e.src="/img/navbar_imgs/black_imgs/test_black.png";
+    });
+    university.forEach((e) => {
+      e.src="/img/navbar_imgs/black_imgs/university_black.png";
+    });
+    story.forEach((e) => {
+      e.src="/img/navbar_imgs/black_imgs/story_black.png";
+    });
     logoutimg.src = "/img/tool_imgs/logout2.png";
     themeimg.src = "/img/tool_imgs/theme2.png";
     autoimg.src = "/img/tool_imgs/auto2.png";
@@ -109,13 +118,24 @@ function changeMode(modeValue) {
     passimg.src="/img/tool_imgs/key2.png";
     avartaimg.src="/img/tool_imgs/avatar2.png";
     lauchimg.forEach((e) => {
-      e.src="/img/tool_imgs/lauch2.png";; 
+      e.src="/img/tool_imgs/lauch2.png";
+    });
+    backimg.forEach((e) => {
+      e.src="/img/tool_imgs/back2.png"; 
     });
   } else if (modeValue === "dark") {
-    home.src = "/img/navbar_imgs/white_imgs/home_white.png";
-    test.src = "/img/navbar_imgs/white_imgs/test_white.png";
-    university.src = "/img/navbar_imgs/white_imgs/university_white.png";
-    story.src = "/img/navbar_imgs/white_imgs/story_white.png";
+    home.forEach((e) => {
+      e.src="/img/navbar_imgs/white_imgs/home_white.png";
+    });
+    test.forEach((e) => {
+      e.src="/img/navbar_imgs/white_imgs/test_white.png";
+    });
+    university.forEach((e) => {
+      e.src="/img/navbar_imgs/white_imgs/university_white.png";
+    });
+    story.forEach((e) => {
+      e.src="/img/navbar_imgs/white_imgs/story_white.png";
+    });
     logoutimg.src = "/img/tool_imgs/logout1.png";
     themeimg.src = "/img/tool_imgs/theme1.png";
     autoimg.src = "/img/tool_imgs/auto1.png";
@@ -125,6 +145,9 @@ function changeMode(modeValue) {
     avartaimg.src="/img/tool_imgs/avatar1.png";
     lauchimg.forEach((e) => {
       e.src="/img/tool_imgs/lauch1.png";; 
+    });
+    backimg.forEach((e) => {
+      e.src="/img/tool_imgs/back1.png"; 
     });
   }
 }

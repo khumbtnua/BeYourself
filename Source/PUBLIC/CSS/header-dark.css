@@ -159,6 +159,7 @@
 .line2 h3 {
   padding-left: 10px;
   margin: auto 0;
+  color: white;
 }
 .line:hover {
   background-color: rgb(260, 260, 260,0.2);
@@ -217,7 +218,7 @@
   letter-spacing: 1px;
 }
 #user-avar:hover{
-  background: rgb(260, 260, 260,0.5);
+  background: rgb(260, 260, 260,0.4);
 }
 #user-avar img{
   border-radius: 50%;
@@ -231,18 +232,16 @@ a img {
 }
 nav{
   margin: auto 0px auto auto;
+  padding: 0.5vh;
 }
 nav button {
   appearance: none;
   border: none;
   background: none;
-  height: 100%;
-  padding-top: 10px;
-  padding-bottom: 6px;
-  padding-left: 10px;
-  padding-right: 10px;
-  border-radius: 5px;
+  height: 5vh;
+  padding: 5px 10px;
   cursor: pointer;
+  border-radius: 5px;
 }
 #extend-navbar img {
   width: 33px;
@@ -254,9 +253,10 @@ nav button {
   display: flex;
 }
 #extend-navbar h3 {
-  margin-left: 15px;
-  font-size: 30px;
+  margin-left: 20px;
+  font-size: 25px;
   font-family: hywen;
+  color: rgb(230, 230, 230);
 }
 nav a {
   width: 100%;
@@ -271,28 +271,18 @@ nav h3 {
 }
 
 nav button:hover {
-  background: rgb(260, 260, 260,0.2);
+  background: rgb(260, 260, 260,0.4);
 }
-#extend-navbar button {
-  width: 100%;
-  height: fit-content;
-  border: none;
-  background: none;
-  padding: 10px;
-  font-size: 40px;
-  margin: 10px;
-  text-align: left;
-  z-index: -999;
-}
+
 #extend-navbar {
   width: 100vw;
   height: 100vh;
   transition: 0.3s ease-out;
   position: fixed;
-  padding-top: 60px;
-  background-color: rgba(255, 255, 255, 0.1);
+  padding-top: 6vh;
+  background-color: transparent;
   backdrop-filter: blur(20px);
-  z-index: 9999;
+  z-index: 1;
 }
 #name {
   font-size: 1.1rem;
@@ -321,7 +311,7 @@ h3 {
   font-size: 17px;
   font-weight: 200;
   font-family: hywen;
-}
+  }
 
 h2 {
   font-size: 30px;
@@ -340,11 +330,14 @@ h2 {
   width: 100%;
   border: none;
   background: none;
-  padding: 10px;
+  padding: 20px;
   font-size: 40px;
-  margin: 10px;
   text-align: left;
-  z-index: -999;
+  height: fit-content;
+  border-bottom: 1px solid rgb(260, 260, 260,0.2);
+}
+#extend-navbar button:hover {
+ background-color: rgb(260, 260, 260,0.2);
 }
 .hidden {
   display: none;
@@ -356,9 +349,7 @@ h2 {
   right: 10px;
   top: 0px;
   cursor: pointer;
-  width: 50px;
-  height: 50px;
-  font-size: 3rem;
+  font-size: 2.5rem;
   text-align: center;
   z-index: 10001;
 }
@@ -369,9 +360,7 @@ h2 {
   right: 10px;
   top: 0px;
   cursor: pointer;
-  width: 50px;
-  height: 50px;
-  font-size: 3rem;
+  font-size: 2.5rem;
   text-align: center;
   z-index: 10001;
 }
@@ -906,7 +895,7 @@ a {
   height: 3px;
 }
 ::-webkit-scrollbar-thumb {
-  background-color: rgb(0, 0, 0);
+  background-color: rgb(100, 100, 100);
   border-radius: 15px;
 }
 ::-webkit-scrollbar-thumb:hover {
@@ -916,7 +905,7 @@ a {
   border-radius: 15px;
 }
 ::-webkit-scrollbar-track-piece {
-  background-color: rgba(100, 100, 100);
+  background-color: transparent;
   border-radius: 15px;
 }
 @media only screen and (max-width: 850px) {

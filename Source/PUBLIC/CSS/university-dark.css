@@ -25,6 +25,8 @@ a {
   box-shadow: none !important;
 }
 
+
+
 #sidebar {
   display: flex;
   flex-direction: column;
@@ -39,9 +41,9 @@ a {
 #school-detail {
   position: absolute;
   width: 74.5%;
-  height: 92vh;
+  height: 93vh;
   right: 0.5%;
-  top: 7vh;
+  top: 6vh;
   background-color: rgba(50, 50, 50);
   border-radius: 10px;
   z-index: 3;
@@ -94,7 +96,9 @@ a {
   font-size: 20px;
   background-color: transparent;
 }
-
+#search-pre::placeholder{
+  color: rgb(200, 200, 200);
+} 
 #contai-search img {
   width: 20px;
   height: 20px;
@@ -184,7 +188,7 @@ select:focus {
   margin: auto;
 }
 #contai-list-sch {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(260, 260, 260, 0.1);
   padding: 2.5% 0 2.5% 2.5%;
   height: 100%;
   width: 95%;
@@ -204,7 +208,7 @@ select:focus {
   display: flex;
   flex-direction: row;
   padding-right: 5px;
-  background-color: rgba(70, 70, 70);
+  background-color: rgba(50, 50, 50);
   border-radius: 15px;
   width: 97.5%;
   margin: 2px auto 10px 2px;
@@ -218,8 +222,8 @@ select:focus {
 }
 @keyframes scroll{
   0%{
-    scale: 0.9;
-    opacity: 0.2;
+    scale: 0.85;
+    opacity: 0;
   }
   10%{
     scale: 1;
@@ -230,8 +234,8 @@ select:focus {
       opacity: 1;
     }
     100%{
-      scale: 0.9;
-      opacity: 0.2;
+      scale: 0.85;
+      opacity: 0;
     }
 }
 .info {

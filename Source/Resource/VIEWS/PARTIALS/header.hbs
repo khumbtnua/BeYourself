@@ -8,25 +8,25 @@
   <nav>
     <button id="step-three">
       <a href="/" target="_self">
-        <img src="/img/navbar_imgs/black_imgs/home_black.png" id="home1" />
+        <img src="/img/navbar_imgs/black_imgs/home_black.png" class="home1" />
         <h3>Trang chủ</h3>
       </a>
     </button>
     <button id="step-four">
       <a href="/test" target="_self">
-        <img src="/img/navbar_imgs/black_imgs/test_black.png" id="test1" />
+        <img src="/img/navbar_imgs/black_imgs/test_black.png" class="test1" />
         <h3>TN nghề nghiệp</h3>
       </a>
     </button>
     <button id="step-five">
       <a href="/university" target="_self">
-        <img src="/img/navbar_imgs/black_imgs/university_black.png" id="university1" />
+        <img src="/img/navbar_imgs/black_imgs/university_black.png" class="university1" />
         <h3>Trường đại học</h3>
       </a>
     </button>
     <button id="step-six">
       <a href="/story" target="_self">
-        <img src="/img/navbar_imgs/black_imgs/story_black.png" id="story1" />
+        <img src="/img/navbar_imgs/black_imgs/story_black.png" class="story1" />
         <h3>Câu chuyện</h3>
       </a>
     </button>
@@ -49,25 +49,25 @@
 <div id="extend-navbar">
   <button id="step-three">
     <a href="/" target="_self">
-      <img src="/img/navbar_imgs/black_imgs/home_black.png" id="home1" />
+      <img src="/img/navbar_imgs/black_imgs/home_black.png" class="home1"/>
       <h3>Trang chủ</h3>
     </a>
   </button>
   <button id="step-four">
     <a href="/test" target="_self">
-      <img src="/img/navbar_imgs/black_imgs/test_black.png" id="test1" />
+      <img src="/img/navbar_imgs/black_imgs/test_black.png" class="test1" />
       <h3>TN nghề nghiệp</h3>
     </a>
   </button>
   <button id="step-five">
     <a href="/university" target="_self">
-      <img src="/img/navbar_imgs/black_imgs/university_black.png" id="university1" />
+      <img src="/img/navbar_imgs/black_imgs/university_black.png" class="university1" />
       <h3>Trường đại học</h3>
     </a>
   </button>
   <button id="step-six">
     <a href="/story" target="_self">
-      <img src="/img/navbar_imgs/black_imgs/story_black.png" id="story1" />
+      <img src="/img/navbar_imgs/black_imgs/story_black.png" class="story1" />
       <h3>Câu chuyện</h3>
     </a>
   </button>
@@ -94,11 +94,11 @@
             <img src="/img/tool_imgs/lauch2.png" class="lauch" />
           </div>
         </a>
-          <div class="line" onclick="avatarclick()">
-            <img src="/img/tool_imgs/avatar2.png" id="avartaimg" />
-            <h3>Đổi ảnh đại diện</h3>
-            <img src="/img/tool_imgs/lauch2.png" class="lauch" />
-          </div>
+        <div class="line" onclick="avatarclick()">
+          <img src="/img/tool_imgs/avatar2.png" id="avartaimg" />
+          <h3>Đổi ảnh đại diện</h3>
+          <img src="/img/tool_imgs/lauch2.png" class="lauch" />
+        </div>
         <div class="line" onclick="passclick()">
           <img src="/img/tool_imgs/key2.png" id="passimg" />
           <h3>Đổi mật khẩu</h3>
@@ -163,9 +163,10 @@
         </div>
       </div>
     </div>
+
     <form action="" class="page-expand" id="passpage">
       <div class="line2">
-        <img src="/img/tool_imgs/back.png" onclick="back(passpage)">
+        <img src="/img/tool_imgs/back.png" class="backimg" onclick="back(passpage)">
         <h3>Đổi mật khẩu</h3>
       </div>
       <h4>Mật khẩu của bạn phải có tối thiểu 6 ký tự, đồng thời bao gồm cả chữ số, chữ cái và ký tự đặc biệt.</h4>
@@ -175,7 +176,7 @@
     </form>
     <form action="" class="page-expand" id="feedpage">
       <div class="line2">
-        <img src="/img/tool_imgs/back.png" onclick="back(feedpage)">
+        <img src="/img/tool_imgs/back.png" class="backimg" onclick="back(feedpage)">
         <h3>Đóng góp ý kiến</h3>
       </div>
       <h4>Chúng tôi có thể cải thiện như thế nào?</h4>
@@ -187,12 +188,12 @@
       <input type="image">
       <button>Gửi</button>
     </form>
-      <form action="" class="page-expand" id="avatarpage">
+    <form action="" class="page-expand" id="avatarpage">
       <div class="line2">
-        <img src="/img/tool_imgs/back.png" onclick="back(avatarpage)">
+        <img src="/img/tool_imgs/back.png" class="backimg" onclick="back(avatarpage)">
         <h3>Đổi ảnh đai diện</h3>
       </div>
-     <input type="image">
+      <input type="image">
       <button>Đổi ảnh</button>
     </form>
   </div>

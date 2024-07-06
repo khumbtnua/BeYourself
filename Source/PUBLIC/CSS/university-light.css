@@ -25,6 +25,23 @@ a {
   box-shadow: none !important;
 }
 
+nav button:hover {
+  background-color: rgba(260, 260, 260,0.9);
+}
+#user-avar:hover{
+  background: rgb(260, 260, 260,0.9);
+}
+#user-avar{
+  height: 5vh;
+  margin-top: 0.5vh;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-radius: 5px;
+}
+#user-avar h3 {
+  color: rgb(105, 74, 54);
+  font-weight: 600;
+}
 #sidebar {
   display: flex;
   flex-direction: column;
@@ -39,9 +56,9 @@ a {
 #school-detail {
   position: absolute;
   width: 74.5%;
-  height: 92vh;
+  height: 93vh;
   right: 0.5%;
-  top: 7vh;
+  top: 6vh;
   background-color: rgba(250, 250, 250);
   border-radius: 10px;
   z-index: 3;
@@ -94,7 +111,9 @@ a {
   font-size: 20px;
   background-color: transparent;
 }
-
+#search-pre::placeholder{
+  color: rgb(200, 200, 200);
+} 
 #contai-search img {
   width: 20px;
   height: 20px;
@@ -218,8 +237,8 @@ select:focus {
 }
 @keyframes scroll{
   0%{
-    scale: 0.9;
-    opacity: 0.2;
+    scale: 0.85;
+    opacity: 0;
   }
   10%{
     scale: 1;
@@ -230,8 +249,8 @@ select:focus {
       opacity: 1;
     }
   100%{
-      scale: 0.9;
-      opacity: 0.2;
+      scale: 0.85;
+      opacity: 0;
     }
   }
 .info {
