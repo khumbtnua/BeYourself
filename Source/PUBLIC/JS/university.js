@@ -131,10 +131,8 @@ function renderCollege(data) {
                 <a href="/university/${college.slug}"><img src="${college.img}"></a>
             </div>
             <div class="info">
-                <div class="info-text">
                     <h2>${college.name}</h2>
-                </div>
-                <div class="info-label"><label>Nothing</label></div>
+                    <h4>${college.address}</h4>
             </div>
         </div>
     `;
