@@ -65,12 +65,12 @@ a {
 }
 
 #contai-search {
-  margin: 2vh auto;
+  margin: 15px auto;
   padding-right: 20px;
   background-color: white;
   width: 85%;
   background-color: rgba(100, 100, 100);
-  height: 6vh;
+  height:40px;
   display: flex;
   border-radius: 25px;
   -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
@@ -112,8 +112,10 @@ a {
   width: 100%;
   height: 100%;
   border: none;
-  font-size: 20px;
+  font-size: 18px;
   background-color: transparent;
+  font-family: math;
+  letter-spacing: 0.5px;
 }
 
 #search-pre::placeholder {
@@ -218,7 +220,7 @@ select:focus {
   width: 100%;
   border-radius: 20px;
   overflow: hidden;
-  border: 1px solid white;
+  border: 1px solid rgb(100, 100, 100);
 }
 
 #list-sch {
@@ -238,8 +240,8 @@ select:focus {
   width: 97.5%;
   margin: 2px auto 10px 2px;
   height: 75px;
-  -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
-  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
   animation: scroll linear;
   animation-timeline: view();
@@ -306,8 +308,8 @@ select:focus {
   font-size: 12px;
   font-family: monospace;
   font-weight: 1;
-  background-color: beige;
-  color: black;
+  background-color: rgba(80, 80,80);
+  color: white;
   padding: 3px 6px;
   border-radius: 10px;
   height: 100%;

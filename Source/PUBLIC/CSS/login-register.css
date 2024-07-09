@@ -36,14 +36,24 @@ body {
 }
 
 .container span {
+  font-size: 14px;
+  margin: 5px 0 5px;
+}
+#forgot{
   font-size: 12px;
+  color: rgb(80,80,80);
+  margin: 5px 0 5px;
+}
+
+#forgot:hover {
+  color: black;
+  text-decoration: underline;
 }
 
 .container a {
-  color: #333;
-  font-size: 13px;
+  color: black;
   text-decoration: none;
-  margin: 15px 0 10px;
+  margin: 0px 0 10px;
 }
 
 .container button {
@@ -76,11 +86,11 @@ body {
 }
 
 .container input {
-  background-color: #eee;
+  background-color: rgb(240, 240, 240);
   border: none;
-  margin: 8px 0;
-  padding: 10px 15px;
-  font-size: 13px;
+  margin: 10px 0;
+  padding: 12px;
+  font-size: 15px;
   border-radius: 8px;
   width: 100%;
   outline: none;
@@ -131,7 +141,7 @@ body {
 }
 
 .social-icons {
-  margin: 20px 0;
+  margin: 15px 0;
 }
 
 .social-icons a {
@@ -140,9 +150,10 @@ body {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  margin: 0 3px;
-  width: 40px;
-  height: 40px;
+  margin: 0 15px;
+  width: 45px;
+  height: 45px;
+  font-size: 20px;
 }
 
 .toggle-container {
@@ -210,6 +221,7 @@ body {
 .container.active .toggle-right {
   transform: translateX(200%);
 }
+
 @media only screen and (max-width: 850px) {
   .container {
     width: 90%;
@@ -237,11 +249,24 @@ body {
   .social-icons {
     margin: 5px 0;
   }
+  .social-icons a {
+    width: 40px;
+    height: 40px;
+    margin: 0 15px;
+  }
   .container input {
     margin: 5px 0;
+    font-size: 13px;
   }
-  .container a {
-    margin: 5px 10px;
+  .container span {
+    font-size: 12px;
+    margin: 0 0 5px;
+  }
+  #forgot {
+    margin: 0 0 5px;
+  }
+  .container button {
+    margin-top: 5px;
   }
   .toggle {
     width: 100%;
