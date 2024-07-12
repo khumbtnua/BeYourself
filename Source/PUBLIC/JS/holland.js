@@ -166,7 +166,7 @@ function arleft() {
   web--;
   allowClick--;
 }
-var i = 1;
+var i = 50;
 var allowClick = 1;
 
 function createQuestion() {
@@ -487,8 +487,9 @@ function GetValue() {
       analysisValue(demoBtnParentValue, demoBtnValue);
       updateColor(demoBtnParentValue, demoBtnValue);
       if (abc.length >= allowClick) {
+        console.log(abc.length, allowClick);
         if (autoNext === true) {
-          if (web < 70) {
+          if (web < 54) {
             createQuestion();
             aright();
             GetValue();
@@ -774,7 +775,7 @@ body.addEventListener("keyup", function (e) {
   }
 });
 
-var web = 1;
+var web = 50;
 function Count(e) {
   if (e.keyCode === 39) {
     if (web < 70) {

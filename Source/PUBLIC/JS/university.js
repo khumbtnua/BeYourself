@@ -4,7 +4,7 @@ var equalsElement = document.querySelector(".fa-equals");
 var xElement = document.querySelector(".fa-x");
 var firstNavbar = document.querySelector("nav");
 var secondNavbar = document.getElementById("extend-navbar");
-var searchInput = document.getElementById("search-in");
+var searchInput = document.querySelector(".search-in");
 var colleges = [];
 var equalsElement = document.querySelector(".fa-equals");
 var xElement = document.querySelector(".fa-x");
@@ -14,7 +14,7 @@ secondNavbar.classList.add("out");
 var collegeContainer = document.getElementById("list-sch");
 var dataContainer = document.getElementById("data-container");
 var universityData = JSON.parse(dataContainer.getAttribute("data-university"));
-var searchBtn = document.getElementById("search");
+var searchBtn = document.querySelector(".search");
 var errorPage = document.getElementById("error-page");
 
 window.addEventListener("load", function () {
@@ -109,33 +109,45 @@ searchInput.addEventListener("keyup", function (e) {
   inputValue = e.target.value.toLowerCase();
 });
 
-// searchBtn.addEventListener("click", function () {
-//   var filterCollege = universityData.filter((university) => {
-//     return university.name.toLowerCase().includes(inputValue);
-//   });
-//   if (Object.keys(filterCollege).length === 0) {
-//     renderCollege(filterCollege);
-//     collegeContainer.style.height = "500px";
-//     errorPage.classList.remove("hide");
-//     collegeContainer.appendChild(errorPage);
-//   } else {
-//     renderCollege(filterCollege);
-//   }
-// });
+document.body.addEventListener("keyup", function (e) {
+  if (e.keyCode === 13) {
+    var filterCollege = universityData.filter((university) => {
+      return university.name.toLowerCase().includes(inputValue);
+    });
+    if (Object.keys(filterCollege).length === 0) {
+      renderCollege(filterCollege);
+      collegeContainer.style.height = "500px";
+      errorPage.classList.remove("hide");
+      collegeContainer.appendChild(errorPage);
+    } else {
+      renderCollege(filterCollege);
+    }
+  }
+});
 
 function renderCollege(data) {
   var htmls = data.map(function (college) {
     return `
     <div class="sch">
             <div class="sch-contai-img">
-                <a href="/university/${college.slug}"><img src="${college.img}"></a>
+              <img id="college" data-slug="${college.slug}" src="${college.img}" onclick="detail(this)">
             </div>
             <div class="info">
+                <div class="info-text">
                     <h2>${college.name}</h2>
-                    <h4>${college.address}</h4>
+                </div>
+                <div class="info-label"><label>Nothing</label></div>
             </div>
         </div>
     `;
   });
   collegeContainer.innerHTML = htmls.join("");
+}
+var slug = "";
+var iframe = document.getElementById("school-detail");
+
+function detail(imgElement) {
+  var slug1 = imgElement.getAttribute("data-slug");
+  slug = slug1;
+  iframe.src = `http://localhost:5500/university/${slug}`;
 }

@@ -23,9 +23,8 @@ class UniversityController {
     University.findOne({ slug: req.params.slug })
       .then(function (college) {
         res.render("college", {
+          layout: "extend",
           style: "universitydetail-light.css",
-          function1: "universitydetail.js",
-          username: req.session.username,
           college: mongooseToObject(college),
         });
       })

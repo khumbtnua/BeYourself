@@ -19,8 +19,7 @@ var passimg = document.getElementById("passimg");
 var feedimg = document.getElementById("feedimg");
 var lauchimg = document.querySelectorAll(".lauch");
 var backimg = document.querySelectorAll(".backimg");
-var searchimg = document.querySelectorAll(".searchimg");
-
+var alertInfo = document.querySelector(".alert");
 introBtn.addEventListener("click", function () {
   startIntro();
 });
@@ -28,8 +27,6 @@ introBtn.addEventListener("click", function () {
 turnAutoMode.addEventListener("click", function () {
   changeAutoMode();
 });
-
-
 
 function changeAutoMode() {
   if (autoNext === true) {
@@ -100,9 +97,6 @@ function changeTheme() {
 
 function changeMode(modeValue) {
   if (modeValue === "light") {
-    searchimg.forEach((e) => {
-      e.src = "/img/tool_imgs/search2.png";
-    }); 
     home.forEach((e) => {
       e.src = "/img/navbar_imgs/black_imgs/home_black.png";
     });
@@ -126,14 +120,9 @@ function changeMode(modeValue) {
       e.src = "/img/tool_imgs/lauch2.png";
     });
     backimg.forEach((e) => {
-      e.src = "/img/tool_imgs/back2.png";
+      e.src = "/img/tool_imgs/back2.png.png";
     });
-  } 
-  
-  else if (modeValue === "dark") {
-    searchimg.forEach((e) => {
-      e.src = "/img/tool_imgs/search1.png";
-    }); 
+  } else if (modeValue === "dark") {
     home.forEach((e) => {
       e.src = "/img/navbar_imgs/white_imgs/home_white.png";
     });
@@ -154,7 +143,7 @@ function changeMode(modeValue) {
     passimg.src = "/img/tool_imgs/key1.png";
     avartaimg.src = "/img/tool_imgs/avatar1.png";
     lauchimg.forEach((e) => {
-      e.src = "/img/tool_imgs/lauch1.png";;
+      e.src = "/img/tool_imgs/lauch1.png";
     });
     backimg.forEach((e) => {
       e.src = "/img/tool_imgs/back1.png";
@@ -180,15 +169,24 @@ window.addEventListener("load", function () {
 var avatarpage = document.getElementById("avatarpage");
 var feedpage = document.getElementById("feedpage");
 var passpage = document.getElementById("passpage");
-var mainset = document.getElementById("main")
+var mainset = document.getElementById("main");
 var userexpand = document.getElementById("user-expand");
 var movesetting = 0;
 var move = 0;
 var contaiexpand = document.getElementById("contai-page-expand");
-var pageexpand = document.querySelectorAll(".page-expand")
+var pageexpand = document.querySelectorAll(".page-expand");
 pageexpand.forEach((e) => {
   e.style.display = "none";
 });
+
+feedpage.addEventListener("submit", function () {
+  setTimeout(function () {
+    console.log(feedpage.getAttribute("action"));
+    feedpage.action = "/feedback";
+    feedpage.submit();
+  }, 1000);
+});
+
 //open setting
 function openset() {
   userexpand.classList.add("active");
@@ -212,6 +210,7 @@ function feedclick() {
   movesetting = movesetting - 100;
   moveset();
 }
+
 //avatarpage
 function avatarclick() {
   avatarpage.style.display = "block";
@@ -238,7 +237,7 @@ function clicklay() {
   userexpand.classList.remove("active");
   overlay.style.backgroundColor = "rgb(50, 50, 50, 0)";
   movesetting = 0;
-  moveset()
+  moveset();
   setTimeout(function () {
     overlay.style.display = "none";
   }, 500);

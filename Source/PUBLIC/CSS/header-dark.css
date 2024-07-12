@@ -53,6 +53,18 @@
   transition-duration: 0.5s;
   overflow: hidden;
 }
+#user-expand select{
+  border: 2px solid rgb(100, 100, 100);
+  background-color: rgb(40, 40,40);
+  color: white;
+  padding: 10px;
+  width: 90%;
+  height: 45px;
+  border-radius: 15px;
+  margin: 7.5px 5%;
+  font-size: 14px;
+  font-family: hywen;
+}
 #user-expand textarea{
   padding: 10px;
   border: 2px solid rgb(100, 100, 100);
@@ -61,8 +73,8 @@
   width: 90%;
   height: 200px;
   border-radius: 15px;
-  margin: 10px 5%;
-  font-size: 16px;
+  margin: 7.5px 5%;
+  font-size: 14px;
   font-family: hywen;
   resize: none;
 }
@@ -79,7 +91,10 @@
   font-family: hywen;
   cursor: pointer;
 }
-
+.h-captcha{
+  width: fit-content;
+  margin: 0 auto;
+}
 #user-expand input{
   letter-spacing: 1px;
   padding: 10px;
@@ -87,10 +102,10 @@
   background-color: rgb(40, 40,40);
   color: white;
   width: 90%;
-  height: 50px;
+  height: 45px;
   border-radius: 15px;
-  margin: 10px 5%;
-  font-size: 16px;
+  margin: 7.5px 5%;
+  font-size: 14px;
   font-family: hywen;
 }
 #user-expand input::placeholder {
