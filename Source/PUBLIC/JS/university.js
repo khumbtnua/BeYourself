@@ -4,7 +4,7 @@ var equalsElement = document.querySelector(".fa-equals");
 var xElement = document.querySelector(".fa-x");
 var firstNavbar = document.querySelector("nav");
 var secondNavbar = document.getElementById("extend-navbar");
-var searchInput = document.querySelector(".search-in");
+var searchInput = document.getElementById("search-in");
 var colleges = [];
 var equalsElement = document.querySelector(".fa-equals");
 var xElement = document.querySelector(".fa-x");
@@ -16,6 +16,9 @@ var dataContainer = document.getElementById("data-container");
 var universityData = JSON.parse(dataContainer.getAttribute("data-university"));
 var searchBtn = document.querySelector(".search");
 var errorPage = document.getElementById("error-page");
+var schooldetail = document.getElementById("school-detail");
+var slug = "";
+var iframe = document.getElementById("iframedetail");
 
 window.addEventListener("load", function () {
   renderCollege(universityData);
@@ -118,7 +121,8 @@ document.body.addEventListener("keyup", function (e) {
       renderCollege(filterCollege);
       collegeContainer.style.height = "500px";
       errorPage.classList.remove("hide");
-      collegeContainer.appendChild(errorPage);
+      iframe.classList.add("hide");
+      schooldetail.appendChild(errorPage);
     } else {
       renderCollege(filterCollege);
     }
@@ -128,26 +132,24 @@ document.body.addEventListener("keyup", function (e) {
 function renderCollege(data) {
   var htmls = data.map(function (college) {
     return `
-    <div class="sch">
+    <div class="sch" data-slug="${college.slug}" onclick="detail(this)">
             <div class="sch-contai-img">
-              <img id="college" data-slug="${college.slug}" src="${college.img}" onclick="detail(this)">
+              <img id="college"  src="${college.img}" onclick="detail(this)">
             </div>
             <div class="info">
-                <div class="info-text">
                     <h2>${college.name}</h2>
-                </div>
-                <div class="info-label"><label>Nothing</label></div>
+                    <h4>${college.address}</h4>
             </div>
         </div>
     `;
   });
   collegeContainer.innerHTML = htmls.join("");
 }
-var slug = "";
-var iframe = document.getElementById("school-detail");
+
 
 function detail(imgElement) {
   var slug1 = imgElement.getAttribute("data-slug");
   slug = slug1;
+  iframe.classList.remove("hide");
   iframe.src = `http://localhost:5500/university/${slug}`;
 }

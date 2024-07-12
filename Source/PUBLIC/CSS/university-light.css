@@ -82,8 +82,12 @@ nav button:hover {
   border-radius: 10px;
   z-index: 3;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
 }
-
+#iframedetail{
+  width: 100%;
+  height: 100%;
+}
 #contai-search {
   margin: 15px auto;
   padding-right: 20px;
@@ -264,10 +268,14 @@ select:focus {
   -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
   animation: scroll linear;
+  cursor: pointer;
+
   animation-timeline: view();
 
 }
+.sch:hover {
 
+}
 @keyframes scroll {
   0% {
     scale: 0.85;
@@ -346,15 +354,15 @@ select:focus {
 }
 
 #error-page {
-  position: absolute;
-  top: 10%;
-  left: 15%;
-  right: 15%;
-  bottom: 10%;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
   align-items: center;
   justify-content: center;
   user-select: none;
+  width: 80%;
 }
 
 #error-page .content {
@@ -417,8 +425,7 @@ select:focus {
   margin-bottom: 20px;
   text-transform: uppercase;
   color: white;
-  font-size: 2em;
-  max-width: 600px;
+  width: 100%;
   position: relative;
 }
 
