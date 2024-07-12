@@ -86,7 +86,7 @@ var autoNext = false;
 
 function createIntroduction() {
   var quesContent = document.createElement("h4");
-  quesContent.innerText = `
+  quesContent.Tinnerext = `
   Bạn đang chuẩn bị kiểm tra bài test trắc nghiệm nghề nghiệp Holland với 54 câu hỏi tất cả.
 
   Với mỗi câu hỏi sẽ có 5 mức độ tương ứng từ 0 đến 4 điểm ở phía dưới:

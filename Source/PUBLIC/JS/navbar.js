@@ -243,4 +243,53 @@ function clicklay() {
   }, 500);
   deletes(passpage);
   deletes(feedpage);
+  deletes(avatarpage);
+}
+
+// picavatar
+const avatarp = document.getElementById('avatarp');
+const dropZone = document.getElementById('drop-zone');
+const fileInput = document.getElementById('file-input');
+const preview = document.getElementById('preview');
+
+dropZone.addEventListener('click', () => fileInput.click());
+
+dropZone.addEventListener('dragover', (event) => {
+    event.preventDefault();
+    dropZone.classList.add('dragover');
+});
+
+dropZone.addEventListener('dragleave', () => {
+    dropZone.classList.remove('dragover');
+});
+
+dropZone.addEventListener('drop', (event) => {
+    event.preventDefault();
+    dropZone.classList.remove('dragover');
+    const files = event.dataTransfer.files;
+    if (files.length) {
+        handleFiles(files);
+    }
+});
+
+fileInput.addEventListener('change', () => {
+    const files = fileInput.files;
+    if (files.length) {
+        handleFiles(files);
+    }
+});
+
+function handleFiles(files) {
+    const file = files[0];
+    if (file.type.startsWith('image/')) {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+            preview.src = event.target.result;
+            preview.style.display = 'block';
+            dropZone.style.display = 'none';
+        };
+        reader.readAsDataURL(file);
+    } else {
+        alert('Vui lòng chọn một tệp ảnh.');
+    }
 }
