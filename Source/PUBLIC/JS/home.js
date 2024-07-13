@@ -24,13 +24,6 @@ closeQuoteBtn.addEventListener("mouseout", function () {
 closeQuoteBtn.addEventListener("click", function () {
   quoteContainer.style.display = "none";
   bodyE.classList.add("hidden");
-  introBtn.style.zIndex = "1";
-  navbar.style.position = "block";
-  navbar.style.zIndex = "1000";
-  navbar.style.opacity = "1";
-  footer.style.position = "block";
-  footer.style.zIndex = "1000";
-  footer.style.opacity = "1";
   bg.style.overflowX = "hidden";
 });
 
@@ -38,13 +31,6 @@ window.addEventListener("load", function () {
   createQuoteContent();
   quoteContainer.style.display = "flex";
   bodyE.classList.remove("hidden");
-  introBtn.style.zIndex = "-999";
-  navbar.style.position = "relative";
-  navbar.style.zIndex = "-999";
-  navbar.style.opacity = "0.6";
-  footer.style.position = "fixed";
-  footer.style.zIndex = "-999";
-  footer.style.opacity = "0.9";
   bg.style.overflow = "hidden";
 });
 

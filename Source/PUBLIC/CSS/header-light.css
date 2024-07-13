@@ -1,11 +1,11 @@
 .full-navbar {
   width: 100vw;
   height: auto;
+  z-index: 10000;
 }
 
 #navbar {
   position: fixed;
-  z-index: 10000;
   user-select: none;
   width: 100vw;
   height: 6vh;
