@@ -1,16 +1,6 @@
 var bg = document.querySelector("body");
-var lists = document.getElementById("extend-navbar");
-var equalsElement = document.querySelector(".fa-equals");
-var xElement = document.querySelector(".fa-x");
-var firstNavbar = document.querySelector("nav");
-var secondNavbar = document.getElementById("extend-navbar");
 var searchInput = document.getElementById("search-in");
 var colleges = [];
-var equalsElement = document.querySelector(".fa-equals");
-var xElement = document.querySelector(".fa-x");
-var secondNavbar = document.getElementById("extend-navbar");
-var titleElement = document.getElementById("name");
-secondNavbar.classList.add("out");
 var collegeContainer = document.getElementById("list-sch");
 var dataContainer = document.getElementById("data-container");
 var universityData = JSON.parse(dataContainer.getAttribute("data-university"));
@@ -71,42 +61,6 @@ function startIntro() {
   intro.start();
 }
 
-xElement.addEventListener("click", function () {
-  returnViewNavbar();
-});
-
-equalsElement.addEventListener("click", function () {
-  changeViewNavbar();
-});
-
-function resizeHandle() {
-  if (window.innerWidth <= 850) {
-    equalsElement.style.display = "block";
-    firstNavbar.style.display = "none";
-    window.onload = returnViewNavbar;
-  } else {
-    equalsElement.style.display = "none";
-    xElement.style.display = "none";
-    firstNavbar.style.display = "flex";
-  }
-}
-
-window.addEventListener("resize", resizeHandle);
-resizeHandle();
-
-function changeViewNavbar() {
-  xElement.style.display = "block";
-  equalsElement.style.display = "none";
-  secondNavbar.classList.remove("out");
-  secondNavbar.classList.add("appear");
-}
-titleElement.style.display = "block";
-function returnViewNavbar() {
-  xElement.style.display = "none";
-  equalsElement.style.display = "block";
-  secondNavbar.classList.remove("appear");
-  secondNavbar.classList.add("out");
-}
 var inputValue = "";
 searchInput.addEventListener("keyup", function (e) {
   inputValue = e.target.value.toLowerCase();

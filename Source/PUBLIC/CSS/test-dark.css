@@ -2,7 +2,7 @@
 
 body {
   background-color: rgb(260, 260, 260);
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   overflow-x: hidden;
   background-color: black;
@@ -99,7 +99,7 @@ h4 {
 .quesans button {
   width: 31%;
   height: 100%;
-  border-radius: 10px;
+  border-radius: 20px;
   border: none;
   cursor: pointer;
   transition-duration: 0.2s;
@@ -382,7 +382,7 @@ h4 {
   flex-wrap: wrap;
   width: 95vw;
   height: 80vh;
-  border-radius: 20px;
+  border-radius: 30px;
   text-align: center;
   padding: 8vh;
   background: rgba(50, 50, 50, 0.2);
@@ -404,7 +404,7 @@ h4 {
 }
 
 .quesans {
-  padding: 10px;
+  padding: 0 10px 10px 10px;
   width: 50%;
   height: 85%;
   display: flex;
@@ -457,14 +457,17 @@ h4 {
 }
 
 #main-pic {
-  position: absolute;
+  position: relative;
   top: 0px;
   right: 0px;
   width: 100vw;
-  height: auto;
+  height: 100vh;
   z-index: -1000;
   overflow: hidden;
-  opacity: 0.8;
+  background-image: url(/img/others_imgs/bg.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
 }
 
 /*---------------------------------------------------------------------------Alert Toast Message CSS Style-------------------------------------------------------------*/
@@ -584,9 +587,6 @@ h4 {
     padding: 20px;
     padding-top: 45px;
   }
-  #main-pic {
-    width: 150vw;
-  }
 }
 
 @media only screen and (max-width: 850px) {
@@ -631,6 +631,7 @@ h4 {
   }
 
   .quesans {
+    padding: 10px;
     margin-top: 0px;
     margin-bottom: 20%;
     width: 50%;
@@ -655,9 +656,6 @@ h4 {
     width: 100%;
     height: 46%;
   }
-  #main-pic {
-    width: 250vw;
-  }
 }
 
 @media only screen and (max-width: 550px) {
@@ -666,7 +664,7 @@ h4 {
   }
 
   h4 {
-    font-size: 15px;
+    font-size: 14px;
   }
 
   #choose {
@@ -743,7 +741,5 @@ h4 {
     height: 50%;
     padding: 20px;
   }
-  #main-pic {
-    width: 350vw;
-  }
+
 }

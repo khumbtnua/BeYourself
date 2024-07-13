@@ -501,7 +501,7 @@ a {
 /*Media CSS Style*/
 
 #footer {
-  position: absolute;
+  position: relative;
   background-image: url("/img/others_imgs/footer.png");
   color: rgb(2, 48, 33);
   width: 100%;
@@ -509,7 +509,6 @@ a {
   z-index: -1;
   display: flex;
   flex-wrap: wrap;
-  margin-top: 100vh;
 }
 #footer-ifo {
   width: 60%;

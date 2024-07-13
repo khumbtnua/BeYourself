@@ -64,7 +64,11 @@ nav button:hover {
   width: 100%;
   padding-left: 10px;
 }
-
+#search-page{
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
 #main-contai {
   width: 100%;
   height: 94vh;
@@ -72,7 +76,7 @@ nav button:hover {
   position: absolute;
   top: 6vh;
   flex-direction: row;
-  padding:0 10px 10px 10px;
+  padding:0px 10px 10px 10px;
 }
 
 #school-detail {

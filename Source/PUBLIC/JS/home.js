@@ -5,12 +5,6 @@ var quoteContainer = document.getElementById("quotecontainer");
 var bodyE = document.querySelector(".body");
 var navbar = document.querySelector(".full-navbar");
 var quoteContent = document.getElementById("quote");
-var equalsElement = document.querySelector(".fa-equals");
-var xElement = document.querySelector(".fa-x");
-var firstNavbar = document.querySelector("nav");
-var secondNavbar = document.getElementById("extend-navbar");
-var titleElement = document.getElementById("name");
-secondNavbar.classList.add("out");
 var dataContainer = document.getElementById("data-container");
 var quoteData = JSON.parse(dataContainer.getAttribute("data-quote"));
 
@@ -101,39 +95,3 @@ function startIntro() {
   intro.start();
 }
 
-xElement.addEventListener("click", function () {
-  returnViewNavbar();
-});
-
-equalsElement.addEventListener("click", function () {
-  changeViewNavbar();
-});
-
-function resizeHandle() {
-  if (window.innerWidth <= 850) {
-    equalsElement.style.display = "block";
-    firstNavbar.style.display = "none";
-    window.onload = returnViewNavbar;
-  } else {
-    equalsElement.style.display = "none";
-    xElement.style.display = "none";
-    firstNavbar.style.display = "flex";
-  }
-}
-
-window.addEventListener("resize", resizeHandle);
-resizeHandle();
-
-function changeViewNavbar() {
-  xElement.style.display = "block";
-  equalsElement.style.display = "none";
-  secondNavbar.classList.remove("out");
-  secondNavbar.classList.add("appear");
-}
-titleElement.style.display = "block";
-function returnViewNavbar() {
-  xElement.style.display = "none";
-  equalsElement.style.display = "block";
-  secondNavbar.classList.remove("appear");
-  secondNavbar.classList.add("out");
-}
