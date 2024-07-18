@@ -26,6 +26,7 @@ var firstNavbar = document.querySelector("nav");
 var secondNavbar = document.getElementById("extend-navbar");
 var titleElement = document.getElementById("name");
 secondNavbar.classList.add("out");
+// var iframe = document.getElementById("iframedetail");
 introBtn.addEventListener("click", function () {
   startIntro();
 });
@@ -134,13 +135,15 @@ function changeTheme() {
     modeValue = "light";
   }
   //detail uni page
-  if (theme.getAttribute("href") === "/universitydetail-light.css") {
-    theme.href = "/universitydetail-dark.css";
-    modeValue = "dark";
-  } else if (theme.getAttribute("href") === "/universitydetail-dark.css") {
-    theme.href = "/universitydetail-light.css";
-    modeValue = "light";
-  }
+  // var iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+  // var iframetheme = iframeDocument.getElementById("theme-link");
+  // if (iframetheme.getAttribute("href") === "/universitydetail-light.css") {
+  //   iframetheme.href = "/universitydetail-dark.css";
+  //   modeValue = "dark";
+  // } else if (theme.getAttribute("href") === "/universitydetail-dark.css") {
+  //   iframetheme.href = "/universitydetail-light.css";
+  //   modeValue = "light";
+  // }
   localStorage.setItem("mode", modeValue);
   changeMode(modeValue);
 }
@@ -342,4 +345,65 @@ function handleFiles(files) {
     } else {
         alert('Vui lòng chọn một tệp ảnh.');
     }
+}
+///drop-zone2
+const dropZone2 = document.getElementById('drop-zone2');
+const fileInput2 = document.getElementById('file-input2');
+const previewContainer = document.getElementById('preview-container');
+
+dropZone2.addEventListener('click', () => fileInput2.click());
+
+dropZone2.addEventListener('dragover', (event) => {
+    event.preventDefault();
+    dropZone2.classList.add('dragover');
+});
+
+dropZone2.addEventListener('dragleave', () => {
+    dropZone2.classList.remove('dragover');
+});
+
+dropZone2.addEventListener('drop', (event) => {
+    event.preventDefault();
+    dropZone.classList.remove('dragover');
+    const files = event.dataTransfer.files;
+    if (files.length) {
+        handleFiles2(files);
+    }
+});
+
+fileInput2.addEventListener('change', () => {
+    const files = fileInput2.files;
+    if (files.length) {
+        handleFiles2(files);
+    }
+});
+
+function handleFiles2(files) {
+    Array.from(files).forEach(file => {
+        if (file.type.startsWith('image/')) {
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                const previewDiv = document.createElement('div');
+                previewDiv.classList.add('preview');
+
+                const img = document.createElement('img');
+                img.src = event.target.result;
+                img.classList.add('preview-image');
+                previewDiv.appendChild(img);
+
+                const removeButton = document.createElement('button');
+                removeButton.textContent = '×';
+                removeButton.classList.add('remove-button');
+                removeButton.addEventListener('click', () => {
+                    previewDiv.remove();
+                });
+                previewDiv.appendChild(removeButton);
+
+                previewContainer.appendChild(previewDiv);
+            };
+            reader.readAsDataURL(file);
+        } else {
+            alert('Vui lòng chọn một tệp ảnh.');
+        }
+    });
 }

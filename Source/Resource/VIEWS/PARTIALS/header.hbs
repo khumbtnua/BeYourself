@@ -244,7 +244,11 @@
         name="detailtext"
         id="opinion"
       ></textarea>
-      <input type="file" />
+       <div id="drop-zone2">
+        <p>Kéo và thả ảnh vào đây hoặc bấm để chọn ảnh</p>
+        <input type="file" id="file-input2" accept="image/*" multiple hidden>
+      </div>
+      <div id="preview-container"></div>
       <div class="h-captcha" data-captcha="true" data-theme="dark"></div>
       <button type="submit">Gửi</button>
     </form>
