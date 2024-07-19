@@ -231,7 +231,6 @@ body {
 @media only screen and (max-width: 550px) {
   .container {
     width: 90%;
-    height: 00px;
   }
   .form-container {
     height: 70%;

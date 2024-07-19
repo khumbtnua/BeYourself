@@ -25,8 +25,14 @@
   width: 90%;
   cursor: pointer;
   margin: 7.5px auto;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around
 }
-
+p{
+  margin: revert;
+}
 #drop-zone2:hover {
   background-color: #f0f0f0;
 }
@@ -55,6 +61,7 @@
   position: absolute !important;
   top: 5px !important;
   right: 5px !important;
+  background-color: black !important;
   color: white !important;
   border-radius: 50% !important;
   width: 20px !important;
@@ -452,6 +459,7 @@ h2 {
   cursor: pointer;
   font-size: 2.5rem;
   text-align: center;
+  color: white;
 }
 
 .fa-x {
@@ -462,6 +470,7 @@ h2 {
   cursor: pointer;
   font-size: 2.5rem;
   text-align: center;
+  color: white;
 }
 
 a {

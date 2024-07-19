@@ -134,16 +134,16 @@ function changeTheme() {
     mode.href = "/mode-light.css";
     modeValue = "light";
   }
-  //detail uni page
-  // var iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
-  // var iframetheme = iframeDocument.getElementById("theme-link");
-  // if (iframetheme.getAttribute("href") === "/universitydetail-light.css") {
-  //   iframetheme.href = "/universitydetail-dark.css";
-  //   modeValue = "dark";
-  // } else if (theme.getAttribute("href") === "/universitydetail-dark.css") {
-  //   iframetheme.href = "/universitydetail-light.css";
-  //   modeValue = "light";
-  // }
+  // detail uni page
+  var iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+  var iframetheme = iframeDocument.getElementById("theme-link");
+  if (iframetheme.getAttribute("href") === "/universitydetail-light.css") {
+    iframetheme.href = "/universitydetail-dark.css";
+    modeValue = "dark";
+  } else if (theme.getAttribute("href") === "/universitydetail-dark.css") {
+    iframetheme.href = "/universitydetail-light.css";
+    modeValue = "light";
+  }
   localStorage.setItem("mode", modeValue);
   changeMode(modeValue);
 }
