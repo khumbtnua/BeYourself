@@ -26,7 +26,7 @@ var firstNavbar = document.querySelector("nav");
 var secondNavbar = document.getElementById("extend-navbar");
 var titleElement = document.getElementById("name");
 secondNavbar.classList.add("out");
-// var iframe = document.getElementById("iframedetail");
+var iframe = document.getElementById("iframedetail");
 introBtn.addEventListener("click", function () {
   startIntro();
 });
