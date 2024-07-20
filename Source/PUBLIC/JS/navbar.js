@@ -25,19 +25,9 @@ var xElement = document.querySelector(".fa-x");
 var firstNavbar = document.querySelector("nav");
 var secondNavbar = document.getElementById("extend-navbar");
 var titleElement = document.getElementById("name");
+var searchimgs = document.querySelectorAll(".searchimg");
 var iframe = document.getElementById("iframedetail");
-var iframeHead;
 
-if (iframe === null) {
-  iframeHead = null;
-} else {
-  iframe.addEventListener("load", function () {
-    var iframeDocument =
-      iframe.contentDocument || iframe.contentWindow.document;
-    iframeHead = iframeDocument.getElementById("theme-link");
-  });
-}
-console.log(iframe);
 secondNavbar.classList.add("out");
 introBtn.addEventListener("click", function () {
   startIntro();
@@ -147,18 +137,16 @@ function changeTheme() {
     modeValue = "light";
   }
   //detail uni page
-  if (iframeHead === null) {
-    console.log("hsdhsdja")
+  if (iframe === null) {
   } else {
-    if (iframeHead.getAttribute("href") === "/universitydetail-light.css") {
-      iframeHead.href = "/universitydetail-dark.css";
-      modeValue = "dark";
-      console.log("hsd")
-    } else {
-      iframeHead.href = "/universitydetail-light.css";
-      modeValue = "light";
-      console.log("hs")
-    }
+    iframe.onload = function () {
+      var constmodeValue = localStorage.getItem("mode");
+      if (constmodeValue === "light") {
+        iframe.contentWindow.postMessage({ action: "light" }, "*");
+      } else if (constmodeValue === "dark") {
+        iframe.contentWindow.postMessage({ action: "dark" }, "*");
+      }
+    };
   }
   localStorage.setItem("mode", modeValue);
   changeMode(modeValue);
@@ -191,6 +179,11 @@ function changeMode(modeValue) {
     backimg.forEach((e) => {
       e.src = "/img/tool_imgs/back2.png";
     });
+    rightimg="/img/arrow_imgs/right.png";
+    leftimg="/img/arrow_imgs/left.png";
+    searchimgs.forEach((e) => {
+      e.src = "/img/tool_imgs/search2.png";
+    });
   } else if (modeValue === "dark") {
     home.forEach((e) => {
       e.src = "/img/navbar_imgs/white_imgs/home_white.png";
@@ -216,6 +209,11 @@ function changeMode(modeValue) {
     });
     backimg.forEach((e) => {
       e.src = "/img/tool_imgs/back1.png";
+    });
+    rightimg="/img/arrow_imgs/right2.png";
+    leftimg="/img/arrow_imgs/left2.png";
+    searchimgs.forEach((e) => {
+      e.src = "/img/tool_imgs/search1.png";
     });
   }
 }

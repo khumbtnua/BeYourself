@@ -132,4 +132,12 @@ function detail(imgElement) {
   slug = slug1;
   iframe.classList.remove("hide");
   iframe.src = `http://localhost:5500/university/${slug}`;
+  iframe.onload = function () {
+    var constmodeValue = localStorage.getItem("mode");
+    if (constmodeValue === "light") {
+      iframe.contentWindow.postMessage({ action: "light" }, "*");
+    } else if (constmodeValue === "dark") {
+      iframe.contentWindow.postMessage({ action: "dark" }, "*");
+    }
+  };
 }

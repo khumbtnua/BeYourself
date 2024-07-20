@@ -26,6 +26,7 @@ h2 {
 }
 
 h4 {
+  line-height: 25px;
   font-size: 20px;
   font-family: hywen;
   font-weight: 100;
@@ -332,7 +333,7 @@ h4 {
   width: 650px;
   height: 350px;
   background: rgba(260, 260, 260, 0.2);
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(40px);
   border: 1px solid rgba(255, 255, 255, 0.18);
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
@@ -351,17 +352,36 @@ h4 {
   justify-content: center;
   padding: 10px;
   margin: 0px auto;
-  color: black;
+  border-radius: 20px;
+  background-color: rgba(260, 260, 260);
+  text-align: left;
+}
+#contaidiagram{
+  width: 48%;
+  height: 100%;
+  padding: 10px;
+  margin: 0px auto;
   border-radius: 20px;
   background-color: rgba(260, 260, 260);
 }
 
+.comment{
+  width: 48%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px;
+  margin: 0px auto;
+  border-radius: 20px;
+  background-color: transparent;
+}
 #test-container {
   position: absolute;
   display: flex;
   flex-wrap: wrap;
   width: 100000vw;
-  top: 50%;
+  top: 53vh;
   transform: translateY(-50%);
   transition: ease-in-out 1s;
 }
@@ -380,7 +400,7 @@ h4 {
   text-align: center;
   padding: 8vh;
   background: rgba(260, 260, 260, 0.2);
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(40px);
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
 
@@ -601,7 +621,6 @@ h4 {
     display: flex;
     flex-wrap: wrap;
     padding: 5%;
-    height: 600px;
   }
   .quesans2 {
     margin-top: 0px;
@@ -649,6 +668,14 @@ h4 {
   .divide button {
     width: 100%;
     height: 46%;
+  }
+  .comment{
+    width: 100%;
+    height: 48%;
+  }
+  #contaidiagram{
+    width: 100%;
+    height: 48%;
   }
 }
 

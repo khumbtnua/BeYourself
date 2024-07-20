@@ -466,7 +466,7 @@ function createQuestionM() {
     divBtn.appendChild(divEvenBtnContainer);
 
     var nextBtnImg = document.createElement("img");
-    nextBtnImg.src = "/img/arrow_imgs/right.png";
+    nextBtnImg.src = rightimg;
 
     var nextBtn = document.createElement("button");
     nextBtn.id = "fistest1";
@@ -529,7 +529,7 @@ function createQuestionM() {
       divBtn.appendChild(divEvenBtnContainer);
 
       var nextBtnImg = document.createElement("img");
-      nextBtnImg.src = "/img/arrow_imgs/right.png";
+      nextBtnImg.src = rightimg;
 
       var nextBtn = document.createElement("button");
       nextBtn.classList.add("arrowright");
@@ -556,7 +556,7 @@ function createQuestionM() {
       });
 
       var backBtnImg = document.createElement("img");
-      backBtnImg.src = "/img/arrow_imgs/left.png";
+      backBtnImg.src = leftimg;
 
       var backBtn = document.createElement("button");
       backBtn.classList.add("arrowleft");
@@ -668,7 +668,7 @@ function createQuestionM() {
       submitBtnContainer.appendChild(submitBtn);
 
       var backBtnImg = document.createElement("img");
-      backBtnImg.src = "/img/arrow_imgs/left.png";
+      backBtnImg.src = leftimg;
 
       var backBtn = document.createElement("button");
       backBtn.classList.add("arrowleft");
@@ -690,7 +690,7 @@ function createQuestionM() {
       tescontai.appendChild(screen);
 
       var backBtnImg = document.createElement("img");
-      backBtnImg.src = "/img/arrow_imgs/left.png";
+      backBtnImg.src = leftimg;
     }
   }
   iM++;

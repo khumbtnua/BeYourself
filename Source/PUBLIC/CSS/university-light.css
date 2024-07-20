@@ -109,8 +109,7 @@ nav button:hover {
 #pop-contai-search {
   width: 100%;
   height: 50px;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+  border-radius: 10px;
   background-color: rgb(230, 230, 230);
   display: flex;
 }
@@ -121,7 +120,7 @@ nav button:hover {
   transform: translate(-50%, -50%);
   position: absolute;
   width: 600px;
-  height: 400px;
+  height: fit-content;
   border-radius: 10px;
   background-color: rgba(250, 250, 250);
   z-index: 9998;
@@ -147,6 +146,7 @@ nav button:hover {
 }
 
 #contai-search img {
+  cursor: pointer;
   width: 20px;
   height: 20px;
   margin: 10px;
@@ -549,7 +549,6 @@ select:focus {
 
   #pop-search{
     width: 525px;
-    height: 350px;
   }
 }
 
@@ -560,7 +559,6 @@ select:focus {
 
   #pop-search{
     width: 90%;
-    height: 300px;
   }
 }
 
