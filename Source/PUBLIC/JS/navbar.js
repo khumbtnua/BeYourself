@@ -348,28 +348,7 @@ fileInput.addEventListener("change", () => {
   }
 });
 
-function getRoundedCanvas(sourceCanvas) {
-  var canvas = document.createElement("canvas");
-  var context = canvas.getContext("2d");
-  var width = sourceCanvas.width;
-  var height = sourceCanvas.height;
-  canvas.width = width;
-  canvas.height = height;
-  context.imageSmoothingEnabled = true;
-  context.drawImage(sourceCanvas, 0, 0, width, height);
-  context.globalCompositeOperation = "destination-in";
-  context.beginPath();
-  context.arc(
-    width / 2,
-    height / 2,
-    Math.min(width, height) / 2,
-    0,
-    2 * Math.PI,
-    true
-  );
-  context.fill();
-  return canvas;
-}
+
 
 function handleFiles(files) {
   const file = files[0];
@@ -383,13 +362,10 @@ function handleFiles(files) {
         cropper.destroy();
       }
       cropper = new Cropper(preview, {
-        aspectRatio: 1,
+        aspectRatio: 1 / 1,
         dragMode: "move",
-        autoCrop: true,
-        center: true,
-        viewMode: 1,
-        autoCropArea: 0.9,
         toggleDragModeOnDblclick: false,
+        cropBoxMovable: false,
         cropBoxResizable: false,
         background: false,
       });
@@ -403,9 +379,8 @@ function handleFiles(files) {
 uploadBtn.addEventListener("click", (e) => {
   if (cropper) {
     const croppedCanvas = cropper.getCroppedCanvas();
-    const roundedCanvas = getRoundedCanvas(croppedCanvas);
 
-    roundedCanvas.toBlob((blob) => {
+    croppedCanvas.toBlob((blob) => {
       const formData = new FormData();
       formData.append("avatar", blob, "avatar.png");
 
@@ -420,9 +395,9 @@ uploadBtn.addEventListener("click", (e) => {
         .catch((error) => {
           console.error("Error:", error);
         });
-    });
-  }
-});
+      }, "image/png");
+    }
+  });
 ///drop-zone2
 const dropZone2 = document.getElementById('drop-zone2');
 const fileInput2 = document.getElementById('file-input2');

@@ -69,6 +69,7 @@ class LoginController {
     try {
       res.render("forgetpassword", {
         layout: "extend",
+        style: "forgotpass.css",
       });
     } catch (error) {
       console.log(error.message);
