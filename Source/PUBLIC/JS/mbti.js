@@ -366,8 +366,8 @@ alertInfo.classList.add("hide");
 var closealertBtn = document.querySelector(".close-btn");
 var body = document.querySelector("body");
 
-var iM = 68;
-var webM = 68;
+var iM = 1;
+var webM = 1;
 
 closealertBtn.addEventListener("click", function () {
   alertInfo.classList.remove("show");
