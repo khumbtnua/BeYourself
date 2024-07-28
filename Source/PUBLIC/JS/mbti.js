@@ -388,11 +388,17 @@ function mbti() {
 }
 
 function createIntroductionM() {
-  var quesContent = document.createElement("h3");
-  quesContent.innerText = `
-  Hãy chọn câu trả lời mà bạn cho là phù hợp hơn với bản thân mình.
+  var quesContent = document.createElement("h4");
+  quesContent.innerText = `MBTI là công cụ đánh giá tính cách của Myers-Briggs, dựa trên bốn cặp đối lập:
 
-  Chỉ đọc câu trả lời và chọn, bạn không nên cố gắng phân tích quá nhiều các lựa chọn này vì làm như vậy sẽ khiến kết quả của bạn kém chính xác.
+- Hướng ngoại - Hướng nội (E-I)
+- Giác quan - Trực giác (S-N)
+- Lý trí - Cảm xúc (T-F)
+- Nguyên tắc - Linh hoạt (J-P)
+
+Bằng cách kết hợp bốn cặp này, MBTI tạo ra 16 nhóm tính cách khác nhau với những ưu và nhược điểm riêng biệt. MBTI test sẽ giúp bạn hiểu sâu hơn về bản thân, từ đó lựa chọn được nghề nghiệp phù hợp và nâng cao hiệu suất làm việc.
+
+  #Bài trắc nghiệm này có 70 câu tất cả. Hãy chọn câu trả lời mà bạn cho là phù hợp hơn với bản thân mình. Chỉ đọc câu trả lời và chọn, bạn không nên cố gắng phân tích quá nhiều các lựa chọn này vì làm như vậy sẽ khiến kết quả của bạn kém chính xác.
 `;
   var divQues = document.createElement("div");
   divQues.classList.add("instruction");
@@ -976,19 +982,88 @@ function compareValueM(AA, AB, BA, BB, CA, CB, DA, DB) {
 }
 
 function createFinalPageM(result) {
+  var contentcomment= document.createElement("h4")
+  switch (result) {
+    case "ISTJ": {
+      notes = "ISTJ";
+      contentcomment.innerHTML=notes;
+    }
+    case "ISFJ": {
+      notes = "ISFJ";
+      contentcomment.innerHTML=notes;
+    }
+    case "INFJ": {
+      notes = "INFJ";
+      contentcomment.innerHTML=notes;
+    }
+    case "INTJ": {
+      notes = "INTJ";
+      contentcomment.innerHTML=notes;
+    }
+    case "ISTP": {
+      notes = "ISTP";
+      contentcomment.innerHTML=notes;
+    }
+    case "ISFP": {
+      notes = "ISFP";
+      contentcomment.innerHTML=notes;
+    }
+    case "INFP": {
+      notes = "INFP";
+      contentcomment.innerHTML=notes;
+    }
+    case "INTP": {
+      notes = "INFP";
+      contentcomment.innerHTML=notes;
+    }
+    case "ESTP": {
+      notes = "ESTP";
+      contentcomment.innerHTML=notes;
+    }
+    case "ESFP": {
+      notes = "ESFP";
+      contentcomment.innerHTML=notes;
+    }
+    case "ENFP": {
+      notes = "ENFP";
+      contentcomment.innerHTML=notes;
+    }
+    case "ENTP": {
+      notes = "ENTP";
+      contentcomment.innerHTML=notes;
+    }
+    case "ESTJ": {
+      notes = "ESTJ";
+      contentcomment.innerHTML=notes;
+    }
+    case "ESFJ": {
+      notes = "ESFJ";
+      contentcomment.innerHTML=notes;
+    }
+    case "ENFJ": {
+      notes = "ENFJ";
+      contentcomment.innerHTML=notes;
+    }
+    case "ENTJ": {
+      notes = "ENTJ";
+      contentcomment.innerHTML=notes;
+    }
+  }
   var screen = document.createElement("div");
   screen.classList.add("sceentest");
 
   var div = document.createElement("div");
   div.classList.add("testc");
 
-  var quesContent = document.createElement("h1");
-  quesContent.innerText = `Bạn là người có tính cách thuộc nhóm ${result}`;
+  var comment = document.createElement("div");
+  comment.classList.add("comment");
+  comment.appendChild(contentcomment);
 
   var divQues = document.createElement("div");
-  divQues.classList.add("ques");
-  divQues.appendChild(quesContent);
+  divQues.id="contaidiagram";
+
   div.appendChild(divQues);
+  div.appendChild(comment);
   screen.appendChild(div);
   tescontai.appendChild(screen);
 }

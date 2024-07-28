@@ -383,7 +383,7 @@ h4 {
   width: 100000vw;
   top: 53vh;
   transform: translateY(-50%);
-  transition: ease-in-out 1s;
+  transition-duration: 0.8s;
 }
 
 .sceentest {
