@@ -1007,9 +1007,7 @@ a {
   height: 300px !important;
 }
 
-img {
-  max-width: 100%;
-}
+
 
 .cropper-view-box {
   display: none !important;
