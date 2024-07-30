@@ -987,7 +987,7 @@ a {
   height: 4px;
 }
 ::-webkit-scrollbar-thumb {
-  background-color: rgb(50, 50, 50);
+  background-color: rgb(130, 130, 130);
   border-radius: 15px;
 }
 ::-webkit-scrollbar-thumb:hover {
@@ -997,7 +997,7 @@ a {
   border-radius: 15px;
 }
 ::-webkit-scrollbar-track-piece {
-  background-color: rgba(150, 150, 150);
+  background-color: transparent;
   border-radius: 15px;
 }
 .cropper-crop-box {

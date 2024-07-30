@@ -361,7 +361,6 @@ h4 {
   display: block;
   border-radius: 20px;
   text-align: center;
-  transition: 1s ease-out;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
