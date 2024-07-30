@@ -804,26 +804,32 @@ function compareValue(A, B, C, D, E, F) {
     case A: {
       note = "A";
       createFinalPage(note, A, B, C, D, E, F);
+      break;
     }
     case B: {
       note = "B";
       createFinalPage(note, A, B, C, D, E, F);
+      break;
     }
     case C: {
       note = "C";
       createFinalPage(note, A, B, C, D, E, F);
+      break;
     }
     case D: {
       note = "D";
       createFinalPage(note, A, B, C, D, E, F);
+      break;
     }
     case E: {
       note = "E";
       createFinalPage(note, A, B, C, D, E, F);
+      break;
     }
     case F: {
       note = "F";
       createFinalPage(note, A, B, C, D, E, F);
+      break;
     }
   }
   aright();
@@ -840,28 +846,67 @@ function createFinalPage(result, A, B, C, D, E, F) {
   var notes="";
   switch (result) {
     case "A": {
-      notes = "Nhóm nghề có thể phù hợp với bạn nhất là nhóm A <br> <br>   A: Realistic - Người thực tế <br> <br>  Người thuộc nhóm sở thích nghề nghiệp này thường có khả năng về: kỹ thuật, công nghệ, hệ thống; ưa thích làm việc với đồ vật, máy móc, động thực vật; thích làm các công việc ngoài trời. <br>  Ngành nghề phù hợp với nhóm này bao gồm: Các nghề về kiến trúc, an toàn lao động, nghề mộc, xây dựng, thủy sản, kỹ thuật, máy tàu thủy, lái xe, huấn luyện viên, nông – lâm nghiệp (quản lý trang trại, nhân giống cá, lâm nghiệp…), cơ khí (chế tạo máy, bảo trì và sữa chữa thiết bị, luyện kim, cơ khí ứng dụng, tự động...), điện - điện tử, địa lý - địa chất (đo đạc, vẽ bản đồ địa chính), dầu khí, hải dương học, quản lý công nghiệp...  ";
+      notes = `Nhóm nghề có thể phù hợp với bạn nhất là nhóm A 
+
+      A: Realistic - Người thực tế 
+
+      Người thuộc nhóm sở thích nghề nghiệp này thường có khả năng về: kỹ thuật, công nghệ, hệ thống; ưa thích làm việc với đồ vật, máy móc, động thực vật; thích làm các công việc ngoài trời. 
+      
+      Ngành nghề phù hợp với nhóm này bao gồm: Các nghề về kiến trúc, an toàn lao động, nghề mộc, xây dựng, thủy sản, kỹ thuật, máy tàu thủy, lái xe, huấn luyện viên, nông – lâm nghiệp (quản lý trang trại, nhân giống cá, lâm nghiệp…), cơ khí (chế tạo máy, bảo trì và sữa chữa thiết bị, luyện kim, cơ khí ứng dụng, tự động...), điện - điện tử, địa lý - địa chất (đo đạc, vẽ bản đồ địa chính), dầu khí, hải dương học, quản lý công nghiệp... `;
       contentcomment.innerHTML=notes;
+      break;
     }
     case "B": {
-      notes = "Nhóm nghề có thể phù hợp với bạn nhất là nhóm B <br> <br>  B: Investigative - Người nghiên cứu <br> <br>  Có khả năng về: quan sát, khám phá, phân tích đánh giá và giải quyết các vấn đề. <br>  Ngành nghề phù hợp với nhóm này bao gồm: Các ngành thuộc lĩnh vực khoa học tự nhiên (toán, lý, hóa, sinh, địa lý, địa chất, thống kê…); khoa học xã hội (nhân học, tâm lý, địa lý…); y - dược (bác sĩ gây mê, hồi sức, bác sĩ phẫu thuật, nha sĩ…); khoa học công nghệ (công nghệ thông tin, môi trường, điện, vật lý kỹ thuật, xây dựng…); nông lâm (nông học, thú y…)";
+      notes = `Nhóm nghề có thể phù hợp với bạn nhất là nhóm B
+      
+      B: Investigative - Người nghiên cứu
+      
+      Có khả năng về: quan sát, khám phá, phân tích đánh giá và giải quyết các vấn đề.
+
+      Ngành nghề phù hợp với nhóm này bao gồm: Các ngành thuộc lĩnh vực khoa học tự nhiên (toán, lý, hóa, sinh, địa lý, địa chất, thống kê…); khoa học xã hội (nhân học, tâm lý, địa lý…); y - dược (bác sĩ gây mê, hồi sức, bác sĩ phẫu thuật, nha sĩ…); khoa học công nghệ (công nghệ thông tin, môi trường, điện, vật lý kỹ thuật, xây dựng…); nông lâm (nông học, thú y…)`;
       contentcomment.innerHTML=notes;
+      break;
     }
     case "C": {
-      notes = "Nhóm nghề có thể phù hợp với bạn nhất là nhóm C <br> <br> C:  Artistic - Người có tính nghệ sĩ <br> <br>  Có khả năng về: nghệ thuật, khả năng về trực giác, khả năng tưởng tượng cao, thích làm việc trong các môi trường mang tính ngẫu hứng, không khuôn mẫu. <br>  Ngành nghề phù hợp với nhóm này bao gồm: Các ngành về văn chương; báo chí (bình luận viên, dẫn chương trình…); điện ảnh, sân khấu, mỹ thuật, ca nhạc, múa, kiến trúc, thời trang, hội họa, giáo viên dạy sử/Anh văn, bảo tàng, bảo tồn...";
+      notes = `Nhóm nghề có thể phù hợp với bạn nhất là nhóm C
+      
+      C:  Artistic - Người có tính nghệ sĩ <br> <br>  Có khả năng về: nghệ thuật, khả năng về trực giác, khả năng tưởng tượng cao, thích làm việc trong các môi trường mang tính ngẫu hứng, không khuôn mẫu.
+      
+      Ngành nghề phù hợp với nhóm này bao gồm: Các ngành về văn chương; báo chí (bình luận viên, dẫn chương trình…); điện ảnh, sân khấu, mỹ thuật, ca nhạc, múa, kiến trúc, thời trang, hội họa, giáo viên dạy sử/Anh văn, bảo tàng, bảo tồn...`;
       contentcomment.innerHTML=notes;
     }
     case "D": {
-      notes = "Nhóm nghề có thể phù hợp với bạn nhất là nhóm D <br> <br>  D:  Social - Người có tính xã hội <br> <br>  Có khả năng về: ngôn ngữ, giảng giải, thích làm những việc như giảng dạy, cung cấp thông tin, sự chăm sóc, giúp đỡ, hoặc huấn luyện cho người khác. <br>  Ngành nghề phù hợp với nhóm này bao gồm: sư phạm; giảng viên; huấn luyện viên điền kinh; tư vấn - hướng nghiệp; công tác xã hội, sức khỏe cộng đồng, thuyền trưởng, thầy tu, thư viện, bác sĩ chuyên khoa, thẩm định giá, nghiên cứu quy hoạch đô thị, kinh tế gia đình, tuyển dụng nhân sự, cảnh sát, xã hội học, bà đỡ, chuyên gia về X quang, chuyên gia dinh dưỡng…";
+      notes = `Nhóm nghề có thể phù hợp với bạn nhất là nhóm D 
+      
+      D:  Social - Người có tính xã hội 
+      
+      Có khả năng về: ngôn ngữ, giảng giải, thích làm những việc như giảng dạy, cung cấp thông tin, sự chăm sóc, giúp đỡ, hoặc huấn luyện cho người khác. 
+      
+      Ngành nghề phù hợp với nhóm này bao gồm: sư phạm; giảng viên; huấn luyện viên điền kinh; tư vấn - hướng nghiệp; công tác xã hội, sức khỏe cộng đồng, thuyền trưởng, thầy tu, thư viện, bác sĩ chuyên khoa, thẩm định giá, nghiên cứu quy hoạch đô thị, kinh tế gia đình, tuyển dụng nhân sự, cảnh sát, xã hội học, bà đỡ, chuyên gia về X quang, chuyên gia dinh dưỡng…`;
       contentcomment.innerHTML=notes;
+      break;
     }
     case "E": {
-      notes = "Nhóm nghề có thể phù hợp với bạn nhất là nhóm E <br> <br>  E: Enterprising - Dám nghĩ, dám làm  <br> <br> Có khả năng về: kinh doanh, mạnh bạo, dám nghĩ dám làm, có thể gây ảnh hưởng, thuyết phục Người khác, có khả năng quản lý. <br>  Ngành nghề phù hợp với nhóm này bao gồm: Các ngành về quản trị kinh doanh (quản lý khách sạn, quản trị nhân sự,…), thương mại, marketing, kế toán – tài chính, luật sư, dịch vụ khách hàng, tiếp viên hàng không, thông dịch viên, pha chế rượu, kỹ sư công nghiệp (ngành kỹ thuật hệ thống công nghiệp), bác sĩ cấp cứu, quy hoạch đô thị, bếp trưởng (nấu ăn), báo chí (phóng viên, biên tập viên…)";
+      notes = `Nhóm nghề có thể phù hợp với bạn nhất là nhóm E 
+      
+      E: Enterprising - Dám nghĩ, dám làm 
+      
+      Có khả năng về: kinh doanh, mạnh bạo, dám nghĩ dám làm, có thể gây ảnh hưởng, thuyết phục Người khác, có khả năng quản lý. 
+      
+      Ngành nghề phù hợp với nhóm này bao gồm: Các ngành về quản trị kinh doanh (quản lý khách sạn, quản trị nhân sự,…), thương mại, marketing, kế toán – tài chính, luật sư, dịch vụ khách hàng, tiếp viên hàng không, thông dịch viên, pha chế rượu, kỹ sư công nghiệp (ngành kỹ thuật hệ thống công nghiệp), bác sĩ cấp cứu, quy hoạch đô thị, bếp trưởng (nấu ăn), báo chí (phóng viên, biên tập viên…)`;
       contentcomment.innerHTML=notes;
+      break;
     }
     case "F": {
-      notes = "Nhóm nghề có thể phù hợp với bạn nhất là nhóm F <br> <br>  F: Conventional - Người công chức <br> <br> Có khả năng về: số học, thích thực hiện những công việc chi tiết, thích làm việc với những số liệu, theo chỉ dẫn của người khác hoặc các công việc văn phòng. <br>  Ngành nghề phù hợp với nhóm này bao gồm: Các ngành nghề về hành chính, thống kê, thanh tra ngành, người giữ trẻ, điện thoại viên...";
+      notes = `Nhóm nghề có thể phù hợp với bạn nhất là nhóm F 
+
+      F: Conventional - Người công chức
+      
+      Có khả năng về: số học, thích thực hiện những công việc chi tiết, thích làm việc với những số liệu, theo chỉ dẫn của người khác hoặc các công việc văn phòng. 
+      
+      Ngành nghề phù hợp với nhóm này bao gồm: Các ngành nghề về hành chính, thống kê, thanh tra ngành, người giữ trẻ, điện thoại viên...`;
       contentcomment.innerHTML=notes;
+      break;
     }
   }
   
