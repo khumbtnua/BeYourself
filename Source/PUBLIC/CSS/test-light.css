@@ -221,7 +221,7 @@ h4 {
   font-size: 18px;
   font-weight: 400;
   color: black;
-  padding: 20px;
+  padding: 0 20px;
   border: 3px solid black;
   background: rgb(240, 240, 240);
   border-radius: 20px;
@@ -325,8 +325,13 @@ h4 {
 /*-----------------------------------------------------------------------------------container-----------------------------------------------------------------------*/
 .processallcontai{
   width: 100%;
-    display: flex;
-    height: 50px;
+  display: flex;
+  height: 50px;
+  position: relative;
+  padding: 10px 0 0 0;
+  background-color: rgb(250, 250, 250);
+  bottom: 0px;
+  left: 0px;
 }
 .progress-container {
   width: 100%;
@@ -373,7 +378,25 @@ h4 {
   justify-content: space-around;
   padding: 40px;
 }
-
+#slidembti{
+  width: 48%;
+  height: 100%;
+  padding: 10px 10px 30px 10px;
+  margin: 0px auto;
+  border-radius: 20px;
+  background-color: rgba(250, 250, 250);
+  overflow: hidden;
+  position: relative;
+}
+#slidembti p{
+  font-family: 'hywen';
+    font-size: 14px;
+    line-height: 1.3;
+    letter-spacing: 0.5px;
+    white-space: pre-line;
+    text-align: left;
+    margin: 0;
+}
 .instruction {
   width: 100%;
   height: 85%;
@@ -428,8 +451,25 @@ h4 {
   flex-grow: 0;
   flex-shrink: 0;
   flex-basis: 100%;
-  padding: 10px 10px 25px 10px;
+  padding: 10px;
   flex-direction: column;
+}
+.process img{
+  width: 300px;
+    margin: 20 auto;
+}
+.process label{
+  flex-basis: 60px;
+    flex-grow: 0;
+    flex-shrink: 0;
+    font-size: 14px;
+}
+.contenimgprocess{
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  height: 100%;
+  width: 100%;
 }
 .comment{
   width: 48%;
@@ -440,8 +480,13 @@ h4 {
   background-color: transparent;
   text-align: left;
 }
-.comment h4{
-  white-space: pre-line
+.comment h3{
+  font-size: 20px;
+  font-family: system-ui;
+  overflow: auto;
+  height: 100%;
+  white-space: pre-line;
+  font-weight: 400;
 }
 .indicators {
   position: absolute;
@@ -485,7 +530,7 @@ h4 {
   border-radius: 30px;
   text-align: center;
   padding: 8vh;
-  background: rgba(260, 260, 260, 0.2);
+  background: rgba(260, 260, 260, 0.3);
   backdrop-filter: blur(40px);
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
@@ -759,6 +804,22 @@ h4 {
     width: 100%;
     height: 48%;
   }
+  #slidembti{
+    width: 100%;
+    height: 48%;
+    padding: 10px 10px 20px 10px;;
+  }
+  .process img {
+    padding: 20px;
+    margin: 0;
+  }
+  .contenimgprocess {
+    flex-direction: row;
+    overflow: hidden;
+  }
+  #slidembti p{
+    overflow: auto;
+  }
 }
 
 @media only screen and (max-width: 550px) {
@@ -840,5 +901,8 @@ h4 {
     height: 50%;
     padding: 20px;
   }
-
+  .process img {
+    padding: 10px;
+    width: 120px;
+  }
 }

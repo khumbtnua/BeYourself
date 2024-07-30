@@ -1005,7 +1005,7 @@ function compareValueM(AA, AB, BA, BB, CA, CB, DA, DB) {
 }
 let currentSlide = 0;
 function createFinalPageM(result, A, B, C, D, noteA, noteB, noteC, noteD) {
-  var contentcomment = document.createElement("h4")
+  var contentcomment = document.createElement("h3")
   switch (result) {
     case "ISTJ": {
       contentcomment.innerHTML = `Có thể bạn thuộc nhóm ISTJ!
@@ -1549,7 +1549,7 @@ break;
   comment.classList.add("comment");
 
   var contaidia = document.createElement("div");
-  contaidia.id = "contaidiagram";
+  contaidia.id = "slidembti";
 
   var contaiprocess = document.createElement("div");
   contaiprocess.id = "contaiprocess";
@@ -1591,62 +1591,137 @@ break;
 function fourprocess(z, kq) {
   var processcontai = document.createElement("div");
   processcontai.classList.add("progress-container");
-  var contentprocess = document.createElement("h4");
+  var contentprocess = document.createElement("p");
   contentprocess.innerHTML ="";
   var leftw = document.createElement("label");
   leftw.innerHTML ="";
   var rightw = document.createElement("label");
   rightw.innerHTML="";
+  var imgprocess= document.createElement("img");
+  var contenimgprocess = document.createElement("div");
+  contenimgprocess.classList.add("contenimgprocess");
   switch (kq) {
     case "I": {
-      contentprocess.innerHTML = ``;
-      leftw.innerHTML = "Hướng nội(E)"
-      rightw.innerHTML = "Hướng ngoại(I)"
+      imgprocess.src="img/mbti/introverted.svg"
+      contentprocess.innerHTML = `Những người có xu hướng Hướng Nội (I) thường:
+
+- Tập trung vào thế giới nội tâm của mình
+- Lấy năng lượng từ việc suy ngẫm về các khái niệm, ý tưởng, trải nghiệm và ký ức
+- Dành thời gian để suy ngẫm
+- Giao tiếp qua việc viết; xử lý ý tưởng bên trong
+- Suy nghĩ kỹ trước khi hành động
+- Chủ động khi điều đó quan trọng đối với họ
+- Tập trung vào một vài sở thích chuyên sâu`;
+      leftw.innerHTML = "Hướng nội (E)"
+      rightw.innerHTML = "<strong>Hướng ngoại (I)</strong>"
       break;
     }
     case "E": {
-      contentprocess.innerHTML = ``;
-      leftw.innerHTML = "Hướng nội(E)"
-      rightw.innerHTML = "Hướng ngoại(I)"
+      imgprocess.src="img/mbti/extraverted.svg"
+      contentprocess.innerHTML = `Những người có xu hướng Hướng Ngoại (E) thường:
+
+- Tập trung vào thế giới bên ngoài
+- Lấy năng lượng từ việc tương tác với người khác
+- Hành động nhanh chóng
+- Giao tiếp bằng lời nói; xử lý ý tưởng thông qua thảo luận
+- Hành động trước khi suy nghĩ thấu đáo
+- Sẵn sàng chủ động
+- Có nhiều sở thích đa dạng`;
+      leftw.innerHTML = "<strong>Hướng nội (E)</strong>"
+      rightw.innerHTML = "Hướng ngoại (I)"
       processcontai.classList.add("change");
       break;
     }
     case "N": {
-      contentprocess.innerHTML = ``;
-      leftw.innerHTML = "Trực giác(N)"
-      rightw.innerHTML = "Giác quan(S)"
+            imgprocess.src="/img/mbti/ntuitive.svg"
+      contentprocess.innerHTML = `Những người có xu hướng Trực Giác (N) thường:
+
+- Tìm kiếm những ý tưởng mới
+- Nhìn vào bức tranh toàn cảnh
+- Có cách tiếp cận cuộc sống đầy tưởng tượng
+- Tập trung vào các khả năng tương lai, các mẫu hình và ý nghĩa
+- Thích một khung tổng thể và tự mình hoàn thiện
+- Tập trung vào các khái niệm, không phải ứng dụng thực tiễn
+- Tin vào cảm hứng`;
+      leftw.innerHTML = "<strong>Trực giác (N)</strong>"
+      rightw.innerHTML = "Giác quan (S)"
       processcontai.classList.add("change");
       break;
     }
     case "S": {
-      contentprocess.innerHTML = ``;
-      leftw.innerHTML = "Trực giác(N)"
-      rightw.innerHTML = "Giác quan(S)"
+            imgprocess.src="/img/mbti/Sensing.svg"
+      contentprocess.innerHTML = `Những người có xu hướng Giác Quan (S) thường:
+
+- Tập trung vào sự thật và chi tiết cụ thể
+- Nhớ các chi tiết quan trọng đối với họ
+- Có cách tiếp cận thực tế với cuộc sống
+- Tập trung vào thực tế hiện tại hay những thực tế đã qua
+- Thích các hướng dẫn từng bước và thông tin được trình bày tuần tự
+- Hiểu ý tưởng thông qua ứng dụng thực tiễn
+- Tin vào kinh nghiệm`;
+      leftw.innerHTML = "Trực giác (N)"
+      rightw.innerHTML = "<strong>Giác quan (S)</strong>"
       break;
     }
     case "F": {
-      contentprocess.innerHTML = ``;
-      leftw.innerHTML = "Cảm xúc(F)"
-      rightw.innerHTML = "Lý trí(T)"
+            imgprocess.src="/img/mbti/feeling.svg"
+      contentprocess.innerHTML = `Những người có xu hướng Cảm Xúc (F) thường:
+
+- Áp dụng các giá trị cá nhân và xã hội—hướng đến con người
+- Tiếp cận giải quyết vấn đề bằng sự đồng cảm
+- Đưa ra lời khen ngợi (có thể là "nhạy cảm")
+- Tìm kiếm sự hài hòa, cân nhắc quan điểm của mọi người
+- Tìm kiếm những điều đúng đắn để hỗ trợ
+- Tập trung vào các mối quan hệ
+- Xem xét hoàn cảnh cá nhân khi ra quyết định`;
+      leftw.innerHTML = "<strong>Cảm xúc (F)</strong>"
+      rightw.innerHTML = "Lý trí (T)"
       processcontai.classList.add("change");
       break;
     }
     case "T": {
-      contentprocess.innerHTML = ``;
-      leftw.innerHTML = "Cảm xúc(F)"
-      rightw.innerHTML = "Lý trí(T)"
+            imgprocess.src="/img/mbti/thinking.svg"
+      contentprocess.innerHTML = `Những người có xu hướng Lý Trí (T) thường:
+
+- Sử dụng phân tích logic khi lập luận—hướng đến hệ thống
+- Tiếp cận giải quyết vấn đề một cách khách quan
+- Có cái nhìn phê phán (có thể "khắt khe")
+- Xem xét các ưu và nhược điểm trong một tình huống
+- Tìm kiếm những gì sai sót để có thể sửa chữa
+- Tập trung vào nhiệm vụ
+- Dựa vào các tiêu chí khách quan khi ra quyết định`;
+      leftw.innerHTML = "Cảm xúc (F)"
+      rightw.innerHTML = "<strong>Lý trí (T)</strong>"
       break;
     }
     case "P": {
-      contentprocess.innerHTML = ``;
-      leftw.innerHTML = "Nguyên tắc(J)"
-      rightw.innerHTML = "Linh hoạt(P)"
+            imgprocess.src="/img/mbti/Perceiving.svg"
+      contentprocess.innerHTML = `Những người có xu hướng Nhận Thức (P) thường:
+
+- Linh hoạt
+- Giữ các lựa chọn mở
+- Theo dòng chảy của tình huống
+- Thích sự tự phát
+- Thích ứng với thông tin mới phát sinh
+- Muốn trải nghiệm cuộc sống
+- Cảm thấy tràn đầy năng lượng và làm việc tốt nhất vào phút cuối`;
+      leftw.innerHTML = "Nguyên tắc (J)"
+      rightw.innerHTML = "<strong>Linh hoạt (P)</strong>"
       break;
     }
     case "J": {
-      contentprocess.innerHTML = ``;
-      leftw.innerHTML = "Nguyên tắc(J)"
-      rightw.innerHTML = "Linh hoạt(P)"
+            imgprocess.src="/img/mbti/judging.svg"
+      contentprocess.innerHTML = `Những người có xu hướng Đánh Giá (J) thường:
+
+- Thích lập kế hoạch và tuân thủ kế hoạch đó
+- Mong muốn sự kết thúc rõ ràng
+- Lên kế hoạch và tuân theo lịch trình
+- Thích sự tổ chức và cấu trúc
+- Làm việc một cách có phương pháp
+- Muốn kiểm soát cuộc sống
+- Cố gắng hết sức để tránh căng thẳng vào phút cuối`;
+      leftw.innerHTML = "<strong>Nguyên tắc (J)</strong>"
+      rightw.innerHTML = "Linh hoạt (P)"
       processcontai.classList.add("change");
       break;
     }
@@ -1668,7 +1743,9 @@ function fourprocess(z, kq) {
   processallcontai.append(leftw);
   processallcontai.appendChild(processcontai);
   processallcontai.appendChild(rightw);
-  process.appendChild(contentprocess);
+  contenimgprocess.appendChild(imgprocess);
+  contenimgprocess.appendChild(contentprocess);
+  process.appendChild(contenimgprocess);
   process.appendChild(processallcontai);
   contaiprocess.appendChild(process);
 }
@@ -1690,8 +1767,8 @@ function createIndicators() {
     indicator.addEventListener('click', () => showSlide(index));
     indicatorsContainer.appendChild(indicator);
   });
-  var contaidia = document.getElementById("contaidiagram");
-  contaidia.appendChild(indicatorsContainer);
+  var slidembti = document.getElementById("slidembti");
+  slidembti.appendChild(indicatorsContainer);
   updateIndicators();
 }
 
