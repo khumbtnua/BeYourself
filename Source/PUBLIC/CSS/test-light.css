@@ -487,6 +487,11 @@ h4 {
   white-space: pre-line;
   font-weight: 400;
 }
+.comment h4{
+  overflow: auto;
+  height: 100%;
+  white-space: pre-line;
+}
 .indicators {
   position: absolute;
   bottom: 15px;

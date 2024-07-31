@@ -1009,6 +1009,8 @@ function createFinalPageM(result, A, B, C, D, noteA, noteB, noteC, noteD) {
   switch (result) {
     case "ISTJ": {
       contentcomment.innerHTML = `Có thể bạn thuộc nhóm ISTJ!
+
+      <img src="/img/mbti/ISTJ.svg">
       
       Với tính cách ISTJ, họ là những người chủ động tìm kiếm các công việc có kỹ năng thực tiễn và sự ổn định. Công việc đòi hỏi chịu trách nhiệm và sự cẩn thận là những yếu tố hoàn hảo cho họ.
       
@@ -1049,6 +1051,8 @@ break;
 }
     case "ISFJ": {
       contentcomment.innerHTML = `Có thể bạn thuộc nhóm ISFJ!
+
+      <img src="/img/mbti/ISFJ.svg">
       
       Sự quan tâm và chăm sóc người khác:
 Ngành Y tế: ISFJ thường có sự quan tâm và sẵn lòng chăm sóc người khác, vì vậy các lĩnh vực như y tá, điều dưỡng, hoặc làm việc trong các cơ sở y tế có thể thích hợp.
@@ -1100,6 +1104,8 @@ break;
     }
     case "INFJ": {
       contentcomment.innerHTML = `Có thể bạn thuộc nhóm INFJ!
+
+      <img src="/img/mbti/INFJs.svg">
       
       INFJ thích tạo mối quan hệ mới và khám phá môi trường làm việc của người khác. Mặc dù ưa thích làm việc độc lập, họ cũng đánh giá cao việc xây dựng các kết nối với mọi người theo thời gian và có thể phát triển mạnh mẽ trong công ty với những cá nhân cũng đang cố gắng hình thành mối quan hệ với những người xung quanh.
 
@@ -1128,6 +1134,8 @@ break;
     }
     case "INTJ": {
       contentcomment.innerHTML = `Có thể bạn thuộc nhóm INTJ!
+
+      <img src="/img/mbti/INTJs.svg">
       
       INTJ thường chọn lựa nghề nghiệp trong những lĩnh vực mà họ hiểu rõ. Một ngành công việc phổ biến cho họ thường liên quan đến khoa học hoặc công nghệ, nhưng thực tế họ có thể thể hiện mình ở nhiều ngành khác, đặc biệt là những nơi yêu cầu trí tuệ, tư duy sáng tạo và sự thông minh (như luật, điều tra, hoặc các ngành chuyên ngành). Các INTJ thường ít quan tâm đến vị trí quản lý, họ chỉ đảm nhận vai trò này nếu cần để tăng sức mạnh và tự do hành động, không phải vì họ yêu thích quản lý con người.
 
@@ -1161,6 +1169,8 @@ break;
 }
     case "ISTP": {
       contentcomment.innerHTML = `Có thể bạn thuộc nhóm ISTP!
+
+      <img src="/img/mbti/ISTPs.svg">
        
 Điểm nổi bật đầu tiên của ISTP là tính tò mò và khao khát khám phá chi tiết thực tế và kiến thức. Họ thích tìm hiểu cách mọi thứ hoạt động và áp dụng chúng để giải quyết các vấn đề phức tạp. Hướng tiếp cận rõ ràng, cụ thể là đặc trưng của họ và công việc nên tập trung vào điều này.
 
@@ -1189,6 +1199,8 @@ break;
 }
     case "ISFP": {
       contentcomment.innerHTML = `Có thể bạn thuộc nhóm ISFP!
+
+      <img src="/img/mbti/ISFPs.svg">
       
       ISFP là những cá nhân đặc biệt, hướng tới một sự nghiệp thay vì chỉ đơn thuần một công việc. Họ khát khao xây dựng một con đường sự nghiệp để thể hiện những giá trị cốt lõi bên trong, chứ không chỉ làm việc với mục tiêu nhàn hạ. Tích hợp với tình yêu đối với hiện tại và khả năng thưởng thức cuộc sống, ISFP không phù hợp với môi trường làm việc quá sôi động. Họ đòi hỏi không gian cá nhân và tự do để khám phá khả năng nhận thức tinh tế của mình. Bằng việc được tự do tận dụng tài năng thiên phú, họ sẽ khám phá và phát triển bản chất nghệ sĩ xuất sắc bên trong. Thực tế cho thấy hầu hết các nghệ sĩ nổi tiếng trên thế giới thuộc nhóm ISFP.
 
@@ -1215,6 +1227,8 @@ break;
 }
     case "INFP": {
       contentcomment.innerHTML = `Có thể bạn thuộc nhóm INFP!
+
+      <img src="/img/mbti/INFPs.svg">
       
       Hầu hết các người thuộc nhóm tính cách INFP thường mang trong mình những nguyên tắc và giá trị sâu sắc. Họ tận tụy trong việc bảo vệ những ý tưởng mà họ kính trọng và tận tâm với cả sự nghiệp và bản thân mình. Điều này là một phần quan trọng trong nhiều ngành nghề phù hợp với INFP.
 
@@ -1239,6 +1253,8 @@ break;
 }
     case "INTP": {
       contentcomment.innerHTML = `Có thể bạn thuộc nhóm INFP!
+
+      <img src="/img/mbti/INTP.svg">
       
       Tính cách INTP có một số liên quan đến sự nghiệp, bao gồm:
 
@@ -1273,6 +1289,8 @@ break;
 }
     case "ESTP": {
       contentcomment.innerHTML = `Có thể bạn thuộc nhóm ESTP!
+
+      <img src="/img/mbti/ESTPs.svg">
       
       Khi đề cập đến lựa chọn nghề nghiệp, ESTP có một danh sách đa dạng phong phú để khám phá. Tính cách này thích đưa ra quyết định nhanh chóng, làm cho họ trở thành ứng cử viên xuất sắc cho các vai trò yêu cầu tư duy nhanh nhạy. Điều này càng được củng cố bởi thực tế rằng ESTP sống trong hiện tại và ưa thích thấy kết quả của họ ngay lập tức thay vì suy nghĩ về tương lai. Sức hấp dẫn của họ khả năng giao tiếp xuất sắc giúp họ tạo nên một lợi thế quan trọng.
 
@@ -1308,6 +1326,8 @@ break;
     case "ESFP": {
       contentcomment.innerHTML = `Có thể bạn thuộc nhóm ESFP!
 
+      <img src="/img/mbti/ESFPs.svg">
+
       Việc giao tiếp với người khác đóng một vai trò vô cùng quan trọng đối với kiểu tính cách này, hầu hết các hướng sự nghiệp của ESFP đều dựa trên nhu cầu này. Thêm vào đó, tính cách của ESFP thường rất ngẫu hứng, họ không thích bị ràng buộc bởi lịch trình chặt chẽ, các nhiệm vụ có cấu trúc hay công việc đơn điệu và nhàm chán.
 
 Các công việc liên quan đến tài liệu lý thuyết, công việc hành chính hoặc phân tích dữ liệu chi tiết thường gặp khó khăn với ESFP bất kỳ công việc nào liên quan đến những yếu tố như vậy hoặc tương tự đều không phù hợp với bản chất của họ. Ngược lại, công việc phù hợp nhất cho ESFP thường là cho phép họ có đủ tự do để thể hiện khám phá với những điều độc đáo, thú vị và mang tính thẩm mỹ.
@@ -1339,6 +1359,8 @@ break;
 }
     case "ENFP": {
       contentcomment.innerHTML = `Có thể bạn thuộc nhóm ENFP!
+
+      <img src="/img/mbti/ENFPs.svg">
 
       ENFP được vinh dự bởi khả năng đa năng của họ. Một ENFP có thể đạt được thành tựu ấn tượng trong nhiều lĩnh vực mà họ quan tâm. Tuy nhiên, họ dễ cảm thấy chán nản và thường không quá ưa thích công việc đòi hỏi chi tiết và lặp đi lặp lại. Họ tìm kiếm những công việc mang tính sáng tạo, cho phép họ tự do thể hiện ý tưởng mới hoặc làm việc theo nhóm. Họ không thích những mô hình hạn chế và những công việc đơn điệu.
 
@@ -1376,6 +1398,8 @@ break;
     case "ENTP": {
       contentcomment.innerHTML = `Có thể bạn thuộc nhóm ENTP!
 
+      <img src="/img/mbti/ENTPs.svg">
+
       Trí thông minh của ENTP có thể đạt tới mức gây sự khâm phục, thậm chí khiến người khác cảm thấy ái ngại. Với sự kết hợp độc đáo giữa tính hướng ngoại (E), thiên hướng trí tuệ (NT) và tính linh hoạt (P), họ trở nên đặc biệt hiệu quả trong việc sử dụng và kết nối các ý tưởng.
 
 Kỹ năng giao tiếp xuất sắc của ENTP không chỉ giới hạn trong việc sử dụng lời nói mà còn bao gồm viết văn bản. Họ thường tham gia vào các cuộc tranh luận với ý tưởng của người khác, điều thú vị là họ cũng sở hữu khả năng lãnh đạo, mặc dù họ không thích việc quản lý người khác hoặc bị người khác quản lý.
@@ -1407,6 +1431,8 @@ break;
 }
     case "ESTJ": {
       contentcomment.innerHTML = `Có thể bạn thuộc nhóm ESTJ!
+
+      <img src="/img/mbti/ESTJs.svg">
 
       Thời gian dành riêng cho nội tâm được coi là một phần thưởng và nguồn động viên lớn sau khi hoàn thành công việc đối với ESTJ. Thậm chí, các hoạt động trong khoảnh khắc này phải có mục tiêu cụ thể.
 
@@ -1442,7 +1468,9 @@ Ngành công nghiệp sản xuất: Trong ngành công nghiệp sản xuất, ES
 break;    
 }
     case "ESFJ": {
-      contentcomment.innerHTML = `ESFJ
+      contentcomment.innerHTML = `Có thể bạn thuộc nhóm ESFJ!
+
+      <img src="/img/mbti/ESFJs.svg">
 
       Các ngành nghề phổ biến cho ESFJ thường liên quan đến ba đặc điểm chính: thực tế, lòng vị tha và tinh thần hòa đồng. Cách họ lựa chọn công việc thường phản ánh những đặc điểm này họ thường hướng ngoại và thực tế (SJ), và những đặc điểm này thường thúc đẩy họ chọn con đường sự nghiệp cụ thể.
 
@@ -1471,6 +1499,8 @@ break;
 }
     case "ENFJ": {
       contentcomment.innerHTML = `Có thể bạn thuộc nhóm ENFJ!
+
+      <img src="/img/mbti/ENFJ.svg">
 
       ENFJ cảm thấy hài lòng khi thực hiện những việc mà họ đam mê. Điều này giúp họ tương tác hiệu quả với các loại tính cách khác:
 
@@ -1506,6 +1536,8 @@ break;
     }
     case "ENTJ": {
       contentcomment.innerHTML = `Có thể bạn thuộc nhóm ENTJ!
+
+      <img src="/img/mbti/ENTJs.svg">
 
       ENTJ được xác định bởi một số đặc điểm mà hầu hết mọi người tiếp xúc với họ đều có thể nhận ra: nghị lực, quyết tâm và khả năng lãnh đạo. Những đặc điểm này thường thúc đẩy ENTJ theo đuổi các ngành nghề cụ thể cũng giới hạn một phần lựa chọn sự nghiệp của họ. Tuy nhiên, họ không bao giờ cảm thấy hối tiếc về điều này.
 
