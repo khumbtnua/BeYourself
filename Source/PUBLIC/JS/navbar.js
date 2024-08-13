@@ -6,6 +6,8 @@ var logoutimg = document.getElementById("logoutimg");
 var themeimg = document.getElementById("themeimg");
 var autoimg = document.getElementById("autoimg");
 var turtoimg = document.getElementById("turtoimg");
+var savedimg = document.getElementById("savedimg")
+var resultimg = document.getElementById("resultimg")
 var mode = document.getElementById("mode-link");
 var theme = document.querySelector("#theme-link");
 var header = document.getElementById("header-link");
@@ -166,6 +168,8 @@ function changeMode(modeValue) {
     story.forEach((e) => {
       e.src = "/img/navbar_imgs/black_imgs/story_black.png";
     });
+    resultimg.src="/img/tool_imgs/resultset2.png"
+    savedimg.src="/img/tool_imgs/saved2.png"
     logoutimg.src = "/img/tool_imgs/logout2.png";
     themeimg.src = "/img/tool_imgs/theme2.png";
     autoimg.src = "/img/tool_imgs/auto2.png";
@@ -197,6 +201,8 @@ function changeMode(modeValue) {
     story.forEach((e) => {
       e.src = "/img/navbar_imgs/white_imgs/story_white.png";
     });
+    resultimg.src="/img/tool_imgs/resultset1.png"
+    savedimg.src="/img/tool_imgs/saved1.png"
     logoutimg.src = "/img/tool_imgs/logout1.png";
     themeimg.src = "/img/tool_imgs/theme1.png";
     autoimg.src = "/img/tool_imgs/auto1.png";
@@ -242,6 +248,8 @@ var movesetting = 0;
 var move = 0;
 var contaiexpand = document.getElementById("contai-page-expand");
 var pageexpand = document.querySelectorAll(".page-expand");
+var savdepage = document.getElementById("savedpage")
+var resultspages = document.getElementById("resultspage")
 pageexpand.forEach((e) => {
   e.style.display = "none";
 });
@@ -269,7 +277,18 @@ function openset() {
     overlay.style.backgroundColor = "rgb(50, 50, 50, 0.7)";
   }, 10);
 }
-
+//results
+function openresults() {
+  resultspages.style.display = "block";
+  movesetting = movesetting - 100;
+  moveset();
+}
+//saved
+function opensaved() {
+  savdepage.style.display = "block";
+  movesetting = movesetting - 100;
+  moveset();
+}
 //change password
 function passclick() {
   passpage.style.display = "block";
@@ -317,6 +336,8 @@ function clicklay() {
   deletes(passpage);
   deletes(feedpage);
   deletes(avatarpage);
+  deletes(savdepage);
+  deletes(resultspages);
 }
 
 // picavatar
