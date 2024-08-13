@@ -541,7 +541,7 @@ overflow: hidden;
   height: 80vh;
   border-radius: 30px;
   text-align: center;
-  padding: 8vh;
+  padding: 60px;
   background: rgba(50, 50, 50, 0.3);
   backdrop-filter: blur(40px);
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);

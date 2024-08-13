@@ -22,7 +22,7 @@ transporter.use(
       extName: ".hbs",
       defaultLayout: false,
     }),
-    viewPath: "F:/Web Course/Education_Project/Source/Resource/VIEWS",
+    viewPath: "Source/Resource/VIEWS",
     extName: ".hbs",
   })
 );
@@ -35,7 +35,7 @@ class LoginController {
 
       const check = await Account.findOne({ name: username });
       if (!check) {
-        req.flash("wrongname", "Please check your username again");
+        req.flash("wrongname", "Hãy kiểm tra lại tên đăng nhập của bạn");
         res.redirect("/createaccount");
       } else {
         const isPasswordMatch = await bcrypt.compare(password, check.password);
@@ -43,9 +43,10 @@ class LoginController {
           req.session.username = check.name;
           res.locals.username = req.session.username;
           const redirectUrl = req.session.currentPath || "/";
+          req.flash("successlogin", "Đã đăng nhập thành công!");
           res.redirect(redirectUrl);
         } else {
-          req.flash("wrongpass", "Please check your password again");
+          req.flash("wrongpass", "Hãy kiểm tra lại mật khẩu của bạn");
           res.redirect("/createaccount");
         }
       }
@@ -69,7 +70,6 @@ class LoginController {
     try {
       res.render("forgetpassword", {
         layout: "extend",
-        style: "forgotpass.css",
       });
     } catch (error) {
       console.log(error.message);
@@ -79,6 +79,7 @@ class LoginController {
   async resetpassword(req, res, next) {
     try {
       const email = req.body.email;
+      req.session.email = email;
       const checkemail = await Account.findOne({ email });
       if (checkemail) {
         async function main() {
@@ -91,10 +92,10 @@ class LoginController {
           console.log("Message sent: %s", info.messageId);
         }
         main().catch(console.error);
-        req.flash("sendmail", "Successfully sent mail");
+        req.flash("sendmail", "Email đã được gửi thành công");
         res.redirect("/createaccount");
       } else {
-        req.flash("wrongmail", "Please check your mail again");
+        req.flash("wrongmail", "Hãy xem lại tài khoản email của bạn");
         res.redirect("/createaccount");
       }
     } catch (error) {
@@ -109,21 +110,39 @@ class LoginController {
       var username = req.session.username;
 
       var checkpass = await Account.findOne({ name: username });
-      var isPasswordMatch = await bcrypt.compare(oldpass, checkpass.password);
-      if (isPasswordMatch) {
-        var saltRounds = 10;
-        var hashedPassword = await bcrypt.hash(newpass, saltRounds);
-        newpass = hashedPassword;
-        var filter = { name: username };
-        var updateDoc = {
-          $set: {
-            password: newpass,
-          },
-        };
-        await Account.updateOne(filter, updateDoc);
+      var isPasswordMatchOld = await bcrypt.compare(
+        oldpass,
+        checkpass.password
+      );
+      if (isPasswordMatchOld) {
+        var isPasswordMatchNew = await bcrypt.compare(
+          newpass,
+          checkpass.password
+        );
+        if (isPasswordMatchNew) {
+          req.flash(
+            "errorchangepass",
+            "Hãy đổi mật khẩu mới không trùng mật khẩu cũ"
+          );
+          res.redirect("/");
+        } else {
+          var saltRounds = 10;
+          var hashedPassword = await bcrypt.hash(newpass, saltRounds);
+          newpass = hashedPassword;
+          var filter = { name: username };
+          var updateDoc = {
+            $set: {
+              password: newpass,
+            },
+          };
+          await Account.updateOne(filter, updateDoc);
+          req.flash("successchangepass", "Đã đổi mật khẩu thành công!");
+          res.redirect("/");
+        }
+      } else {
+        req.flash("errorsameoldpass", "Hãy nhập đúng mật khẩu cũ");
+        res.redirect("/");
       }
-      req.flash("successchangepass", "Successfully changed password");
-      res.redirect("/");
     } catch (error) {
       console.log(error.message);
     }
@@ -131,13 +150,13 @@ class LoginController {
 
   async postfeedback(req, res, next) {
     try {
-      const email = req.body.email;
-      const checkemail = await Account.findOne({ email });
+      const emailUser = req.body.email;
+      const checkemail = await Account.findOne({ email: emailUser });
       if (checkemail) {
         async function main() {
           const info = await transporter.sendMail({
             from: '"BeYourself Education Platform"',
-            to: email,
+            to: emailUser,
             subject: "Send Feedback",
             template: "sendfeedback",
           });
@@ -147,6 +166,95 @@ class LoginController {
       }
       req.flash("successsendfeed", "Successfully sent feedback");
       res.redirect("/");
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
+  async createnewpassword(req, res, next) {
+    try {
+      const errornewpass = req.flash("errorsamenewpass");
+      const successnewpass = req.flash("successnewpass");
+      if (Object.keys(successnewpass).length === 0) {
+      } else {
+        req.toastr.success(
+          "Chúc một ngày tốt lành!",
+          Object.values(successnewpass)[0],
+          {
+            closeButton: true,
+            debug: true,
+            newestOnTop: false,
+            progressBar: true,
+            positionClass: "toast-top-right",
+            preventDuplicates: true,
+            onclick: null,
+            showDuration: "300",
+            hideDuration: "1000",
+            timeOut: "5000",
+            extendedTimeOut: "1000",
+            showEasing: "swing",
+            hideEasing: "linear",
+            showMethod: "fadeIn",
+            hideMethod: "fadeOut",
+          }
+        );
+      }
+      if (Object.keys(errornewpass).length === 0) {
+      } else {
+        req.toastr.error("Hãy thử lại nhé!", Object.values(errornewpass)[0], {
+          closeButton: true,
+          debug: true,
+          newestOnTop: false,
+          progressBar: true,
+          positionClass: "toast-top-right",
+          preventDuplicates: true,
+          onclick: null,
+          showDuration: "300",
+          hideDuration: "1000",
+          timeOut: "5000",
+          extendedTimeOut: "1000",
+          showEasing: "swing",
+          hideEasing: "linear",
+          showMethod: "fadeIn",
+          hideMethod: "fadeOut",
+        });
+      }
+      res.render("createnewpassword", {
+        layout: "extend",
+        toastr_render: req.toastr.render(),
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
+  async savenewpassword(req, res, next) {
+    try {
+      var newpass = req.body.newpass;
+      const checkuser = await Account.findOne({ email: req.session.email });
+      var isPasswordMatch = await bcrypt.compare(newpass, checkuser.password);
+      if (isPasswordMatch) {
+        req.flash(
+          "errorsamenewpass",
+          "Hãy chọn mật khẩu mới không trùng với mật khẩu cũ"
+        );
+        res.redirect("/createnewpass");
+      } else {
+        if (checkuser) {
+          var filter = { email: req.session.email };
+          var saltRounds = 10;
+          var hashedPassword = await bcrypt.hash(newpass, saltRounds);
+          newpass = hashedPassword;
+          var updateDoc = {
+            $set: {
+              password: newpass,
+            },
+          };
+          await Account.updateOne(filter, updateDoc);
+          req.flash("successnewpass", "Đổi mật khẩu thành công");
+          res.redirect("/createaccount");
+        }
+      }
     } catch (error) {
       console.log(error.message);
     }

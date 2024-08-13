@@ -12,8 +12,19 @@ class UserController {
         },
       };
       await Account.updateOne(filter, updateDoc);
-      req.flash("successschangeavatar", "Successfully changed avatar");
-      res.redirect("/");
+      try {
+        const message = req.flash(
+          "successschangeavatar",
+          "Successfully changed avatar"
+        );
+        if (message) {
+          req.flash("successschangeavatar", "Successfully changed avatar");
+          res.redirect("/");
+          req.flash("successschangeavatar", "Successfully changed avatar");
+        }
+      } catch (err) {
+        console.log(err.message);
+      }
     } catch (err) {
       console.log(err.message);
       res.status(500).json({ message: "Failed to update avatar" });

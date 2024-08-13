@@ -6,8 +6,11 @@ const userController = require("../APP/CONTROLLERS/UserController");
 const registerController = require("../APP/CONTROLLERS/RegisterController");
 const account = require("../APP/MIDDLEWARE/Account");
 const avatar = require("../APP/MIDDLEWARE/Avatar");
+const validation = require("../APP/MIDDLEWARE/Validation");
 const passport = require("passport");
 function route(app) {
+  app.get("/createnewpass", loginController.createnewpassword);
+  app.post("/createnewpass", loginController.savenewpassword);
   app.post("/uploadavatar", avatar.checkAvatar, userController.avatar);
   app.post("/feedback", loginController.postfeedback);
   app.get("/login/forgetpassword", loginController.forgotpassword);
@@ -15,7 +18,12 @@ function route(app) {
   app.post("/login", loginController.login);
   app.get("/logout", account.isLogOut, loginController.logout);
   app.get("/createaccount", account.isLogOut, registerController.registerForm);
-  app.post("/register", registerController.register);
+  app.post(
+    "/register",
+    validation.validateRegistration,
+    validation.handleValidationErrors,
+    registerController.register
+  );
   app.get("/university", account.isLogin, universityController.university);
   app.get("/university/:slug", universityController.show);
   app.get("/test", account.isLogin, testRouter);

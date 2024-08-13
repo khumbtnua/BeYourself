@@ -6,11 +6,11 @@ class RegisterController {
     const data = {
       name: req.body.username,
       password: req.body.password,
+      email: req.body.email,
     };
 
-    const existingUser = await Account.findOne({ name: data.name });
-    if (existingUser) {
-      res.send("User already exists. Please choose a different username");
+    const User = await Account.findOne({ name: data.name });
+    if (User) {
     } else {
       const saltRounds = 10;
       const hashedPassword = await bcrypt.hash(data.password, saltRounds);
@@ -24,13 +24,35 @@ class RegisterController {
   async registerForm(req, res) {
     try {
       const errorPassword = req.flash("wrongpass");
+      const errorRegistermsg = req.flash("errorMessages");
       const errorUsername = req.flash("wrongname");
       const errorEmail = req.flash("wrongmail");
       const successSendemail = req.flash("sendmail");
+      const errorRegister = req.flash("errorregister");
+      if (Object.keys(errorRegister).length === 0) {
+      } else {
+        req.toastr.error("Xem kỹ lại nhé!", Object.values(errorRegister)[0], {
+          closeButton: true,
+          debug: true,
+          newestOnTop: false,
+          progressBar: true,
+          positionClass: "toast-top-right",
+          preventDuplicates: true,
+          onclick: null,
+          showDuration: "300",
+          hideDuration: "1000",
+          timeOut: "5000",
+          extendedTimeOut: "1000",
+          showEasing: "swing",
+          hideEasing: "linear",
+          showMethod: "fadeIn",
+          hideMethod: "fadeOut",
+        });
+      }
       if (Object.keys(successSendemail).length === 0) {
       } else {
         req.toastr.success(
-          "Please check your mail!",
+          "Hãy kiểm tra lại email của bạn!",
           Object.values(successSendemail)[0],
           {
             closeButton: true,
@@ -53,7 +75,7 @@ class RegisterController {
       }
       if (Object.keys(errorEmail).length === 0) {
       } else {
-        req.toastr.error("Try again!", Object.values(errorEmail)[0], {
+        req.toastr.error("Thử lại!", Object.values(errorEmail)[0], {
           closeButton: true,
           debug: true,
           newestOnTop: false,
@@ -73,7 +95,7 @@ class RegisterController {
       }
       if (Object.keys(errorUsername).length === 0) {
       } else {
-        req.toastr.error("Try again!", Object.values(errorUsername)[0], {
+        req.toastr.error("Thử lại!", Object.values(errorUsername)[0], {
           closeButton: true,
           debug: true,
           newestOnTop: false,
@@ -93,7 +115,7 @@ class RegisterController {
       }
       if (Object.keys(errorPassword).length === 0) {
       } else {
-        req.toastr.error("Try again!", Object.values(errorPassword)[0], {
+        req.toastr.error("Thử lại!", Object.values(errorPassword)[0], {
           closeButton: true,
           debug: true,
           newestOnTop: false,
@@ -116,6 +138,7 @@ class RegisterController {
         function1: "login-register.js",
         layout: "extend",
         toastr_render: req.toastr.render(),
+        register_msg: errorRegistermsg,
       });
     } catch (err) {
       console.log(err.message);

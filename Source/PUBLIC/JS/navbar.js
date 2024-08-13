@@ -179,8 +179,8 @@ function changeMode(modeValue) {
     backimg.forEach((e) => {
       e.src = "/img/tool_imgs/back2.png";
     });
-    rightimg="/img/arrow_imgs/right.png";
-    leftimg="/img/arrow_imgs/left.png";
+    rightimg = "/img/arrow_imgs/right.png";
+    leftimg = "/img/arrow_imgs/left.png";
     searchimgs.forEach((e) => {
       e.src = "/img/tool_imgs/search2.png";
     });
@@ -210,8 +210,8 @@ function changeMode(modeValue) {
     backimg.forEach((e) => {
       e.src = "/img/tool_imgs/back1.png";
     });
-    rightimg="/img/arrow_imgs/right2.png";
-    leftimg="/img/arrow_imgs/left2.png";
+    rightimg = "/img/arrow_imgs/right2.png";
+    leftimg = "/img/arrow_imgs/left2.png";
     searchimgs.forEach((e) => {
       e.src = "/img/tool_imgs/search1.png";
     });
@@ -246,13 +246,19 @@ pageexpand.forEach((e) => {
   e.style.display = "none";
 });
 
-feedpage.addEventListener("submit", function () {
+function handleSubmit() {
+  feedpage.removeEventListener("submit", handleSubmit);
   setTimeout(function () {
     console.log(feedpage.getAttribute("action"));
     feedpage.action = "/feedback";
     feedpage.submit();
   }, 1000);
-});
+  setTimeout(function () {
+    feedpage.addEventListener("submit", handleSubmit);
+  }, 1500);
+}
+
+feedpage.addEventListener("submit", handleSubmit);
 
 //open setting
 function openset() {
@@ -348,8 +354,6 @@ fileInput.addEventListener("change", () => {
   }
 });
 
-
-
 function handleFiles(files) {
   const file = files[0];
   if (file.type.startsWith("image/")) {
@@ -362,8 +366,11 @@ function handleFiles(files) {
         cropper.destroy();
       }
       cropper = new Cropper(preview, {
-        aspectRatio: 1 / 1,
+        aspectRatio: 1,
+        viewMode: 1,
         dragMode: "move",
+        autoCrop: true,
+        autoCropArea: 1,
         toggleDragModeOnDblclick: false,
         cropBoxMovable: false,
         cropBoxResizable: false,
@@ -377,85 +384,101 @@ function handleFiles(files) {
 }
 
 uploadBtn.addEventListener("click", (e) => {
-  if (cropper) {
-    const croppedCanvas = cropper.getCroppedCanvas();
+  var croppedCanvas = cropper.getCroppedCanvas();
 
-    croppedCanvas.toBlob((blob) => {
-      const formData = new FormData();
-      formData.append("avatar", blob, "avatar.png");
+  var dataURL = croppedCanvas.toDataURL("image/png");
+  var blob = dataURLToBlob(dataURL);
 
-      fetch("/uploadavatar", {
-        method: "POST",
-        body: formData,
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log("Success:", data);
-        })
-        .catch((error) => {
-          console.error("Error:", error);
-        });
-      }, "image/png");
-    }
-  });
+  const formData = new FormData();
+  formData.append("avatar", blob, "avatar.png");
+
+  fetch("/uploadavatar", {
+    method: "POST",
+    body: formData,
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      console.log("Success:", data);
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+});
+
+function dataURLToBlob(dataURL) {
+  const parts = dataURL.split(",");
+  const byteString = atob(parts[1]);
+  const mimeString = parts[0].split(":")[1].split(";")[0];
+  const ab = new ArrayBuffer(byteString.length);
+  const ia = new Uint8Array(ab);
+  for (let i = 0; i < byteString.length; i++) {
+    ia[i] = byteString.charCodeAt(i);
+  }
+  return new Blob([ab], { type: mimeString });
+}
 ///drop-zone2
-const dropZone2 = document.getElementById('drop-zone2');
-const fileInput2 = document.getElementById('file-input2');
-const previewContainer = document.getElementById('preview-container');
+const dropZone2 = document.getElementById("drop-zone2");
+const fileInput2 = document.getElementById("file-input2");
+const previewContainer = document.getElementById("preview-container");
 
-dropZone2.addEventListener('click', () => fileInput2.click());
+dropZone2.addEventListener("click", () => fileInput2.click());
 
-dropZone2.addEventListener('dragover', (event) => {
-    event.preventDefault();
-    dropZone2.classList.add('dragover');
+dropZone2.addEventListener("dragover", (event) => {
+  event.preventDefault();
+  dropZone2.classList.add("dragover");
 });
 
-dropZone2.addEventListener('dragleave', () => {
-    dropZone2.classList.remove('dragover');
+dropZone2.addEventListener("dragleave", () => {
+  dropZone2.classList.remove("dragover");
 });
 
-dropZone2.addEventListener('drop', (event) => {
-    event.preventDefault();
-    dropZone.classList.remove('dragover');
-    const files = event.dataTransfer.files;
-    if (files.length) {
-        handleFiles2(files);
-    }
+dropZone2.addEventListener("drop", (event) => {
+  event.preventDefault();
+  dropZone.classList.remove("dragover");
+  const files = event.dataTransfer.files;
+  if (files.length) {
+    handleFiles2(files);
+  }
 });
 
-fileInput2.addEventListener('change', () => {
-    const files = fileInput2.files;
-    if (files.length) {
-        handleFiles2(files);
-    }
+fileInput2.addEventListener("change", () => {
+  const files = fileInput2.files;
+  if (files.length) {
+    handleFiles2(files);
+  }
 });
 
 function handleFiles2(files) {
-    Array.from(files).forEach(file => {
-        if (file.type.startsWith('image/')) {
-            const reader = new FileReader();
-            reader.onload = (event) => {
-                const previewDiv = document.createElement('div');
-                previewDiv.classList.add('preview');
+  Array.from(files).forEach((file) => {
+    if (file.type.startsWith("image/")) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const previewDiv = document.createElement("div");
+        previewDiv.classList.add("preview");
 
-                const img = document.createElement('img');
-                img.src = event.target.result;
-                img.classList.add('preview-image');
-                previewDiv.appendChild(img);
+        const img = document.createElement("img");
+        img.src = event.target.result;
+        img.classList.add("preview-image");
+        previewDiv.appendChild(img);
 
-                const removeButton = document.createElement('button');
-                removeButton.textContent = '×';
-                removeButton.classList.add('remove-button');
-                removeButton.addEventListener('click', () => {
-                    previewDiv.remove();
-                });
-                previewDiv.appendChild(removeButton);
+        const removeButton = document.createElement("button");
+        removeButton.textContent = "×";
+        removeButton.classList.add("remove-button");
+        removeButton.addEventListener("click", () => {
+          previewDiv.remove();
+        });
+        previewDiv.appendChild(removeButton);
 
-                previewContainer.appendChild(previewDiv);
-            };
-            reader.readAsDataURL(file);
-        } else {
-            alert('Vui lòng chọn một tệp ảnh.');
-        }
-    });
+        previewContainer.appendChild(previewDiv);
+      };
+      reader.readAsDataURL(file);
+    } else {
+      alert("Vui lòng chọn một tệp ảnh.");
+    }
+  });
 }

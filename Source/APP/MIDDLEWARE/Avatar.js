@@ -1,6 +1,6 @@
 const multer = require("multer");
 const storage = multer.diskStorage({
-  destination: `D:/project/BeYourself-1/img/useravatar_imgs`,
+  destination: `D:/Downloads/be_yourself-main/be_yourself-main/img/useravatar_imgs`,
   filename: function (req, file, cb) {
     cb(null, file.fieldname + ".png");
   },

@@ -1,4 +1,851 @@
-#main-contai{
+.main-contai{
+    position: relative;
     width: 100%;
-    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: 'hywen';
+    color: white;
+    width: 100%;
+    height: 100%;
+    flex-grow: 0;
+    flex-shrink: 0;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+.modes button {
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(15px);
+    border: none;
+    border-radius: 30px;
+    padding: 10px 20px;
+    color: white;
+    margin: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    font-family: 'hywen';
+    font-size: 18px;
+}
+
+.modes button:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.timer {
+    font-size: 8em;
+}
+
+.controls button {
+    background-color: rgb(0,0, 0,0.2);
+    backdrop-filter: blur(15px);
+    border-radius: 50%;
+    border: 2px solid transparent;
+    padding: 15px;
+    margin: 0 10px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    font-family: 'hywen';
+}
+.controls button img{
+    width: 20px;
+    height: 20px;
+}
+.controls button:hover {
+    border: 2px solid white;
+}
+
+.music-player iframe {
+    margin-top: 20px;
+}
+
+#contai-timer{
+    width: 500px;
+    height: fit-content;
+    overflow: hidden;
+}
+#move-contai{
+    display: flex;
+    flex-direction: row;
+    left: 0px;
+    position: relative;
+    transition: 0.5s ease-in-out;
+    height: fit-content;
+}
+#settingpage{
+    height: fit-content;
+    display: none;
+}
+#settingpage label{
+    font-size: 14px;
+}
+#settingpage p{
+    color: rgb(220, 220, 220);
+    font-size: 12px;
+}
+.child-move-contai{
+    flex-grow: 0;
+    flex-shrink: 0;
+    width: 500px;
+    height: fit-content;
+}
+#changepomo-contai{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    background-color: rgb(0, 0, 0, 0.4);
+    backdrop-filter: blur(20px);
+    border-radius: 25px;
+    height: 110px;
+}
+#changepomo-contai div:nth-of-type(2){
+    border-left: 1px solid rgb(260, 260, 260, 0.3) ;
+    border-right: 1px solid rgb(260, 260, 260, 0.3) ;
+}
+.changepomo{
+    flex-grow: 1;
+    text-align: left;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.changepomo input{
+    width: 100%;
+    border-radius: 10px;
+    height: 25px;
+    padding: 5px;
+    border: none;
+    margin: 5px 0;
+    background-color: rgb(260, 260, 260, 0.2);
+    color: white;
+    outline: none;
+}
+#changebg{
+    margin-top: 20px;
+    width: 100%;
+    background-color: rgb(0, 0, 0, 0.4);
+    backdrop-filter: blur(20px);
+    border-radius: 25px;
+    display: flex;
+    padding: 20px;
+    height: 110px;
+}
+#changebg label{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 10px 0 0;
+}
+#close {
+    display: flex;
+    margin: 0 0 20px 0;
+}
+#imgclose{
+    cursor: pointer;
+    }
+#inclose{
+    background-color: rgb(0, 0, 0, 0.4);
+    backdrop-filter: blur(20px);
+    border-radius: 25px;
+    padding: 0 20px;
+    font-size: 18px;
+    line-height: 30px;
+    letter-spacing: 1px;
+}
+#close img{
+    width: 30px;
+    height: 30px;
+}
+.drop-area {
+    border: 2px dashed #ccc;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    cursor: pointer;
+    width: 100%;
+    background-color: rgb(260, 260, 260, 0.2);
+}
+.drop-area:hover{
+    background-color: rgb(260, 260, 260, 0.3);
+}
+.drop-area.dragover {
+    background-color: #f0f0f0;
+}
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+#controlbar{
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+#controlbar button{
+    background-color: transparent;
+    border-radius: 10px;
+    backdrop-filter: blur(40px);
+  padding: 5px;
+    border: none;
+    margin: 0 5px;
+    cursor: pointer;
+}
+#controlbar button:hover{
+    background-color: rgb(260, 260, 260, 0.1);
+}
+#controlbar button img{
+    width: 25px;
+    height: 25px;
+}
+
+#appcontai{
+    padding: 50px 10px 10px 10px;
+    width: 100%;
+    height: 100%;
+}
+#home{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-image: url("/img/others_imgs/bg.jpg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+#move-home{
+    height: 100%;
+    width: 100%;
+    display: flex; 
+    flex-direction: column;
+    transition-duration: 0.5s;
+    position: relative;
+}
+#backfromapp{
+    position: relative;
+    top: 10px;
+    left: 10px;
+    width: 50px;
+    height: 50px;
+}
+#backfromapp img{
+    width: 100%;
+    height: 100%;
+}
+#contai {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    width: 100%;
+    height: 100%;
+    gap: 15px;
+    color: white;
+}
+
+.i1 {
+    grid-area: 1/1/1/2;
+    display: flex;
+    flex-direction: column;
+}
+.i3 {
+    grid-area: 1/3/1/4;
+}
+.i2 {
+    grid-area: 1/2/1/3;
+    display: flex;
+    flex-direction: column;
+}
+
+.child {
+    border-radius: 30px;
+    background-color: rgb(100, 100, 100, 0.3);
+    backdrop-filter: blur(20px);
+    box-shadow: rgba(17, 17, 26, 0.05) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
+    padding: 10px;
+    overflow: hidden;
+}
+
+
+
+/*to-do list css*/
+#input-wrapper {
+    display: flex;
+    background-color: transparent;
+    gap: 10px;
+    padding: 0 0 10px 0;
+    justify-content: space-between;
+}
+
+#title {
+    overflow: hidden;
+    width: 100%;
+    height: 35px;
+}
+
+#titlemagic {
+    width: 100%;
+    position: relative;
+    top: 0px;
+    display: flex;
+    flex-direction: column;
+    transition-duration: 0.25s;
+}
+
+#titlemagic h2 {
+    line-height: 35px;
+    margin-left: 5px;
+    font-size: 30px;
+}
+
+#contai-inputTask {
+    display: flex;
+    flex-direction: row;
+    background-color: rgb(260, 260, 260, 0.2);
+    border-radius: 20px;
+    padding-right: 5px;
+}
+
+#backTask {
+    background-color: rgb(260, 260, 260,0.3);
+    border: none;
+    border-radius: 15px;
+    width: 60px;
+    height: 20px;
+    margin: auto 0;
+}
+
+#inputTask {
+    background-color: transparent;
+    width: 100%;
+    border-radius: 20px;
+    padding: 5px 10px;
+    border: none;
+    outline: none;
+    height: 35px;
+    font-size: 16px;
+}
+
+#btn-addtask {
+    height: 30px;
+    width: 50px;
+    flex-grow: 0;
+    flex-shrink: 0;
+    border-radius: 20px;
+    margin: auto 0;
+    background-color:rgb(260, 260, 260, 0.3);
+    cursor: pointer;
+    border: none;
+}
+
+
+#list {
+    background-color: rgb(260, 260, 260,0.2);
+    width: 100%;
+    height: 258px;
+    border-radius: 20px;
+    overflow: auto;
+}
+
+.taskcontai {
+    position: relative;
+    height: fit-content;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+    background-color: rgb(260, 260, 260, 0.3);
+    word-break: break-word;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+.task-text {
+    font-size: 18px;
+}
+
+.options {
+    display: none;
+    /* Hide options by default */
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    padding: 5px;
+    border-bottom-left-radius: 5px;
+    gap: 5px;
+}
+
+.taskcontai:hover .options {
+    display: flex;
+    /* Show options on hover */
+}
+
+.btnedit {
+    background-color: transparent;
+    border: 1px solid rgb(130, 130, 130);
+    border-radius: 5px;
+    font-size: 15px;
+    padding: 5px;
+    color: rgb(130, 130, 130);
+    cursor: pointer;
+}
+
+.btndelete {
+    background-color: transparent;
+    border: 1px solid rgb(130, 130, 130);
+    border-radius: 5px;
+    font-size: 15px;
+    padding: 5px;
+    color: rgb(130, 130, 130);
+    cursor: pointer;
+}
+
+.custom-checkbox {
+    margin-top: 5px;
+    display: inline-block;
+    position: relative;
+    padding-left: 25px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.custom-checkbox input {
+    position: absolute;
+    opacity: 0;
+    left: 0;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #eee;
+    border-radius: 50%;
+}
+
+.custom-checkbox input:checked+.checkmark {
+    background-color: #0000ff;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.custom-checkbox input:checked+.checkmark:after {
+    display: block;
+}
+
+.custom-checkbox .checkmark:after {
+    left: 6px;
+    top: 3px;
+    width: 4px;
+    height: 9px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+}
+
+
+/*remind css*/
+#remind-contai {
+    width: 100%;
+    height: 258px;
+    background-color: rgb(260, 260, 260, 0.2);;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+#move-remind {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    transition: 0.5s;
+}
+
+.remind-list {
+    height: 100%;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+.remind-list li {
+    white-space: pre-line;
+    padding: 10px;
+    background-color: wheat;
+    margin: 10px;
+    border-radius: 10px;
+}
+
+#eventForm {
+    height: 100%;
+    flex-grow: 0;
+    flex-shrink: 0;
+    padding: 10px;
+}
+
+#titleremind {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 0px 10px 0px;
+}
+
+#titleremind h2 {
+    line-height: 35px;
+    margin-left: 5px;
+    font-size: 30px;
+}
+
+#toggleremind {
+    height: 30px;
+    width: 50px;
+    flex-grow: 0;
+    flex-shrink: 0;
+    border-radius: 15px;
+    margin: auto 0;
+    background-color: rgb(260, 260, 260, 0.3);
+    cursor: pointer;
+    border: none;
+}
+
+#eventForm div {
+    display: flex;
+    width: 100%;
+    margin-bottom: 10px;
+    height: 30px;
+}
+
+#eventForm div input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    background-color: rgb(260,260,260,0.5);
+}
+
+#eventForm div label {
+    width: 70px;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+#btn-addremind {
+    width: 100%;
+    padding: 10px;
+    background-color: #eee;
+    border-radius: 10px;
+    border: none;
+    background-color: rgb(260,260,260,0.8);
+}
+
+
+/*calendar css*/
+.i4 {
+    grid-area: 2/1/2/4;
+    position: relative;
+    padding: 0;
+}
+
+#timetableForm {
+    padding: 46px 10px 10px 10px;
+    width: 100%;
+    height: 100%;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+#timetableForm 
+td,
+th {
+    border-bottom: 2px solid black;
+    border-right: 2px solid black;
+    padding: 5px;
+    min-width: 100px;
+}
+
+#timetableForm table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#timetableForm input {
+    width: 100%;
+    height: 100%;
+    outline: none;
+    border: none;
+    background-color:transparent;
+}
+
+#timetable-contai {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    border-radius: 20px;
+    background-color: transparent;
+}
+#timetable-contai tr:nth-child(odd) {
+    background-color: rgb(230, 230, 230);
+}
+#timetable-contai tr:nth-child(even) {
+    background-color: rgb(250, 250, 250);
+}
+#timetable-contai table td:nth-child(1) {
+    background-color: rgb(100, 100, 100);
+    position: sticky;
+    left: 0;
+    z-index: 99;
+  }
+  #timetable-contai th {
+    background-color: rgb(50,50,50);
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+#timetable-contai input[type=time]{
+    color: white;
+}
+#control-calendar {
+    position: relative;
+    top: 0;
+    left: 0;
+    justify-content: space-between;
+    display: flex;
+    height: 36px;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+#control-calendar button {
+    padding: 5px;
+    border-radius: 20px;
+    width: 120px;
+    background-color: rgb(260, 260, 260, 0.3);
+    border: none;
+    outline: none;
+}
+#control-timetable{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+#control-timetable button{
+    padding: 5px;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+    background-color: rgb(260, 260, 260,0.3);
+
+}
+
+#mainCalendar {
+    padding: 10px;
+    width: 100%;
+    height: 100%;
+    flex-grow: 0;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+#total-contai-calendar {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    transition-duration: 0.5s;
+}
+#calendarContent{
+    height: 100%;
+    overflow: auto;
+    border-radius: 25px;
+}
+#calendarContent table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#calendarContent td, th {
+    border-bottom: 2px solid black;
+    border-right: 2px solid black;
+    padding: 5px;
+    min-width: 100px;
+}
+
+#calendarContent table td:nth-child(1) {
+    background-color: rgb(100, 100, 100);
+    position: sticky;
+    left: 0;
+    z-index: 99;
+  }
+  #calendarContent th {
+    background-color: rgb(50,50,50);
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+#calendarContent tr:nth-child(odd) {
+    background-color: rgb(230, 230, 230);
+}
+#calendarContent tr:nth-child(even) {
+    background-color: rgb(250, 250, 250);
+}
+.notes-input-container input{
+    width: 100%;
+    margin: 5px 0;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.notes-input-container button{
+    width: 100%;
+    margin: 5px 0;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+
+/*thống kê cho calendar*/
+.day-note-group{
+    padding: 0 0 10px 0;
+}
+.incomplete-note-item{
+    background-color: rgb(260, 260, 260, 0.2);
+    border-radius: 10px;
+    padding: 10px;
+    position: relative;
+    margin-top: 10px;
+}
+.titlenotesincom{
+    display: flex;
+    flex-direction: row;
+}
+.incomplete-note-item h1{
+    width: fit-content;
+    padding: 0;
+    font-size: 17px;
+}
+.incomplete-note-item h2{
+    font-size: 17px;
+    font-family: system-ui;
+    font-weight: 400;
+}
+.incomplete-note-item h3{
+    font-size: 14px;
+    margin-block-start: unset;
+    margin-block-end: unset;
+    font-family: monospace;
+    line-height: 20px;
+}
+.incomplete-note-item span{
+    white-space: pre-line;
+}
+.incomplete-note-item input{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+.day-note-group h4{
+    display: flex;
+    align-items: center;
+}
+.day-note-group h4::after {
+    content: '';
+    flex-grow: 1;
+    border-bottom: 2.5px dotted white; 
+    margin-left: 3px; 
+}
+#incompleteNotesCountDiv{
+    height: 30px;
+    margin: 0 0 10px 0;
+    flex-shrink: 0;
+    flex-grow: 0;
+    font-size: 20px;
+    line-height: 30px;
+}
+#incompleteNotesCount{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+#incompleteNotesContainer{
+    width: 100%;
+    height: 258px;
+    overflow: auto !important;
+    background-color: rgb(260, 260, 260, 0.2);
+    border-radius: 20px;
+    padding: 10px;
+}
+.current-day {
+    background-color: yellow; /* Màu nền nổi bật */
+}
+
+@media only screen and (max-width: 850px) {
+
+    #contai {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(4, 1fr);
+        gap: 15px
+    }
+
+    .i1 {
+        grid-area: 1/1/1/1;
+    }
+
+    .i3 {
+        grid-area: 2/1/2/1;
+    }
+
+    .i2 {
+        grid-area: 1/2/3/3;
+    }
+
+    .i4 {
+        grid-area: 3/1/5/3;
+    }
+
+    .calendar {
+        left: 0;
+        gap: 2.5%;
+    }
+
+    .day {
+        flex-grow: 0;
+        flex-shrink: 0;
+        width: 200px;
+    }
+}
+
+@media only screen and (max-width: 550px) {
+ 
+
+    #contai {
+        gap: 10px
+    }
+.modes button {
+    font-size: 13px;
+}
+.timer {
+    font-size: 6em;
+}
+#contai-timer{
+    width: 400px;
+}
+.child-move-contai{
+    width: 400px;
+}
 }

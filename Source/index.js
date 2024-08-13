@@ -35,14 +35,10 @@ app.use(
     secret: "accountsessionsecret",
     saveUninitialized: false,
     resave: false,
-    cookie: {
-      // maxAge: 1000 * 60 * 60 * 10,
-    },
   })
 );
 app.use(flash());
 app.use(toastr());
-
 app.use(function (req, res, next) {
   req.toastr.render();
   next();
@@ -119,7 +115,9 @@ app.use((req, res, next) => {
     req.path !== "/login" &&
     req.path !== "/logout" &&
     req.path !== "/register" &&
-    req.path !== "/createaccount"
+    req.path !== "/createaccount" &&
+    req.path !== "/createnewpass" &&
+    req.path !== "/login/forgetpassword"
   ) {
     req.session.currentPath = req.path;
   }
