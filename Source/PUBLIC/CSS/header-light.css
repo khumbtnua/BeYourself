@@ -401,6 +401,7 @@ h3 {
   font-size: 17px;
   font-weight: 200;
   font-family: hywen;
+  font-weight: 100;
 }
 
 h2 {
@@ -408,6 +409,7 @@ h2 {
   margin-block-start: unset;
   margin-block-end: unset;
   font-family: hywen;
+  font-weight: 100;
 }
 
 .out {

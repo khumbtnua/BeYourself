@@ -292,17 +292,19 @@ function addTask() {
             taskcontai.innerHTML = `
                 <span class="task-text">${taskcontent}</span>
                 <div class="options">
-                    <button class="btnedit" onclick="edittask(this)">edit</button>
-                    <button class="btndelete" onclick="deletetask(this)">delete</button>
+                    <button class="btnedit" onclick="edittask(this)"><img src="/img/tool_imgs/edit.png" style="width: 100%; height:100%"></button>
+                    <button class="btndelete" onclick="deletetask(this)"><img src="/img/tool_imgs/delete.png" style="width: 100%; height:100%"></button>
                 <label class="custom-checkbox">
-                <input type="checkbox" class="checkbox" onclick="toggleComplete(this)">
-                <div class="checkmark"></span>
+                <input type="checkbox" onclick="toggleComplete(this)">
+                <div class="checkmark"></div>
                 </label>
             </div>
                 </div>`;
             listask.appendChild(taskcontai);
             resetInput();
         }
+    }else{
+      document.getElementById("btn-addtask").innerHTML = `<img src="/img/tool_imgs/plus.png" style="width: 100%; height:100%">`;
     }
 }
 
@@ -313,7 +315,7 @@ function edittask(button) {
     const inputTask = document.getElementById("inputTask");
     inputTask.value = taskText;
     const btnAddTask = document.getElementById("btn-addtask");
-    btnAddTask.textContent = "Change";
+    btnAddTask.innerHTML = `<img src="/img/tool_imgs/check.png" style="width: 100%; height:100%">`;
 }
 
 function deletetask(button) {
@@ -321,7 +323,7 @@ function deletetask(button) {
     taskcontai.remove();
     currentEditingTask = null;
     document.getElementById("inputTask").value = "";
-    document.getElementById("btn-addtask").textContent = "Add"; // Đảm bảo khi xóa một nhiệm vụ, các nút và input trở về trạng thái ban đầu
+    document.getElementById("btn-addtask").innerHTML = `<img src="/img/tool_imgs/edit.png" style="width: 100%; height:100%">`; // Đảm bảo khi xóa một nhiệm vụ, các nút và input trở về trạng thái ban đầu
 }
 
 function toggleComplete(checkbox) {
@@ -337,7 +339,7 @@ function toggleComplete(checkbox) {
 function resetInput() {
     currentEditingTask = null;
     document.getElementById("inputTask").value = "";
-    document.getElementById("btn-addtask").textContent = "Add";
+    document.getElementById("btn-addtask").innerHTML = `<img src="/img/tool_imgs/edit.png" style="width: 100%; height:100%">`;
     tilemagic.style.top = "0px";
 }
 
@@ -355,7 +357,7 @@ function  movecalendar(){
         document.getElementById('showTimetableForm').innerHTML="back";
     }else{
         document.getElementById('total-contai-calendar').style.top = '-100%';
-        document.getElementById('showTimetableForm').innerHTML="Add Timetable";
+        document.getElementById('showTimetableForm').innerHTML=`<img src="/img/tool_imgs/plus.png" style="width: 100%; height:100%">`;
     }
 }
 document.getElementById('backfromcalendarform').addEventListener('click', () => {
@@ -389,7 +391,7 @@ function generateTimetableRows() {
             if (i > 0) {
                 const eventInput = document.createElement('input');
                 eventInput.type = 'text';
-                eventInput.placeholder = 'Event';
+                eventInput.placeholder = 'Môn học';
                 dayCell.appendChild(eventInput);
             }
             tr.appendChild(dayCell);
@@ -453,7 +455,7 @@ function updateMainCalendar() {
   const table = document.createElement('table');
   const headerRow = document.createElement('tr');
   headerRow.innerHTML = `
-      <th>Time</th>
+      <th>Thời gian</th>
       ${dates.map(d => `<th${d.isToday ? ' class="current-day"' : ''}>${d.dayName} (${d.date})</th>`).join('')}
   `;
   table.appendChild(headerRow);
@@ -464,22 +466,24 @@ function updateMainCalendar() {
           <td>${slot.time}</td>
           ${slot.events.map((event, index) => {
               const dateKey = `${dates[index].date}_${slot.time}`;
-              const noteText = notesData[dateKey] || '';
+              const noteText = notesData[dateKey]?.noteText || '';
               const isCompleted = notesData[`${dateKey}_completed`] || false;
 
               return `
               <td>
-                  <div class="event-content">${event}</div>
+              <div class="contai-event-content">
+                  <div class="event-content">${event}
+                  </div><button class="notes-btn"><img src="/img/tool_imgs/edit.png" style="width: 100%; height:100%"></button>
+                  </div>
                   ${noteText ? `
                       <div class="event-note ${isCompleted ? 'completed-note' : ''}">
-                          <input type="checkbox" class="complete-note-checkbox" ${isCompleted ? 'checked' : ''}>
+                          <input type="checkbox" class="complete-note-checkbox" ${isCompleted ? 'checked' : ''} data-note-key="${dateKey}">
                           ${noteText}
                       </div>
                   ` : ''}
-                  <button class="notes-btn">${noteText ? 'Edit' : 'Notes'}</button>
                   <div class="notes-input-container" style="display:none;">
                       <input type="text" class="notes-input" placeholder="Add note..." value="${noteText}">
-                      <button class="save-note-btn">Save</button>
+                      <button class="save-note-btn"><img src="/img/tool_imgs/plus.png" style="width: 100%; height:100%"></button>
                   </div>
               </td>`;
           }).join('')}
@@ -491,8 +495,10 @@ function updateMainCalendar() {
 
   document.querySelectorAll('.notes-btn').forEach(btn => {
       btn.addEventListener('click', function() {
-          const container = this.nextElementSibling;
-          container.style.display = 'block';
+          const container = this.parentElement
+          const tdcontainer= container.parentElement
+          const notesinputcontainer = tdcontainer.querySelector(".notes-input-container")
+          notesinputcontainer.style.display = 'flex';
           this.style.display = 'none';
       });
   });
@@ -517,12 +523,12 @@ function updateMainCalendar() {
               }
 
               const notesBtn = eventCell.querySelector('.notes-btn');
-              notesBtn.textContent = 'Notes';
+              notesBtn.innerHTML = '<img src="/img/tool_imgs/edit.png" style="width: 100%; height:100%">';
 
               container.style.display = 'none';
               notesBtn.style.display = 'inline';
 
-              updateIncompleteNotesCount(dates);  // Truyền dates khi gọi update
+              updateIncompleteNotesCount(dates);
               return;
           }
 
@@ -534,16 +540,16 @@ function updateMainCalendar() {
 
           let noteDiv = eventCell.querySelector('.event-note');
           if (noteDiv) {
-              noteDiv.innerHTML = `<input type="checkbox" class="complete-note-checkbox">${noteText}`;
+              noteDiv.innerHTML = `<input type="checkbox" class="complete-note-checkbox" data-note-key="${dateKey}">${noteText}`;
           } else {
               noteDiv = document.createElement('div');
               noteDiv.className = 'event-note';
-              noteDiv.innerHTML = `<input type="checkbox" class="complete-note-checkbox">${noteText}`;
-              eventCell.insertBefore(noteDiv, eventCell.querySelector('.notes-btn'));
+              noteDiv.innerHTML = `<input type="checkbox" class="complete-note-checkbox" data-note-key="${dateKey}">${noteText}`;
+              eventCell.appendChild(noteDiv);
           }
 
           const notesBtn = eventCell.querySelector('.notes-btn');
-          notesBtn.textContent = 'Edit';
+          notesBtn.innerHTML = '<img src="/img/tool_imgs/edit.png" style="width: 100%; height:100%">';
 
           container.style.display = 'none';
           notesBtn.style.display = 'inline';
@@ -554,34 +560,23 @@ function updateMainCalendar() {
   });
 
   addCompleteNoteListener();
-  updateIncompleteNotesCount(dates);  // Truyền dates khi gọi update
+  updateIncompleteNotesCount(dates);
 }
-
 
 
 
 function addCompleteNoteListener() {
-    document.querySelectorAll('.complete-note-checkbox').forEach(checkbox => {
-        checkbox.addEventListener('change', function () {
-            const eventCell = this.closest('td');
-            const timeSlot = eventCell.closest('tr').children[0].textContent;
-            const dayIndex = Array.from(eventCell.parentElement.children).indexOf(eventCell) - 1;
-            const dateKey = `${getWeekDates(currentWeekOffset)[dayIndex].date}_${timeSlot}`;
-
-            if (this.checked) {
-                this.closest('.event-note').classList.add('completed-note');
-                notesData[`${dateKey}_completed`] = true;
-            } else {
-                this.closest('.event-note').classList.remove('completed-note');
-                notesData[`${dateKey}_completed`] = false;
-            }
-            updateIncompleteNotesCount();
-        });
-    });
+  document.querySelectorAll('.complete-note-checkbox').forEach(checkbox => {
+      checkbox.addEventListener('change', function () {
+          const noteKey = this.dataset.noteKey;
+          notesData[`${noteKey}_completed`] = this.checked;
+          updateIncompleteNotesCount(getWeekDates(currentWeekOffset));  // Cập nhật phần thống kê
+      });
+  });
 }
+
 function updateIncompleteNotesCount(dates) {
   if (!dates || !Array.isArray(dates)) {
-      // Nếu dates không được truyền vào hoặc không phải là mảng, dừng hàm và log lỗi để debug
       console.error("dates is undefined or not an array. Please check the source of the issue.");
       return;
   }
@@ -596,14 +591,14 @@ function updateIncompleteNotesCount(dates) {
           const noteData = notesData[noteKey];
 
           incompleteCount++;
-          const dayIndex = dates.findIndex(d => d.date === date);  // Chúng ta cần chắc chắn rằng 'dates' là mảng và có dữ liệu hợp lệ
+          const dayIndex = dates.findIndex(d => d.date === date);
           const eventName = timetable.find(slot => slot.time === time)?.events?.[dayIndex] || '';
           incompleteNotesList.push({
               key: noteKey,
               date,
               time,
               note: noteData.noteText,
-              dayName: noteData.dayName || dates[dayIndex].dayName,  // Sử dụng dayName từ notesData nếu có hoặc từ dates
+              dayName: noteData.dayName || dates[dayIndex].dayName,
               eventName
           });
       }
@@ -637,22 +632,42 @@ function updateIncompleteNotesCount(dates) {
       const checkbox = document.createElement('input');
       checkbox.type = 'checkbox';
       checkbox.className = 'incomplete-note-checkbox';
+      checkbox.checked = false;
+      checkbox.dataset.noteKey = item.key;
       checkbox.addEventListener('change', function () {
-          notesData[`${item.key}_completed`] = this.checked;
-          updateIncompleteNotesCount(dates);  // Truyền dates khi gọi lại hàm
+          const noteKey = this.dataset.noteKey;
+          notesData[`${noteKey}_completed`] = this.checked;
+          updateIncompleteNotesCount(dates);
           updateMainCalendar();
       });
 
       const noteText = document.createElement('span');
       noteText.textContent = `${item.time} - ${item.eventName}: ${item.note}`;
 
-      noteElement.appendChild(checkbox);
-      noteElement.appendChild(noteText);
+      const labelcheckbox = document.createElement("label");
+      labelcheckbox.className="custom-checkbox";
+      const checkmark = document.createElement("div")
+      checkmark.className="checkmark";
+      labelcheckbox.append(checkmark);
+      labelcheckbox.append(checkbox)
 
+      noteElement.appendChild(noteText);
+      noteElement.appendChild(labelcheckbox);
+      
       const lastDayDiv = incompleteNotesContainer.lastElementChild;
       lastDayDiv.appendChild(noteElement);
   });
+
+  // Liên kết checkbox trong phần thống kê với lịch chính
+  document.querySelectorAll('.incomplete-note-checkbox').forEach(checkbox => {
+      const noteKey = checkbox.dataset.noteKey;
+      const correspondingCheckbox = document.querySelector(`.complete-note-checkbox[data-note-key="${noteKey}"]`);
+      if (correspondingCheckbox) {
+          checkbox.checked = correspondingCheckbox.checked;
+      }
+  });
 }
+
 
 
 
@@ -694,7 +709,7 @@ document.getElementById('eventForm').addEventListener('submit', function (event)
 
         // Reset form sau khi thêm sự kiện
         document.getElementById('eventForm').reset();
-        backremind()
+        toggleremind()
     }
 });
 
@@ -732,15 +747,13 @@ document.getElementById("move-remind").style.top = "-100%"
 function toggleremind() {
     if (document.getElementById("move-remind").style.top == "-100%") {
         document.getElementById("move-remind").style.top = "0%"
-        document.getElementById("toggleremind").innerHTML = "back"
+        document.getElementById("toggleremind").innerHTML = `<img src="/img/tool_imgs/turn-back.png" style="width: 100%; height:100%">`
     } else {
-        backremind();
-        document.getElementById("toggleremind").innerHTML = "add"
+        document.getElementById("move-remind").style.top = "-100%"
+        document.getElementById("toggleremind").innerHTML = `<img src="/img/tool_imgs/edit.png" style="width: 100%; height:100%">`
     }
 }
-function backremind() {
-    document.getElementById("move-remind").style.top = "-100%"
-}
+
 
 
 

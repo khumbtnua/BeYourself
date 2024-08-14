@@ -65,18 +65,23 @@
                                 <h2>To-do list</h2>
                                 <div id="contai-inputTask">
                                     <input id="inputTask" type="text" placeholder="Add a task" />
-                                    <button id="backTask" onclick="resetInput()">back</button>
+                                    <button id="backTask" onclick="resetInput()"><img src="/img/tool_imgs/turn-back.png"
+                                            style="width: 100%; height:100%"></button>
                                 </div>
                             </div>
                         </div>
-                        <button id="btn-addtask" onclick="addTask()">Add</button>
+                        <button id="btn-addtask" onclick="addTask()"><img src="/img/tool_imgs/edit.png"
+                                style="width: 100%; height:100%"></button>
                     </div>
-                    <div id="list"></div>
+                    <div id="contai-list-todo">
+                        <div id="list"></div>
+                    </div>
                 </div>
                 <div class="child i2">
                     <div id="titleremind">
                         <h2>Lịch Kiểm Tra</h2>
-                        <button onclick="toggleremind()" id="toggleremind">add</button>
+                        <button onclick="toggleremind()" id="toggleremind"><img src="/img/tool_imgs/edit.png"
+                                style="width: 100%; height:100%"></button>
                     </div>
                     <div id="remind-contai">
                         <div id="move-remind">
@@ -95,36 +100,47 @@
                                 </div>
                                 <button id="btn-addremind" type="submit">Thêm nhắc nhở</button>
                             </form>
-                            <ul class="remind-list"></ul>
+                            <div id="contai-remind-list">
+                                <ul class="remind-list"></ul>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="child i3">
                     <div id="incompleteNotesCount">
                         <div id="incompleteNotesCountDiv">
-                            Incomplete Notes: <span id="incompleteCount">0</span>
+                            <h2>Bài tập sắp tới:  </h2> <span id="incompleteCount">0</span>
                             <button onclick="movehome()" id="backtotimer">backtotimer</button>
                         </div>
-                        <div>
-                        <div id="incompleteNotesContainer"></div>
+                        <div id="contai-incompleteNotesContainer">
+                            <div id="incompleteNotesContainer"></div>
                         </div>
                     </div>
                 </div>
                 <div class="child i4">
                     <div id="total-contai-calendar">
                         <div id="timetableForm">
+                            <div id="control-timetable">
+                                <h2>Thời khoá biểu</h2>
+                                <div>
+                                    <button id="saveTimetable"><img src="/img/tool_imgs/check.png"
+                                            style="width: 100%; height:100%"></button>
+                                    <button id="backfromcalendarform"><img src="/img/tool_imgs/turn-back.png"
+                                            style="width: 100%; height:100%"></button>
+                                </div>
+                            </div>
                             <div id="timetable-contai">
                                 <table>
                                     <thead>
                                         <tr>
-                                            <th>Time</th>
-                                            <th>Sunday</th>
-                                            <th>Monday</th>
-                                            <th>Tuesday</th>
-                                            <th>Wednesday</th>
-                                            <th>Thursday</th>
-                                            <th>Friday</th>
-                                            <th>Saturday</th>
+                                            <th>Thời gian</th>
+                                            <th>Chủ nhật</th>
+                                            <th>Thứ hai</th>
+                                            <th>Thứ ba</th>
+                                            <th>Thứ tư</th>
+                                            <th>Thứ năm</th>
+                                            <th>Thứ sáu</th>
+                                            <th>Thứ bảy</th>
                                         </tr>
                                     </thead>
                                     <tbody id="timetableBody">
@@ -132,30 +148,27 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <div id="control-timetable">
-                            <button id="saveTimetable">Save Timetable</button>
-                            <button id="backfromcalendarform">back</button>
-                            </div>
                         </div>
 
                         <div id="mainCalendar">
                             <div id="control-calendar">
                                 <div>
-                                    <button id="prevWeek">Previous Week</button>
-                                    <button id="nextWeek">Next Week</button>
+                                    <button id="prevWeek"><img src="/img/tool_imgs/back1.png"
+                                            style="width: 100%; height:100%"></button>
+                                    <button id="nextWeek"><img src="/img/tool_imgs/lauch1.png"
+                                            style="width: 100%; height:100%"></button>
                                 </div>
+                                <h2 id="calendarTitle"></h2>
                                 <div>
-                                    <button id="showTimetableForm">Add Timetable</button>
+                                    <button id="showTimetableForm"><img src="/img/tool_imgs/plus.png"
+                                            style="width: 100%; height:100%"></button>
                                 </div>
                             </div>
-
-                            <h2 id="calendarTitle"></h2>
                             <div id="calendarContent">
                                 <!-- Calendar will be generated here -->
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>

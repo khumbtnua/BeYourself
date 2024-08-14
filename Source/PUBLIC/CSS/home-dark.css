@@ -210,6 +210,10 @@
     padding: 50px 10px 10px 10px;
     width: 100%;
     height: 100%;
+    flex-grow: 0;
+    flex-shrink: 0;
+    font-family: hywen;
+    font-weight: 1;
 }
 #home{
     width: 100%;
@@ -243,10 +247,12 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, 1fr);
-    width: 100%;
-    height: 100%;
     gap: 15px;
     color: white;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
 }
 
 .i1 {
@@ -265,7 +271,7 @@
 
 .child {
     border-radius: 30px;
-    background-color: rgb(100, 100, 100, 0.3);
+    background-color: rgb(50, 50, 50, 0.3);
     backdrop-filter: blur(20px);
     box-shadow: rgba(17, 17, 26, 0.05) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
     padding: 10px;
@@ -301,7 +307,7 @@
 #titlemagic h2 {
     line-height: 35px;
     margin-left: 5px;
-    font-size: 30px;
+    font-size: 25px;
 }
 
 #contai-inputTask {
@@ -316,9 +322,13 @@
     background-color: rgb(260, 260, 260,0.3);
     border: none;
     border-radius: 15px;
-    width: 60px;
-    height: 20px;
+    width: 25px;
+    height: 25px;
     margin: auto 0;
+    padding: 5px;
+    flex-grow: 0;
+    flex-shrink: 0;
+    cursor: pointer;
 }
 
 #inputTask {
@@ -333,35 +343,41 @@
 }
 
 #btn-addtask {
-    height: 30px;
-    width: 50px;
+    height: 35px;
+    width: 35px;
+    padding: 9px;
     flex-grow: 0;
     flex-shrink: 0;
-    border-radius: 20px;
-    margin: auto 0;
+    border-radius: 50%;
     background-color:rgb(260, 260, 260, 0.3);
     cursor: pointer;
     border: none;
 }
 
 
-#list {
+#contai-list-todo {
     background-color: rgb(260, 260, 260,0.2);
     width: 100%;
-    height: 258px;
+    height: 100%;
     border-radius: 20px;
-    overflow: auto;
+    padding:8px 5px 8px 8px;
 }
-
+#list{
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    border-radius: 12px;
+    padding-right: 5px;
+}
 .taskcontai {
     position: relative;
     height: fit-content;
     padding: 10px;
-    margin: 10px;
+    margin-bottom: 10px;
     border-radius: 10px;
     background-color: rgb(260, 260, 260, 0.3);
     word-break: break-word;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
 }
 
 .task-text {
@@ -374,9 +390,12 @@
     position: absolute;
     right: 0px;
     top: 0px;
-    padding: 5px;
-    border-bottom-left-radius: 5px;
-    gap: 5px;
+    padding: 7.9px 2.9px 7.9px 7.9px;
+    border-bottom-left-radius: 10px;
+    border-top-right-radius: 10px;
+    gap: 7.9px;
+    background-color: rgb(0,0, 0,0.5);
+    height: 40.8px;
 }
 
 .taskcontai:hover .options {
@@ -386,26 +405,32 @@
 
 .btnedit {
     background-color: transparent;
-    border: 1px solid rgb(130, 130, 130);
+    border: 1px solid rgb(260, 260, 260);
     border-radius: 5px;
     font-size: 15px;
     padding: 5px;
     color: rgb(130, 130, 130);
     cursor: pointer;
+    width: 25px;
+    height: 25px;
+    margin: auto 0
 }
 
 .btndelete {
     background-color: transparent;
-    border: 1px solid rgb(130, 130, 130);
+    border: 1px solid rgb(260, 260, 260);
     border-radius: 5px;
     font-size: 15px;
     padding: 5px;
     color: rgb(130, 130, 130);
     cursor: pointer;
+    width: 25px;
+    height: 25px;
+    margin: auto 0
 }
 
 .custom-checkbox {
-    margin-top: 5px;
+    margin-top: 2px;
     display: inline-block;
     position: relative;
     padding-left: 25px;
@@ -457,7 +482,7 @@
 /*remind css*/
 #remind-contai {
     width: 100%;
-    height: 258px;
+    height: 100%;
     background-color: rgb(260, 260, 260, 0.2);;
     border-radius: 20px;
     overflow: hidden;
@@ -471,18 +496,25 @@
     height: 100%;
     transition: 0.5s;
 }
-
-.remind-list {
+#contai-remind-list{
     height: 100%;
     flex-grow: 0;
     flex-shrink: 0;
+    padding: 8px 5px 8px 8px;
+}
+.remind-list {
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    overflow: auto;
+    padding-right: 5px;
 }
 
 .remind-list li {
     white-space: pre-line;
     padding: 10px;
     background-color: wheat;
-    margin: 10px;
+    margin-bottom:10px;
     border-radius: 10px;
 }
 
@@ -503,15 +535,16 @@
 #titleremind h2 {
     line-height: 35px;
     margin-left: 5px;
-    font-size: 30px;
+    font-size: 25px;
 }
 
 #toggleremind {
-    height: 30px;
-    width: 50px;
+    height: 35px;
+    width: 35px;
+    padding: 9px;
     flex-grow: 0;
     flex-shrink: 0;
-    border-radius: 15px;
+    border-radius: 50%;
     margin: auto 0;
     background-color: rgb(260, 260, 260, 0.3);
     cursor: pointer;
@@ -558,25 +591,29 @@
 }
 
 #timetableForm {
-    padding: 46px 10px 10px 10px;
+    padding: 10px;
     width: 100%;
     height: 100%;
     flex-grow: 0;
     flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
 }
 
 #timetableForm 
 td,
 th {
-    border-bottom: 2px solid black;
-    border-right: 2px solid black;
+    border-bottom: 1px solid rgb(130,130,130);
+    border-right: 1px solid rgb(130,130,130);
     padding: 5px;
     min-width: 100px;
+    background-color: rgb(230,230,230);
 }
 
 #timetableForm table {
     width: 100%;
     border-collapse: collapse;
+    table-layout: fixed;
 }
 
 #timetableForm input {
@@ -593,25 +630,22 @@ th {
     overflow: auto;
     border-radius: 20px;
     background-color: transparent;
+    border: 1px solid rgb(130, 130, 130);
 }
-#timetable-contai tr:nth-child(odd) {
-    background-color: rgb(230, 230, 230);
-}
-#timetable-contai tr:nth-child(even) {
-    background-color: rgb(250, 250, 250);
-}
+
 #timetable-contai table td:nth-child(1) {
-    background-color: rgb(100, 100, 100);
+    background-color: rgb(50, 50, 50);
     position: sticky;
     left: 0;
     z-index: 99;
   }
   #timetable-contai th {
-    background-color: rgb(50,50,50);
+    background-color: black;
     color: white;
     position: sticky;
     top: 0;
     z-index: 100;
+    font-weight: 100;
 }
 #timetable-contai input[type=time]{
     color: white;
@@ -622,33 +656,44 @@ th {
     left: 0;
     justify-content: space-between;
     display: flex;
-    height: 36px;
+    height: 35px;
     flex-grow: 0;
     flex-shrink: 0;
+    margin-bottom: 10px;
 }
 
 #control-calendar button {
     padding: 5px;
-    border-radius: 20px;
-    width: 120px;
+    border-radius: 50%;
+    height: 100%;
+    width: 35px;
     background-color: rgb(260, 260, 260, 0.3);
     border: none;
     outline: none;
+    cursor: pointer;
 }
 #control-timetable{
-    position: absolute;
-    top: 10px;
-    right: 10px;
+    position: relative;
+    height: 35px;
+    margin-bottom: 10px;
+    flex-grow: 0;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: space-between;
 }
 #control-timetable button{
-    padding: 5px;
-    border-radius: 20px;
+    padding: 9px;
+    height: 100%;
+    width: 35px;
+    border-radius: 50%;
     border: none;
     outline: none;
     background-color: rgb(260, 260, 260,0.3);
-
+    cursor: pointer;
 }
-
+#showTimetableForm{
+    padding: 9px !important;
+}
 #mainCalendar {
     padding: 10px;
     width: 100%;
@@ -671,31 +716,59 @@ th {
     height: 100%;
     overflow: auto;
     border-radius: 25px;
+    border: 1px solid rgb(130,130,130);
 }
 #calendarContent table {
     border-collapse: collapse;
     width: 100%;
+    table-layout: fixed;
 }
 
 #calendarContent td, th {
-    border-bottom: 2px solid black;
-    border-right: 2px solid black;
+    border-bottom: 1px solid rgb(130,130,130);
+    border-right: 1px solid rgb(130,130,130);
     padding: 5px;
     min-width: 100px;
 }
 
 #calendarContent table td:nth-child(1) {
-    background-color: rgb(100, 100, 100);
+    background-color: rgb(50, 50, 50);
     position: sticky;
     left: 0;
     z-index: 99;
+    color: white;
+  }
+  #calendarContent table td:nth-child(2) {
+    background-color: rgb(74, 50, 40,0.8);
+
+  }
+  #calendarContent table td:nth-child(3) {
+    background-color: rgb(92, 59, 35,0.8);
+
+  }
+  #calendarContent table td:nth-child(4) {
+    background-color: rgb(86, 69, 47,0.8);
+
+  }
+  #calendarContent table td:nth-child(5) {
+    background-color: rgb(36, 61, 48,0.8);
+
+  }
+  #calendarContent table td:nth-child(6) {
+    background-color: rgb(20, 58, 78,0.8);
+
+  }
+  #calendarContent table td:nth-child(7) {
+    background-color: rgb(82, 46, 42,0.8);
+  }
+  #calendarContent table td:nth-child(8) {
+    background-color: rgb(60, 45, 73,0.8);
   }
   #calendarContent th {
-    background-color: rgb(50,50,50);
+    background-color: black;
     color: white;
-    position: sticky;
-    top: 0;
-    z-index: 100;
+    font-size: 18px;
+    font-weight: 100;
 }
 #calendarContent tr:nth-child(odd) {
     background-color: rgb(230, 230, 230);
@@ -703,20 +776,48 @@ th {
 #calendarContent tr:nth-child(even) {
     background-color: rgb(250, 250, 250);
 }
-.notes-input-container input{
+
+#calendarContent input[type=text]{
     width: 100%;
-    margin: 5px 0;
     padding: 5px;
     border-radius: 5px;
+    border:none;
+    outline:none;
+}
+.notes-input-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 5px 0;
 }
 
-.notes-input-container button{
-    width: 100%;
-    margin: 5px 0;
+.contai-event-content{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.event-content{
+    color: rgb(199, 125, 72);
+}
+#calendarContent td button{
+    width: 25px;
+    height: 25px;
     padding: 5px;
     border-radius: 5px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    color: white;
+    cursor: pointer;
+    flex-grow: 0;
+    flex-shrink: 0;
 }
-
+.event-note{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    word-break: break-word;
+}
 
 /*thống kê cho calendar*/
 .day-note-group{
@@ -728,6 +829,10 @@ th {
     padding: 10px;
     position: relative;
     margin-top: 10px;
+    word-break: break-word;
+    display: flex;
+    justify-content: space-between;
+    height: 40px;
 }
 .titlenotesincom{
     display: flex;
@@ -761,6 +866,7 @@ th {
 .day-note-group h4{
     display: flex;
     align-items: center;
+    font-weight: 100;
 }
 .day-note-group h4::after {
     content: '';
@@ -774,7 +880,20 @@ th {
     flex-shrink: 0;
     flex-grow: 0;
     font-size: 20px;
-    line-height: 30px;
+    display: flex;
+    flex-direction: row;
+}
+#incompleteNotesCountDiv h2{
+    font-size: 25px;
+    line-height: 35px;
+    font-weight:1 ;
+}
+#incompleteNotesCountDiv span{
+    margin-left: 10px;
+    line-height: 35px;
+    font-family: hywen;
+    font-size: 25px;
+    font-weight: 100;
 }
 #incompleteNotesCount{
     width: 100%;
@@ -782,16 +901,23 @@ th {
     display: flex;
     flex-direction: column;
 }
-#incompleteNotesContainer{
+#contai-incompleteNotesContainer{
     width: 100%;
-    height: 258px;
-    overflow: auto !important;
+    height: 100%;
     background-color: rgb(260, 260, 260, 0.2);
     border-radius: 20px;
-    padding: 10px;
+    padding:8px 5px 8px 8px ;
+    
+}
+#incompleteNotesContainer{
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    border-radius: 12px;
+    padding: 2px 5px 2px 2px;
 }
 .current-day {
-    background-color: yellow; /* Màu nền nổi bật */
+    background-color: rgb(50,50,50) !important;
 }
 
 @media only screen and (max-width: 850px) {
