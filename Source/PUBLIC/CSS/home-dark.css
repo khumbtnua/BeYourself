@@ -817,6 +817,7 @@ th {
     flex-direction: row-reverse;
     justify-content: space-between;
     word-break: break-word;
+    font-size: 17px;
 }
 
 /*thống kê cho calendar*/
@@ -832,7 +833,8 @@ th {
     word-break: break-word;
     display: flex;
     justify-content: space-between;
-    height: 40px;
+    height: fit-content;
+    min-height: 40px;
 }
 .titlenotesincom{
     display: flex;
