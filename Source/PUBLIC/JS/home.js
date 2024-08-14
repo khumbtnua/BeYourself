@@ -642,7 +642,7 @@ function updateIncompleteNotesCount(dates) {
       });
 
       const noteText = document.createElement('span');
-      noteText.textContent = `${item.time} - ${item.eventName}: ${item.note}`;
+      noteText.innerHTML= `<div class="titlenotesincom"><h1>${item.eventName}</h1> <h3> - ${item.time}</h3></div> <h2>${item.note}</h2>`;
 
       const labelcheckbox = document.createElement("label");
       labelcheckbox.className="custom-checkbox";
@@ -653,7 +653,7 @@ function updateIncompleteNotesCount(dates) {
 
       noteElement.appendChild(noteText);
       noteElement.appendChild(labelcheckbox);
-      
+
       const lastDayDiv = incompleteNotesContainer.lastElementChild;
       lastDayDiv.appendChild(noteElement);
   });
