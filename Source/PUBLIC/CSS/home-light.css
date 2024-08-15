@@ -213,7 +213,8 @@ cursor: pointer;
     flex-grow: 0;
     flex-shrink: 0;
     font-family: hywen;
-    font-weight: 1 !important;
+    font-weight: 1;
+    position: relative;
 }
 #home{
     width: 100%;
@@ -378,10 +379,11 @@ cursor: pointer;
     background-color: rgb(260, 260, 260, 0.3);
     word-break: break-word;
     overflow: hidden;
+    min-height: 40px;
 }
 
 .task-text {
-    font-size: 18px;
+    font-size: 17px;
 }
 
 .options {
@@ -395,7 +397,7 @@ cursor: pointer;
     border-top-right-radius: 10px;
     gap: 7.9px;
     background-color: rgb(0,0, 0,0.5);
-    height: 40.8px;
+    height: 40px;
 }
 
 .taskcontai:hover .options {
@@ -437,6 +439,9 @@ cursor: pointer;
     cursor: pointer;
     user-select: none;
 }
+#custom-checkbox2{
+    margin: 0;
+}
 
 .custom-checkbox input {
     position: absolute;
@@ -456,6 +461,9 @@ cursor: pointer;
 
 .custom-checkbox input:checked+.checkmark {
     background-color: #0000ff;
+}
+#custom-checkbox2 input:checked+.checkmark{
+    background-color: rgb(111, 117, 105);
 }
 
 .checkmark:after {
@@ -513,11 +521,25 @@ cursor: pointer;
 .remind-list li {
     white-space: pre-line;
     padding: 10px;
-    background-color: wheat;
+    background-color: rgb(260, 260, 260, 0.3);
     margin-bottom:10px;
     border-radius: 10px;
+    position: relative;
+    height: fit-content;
+    min-height: 40px;
 }
-
+.remind-list li button{
+    background-color: transparent;
+    border: 1px solid rgb(260, 260, 260);
+    border-radius: 5px;
+    font-size: 15px;
+    padding: 5px;
+    color: rgb(130, 130, 130);
+    cursor: pointer;
+    width: 25px;
+    height: 25px;
+    margin: auto 0;
+}
 #eventForm {
     height: 100%;
     flex-grow: 0;
@@ -583,6 +605,34 @@ cursor: pointer;
 }
 
 
+.event-controls {
+    display: none;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    padding: 6px;
+    border-bottom-left-radius: 10px;
+    border-top-right-radius: 10px;
+    gap: 6px;
+    background-color: rgb(0, 0, 0, 0.5);
+    height: 40px;
+}
+
+.event-item:hover .event-controls {
+    display: flex;
+}
+.event-item h1{
+    font-size: 20px;
+    padding: 0;
+    font-weight: 100;
+}
+.event-item h2{
+    font-size: 15px;
+}
+.event-item h3{
+    font-family: monospace;
+}
+
 /*calendar css*/
 .i4 {
     grid-area: 2/1/2/4;
@@ -603,11 +653,11 @@ cursor: pointer;
 #timetableForm 
 td,
 th {
-    border-bottom: 1px solid rgb(130,130,130);
-    border-right: 1px solid rgb(130,130,130);
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
     padding: 5px;
     min-width: 100px;
-    background-color: rgb(230,230,230);
+    background-color: rgb(227, 229, 218);
 }
 
 #timetableForm table {
@@ -630,18 +680,19 @@ th {
     overflow: auto;
     border-radius: 20px;
     background-color: transparent;
-    border: 1px solid rgb(130, 130, 130);
+    border: 1px solid black;
 }
 
 #timetable-contai table td:nth-child(1) {
-    background-color: rgb(50, 50, 50);
+    background-color: rgb(163, 159, 147);
     position: sticky;
     left: 0;
     z-index: 99;
+    color: rgb(230, 230, 230);
   }
   #timetable-contai th {
-    background-color: black;
-    color: white;
+    background-color: rgb(74, 74, 74);
+    color:rgb(230, 230, 230);
     position: sticky;
     top: 0;
     z-index: 100;
@@ -716,7 +767,8 @@ th {
     height: 100%;
     overflow: auto;
     border-radius: 25px;
-    border: 1px solid rgb(130,130,130);
+    border: 1px solid black;
+    background-color: rgb(260, 260, 260, 0.2);
 }
 #calendarContent table {
     border-collapse: collapse;
@@ -725,49 +777,26 @@ th {
 }
 
 #calendarContent td, th {
-    border-bottom: 1px solid rgb(130,130,130);
-    border-right: 1px solid rgb(130,130,130);
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
     padding: 5px;
     min-width: 100px;
 }
-
+#calendarContent td{
+    background-color: rgb(227, 229, 218);
+}
 #calendarContent table td:nth-child(1) {
-    background-color: rgb(50, 50, 50);
+    background-color: rgb(163, 159, 147);
     position: sticky;
     left: 0;
     z-index: 99;
-    color: white;
+    color: rgb(230,230,230);
   }
-  #calendarContent table td:nth-child(2) {
-    background-color: rgb(74, 50, 40);
 
-  }
-  #calendarContent table td:nth-child(3) {
-    background-color: rgb(92, 59, 35);
-
-  }
-  #calendarContent table td:nth-child(4) {
-    background-color: rgb(86, 69, 47);
-
-  }
-  #calendarContent table td:nth-child(5) {
-    background-color: rgb(36, 61, 48);
-
-  }
-  #calendarContent table td:nth-child(6) {
-    background-color: rgb(20, 58, 78);
-
-  }
-  #calendarContent table td:nth-child(7) {
-    background-color: rgb(82, 46, 42);
-  }
-  #calendarContent table td:nth-child(8) {
-    background-color: rgb(60, 45, 73);
-  }
   #calendarContent th {
-    background-color: black;
-    color: white;
-    font-size: 18px;
+    background-color: rgb(74, 74, 74);
+    color: rgb(230,230,230);
+    font-size: 16px;
     font-weight: 100;
 }
 #calendarContent tr:nth-child(odd) {
@@ -783,6 +812,8 @@ th {
     border-radius: 5px;
     border:none;
     outline:none;
+    background-color: rgb(210, 205, 186);
+    font-family: monospace;
 }
 .notes-input-container{
     display: flex;
@@ -797,7 +828,7 @@ th {
     justify-content: space-between;
 }
 .event-content{
-    color: rgb(199, 125, 72);
+    color: black;
 }
 #calendarContent td button{
     width: 25px;
@@ -818,6 +849,10 @@ th {
     justify-content: space-between;
     word-break: break-word;
     font-size: 17px;
+    background-color: rgb(210, 205, 186);
+    padding: 5px;
+    border-radius: 5px;
+    font-family: monospace;
 }
 
 /*thống kê cho calendar*/
@@ -844,11 +879,17 @@ th {
     width: fit-content;
     padding: 0;
     font-size: 17px;
+    font-weight: 1;
 }
 .incomplete-note-item h2{
     font-size: 17px;
-    font-family: system-ui;
+    font-family: monospace;
     font-weight: 400;
+    background-color: rgb(0, 0, 0, 0.1);
+    padding: 5px;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 5px;
 }
 .incomplete-note-item h3{
     font-size: 14px;
@@ -860,6 +901,7 @@ th {
 }
 .incomplete-note-item span{
     white-space: pre-line;
+    width: 100%;
 }
 .incomplete-note-item input{
     position: absolute;
@@ -920,9 +962,39 @@ th {
     padding: 2px 5px 2px 2px;
 }
 .current-day {
-    background-color: rgb(50,50,50) !important;
+    background-color: rgb(0, 0, 0, 0.5) !important;
 }
-
+#contaibacktotimer{
+    background-color: rgb(50, 50, 50, 0.5);
+    backdrop-filter: blur(30px);
+    border: 1px solid rgb(100, 100, 100);
+    border-bottom: 0;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    padding: 10px;
+    width: fit-content;
+    position: absolute;
+    right: 10;
+    z-index: 1;
+    bottom: -70px;
+    cursor: pointer;
+    transition-duration: 0.25s;
+    width: 80px;
+    height: 80px;
+}
+#contaibacktotimer:hover{
+    bottom: 0px;
+}
+#contaibacktotimer button{
+    cursor: pointer;
+    border-radius: 50%;
+    padding: 10px;
+    border: none;
+    background-color: rgb(260, 260, 260, 0.2);
+    outline: none;
+    width: 100%;
+    height: 100%;
+}
 @media only screen and (max-width: 850px) {
 
     #contai {

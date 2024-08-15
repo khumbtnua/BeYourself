@@ -304,7 +304,7 @@ function addTask() {
             resetInput();
         }
     }else{
-      document.getElementById("btn-addtask").innerHTML = `<img src="/img/tool_imgs/plus.png" style="width: 100%; height:100%">`;
+      document.getElementById("btn-addtask").innerHTML = `<img src="/img/tool_imgs/plus2.png" style="width: 100%; height:100%">`;
     }
 }
 
@@ -354,10 +354,8 @@ document.getElementById('total-contai-calendar').style.top = '-100%';
 function  movecalendar(){
     if (document.getElementById('total-contai-calendar').style.top == '-100%') {
         document.getElementById('total-contai-calendar').style.top = '0%';
-        document.getElementById('showTimetableForm').innerHTML="back";
     }else{
         document.getElementById('total-contai-calendar').style.top = '-100%';
-        document.getElementById('showTimetableForm').innerHTML=`<img src="/img/tool_imgs/plus.png" style="width: 100%; height:100%">`;
     }
 }
 document.getElementById('backfromcalendarform').addEventListener('click', () => {
@@ -473,17 +471,20 @@ function updateMainCalendar() {
               <td>
               <div class="contai-event-content">
                   <div class="event-content">${event}
-                  </div><button class="notes-btn"><img src="/img/tool_imgs/edit.png" style="width: 100%; height:100%"></button>
+                  </div><button class="notes-btn"><img src="/img/tool_imgs/edit2.png" style="width: 100%; height:100%"></button>
                   </div>
                   ${noteText ? `
                       <div class="event-note ${isCompleted ? 'completed-note' : ''}">
+                      <label class="custom-checkbox" id="custom-checkbox2">
                           <input type="checkbox" class="complete-note-checkbox" ${isCompleted ? 'checked' : ''} data-note-key="${dateKey}">
+                      <div class="checkmark"></div>
+                      </label>
                           ${noteText}
                       </div>
                   ` : ''}
                   <div class="notes-input-container" style="display:none;">
-                      <input type="text" class="notes-input" placeholder="Add note..." value="${noteText}">
-                      <button class="save-note-btn"><img src="/img/tool_imgs/plus.png" style="width: 100%; height:100%"></button>
+                      <input type="text" class="notes-input" placeholder="Bài tập..." value="${noteText}">
+                      <button class="save-note-btn"><img src="/img/tool_imgs/plus2.png" style="width: 100%; height:100%"></button>
                   </div>
               </td>`;
           }).join('')}
@@ -523,7 +524,7 @@ function updateMainCalendar() {
               }
 
               const notesBtn = eventCell.querySelector('.notes-btn');
-              notesBtn.innerHTML = '<img src="/img/tool_imgs/edit.png" style="width: 100%; height:100%">';
+              notesBtn.innerHTML = '<img src="/img/tool_imgs/edit2.png" style="width: 100%; height:100%">';
 
               container.style.display = 'none';
               notesBtn.style.display = 'inline';
@@ -540,16 +541,24 @@ function updateMainCalendar() {
 
           let noteDiv = eventCell.querySelector('.event-note');
           if (noteDiv) {
-              noteDiv.innerHTML = `<input type="checkbox" class="complete-note-checkbox" data-note-key="${dateKey}">${noteText}`;
+              noteDiv.innerHTML = `<label class="custom-checkbox" id="custom-checkbox2">
+              <input type="checkbox" class="complete-note-checkbox" data-note-key="${dateKey}">
+              <div class="checkmark"></div>
+              </label>
+              ${noteText}`;
           } else {
               noteDiv = document.createElement('div');
               noteDiv.className = 'event-note';
-              noteDiv.innerHTML = `<input type="checkbox" class="complete-note-checkbox" data-note-key="${dateKey}">${noteText}`;
+              noteDiv.innerHTML = `<label class="custom-checkbox" id="custom-checkbox2">
+              <input type="checkbox" class="complete-note-checkbox" data-note-key="${dateKey}">
+              <div class="checkmark"></div>
+              </label>
+              ${noteText}`;
               eventCell.appendChild(noteDiv);
           }
 
           const notesBtn = eventCell.querySelector('.notes-btn');
-          notesBtn.innerHTML = '<img src="/img/tool_imgs/edit.png" style="width: 100%; height:100%">';
+          notesBtn.innerHTML = '<img src="/img/tool_imgs/edit2.png" style="width: 100%; height:100%">';
 
           container.style.display = 'none';
           notesBtn.style.display = 'inline';
@@ -678,81 +687,120 @@ window.onload = updateMainCalendar;
 
 //remind code
 document.getElementById('eventForm').addEventListener('submit', function (event) {
-    event.preventDefault(); // Ngăn không cho form submit bình thường
+  event.preventDefault();
 
-    const eventDateInput = document.getElementById('eventDate').value;
-    const subjectInput = document.getElementById('subject').value;
-    const notesInput = document.getElementById('notes').value;
+  const eventDateInput = document.getElementById('eventDate').value;
+  const subjectInput = document.getElementById('subject').value;
+  const notesInput = document.getElementById('notes').value;
 
-    if (eventDateInput && subjectInput) {
-        const [year, month, day] = eventDateInput.split('-');
-        const formattedDate = `${day}/${month}/${year}`; // Chuyển đổi sang định dạng dd/mm/yyyy
+  if (eventDateInput && subjectInput) {
+      const [year, month, day] = eventDateInput.split('-');
+      const formattedDate = `${day}/${month}/${year}`;
 
-        const daysLeft = calculateDaysLeft(year, month, day);
+      const daysLeft = calculateDaysLeft(year, month, day);
 
-        const eventsList = document.querySelector('.remind-list');
+      const eventsList = document.querySelector('.remind-list');
 
-        // Tạo một sự kiện mới
-        const newEvent = document.createElement('li');
-        newEvent.innerHTML = `${subjectInput}
-        ${formattedDate}
-        Còn ${daysLeft} ngày
-    ${notesInput ? `Ghi chú: ${notesInput}` : ""}
-`;
+      // Kiểm tra xem có sự kiện nào đang được chỉnh sửa không
+      const editingEvent = document.querySelector('.editing');
+      if (editingEvent) {
+          // Cập nhật sự kiện hiện tại với giá trị mới
+          editingEvent.innerHTML = `<h1>${subjectInput}</h1><h3>${notesInput ? `${notesInput}` : ""}</h3><h2>${formattedDate}</h2> <h2>${daysLeft} ngày nữa</h2><div class="event-controls">
+                  <button class="edit-btn"><img src="/img/tool_imgs/edit.png" style="width: 100%; height:100%"></button>
+                  <button class="delete-btn"><img src="/img/tool_imgs/delete.png" style="width: 100%; height:100%"></button>
+              </div>`;
 
+          // Xóa lớp "editing" sau khi chỉnh sửa
+          editingEvent.classList.remove('editing');
 
-        // Thêm sự kiện vào danh sách
-        eventsList.appendChild(newEvent);
+          // Thêm lại sự kiện cho nút Xóa và Chỉnh sửa
+          addEventControlListeners(editingEvent);
+      } else {
+          // Tạo một sự kiện mới nếu không có sự kiện nào đang được chỉnh sửa
+          const newEvent = document.createElement('li');
+          newEvent.classList.add('event-item');
+          newEvent.innerHTML = `<h1>${subjectInput}</h1><h3>${notesInput ? `${notesInput}` : ""}</h3><h2>${formattedDate}</h2> <h2>${daysLeft} ngày nữa</h2><div class="event-controls">
+                  <button class="edit-btn"><img src="/img/tool_imgs/edit.png" style="width: 100%; height:100%"></button>
+                  <button class="delete-btn"><img src="/img/tool_imgs/delete.png" style="width: 100%; height:100%"></button>
+              </div>`;
 
-        // Sắp xếp các sự kiện theo ngày
-        sortEvents(eventsList);
+          // Thêm sự kiện vào danh sách
+          eventsList.appendChild(newEvent);
 
-        // Reset form sau khi thêm sự kiện
-        document.getElementById('eventForm').reset();
-        toggleremind()
-    }
+          // Thêm sự kiện khi click vào nút Xóa và Chỉnh sửa
+          addEventControlListeners(newEvent);
+      }
+
+      // Sắp xếp các sự kiện theo ngày
+      sortEvents(eventsList);
+
+      // Reset form sau khi thêm hoặc chỉnh sửa sự kiện
+      document.getElementById('eventForm').reset();
+      toggleremind();
+  }
 });
 
+function addEventControlListeners(eventElement) {
+  // Thêm sự kiện khi click vào nút Xóa
+  eventElement.querySelector('.delete-btn').addEventListener('click', function() {
+      eventElement.remove();
+  });
+
+  // Thêm sự kiện khi click vào nút Chỉnh sửa
+  eventElement.querySelector('.edit-btn').addEventListener('click', function() {
+    document.getElementById('subject').value = eventElement.querySelector("h1").textContent;
+    document.getElementById('notes').value = eventElement.querySelector("h3").textContent;
+    const formattedDate = eventElement.querySelector("h2").textContent;
+    const [day, month, year] = formattedDate.split('/');
+    document.getElementById('eventDate').value = `${year}-${month}-${day}`;
+    eventElement.classList.add('editing');
+    toggleremind();
+});
+}
+
 function calculateDaysLeft(year, month, day) {
-    const eventDate = new Date(year, month - 1, day);
-    const today = new Date();
+  const eventDate = new Date(year, month - 1, day);
+  const today = new Date();
 
-    // Tính toán sự chênh lệch thời gian (sự chênh lệch trả về kết quả theo milisecond)
-    const timeDifference = eventDate - today;
+  const timeDifference = eventDate - today;
+  const daysLeft = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
 
-    // Chuyển đổi sự chênh lệch thời gian từ milisecond sang ngày
-    const daysLeft = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
-
-    return daysLeft >= 0 ? daysLeft : 0;
+  return daysLeft >= 0 ? daysLeft : 0;
 }
 
 function sortEvents(eventsList) {
-    const events = Array.from(eventsList.children);
+  const events = Array.from(eventsList.children);
 
-    events.sort((a, b) => {
-        const [dayA, monthA, yearA] = a.textContent.split(' - ')[0].split('/');
-        const [dayB, monthB, yearB] = b.textContent.split(' - ')[0].split('/');
+  events.sort((a, b) => {
+      const [dayA, monthA, yearA] = a.textContent.split(' - ')[0].split('/');
+      const [dayB, monthB, yearB] = b.textContent.split(' - ')[0].split('/');
 
-        const dateA = new Date(`${yearA}-${monthA}-${dayA}`);
-        const dateB = new Date(`${yearB}-${monthB}-${dayB}`);
+      const dateA = new Date(`${yearA}-${monthA}-${dayA}`);
+      const dateB = new Date(`${yearB}-${monthB}-${dayB}`);
 
-        return dateA - dateB;
-    });
+      return dateA - dateB;
+  });
 
-    // Xóa danh sách hiện tại và thêm lại các sự kiện đã sắp xếp
-    eventsList.innerHTML = '';
-    events.forEach(event => eventsList.appendChild(event));
+  eventsList.innerHTML = '';
+  events.forEach(event => eventsList.appendChild(event));
 }
-document.getElementById("move-remind").style.top = "-100%"
+
+document.getElementById("move-remind").style.top = "-100%";
+
 function toggleremind() {
-    if (document.getElementById("move-remind").style.top == "-100%") {
-        document.getElementById("move-remind").style.top = "0%"
-        document.getElementById("toggleremind").innerHTML = `<img src="/img/tool_imgs/turn-back.png" style="width: 100%; height:100%">`
-    } else {
-        document.getElementById("move-remind").style.top = "-100%"
-        document.getElementById("toggleremind").innerHTML = `<img src="/img/tool_imgs/edit.png" style="width: 100%; height:100%">`
-    }
+  const moveRemind = document.getElementById("move-remind");
+  const toggleRemindBtn = document.getElementById("toggleremind");
+
+  if (moveRemind.style.top === "-100%") {
+      moveRemind.style.top = "0%";
+      toggleRemindBtn.innerHTML = `<img src="/img/tool_imgs/turn-back.png" style="width: 100%; height:100%">`;
+  } else {
+      moveRemind.style.top = "-100%";
+      toggleRemindBtn.innerHTML = `<img src="/img/tool_imgs/edit.png" style="width: 100%; height:100%">`;
+  }
 }
+
+
 
 
 
