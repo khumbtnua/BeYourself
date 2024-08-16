@@ -58,8 +58,7 @@
 
         <div id="appcontai">
             <div id="contaibacktotimer">
-                <button onclick="movehome()"><img src="/img/tool_imgs/up.png"
-                                            style="width: 100%; height:100%"></button>
+                <button onclick="movehome()"><img src="/img/tool_imgs/up.png" style="width: 100%; height:100%"></button>
             </div>
             <div id="contai">
                 <div class="child i1">
@@ -96,11 +95,23 @@
                                 </div>
                                 <div>
                                     <label for="subject">Môn:</label>
-                                    <input type="text" id="subject" placeholder="Nhập môn học" required>
-                                </div>
-                                <div>
-                                    <label for="notes">Ghi Chú:</label>
-                                    <input type="text" id="notes" placeholder="Nhập ghi chú"></input>
+                                    <select id="subject" class="subject">
+                                        <option value=""></option>
+                                        <option value="Toán">Toán</option>
+                                        <option value="Vật Lý">Vật Lý</option>
+                                        <option value="Hoá Học">Hoá Học</option>
+                                        <option value="Sinh Học">Sinh Học</option>
+                                        <option value="Tin Học">Tin Học</option>
+                                        <option value="Ngữ Văn">Ngữ Văn</option>
+                                        <option value="Lịch Sử">Lịch Sử</option>
+                                        <option value="Địa Lí">Địa Lí</option>
+                                        <option value="Tiếng Anh">Tiếng Anh</option>
+                                        <option value="Công Nghệ">Công Nghệ</option>
+                                        <option value="GDTC">GDTC</option>
+                                        <option value="GDĐP">GDĐP</option>
+                                        <option value="GDQP-AN">GDQP-AN</option>
+                                        <option value="HĐTN">HĐTN</option>
+                                    </select>
                                 </div>
                                 <button id="btn-addremind" type="submit">Thêm nhắc nhở</button>
                             </form>
@@ -113,7 +124,7 @@
                 <div class="child i3">
                     <div id="incompleteNotesCount">
                         <div id="incompleteNotesCountDiv">
-                            <h2>Bài tập sắp tới:  </h2> <span id="incompleteCount">0</span>
+                            <h2>Bài tập sắp tới: </h2> <span id="incompleteCount">0</span>
                         </div>
                         <div id="contai-incompleteNotesContainer">
                             <div id="incompleteNotesContainer"></div>

@@ -386,11 +386,24 @@ function generateTimetableRows() {
 
         for (let j = 0; j < 7; j++) {
             const dayCell = document.createElement('td');
-            if (i > 0) {
-                const eventInput = document.createElement('input');
-                eventInput.type = 'text';
-                eventInput.placeholder = 'Môn học';
-                dayCell.appendChild(eventInput);
+            if (i > 0) { 
+                dayCell.innerHTML=`<select class="subject">
+                                  <option value=""></option>
+                                  <option value="Toán">Toán</option>
+                                  <option value="Vật Lý">Vật Lý</option>
+                                  <option value="Hoá Học">Hoá Học</option>
+                                  <option value="Sinh Học">Sinh Học</option>
+                                  <option value="Tin Học">Tin Học</option>
+                                  <option value="Ngữ Văn">Ngữ Văn</option>
+                                  <option value="Lịch Sử">Lịch Sử</option>
+                                  <option value="Địa Lí">Địa Lí</option>
+                                  <option value="Tiếng Anh">Tiếng Anh</option>
+                                  <option value="Công Nghệ">Công Nghệ</option>
+                                  <option value="GDTC">GDTC</option>
+                                  <option value="GDĐP">GDĐP</option>
+                                  <option value="GDQP-AN">GDQP-AN</option>
+                                  <option value="HĐTN">HĐTN</option>
+                                  </select>`;
             }
             tr.appendChild(dayCell);
         }
@@ -404,7 +417,7 @@ document.getElementById('saveTimetable').addEventListener('click', () => {
 
     rows.forEach(row => {
         const time = row.children[0].querySelector('input')?.value || '';
-        const events = Array.from(row.children).slice(1).map(cell => cell.querySelector('input')?.value || '');
+        const events = Array.from(row.children).slice(1).map(cell => cell.querySelector('select')?.value || '');
         if (time) {
             timetable.push({ time, events });
         }
@@ -691,7 +704,6 @@ document.getElementById('eventForm').addEventListener('submit', function (event)
 
   const eventDateInput = document.getElementById('eventDate').value;
   const subjectInput = document.getElementById('subject').value;
-  const notesInput = document.getElementById('notes').value;
 
   if (eventDateInput && subjectInput) {
       const [year, month, day] = eventDateInput.split('-');
@@ -705,7 +717,7 @@ document.getElementById('eventForm').addEventListener('submit', function (event)
       const editingEvent = document.querySelector('.editing');
       if (editingEvent) {
           // Cập nhật sự kiện hiện tại với giá trị mới
-          editingEvent.innerHTML = `<h1>${subjectInput}</h1><h3>${notesInput ? `${notesInput}` : ""}</h3><h2>${formattedDate}</h2> <h2>${daysLeft} ngày nữa</h2><div class="event-controls">
+          editingEvent.innerHTML = `<h1>${subjectInput}</h1><h2>${formattedDate}</h2><h2>${daysLeft} ngày nữa</h2><div class="event-controls">
                   <button class="edit-btn"><img src="/img/tool_imgs/edit.png" style="width: 100%; height:100%"></button>
                   <button class="delete-btn"><img src="/img/tool_imgs/delete.png" style="width: 100%; height:100%"></button>
               </div>`;
@@ -719,7 +731,7 @@ document.getElementById('eventForm').addEventListener('submit', function (event)
           // Tạo một sự kiện mới nếu không có sự kiện nào đang được chỉnh sửa
           const newEvent = document.createElement('li');
           newEvent.classList.add('event-item');
-          newEvent.innerHTML = `<h1>${subjectInput}</h1><h3>${notesInput ? `${notesInput}` : ""}</h3><h2>${formattedDate}</h2> <h2>${daysLeft} ngày nữa</h2><div class="event-controls">
+          newEvent.innerHTML = `<h1>${subjectInput}</h1><h2>${formattedDate}</h2><h2>${daysLeft} ngày nữa</h2><div class="event-controls">
                   <button class="edit-btn"><img src="/img/tool_imgs/edit.png" style="width: 100%; height:100%"></button>
                   <button class="delete-btn"><img src="/img/tool_imgs/delete.png" style="width: 100%; height:100%"></button>
               </div>`;
@@ -749,7 +761,6 @@ function addEventControlListeners(eventElement) {
   // Thêm sự kiện khi click vào nút Chỉnh sửa
   eventElement.querySelector('.edit-btn').addEventListener('click', function() {
     document.getElementById('subject').value = eventElement.querySelector("h1").textContent;
-    document.getElementById('notes').value = eventElement.querySelector("h3").textContent;
     const formattedDate = eventElement.querySelector("h2").textContent;
     const [day, month, year] = formattedDate.split('/');
     document.getElementById('eventDate').value = `${year}-${month}-${day}`;
