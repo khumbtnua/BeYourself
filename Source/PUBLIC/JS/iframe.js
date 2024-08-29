@@ -264,13 +264,18 @@ function checkSaveUni(arr, slugData) {
 document.querySelectorAll(".commentcontai").forEach((e) => {
   e.style.display = "none"
 })
+
 document.querySelectorAll(".commenttile").forEach((item) => {
   item.addEventListener("click", function () {
     const comment = item.nextElementSibling;
+    const arrow = item.querySelector(".dropdowncommentimg")
+    arrow.style.transform="rotate(0)";
     if (comment.style.display == "block") {
-      comment.style.display = "none"
+      comment.style.display = "none";
+      arrow.style.transform="rotate(0)";
     } else {
       comment.style.display = "block"
+      arrow.style.transform="rotate(-180deg)";
     }
   })
 })
