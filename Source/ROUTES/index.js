@@ -6,11 +6,36 @@ const userController = require("../APP/CONTROLLERS/UserController");
 const registerController = require("../APP/CONTROLLERS/RegisterController");
 const account = require("../APP/MIDDLEWARE/Account");
 const avatar = require("../APP/MIDDLEWARE/Avatar");
+const checkRoute = require("../APP/MIDDLEWARE/Route");
 const validation = require("../APP/MIDDLEWARE/Validation");
 const passport = require("passport");
 function route(app) {
-  app.get("/createnewpass", loginController.createnewpassword);
-  app.post("/createnewpass", loginController.savenewpassword);
+  app.post("/delete", account.isLogin, userController.deleteUni);
+  app.get("/history/:slug", account.isLogin, checkRoute.getCollege);
+  app.post("/save", account.isLogin, userController.saveUni);
+  app.post(
+    "/save/pomodoroBackground",
+    account.isLogin,
+    userController.savePomoBg
+  );
+  app.get(
+    "/save/pomodoroBackground",
+    account.isLogin,
+    userController.getPomoBg
+  );
+  app.post("/result/holland", account.isLogin, userController.testResult);
+  app.post("/result/mbti", account.isLogin, userController.testResult);
+  app.get(
+    "/createnewpass/:slug",
+    checkRoute.checkRoute,
+    loginController.createnewpassword
+  );
+  app.post(
+    "/createnewpass/:slug",
+    validation.validateForgotpass,
+    validation.handleValidationErrorsForgotPass,
+    loginController.savenewpassword
+  );
   app.post("/uploadavatar", avatar.checkAvatar, userController.avatar);
   app.post("/feedback", loginController.postfeedback);
   app.get("/login/forgetpassword", loginController.forgotpassword);
@@ -25,10 +50,19 @@ function route(app) {
     registerController.register
   );
   app.get("/university", account.isLogin, universityController.university);
-  app.get("/university/:slug", universityController.show);
+  app.get(
+    "/university/:slug",
+    account.isLoginComment,
+    universityController.show
+  );
   app.get("/test", account.isLogin, testRouter);
   app.get("/story", account.isLogin, homeRouter);
-  app.post("/changepass", loginController.changepassword);
+  app.post(
+    "/changepass",
+    validation.validateChangepass,
+    validation.handleValidationErrorsChangePass,
+    loginController.changepassword
+  );
   app.get("/", account.isLogin, homeRouter);
   app.post("/", account.isLogin, homeRouter);
   app.get(

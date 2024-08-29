@@ -12,6 +12,7 @@ var iframe = document.getElementById("iframedetail");
 var popsearch = document.getElementById("pop-search");
 var popcontaisearch = document.getElementById("pop-contai-search");
 var contaisearch = document.getElementById("contai-search");
+const socket = io("http://localhost:5500", { path: "/socket.io" });
 
 window.addEventListener("load", function () {
   renderCollege(universityData);
@@ -81,30 +82,28 @@ searchInput.addEventListener("keyup", function (e) {
     }
   }, 1000);
 });
-function hidesearchin(){
+function hidesearchin() {
   if (window.innerWidth <= 850) {
     contaisearch.removeChild(searchInput);
-  }
-  else{
+  } else {
     contaisearch.appendChild(searchInput);
   }
-} 
+}
 window.addEventListener("resize", hidesearchin);
 hidesearchin();
-var c =0;
+var c = 0;
 function openpop() {
-  c=c+1;
-  if (c%2==0) {
+  c = c + 1;
+  if (c % 2 == 0) {
     popsearch.classList.remove("active");
     setTimeout(function () {
-    popsearch.classList.add("hide");
+      popsearch.classList.add("hide");
     }, 200);
-  }
-  else{
+  } else {
     popsearch.classList.remove("hide");
     setTimeout(function () {
-    popsearch.classList.add("active");
-    popcontaisearch.appendChild(searchInput);
+      popsearch.classList.add("active");
+      popcontaisearch.appendChild(searchInput);
     }, 1);
   }
 }
@@ -126,18 +125,38 @@ function renderCollege(data) {
   collegeContainer.innerHTML = htmls.join("");
 }
 
-
 function detail(imgElement) {
   var slug1 = imgElement.getAttribute("data-slug");
   slug = slug1;
   iframe.classList.remove("hide");
   iframe.src = `http://localhost:5500/university/${slug}`;
-  iframe.onload = function () {
-    var constmodeValue = localStorage.getItem("mode");
-    if (constmodeValue === "light") {
-      iframe.contentWindow.postMessage({ action: "light" }, "*");
-    } else if (constmodeValue === "dark") {
-      iframe.contentWindow.postMessage({ action: "dark" }, "*");
-    }
-  };
+  var constmodeValue = localStorage.getItem("mode");
+  if (constmodeValue === "light") {
+    setTimeout(function () {
+      iframe.contentWindow.postMessage(
+        { action: "light", univerSlug: slug },
+        "*"
+      );
+    }, 1000);
+  } else if (constmodeValue === "dark") {
+    setTimeout(function () {
+      iframe.contentWindow.postMessage(
+        { action: "dark", univerSlug: slug },
+        "*"
+      );
+    }, 1000);
+  }
 }
+
+window.addEventListener("load", function () {
+  var urlParams = new URLSearchParams(window.location.search);
+  var slugSave = urlParams.get("slug");
+  if (slugSave) {
+    var UniverContainer = document.querySelector(
+      `.sch[data-slug="${slugSave}"]`
+    );
+    detail(UniverContainer);
+    const urlWithoutSlug = window.location.origin + window.location.pathname;
+    history.replaceState(null, "", urlWithoutSlug);
+  }
+});

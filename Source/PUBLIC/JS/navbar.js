@@ -6,8 +6,8 @@ var logoutimg = document.getElementById("logoutimg");
 var themeimg = document.getElementById("themeimg");
 var autoimg = document.getElementById("autoimg");
 var turtoimg = document.getElementById("turtoimg");
-var savedimg = document.getElementById("savedimg")
-var resultimg = document.getElementById("resultimg")
+var savedimg = document.getElementById("savedimg");
+var resultimg = document.getElementById("resultimg");
 var mode = document.getElementById("mode-link");
 var theme = document.querySelector("#theme-link");
 var header = document.getElementById("header-link");
@@ -138,6 +138,19 @@ function changeTheme() {
     mode.href = "/mode-light.css";
     modeValue = "light";
   }
+
+  //History Page
+  if (theme.getAttribute("href") === "/history-light.css") {
+    theme.href = "/history-dark.css";
+    header.href = "/header-dark.css";
+    mode.href = "/mode-dark.css";
+    modeValue = "dark";
+  } else if (theme.getAttribute("href") === "/history-dark.css") {
+    theme.href = "/history-light.css";
+    header.href = "/header-light.css";
+    mode.href = "/mode-light.css";
+    modeValue = "light";
+  }
   //detail uni page
   if (iframe === null) {
   } else {
@@ -168,8 +181,8 @@ function changeMode(modeValue) {
     story.forEach((e) => {
       e.src = "/img/navbar_imgs/black_imgs/story_black.png";
     });
-    resultimg.src="/img/tool_imgs/resultset2.png"
-    savedimg.src="/img/tool_imgs/saved2.png"
+    resultimg.src = "/img/tool_imgs/resultset2.png";
+    savedimg.src = "/img/tool_imgs/saved2.png";
     logoutimg.src = "/img/tool_imgs/logout2.png";
     themeimg.src = "/img/tool_imgs/theme2.png";
     autoimg.src = "/img/tool_imgs/auto2.png";
@@ -201,8 +214,8 @@ function changeMode(modeValue) {
     story.forEach((e) => {
       e.src = "/img/navbar_imgs/white_imgs/story_white.png";
     });
-    resultimg.src="/img/tool_imgs/resultset1.png"
-    savedimg.src="/img/tool_imgs/saved1.png"
+    resultimg.src = "/img/tool_imgs/resultset1.png";
+    savedimg.src = "/img/tool_imgs/saved1.png";
     logoutimg.src = "/img/tool_imgs/logout1.png";
     themeimg.src = "/img/tool_imgs/theme1.png";
     autoimg.src = "/img/tool_imgs/auto1.png";
@@ -248,8 +261,8 @@ var movesetting = 0;
 var move = 0;
 var contaiexpand = document.getElementById("contai-page-expand");
 var pageexpand = document.querySelectorAll(".page-expand");
-var savdepage = document.getElementById("savedpage")
-var resultspages = document.getElementById("resultspage")
+var savdepage = document.getElementById("savedpage");
+var resultspages = document.getElementById("resultspage");
 pageexpand.forEach((e) => {
   e.style.display = "none";
 });
@@ -277,17 +290,50 @@ function openset() {
     overlay.style.backgroundColor = "rgb(50, 50, 50, 0.7)";
   }, 10);
 }
-//results
-function openresults() {
-  resultspages.style.display = "block";
-  movesetting = movesetting - 100;
-  moveset();
-}
+
 //saved
 function opensaved() {
+  getCollegeData();
   savdepage.style.display = "block";
   movesetting = movesetting - 100;
   moveset();
+}
+
+async function getCollegeData() {
+  fetch("/history/university")
+    .then((res) => res.json())
+    .then((data) => showCollegeData(data, null))
+    .catch((err) => showCollegeData(null, "error"));
+}
+
+var saveUniContainer = document.createElement("div");
+saveUniContainer.classList.add("saveUniContainer");
+function showCollegeData(data, msg) {
+  if (msg === "error") {
+    saveUniContainer.innerHTML = "";
+  } else {
+    var universityData = data;
+    var universitiesObj = universityData[0];
+    var universitiesArr = universitiesObj.universities;
+    saveUniContainer.innerHTML = "";
+    universitiesArr.forEach((university) => {
+      var uniContainer = document.createElement("div");
+      uniContainer.classList.add("uniContainer");
+      var iElement = document.createElement("img");
+      iElement.src = university.img;
+      iElement.classList.add("uniImg");
+      var aElement = document.createElement("a");
+      var pElement = document.createElement("p");
+      pElement.textContent = university.name;
+      aElement.href = `http://localhost:5500/university?slug=${university.slug}`;
+      pElement.classList.add("uniName");
+      uniContainer.appendChild(iElement);
+      uniContainer.appendChild(pElement);
+      aElement.appendChild(uniContainer);
+      saveUniContainer.appendChild(aElement);
+    });
+  }
+  document.getElementById("savedpage").appendChild(saveUniContainer);
 }
 //change password
 function passclick() {
@@ -337,7 +383,6 @@ function clicklay() {
   deletes(feedpage);
   deletes(avatarpage);
   deletes(savdepage);
-  deletes(resultspages);
 }
 
 // picavatar
@@ -372,6 +417,18 @@ fileInput.addEventListener("change", () => {
   const files = fileInput.files;
   if (files.length) {
     handleFiles(files);
+  }
+});
+
+window.addEventListener("load", function () {
+  var alertInfo = document.querySelectorAll(".alert");
+  if (alertInfo) {
+    this.setTimeout(function () {
+      alertInfo.forEach(function (alertMsg) {
+        alertMsg.classList.remove("show");
+        alertMsg.classList.add("hide");
+      });
+    }, 30000);
   }
 });
 

@@ -1,8 +1,17 @@
 const multer = require("multer");
 const storage = multer.diskStorage({
-  destination: `D:/Downloads/be_yourself-main/be_yourself-main/img/useravatar_imgs`,
+  destination: `D:/project/Be-Yourself/BeYourself/img/useravatar_imgs`,
   filename: function (req, file, cb) {
-    cb(null, file.fieldname + ".png");
+    cb(
+      null,
+      file.fieldname +
+        (req.session && req.session.username
+          ? req.session.username
+          : req.user && req.user.name
+          ? req.user.name.replace(/\s+/g, "")
+          : "defaultName") +
+        ".png"
+    );
   },
 });
 const upload = multer({ storage: storage });

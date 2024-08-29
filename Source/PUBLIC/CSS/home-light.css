@@ -629,10 +629,11 @@ cursor: pointer;
     font-size: 20px;
     padding: 0;
     font-weight: 100;
-    background-color: rgb(0, 0, 0, 0.1);
+    background-color: rgb(100, 100, 100);
     border-radius: 5px;
     padding: 2.5px 5px;
     margin: 0 0 5px;
+    width: fit-content;
 }
 .event-item h2{
     font-size: 15px;

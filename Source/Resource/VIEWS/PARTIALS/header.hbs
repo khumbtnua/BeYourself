@@ -109,14 +109,16 @@
         </div>
         <div class="line" onclick="opensaved()">
           <img src="/img/tool_imgs/saved2.png" id="savedimg" />
-          <h3>Đã lưu</h3>
+          <h3>Trường đã lưu</h3>
           <img src="/img/tool_imgs/lauch2.png" class="lauch" />
         </div>
-        <div class="line" onclick="openresults()">
+        <a href="/history/test">
+          <div class="line">
           <img src="/img/tool_imgs/resultset2.png" id="resultimg" />
           <h3>Kết quả trắc nghiệm</h3>
           <img src="/img/tool_imgs/lauch2.png" class="lauch" />
         </div>
+        </a>
       </div>
       <div class="setting">
         <div class="line">
@@ -176,26 +178,10 @@
         </div>
       </div>
     </div>
-    <div class="page-expand" id="resultspage">
-      <div class="line2">
-        <img src="/img/tool_imgs/back2.png" class="backimg" onclick="back(resultspages)" />
-        <h3>Kết quả trắc nghiệm</h3>
-      </div>
-      <div class="setting">
-        <div class="line">
-          <h3>Holland</h3>
-          <img src="/img/tool_imgs/lauch2.png" class="lauch" />
-        </div>
-        <div class="line">
-          <h3>MBTI</h3>
-          <img src="/img/tool_imgs/lauch2.png" class="lauch" />
-        </div>
-      </div>
-    </div>
     <div class="page-expand" id="savedpage">
       <div class="line2">
         <img src="/img/tool_imgs/back2.png" class="backimg" onclick="back(savedpage)" />
-        <h3>Đã lưu</h3>
+        <h3>Trường đã lưu</h3>
       </div>
     </div>
     <form action="/changepass" class="page-expand" id="passpage" method="POST">
@@ -205,6 +191,11 @@
       </div>
       <h4>Mật khẩu của bạn phải có tối thiểu 6 ký tự, đồng thời bao gồm cả chữ
         số, chữ cái và ký tự đặc biệt.</h4>
+    {{#each errorMsgChangePass}}
+        <div class="alert show showAlert">
+        <span class="msg">{{this}}</span>
+        </div>
+    {{/each}}
       <input type="password" placeholder="Mật khẩu hiện tại" name="oldpassword" id="oldpass" />
       <input type="password" placeholder="Mật khẩu mới" name="newpassword" id="newpass" />
       <button>Đổi mật khẩu</button>

@@ -495,11 +495,6 @@ overflow: hidden;
   white-space: pre-line;
   font-weight: 400;
 }
-.comment h4{
-  overflow: auto;
-  height: 100%;
-  white-space: pre-line;
-}
 .indicators {
   position: absolute;
   bottom: 15px;
@@ -541,7 +536,7 @@ overflow: hidden;
   height: 80vh;
   border-radius: 30px;
   text-align: center;
-  padding: 60px;
+  padding: 8vh;
   background: rgba(50, 50, 50, 0.3);
   backdrop-filter: blur(40px);
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);

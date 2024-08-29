@@ -437,7 +437,6 @@ Bằng cách kết hợp bốn cặp này, MBTI tạo ra 16 nhóm tính cách kh
   clickM += 1;
 }
 
-
 var allowClickM = 1;
 function createQuestionM() {
   if (iM === 1) {
@@ -955,11 +954,11 @@ function compareValueM(AA, AB, BA, BB, CA, CB, DA, DB) {
   if (AA.length < AB.length) {
     note = "I";
     noteA = "I";
-    Anote = Math.round(AB.length / (AB.length + AA.length) * 100) + "%";
+    Anote = Math.round((AB.length / (AB.length + AA.length)) * 100) + "%";
   } else if (AA.length > AB.length) {
     note = "E";
     noteA = "E";
-    Anote = Math.round(AA.length / (AB.length + AA.length) * 100) + "%";
+    Anote = Math.round((AA.length / (AB.length + AA.length)) * 100) + "%";
   } else if (AA.length === 0 && AB.length === 0) {
     note = "";
   }
@@ -967,11 +966,11 @@ function compareValueM(AA, AB, BA, BB, CA, CB, DA, DB) {
   if (BA.length < BB.length) {
     note += "N";
     noteB = "N";
-    Bnote = Math.round(BB.length / (BA.length + BB.length) * 100) + "%";
+    Bnote = Math.round((BB.length / (BA.length + BB.length)) * 100) + "%";
   } else if (BA.length > BB.length) {
     note += "S";
     noteB = "S";
-    Bnote = Math.round(BA.length / (BA.length + BB.length) * 100) + "%";
+    Bnote = Math.round((BA.length / (BA.length + BB.length)) * 100) + "%";
   } else if (BA.length === 0 && BB.length === 0) {
     note += "";
   }
@@ -979,11 +978,11 @@ function compareValueM(AA, AB, BA, BB, CA, CB, DA, DB) {
   if (CA.length < CB.length) {
     note += "F";
     noteC = "F";
-    Cnote = Math.round(CB.length / (CA.length + CB.length) * 100) + "%";
+    Cnote = Math.round((CB.length / (CA.length + CB.length)) * 100) + "%";
   } else if (CA.length > CB.length) {
     note += "T";
     noteC = "T";
-    Cnote = Math.round(CA.length / (CA.length + CB.length) * 100) + "%";
+    Cnote = Math.round((CA.length / (CA.length + CB.length)) * 100) + "%";
   } else if (CA.length === 0 && CB.length === 0) {
     note += "";
   }
@@ -991,26 +990,64 @@ function compareValueM(AA, AB, BA, BB, CA, CB, DA, DB) {
   if (DA.length < DB.length) {
     note += "P";
     noteD = "P";
-    Dnote = Math.round(DB.length / (DA.length + DB.length) * 100) + "%";
+    Dnote = Math.round((DB.length / (DA.length + DB.length)) * 100) + "%";
   } else if (DA.length > DB.length) {
     note += "J";
     noteD = "J";
-    Dnote = Math.round(DA.length / (DA.length + DB.length) * 100) + "%";
+    Dnote = Math.round((DA.length / (DA.length + DB.length)) * 100) + "%";
   } else if (DA.length === 0 && DB.length) {
     note += "";
   }
 
   aright();
-  createFinalPageM(note, Anote, Bnote, Cnote, Dnote, noteA, noteB, noteC, noteD);
+  var type = "Mbti";
+  sendResultToServerMbti({
+    note,
+    type,
+    Anote,
+    Bnote,
+    Cnote,
+    Dnote,
+    noteA,
+    noteB,
+    noteC,
+    noteD,
+  });
+  createFinalPageM(
+    note,
+    Anote,
+    Bnote,
+    Cnote,
+    Dnote,
+    noteA,
+    noteB,
+    noteC,
+    noteD
+  );
+}
+
+function sendResultToServerMbti(result) {
+  fetch("/result/mbti", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(result),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("Success:", data);
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
 }
 let currentSlide = 0;
 function createFinalPageM(result, A, B, C, D, noteA, noteB, noteC, noteD) {
-  var contentcomment = document.createElement("h3")
+  var contentcomment = document.createElement("h3");
   switch (result) {
     case "ISTJ": {
       contentcomment.innerHTML = `Có thể bạn thuộc nhóm ISTJ!
-
-      <img src="/img/mbti/ISTJ.svg">
       
       Với tính cách ISTJ, họ là những người chủ động tìm kiếm các công việc có kỹ năng thực tiễn và sự ổn định. Công việc đòi hỏi chịu trách nhiệm và sự cẩn thận là những yếu tố hoàn hảo cho họ.
       
@@ -1047,12 +1084,10 @@ Luật sư: ISTJ có tính cẩn thận và khả năng tư duy phân tích, đi
 Kiểm toán viên: Tính trung thực, tỉ mỉ và khả năng phân tích của ISTJ làm cho họ phù hợp với vai trò kiểm toán viên.
 
 Danh sách này chỉ đưa ra một số ví dụ và không đại diện cho tất cả các ngành nghề phù hợp. Quan trọng nhất là tìm hiểu sở thích, kỹ năng và giá trị cá nhân của bản thân để lựa chọn một sự nghiệp phù hợp nhất.`;
-break;    
-}
+      break;
+    }
     case "ISFJ": {
       contentcomment.innerHTML = `Có thể bạn thuộc nhóm ISFJ!
-
-      <img src="/img/mbti/ISFJ.svg">
       
       Sự quan tâm và chăm sóc người khác:
 Ngành Y tế: ISFJ thường có sự quan tâm và sẵn lòng chăm sóc người khác, vì vậy các lĩnh vực như y tá, điều dưỡng, hoặc làm việc trong các cơ sở y tế có thể thích hợp.
@@ -1100,12 +1135,10 @@ Chuyên viên tư vấn: ISFJ có xu hướng tư vấn và hỗ trợ người
 
 Lưu ý rằng danh sách này chỉ là một số ví dụ và không phải là hạn chế. Mỗi người ISFJ có thể có sự kết hợp độc đáo của các đặc điểm và sở thích riêng, do đó có thể tìm thấy công việc phù hợp với cá nhân của mình.
 `;
-break;
+      break;
     }
     case "INFJ": {
       contentcomment.innerHTML = `Có thể bạn thuộc nhóm INFJ!
-
-      <img src="/img/mbti/INFJs.svg">
       
       INFJ thích tạo mối quan hệ mới và khám phá môi trường làm việc của người khác. Mặc dù ưa thích làm việc độc lập, họ cũng đánh giá cao việc xây dựng các kết nối với mọi người theo thời gian và có thể phát triển mạnh mẽ trong công ty với những cá nhân cũng đang cố gắng hình thành mối quan hệ với những người xung quanh.
 
@@ -1130,12 +1163,10 @@ Quan hệ công chúng và truyền thông: INFJ có khả năng tạo mối qua
 
 Y tế và chăm sóc: INFJ thường có sự quan tâm và chăm sóc đối với người khác. Các ngành y tế, chăm sóc sức khỏe, tâm lý học, công việc xã hội, hoặc làm việc trong các tổ chức phi lợi nhuận liên quan đến sức khỏe và chăm sóc có thể phù hợp với INFJ. INFJ có khả năng lắng nghe hiểu về nhu cầu của người khác, có thể tạo môi trường hỗ trợ.
 `;
-break;
+      break;
     }
     case "INTJ": {
       contentcomment.innerHTML = `Có thể bạn thuộc nhóm INTJ!
-
-      <img src="/img/mbti/INTJs.svg">
       
       INTJ thường chọn lựa nghề nghiệp trong những lĩnh vực mà họ hiểu rõ. Một ngành công việc phổ biến cho họ thường liên quan đến khoa học hoặc công nghệ, nhưng thực tế họ có thể thể hiện mình ở nhiều ngành khác, đặc biệt là những nơi yêu cầu trí tuệ, tư duy sáng tạo và sự thông minh (như luật, điều tra, hoặc các ngành chuyên ngành). Các INTJ thường ít quan tâm đến vị trí quản lý, họ chỉ đảm nhận vai trò này nếu cần để tăng sức mạnh và tự do hành động, không phải vì họ yêu thích quản lý con người.
 
@@ -1165,12 +1196,10 @@ Quản lý dự án: Với tính cách tổ chức và định hướng vào m�
 
 Chuyên gia tư vấn/Phân tích: INTJ có khả năng nắm bắt các khía cạnh phức tạp của vấn đề và tư duy logic để phân tích.
 `;
-break;    
-}
+      break;
+    }
     case "ISTP": {
       contentcomment.innerHTML = `Có thể bạn thuộc nhóm ISTP!
-
-      <img src="/img/mbti/ISTPs.svg">
        
 Điểm nổi bật đầu tiên của ISTP là tính tò mò và khao khát khám phá chi tiết thực tế và kiến thức. Họ thích tìm hiểu cách mọi thứ hoạt động và áp dụng chúng để giải quyết các vấn đề phức tạp. Hướng tiếp cận rõ ràng, cụ thể là đặc trưng của họ và công việc nên tập trung vào điều này.
 
@@ -1195,12 +1224,10 @@ Lập trình viên: Với tính tò mò và khả năng tư duy logic, ISTP có 
 Chuyên gia kỹ thuật hoặc tư vấn: ISTP có thể sử dụng kiến thức và kỹ năng kỹ thuật của mình để trở thành chuyên gia hoặc tư vấn trong lĩnh vực cụ thể như công nghệ thông tin, xây dựng hoặc thiết kế sản phẩm.
 
 Thợ mộc hoặc thợ làm mẫu: ISTP có khả năng thực hiện công việc thủ công chi tiết và tạo ra các sản phẩm vật lý. Công việc như thợ mộc, thợ làm mẫu hoặc nghệ sĩ chế tạo có thể phù hợp với sự sáng tạo và kỹ năng thực hành của ISTP.`;
-break;    
-}
+      break;
+    }
     case "ISFP": {
       contentcomment.innerHTML = `Có thể bạn thuộc nhóm ISFP!
-
-      <img src="/img/mbti/ISFPs.svg">
       
       ISFP là những cá nhân đặc biệt, hướng tới một sự nghiệp thay vì chỉ đơn thuần một công việc. Họ khát khao xây dựng một con đường sự nghiệp để thể hiện những giá trị cốt lõi bên trong, chứ không chỉ làm việc với mục tiêu nhàn hạ. Tích hợp với tình yêu đối với hiện tại và khả năng thưởng thức cuộc sống, ISFP không phù hợp với môi trường làm việc quá sôi động. Họ đòi hỏi không gian cá nhân và tự do để khám phá khả năng nhận thức tinh tế của mình. Bằng việc được tự do tận dụng tài năng thiên phú, họ sẽ khám phá và phát triển bản chất nghệ sĩ xuất sắc bên trong. Thực tế cho thấy hầu hết các nghệ sĩ nổi tiếng trên thế giới thuộc nhóm ISFP.
 
@@ -1223,12 +1250,10 @@ Du lịch và dịch vụ khách hàng: ISFP thường thích khám phá và tr�
 Thiết kế nội thất và trang trí: ISFP có khả năng nhạy bén với màu sắc, không gian và tỷ lệ. Công việc như kiến trúc sư, thiết kế nội thất, trang trí sân khấu hoặc trang trí nội thất có thể phù hợp với ISFP.
 
 Lưu ý rằng danh sách này chỉ là một số ví dụ và không đầy đủ. Quan trọng hơn, ISFP nên tìm hiểu và phát triển những kỹ năng và sở thích của mình để chọn công việc phù hợp và mang đến sự hài lòng và thành công.`;
-break;    
-}
+      break;
+    }
     case "INFP": {
       contentcomment.innerHTML = `Có thể bạn thuộc nhóm INFP!
-
-      <img src="/img/mbti/INFPs.svg">
       
       Hầu hết các người thuộc nhóm tính cách INFP thường mang trong mình những nguyên tắc và giá trị sâu sắc. Họ tận tụy trong việc bảo vệ những ý tưởng mà họ kính trọng và tận tâm với cả sự nghiệp và bản thân mình. Điều này là một phần quan trọng trong nhiều ngành nghề phù hợp với INFP.
 
@@ -1249,12 +1274,10 @@ Công việc xã hội: INFPs thường quan tâm đến vấn đề xã hội v
 Nhà văn hoặc biên tập viên: INFPs thường có khả năng sáng tạo và cảm nhận sâu sắc về các giá trị và tính cách con người. Công việc như viết sách, biên tập nội dung hoặc làm việc trong lĩnh vực truyền thông có thể phù hợp với sở thích của INFPs.
 
 Lĩnh vực nghệ thuật: Với sự sáng tạo và cảm nhận sâu sắc, INFPs có thể phù hợp với lĩnh vực nghệ thuật như nghệ sĩ hội họa, diễn viên, nhạc sĩ, nhà thiết kế đồ họa, hoặc người làm thiết kế thời trang.`;
-break;    
-}
+      break;
+    }
     case "INTP": {
       contentcomment.innerHTML = `Có thể bạn thuộc nhóm INFP!
-
-      <img src="/img/mbti/INTP.svg">
       
       Tính cách INTP có một số liên quan đến sự nghiệp, bao gồm:
 
@@ -1285,12 +1308,10 @@ Nghệ sĩ/Âm nhạc: INTP cũng có khả năng sáng tạo và tư duy nghệ
 Tư vấn/Truyền thông: Với khả năng phân tích và suy luận, INTP có thể làm việc trong lĩnh vực tư vấn và truyền thông. Họ có thể đưa ra các quan điểm và ý kiến phân tích sắc bén trong việc giải quyết vấn đề và tư vấn cho người khác.
 
 Tuy nhiên, cần lưu ý rằng sự nghiệp phù hợp với tính cách INTP không chỉ dựa vào tính cách mà còn phụ thuộc vào sở thích cá nhân và kỹ năng phát triển. Mỗi người INTP có thể có sự ưu tiên và hướng nghiệp riêng.`;
-break;    
-}
+      break;
+    }
     case "ESTP": {
       contentcomment.innerHTML = `Có thể bạn thuộc nhóm ESTP!
-
-      <img src="/img/mbti/ESTPs.svg">
       
       Khi đề cập đến lựa chọn nghề nghiệp, ESTP có một danh sách đa dạng phong phú để khám phá. Tính cách này thích đưa ra quyết định nhanh chóng, làm cho họ trở thành ứng cử viên xuất sắc cho các vai trò yêu cầu tư duy nhanh nhạy. Điều này càng được củng cố bởi thực tế rằng ESTP sống trong hiện tại và ưa thích thấy kết quả của họ ngay lập tức thay vì suy nghĩ về tương lai. Sức hấp dẫn của họ khả năng giao tiếp xuất sắc giúp họ tạo nên một lợi thế quan trọng.
 
@@ -1321,12 +1342,10 @@ Quân đội và lực lượng an ninh: Khả năng quản lý tình huống, �
 Giáo dục thể chất: Với sự đam mê với thể thao và hoạt động thể chất, ESTP có thể trở thành giáo viên thể dục hoặc huấn luyện viên thể thao.
 
 Tuy nhiên, hãy nhớ rằng mỗi người ESTP là một cá nhân riêng biệt có thể có sự kết hợp khác nhau của đặc điểm và sở thích. Việc chọn nghề nghiệp phù hợp còn phụ thuộc vào sự hài hòa giữa cá nhân cũng như môi trường làm việc.`;
-break;    
-}
+      break;
+    }
     case "ESFP": {
       contentcomment.innerHTML = `Có thể bạn thuộc nhóm ESFP!
-
-      <img src="/img/mbti/ESFPs.svg">
 
       Việc giao tiếp với người khác đóng một vai trò vô cùng quan trọng đối với kiểu tính cách này, hầu hết các hướng sự nghiệp của ESFP đều dựa trên nhu cầu này. Thêm vào đó, tính cách của ESFP thường rất ngẫu hứng, họ không thích bị ràng buộc bởi lịch trình chặt chẽ, các nhiệm vụ có cấu trúc hay công việc đơn điệu và nhàm chán.
 
@@ -1355,12 +1374,10 @@ Dịch vụ y tế: Ngành y tế yêu cầu sự quan tâm đến ngươ�
 Nhà hàng và Nhà phê bình ẩm thực: ESFP có thể thể hiện sự sáng tạo và đam mê trong việc thử nghiệm các món ăn mới hoặc tạo ra các trải nghiệm ẩm thực mới mẻ.
 
 Phần mềm và Thiết kế trang web: Nếu có sự kết hợp giữa sự sáng tạo của ESFP và kỹ năng công nghệ, họ có thể thành công trong lĩnh vực thiết kế trang web hoặc phần mềm.`;
-break;    
-}
+      break;
+    }
     case "ENFP": {
       contentcomment.innerHTML = `Có thể bạn thuộc nhóm ENFP!
-
-      <img src="/img/mbti/ENFPs.svg">
 
       ENFP được vinh dự bởi khả năng đa năng của họ. Một ENFP có thể đạt được thành tựu ấn tượng trong nhiều lĩnh vực mà họ quan tâm. Tuy nhiên, họ dễ cảm thấy chán nản và thường không quá ưa thích công việc đòi hỏi chi tiết và lặp đi lặp lại. Họ tìm kiếm những công việc mang tính sáng tạo, cho phép họ tự do thể hiện ý tưởng mới hoặc làm việc theo nhóm. Họ không thích những mô hình hạn chế và những công việc đơn điệu.
 
@@ -1393,12 +1410,10 @@ Kinh doanh sáng tạo: Khởi nghiệp, quản lý dự án, quản lý sản p
 Lĩnh vực xã hội và Phi lợi nhuận: Công tác xã hội, quản lý dự án phi lợi nhuận, tổ chức sự kiện từ thiện.
 
 Công nghệ thông tin và Phát triển phần mềm: Thiết kế giao diện người dùng, phát triển ứng dụng, quản lý dự án công nghệ thông tin.`;
-break;    
-}
+      break;
+    }
     case "ENTP": {
       contentcomment.innerHTML = `Có thể bạn thuộc nhóm ENTP!
-
-      <img src="/img/mbti/ENTPs.svg">
 
       Trí thông minh của ENTP có thể đạt tới mức gây sự khâm phục, thậm chí khiến người khác cảm thấy ái ngại. Với sự kết hợp độc đáo giữa tính hướng ngoại (E), thiên hướng trí tuệ (NT) và tính linh hoạt (P), họ trở nên đặc biệt hiệu quả trong việc sử dụng và kết nối các ý tưởng.
 
@@ -1427,12 +1442,10 @@ Luật và Chính trị: ENTP có sự năng động và khả năng tham gia v�
 Giáo dục và Đào tạo: ENTP thường thích truyền đạt kiến thức và tạo ra sự khám phá. Các vai trò trong giảng dạy, huấn luyện, hoặc phát triển chương trình đào tạo có thể phù hợp với họ.
 
 Tư vấn và Nghiên cứu thị trường: Khả năng phân tích thông tin, giao tiếp tốt và sự tò mò của ENTP có thể giúp họ trong việc làm tư vấn hoặc nghiên cứu thị trường.`;
-break;    
-}
+      break;
+    }
     case "ESTJ": {
       contentcomment.innerHTML = `Có thể bạn thuộc nhóm ESTJ!
-
-      <img src="/img/mbti/ESTJs.svg">
 
       Thời gian dành riêng cho nội tâm được coi là một phần thưởng và nguồn động viên lớn sau khi hoàn thành công việc đối với ESTJ. Thậm chí, các hoạt động trong khoảnh khắc này phải có mục tiêu cụ thể.
 
@@ -1465,12 +1478,10 @@ Quân đội và Cảnh sát: ESTJ thường có khả năng lãnh đạo và tu
 Quản lý chuỗi cung ứng: Với khả năng quản lý tình huống và tập trung vào chi tiết, ESTJ có thể làm việc trong lĩnh vực quản lý chuỗi cung ứng.
 
 Ngành công nghiệp sản xuất: Trong ngành công nghiệp sản xuất, ESTJ có thể thích nghi tốt với quá trình sản xuất và quản lý hiệu suất.`;
-break;    
-}
+      break;
+    }
     case "ESFJ": {
-      contentcomment.innerHTML = `Có thể bạn thuộc nhóm ESFJ!
-
-      <img src="/img/mbti/ESFJs.svg">
+      contentcomment.innerHTML = `ESFJ
 
       Các ngành nghề phổ biến cho ESFJ thường liên quan đến ba đặc điểm chính: thực tế, lòng vị tha và tinh thần hòa đồng. Cách họ lựa chọn công việc thường phản ánh những đặc điểm này họ thường hướng ngoại và thực tế (SJ), và những đặc điểm này thường thúc đẩy họ chọn con đường sự nghiệp cụ thể.
 
@@ -1495,12 +1506,10 @@ Quản lý nguồn nhân lực: ESFJ có khả năng tương tác tốt vơ
 Nhân viên chăm sóc khách hàng hoặc khách sạn: ESFJ có khả năng giao tiếp tốt và quan tâm đến nhu cầu của khách hàng. Họ có thể làm việc trong lĩnh vực dịch vụ khách hàng hoặc quản lý khách sạn.
 
 Tư vấn, hỗ trợ tâm lý hoặc xã hội: ESFJ có khả năng đồng cảm và quan tâm đến cảm xúc và nhu cầu của người khác. Họ có thể làm việc trong lĩnh vực tư vấn, hỗ trợ tâm lý, hoặc tư vấn xã hội.`;
-break;    
-}
+      break;
+    }
     case "ENFJ": {
       contentcomment.innerHTML = `Có thể bạn thuộc nhóm ENFJ!
-
-      <img src="/img/mbti/ENFJ.svg">
 
       ENFJ cảm thấy hài lòng khi thực hiện những việc mà họ đam mê. Điều này giúp họ tương tác hiệu quả với các loại tính cách khác:
 
@@ -1532,12 +1541,10 @@ Từ thiện và Tình nguyện: ENFJ thường thích giúp đỡ cộng đồn
 
 Tùy thuộc vào sở thích, kỹ năng và mục tiêu cá nhân, ENFJ có thể phát triển sự nghiệp trong nhiều lĩnh vực khác nhau, với sự hướng dẫn, đồng cảm và tận tâm của họ.
 `;
-break;
+      break;
     }
     case "ENTJ": {
       contentcomment.innerHTML = `Có thể bạn thuộc nhóm ENTJ!
-
-      <img src="/img/mbti/ENTJs.svg">
 
       ENTJ được xác định bởi một số đặc điểm mà hầu hết mọi người tiếp xúc với họ đều có thể nhận ra: nghị lực, quyết tâm và khả năng lãnh đạo. Những đặc điểm này thường thúc đẩy ENTJ theo đuổi các ngành nghề cụ thể cũng giới hạn một phần lựa chọn sự nghiệp của họ. Tuy nhiên, họ không bao giờ cảm thấy hối tiếc về điều này.
 
@@ -1568,7 +1575,7 @@ Quảng cáo và Tiếp thị: Tính cách quyết đoán khả năng thúc đ�
 Y học và Quản lý y tế: Khả năng quản lý và tổ chức tốt của ENTJ có thể được áp dụng trong lĩnh vực y học và quản lý y tế.
 
 Giáo dục và Đào tạo: ENTJ thường thích làm việc với kiến thức có khả năng lãnh đạo, làm cho họ phù hợp với việc giảng dạy và đào tạo.`;
-break;
+      break;
     }
   }
   var screen = document.createElement("div");
@@ -1609,10 +1616,10 @@ break;
   buttonleft.onclick = function prevSlide() {
     showSlide(currentSlide - 1);
   };
-  console.log(noteA)
-  console.log(noteB)
-  console.log(noteC)
-  console.log(noteD)
+  console.log(noteA);
+  console.log(noteB);
+  console.log(noteC);
+  console.log(noteD);
   fourprocess(A, noteA);
   fourprocess(B, noteB);
   fourprocess(C, noteC);
@@ -1624,17 +1631,17 @@ function fourprocess(z, kq) {
   var processcontai = document.createElement("div");
   processcontai.classList.add("progress-container");
   var contentprocess = document.createElement("p");
-  contentprocess.innerHTML ="";
+  contentprocess.innerHTML = "";
   var leftw = document.createElement("label");
-  leftw.innerHTML ="";
+  leftw.innerHTML = "";
   var rightw = document.createElement("label");
-  rightw.innerHTML="";
-  var imgprocess= document.createElement("img");
+  rightw.innerHTML = "";
+  var imgprocess = document.createElement("img");
   var contenimgprocess = document.createElement("div");
   contenimgprocess.classList.add("contenimgprocess");
   switch (kq) {
     case "I": {
-      imgprocess.src="img/mbti/introverted.svg"
+      imgprocess.src = "img/mbti/introverted.svg";
       contentprocess.innerHTML = `Những người có xu hướng Hướng Nội (I) thường:
 
 - Tập trung vào thế giới nội tâm của mình
@@ -1644,12 +1651,12 @@ function fourprocess(z, kq) {
 - Suy nghĩ kỹ trước khi hành động
 - Chủ động khi điều đó quan trọng đối với họ
 - Tập trung vào một vài sở thích chuyên sâu`;
-      leftw.innerHTML = "Hướng nội (E)"
-      rightw.innerHTML = "<strong>Hướng ngoại (I)</strong>"
+      leftw.innerHTML = "Hướng nội (E)";
+      rightw.innerHTML = "<strong>Hướng ngoại (I)</strong>";
       break;
     }
     case "E": {
-      imgprocess.src="img/mbti/extraverted.svg"
+      imgprocess.src = "img/mbti/extraverted.svg";
       contentprocess.innerHTML = `Những người có xu hướng Hướng Ngoại (E) thường:
 
 - Tập trung vào thế giới bên ngoài
@@ -1659,13 +1666,13 @@ function fourprocess(z, kq) {
 - Hành động trước khi suy nghĩ thấu đáo
 - Sẵn sàng chủ động
 - Có nhiều sở thích đa dạng`;
-      leftw.innerHTML = "<strong>Hướng nội (E)</strong>"
-      rightw.innerHTML = "Hướng ngoại (I)"
+      leftw.innerHTML = "<strong>Hướng nội (E)</strong>";
+      rightw.innerHTML = "Hướng ngoại (I)";
       processcontai.classList.add("change");
       break;
     }
     case "N": {
-            imgprocess.src="/img/mbti/ntuitive.svg"
+      imgprocess.src = "/img/mbti/ntuitive.svg";
       contentprocess.innerHTML = `Những người có xu hướng Trực Giác (N) thường:
 
 - Tìm kiếm những ý tưởng mới
@@ -1675,13 +1682,13 @@ function fourprocess(z, kq) {
 - Thích một khung tổng thể và tự mình hoàn thiện
 - Tập trung vào các khái niệm, không phải ứng dụng thực tiễn
 - Tin vào cảm hứng`;
-      leftw.innerHTML = "<strong>Trực giác (N)</strong>"
-      rightw.innerHTML = "Giác quan (S)"
+      leftw.innerHTML = "<strong>Trực giác (N)</strong>";
+      rightw.innerHTML = "Giác quan (S)";
       processcontai.classList.add("change");
       break;
     }
     case "S": {
-            imgprocess.src="/img/mbti/Sensing.svg"
+      imgprocess.src = "/img/mbti/Sensing.svg";
       contentprocess.innerHTML = `Những người có xu hướng Giác Quan (S) thường:
 
 - Tập trung vào sự thật và chi tiết cụ thể
@@ -1691,12 +1698,12 @@ function fourprocess(z, kq) {
 - Thích các hướng dẫn từng bước và thông tin được trình bày tuần tự
 - Hiểu ý tưởng thông qua ứng dụng thực tiễn
 - Tin vào kinh nghiệm`;
-      leftw.innerHTML = "Trực giác (N)"
-      rightw.innerHTML = "<strong>Giác quan (S)</strong>"
+      leftw.innerHTML = "Trực giác (N)";
+      rightw.innerHTML = "<strong>Giác quan (S)</strong>";
       break;
     }
     case "F": {
-            imgprocess.src="/img/mbti/feeling.svg"
+      imgprocess.src = "/img/mbti/feeling.svg";
       contentprocess.innerHTML = `Những người có xu hướng Cảm Xúc (F) thường:
 
 - Áp dụng các giá trị cá nhân và xã hội—hướng đến con người
@@ -1706,13 +1713,13 @@ function fourprocess(z, kq) {
 - Tìm kiếm những điều đúng đắn để hỗ trợ
 - Tập trung vào các mối quan hệ
 - Xem xét hoàn cảnh cá nhân khi ra quyết định`;
-      leftw.innerHTML = "<strong>Cảm xúc (F)</strong>"
-      rightw.innerHTML = "Lý trí (T)"
+      leftw.innerHTML = "<strong>Cảm xúc (F)</strong>";
+      rightw.innerHTML = "Lý trí (T)";
       processcontai.classList.add("change");
       break;
     }
     case "T": {
-            imgprocess.src="/img/mbti/thinking.svg"
+      imgprocess.src = "/img/mbti/thinking.svg";
       contentprocess.innerHTML = `Những người có xu hướng Lý Trí (T) thường:
 
 - Sử dụng phân tích logic khi lập luận—hướng đến hệ thống
@@ -1722,12 +1729,12 @@ function fourprocess(z, kq) {
 - Tìm kiếm những gì sai sót để có thể sửa chữa
 - Tập trung vào nhiệm vụ
 - Dựa vào các tiêu chí khách quan khi ra quyết định`;
-      leftw.innerHTML = "Cảm xúc (F)"
-      rightw.innerHTML = "<strong>Lý trí (T)</strong>"
+      leftw.innerHTML = "Cảm xúc (F)";
+      rightw.innerHTML = "<strong>Lý trí (T)</strong>";
       break;
     }
     case "P": {
-            imgprocess.src="/img/mbti/Perceiving.svg"
+      imgprocess.src = "/img/mbti/Perceiving.svg";
       contentprocess.innerHTML = `Những người có xu hướng Nhận Thức (P) thường:
 
 - Linh hoạt
@@ -1737,12 +1744,12 @@ function fourprocess(z, kq) {
 - Thích ứng với thông tin mới phát sinh
 - Muốn trải nghiệm cuộc sống
 - Cảm thấy tràn đầy năng lượng và làm việc tốt nhất vào phút cuối`;
-      leftw.innerHTML = "Nguyên tắc (J)"
-      rightw.innerHTML = "<strong>Linh hoạt (P)</strong>"
+      leftw.innerHTML = "Nguyên tắc (J)";
+      rightw.innerHTML = "<strong>Linh hoạt (P)</strong>";
       break;
     }
     case "J": {
-            imgprocess.src="/img/mbti/judging.svg"
+      imgprocess.src = "/img/mbti/judging.svg";
       contentprocess.innerHTML = `Những người có xu hướng Đánh Giá (J) thường:
 
 - Thích lập kế hoạch và tuân thủ kế hoạch đó
@@ -1752,8 +1759,8 @@ function fourprocess(z, kq) {
 - Làm việc một cách có phương pháp
 - Muốn kiểm soát cuộc sống
 - Cố gắng hết sức để tránh căng thẳng vào phút cuối`;
-      leftw.innerHTML = "<strong>Nguyên tắc (J)</strong>"
-      rightw.innerHTML = "Linh hoạt (P)"
+      leftw.innerHTML = "<strong>Nguyên tắc (J)</strong>";
+      rightw.innerHTML = "Linh hoạt (P)";
       processcontai.classList.add("change");
       break;
     }
@@ -1763,10 +1770,10 @@ function fourprocess(z, kq) {
   processbar.style.width = z;
   processbar.innerText = z;
 
-  var contaiprocess = document.getElementById("contaiprocess")
+  var contaiprocess = document.getElementById("contaiprocess");
 
-  var processallcontai = document.createElement("div")
- processallcontai.classList.add("processallcontai")
+  var processallcontai = document.createElement("div");
+  processallcontai.classList.add("processallcontai");
 
   var process = document.createElement("div");
   process.classList.add("process");
@@ -1783,20 +1790,20 @@ function fourprocess(z, kq) {
 }
 
 function updateIndicators() {
-  const indicators = document.querySelectorAll('.indicator');
+  const indicators = document.querySelectorAll(".indicator");
   indicators.forEach((indicator, index) => {
-    indicator.classList.toggle('active', index === currentSlide);
+    indicator.classList.toggle("active", index === currentSlide);
   });
 }
 
 function createIndicators() {
-  const slides = document.querySelectorAll('.process');
-  const indicatorsContainer = document.createElement('div');
+  const slides = document.querySelectorAll(".process");
+  const indicatorsContainer = document.createElement("div");
   indicatorsContainer.classList.add("indicators");
   slides.forEach((slide, index) => {
-    const indicator = document.createElement('div');
-    indicator.classList.add('indicator');
-    indicator.addEventListener('click', () => showSlide(index));
+    const indicator = document.createElement("div");
+    indicator.classList.add("indicator");
+    indicator.addEventListener("click", () => showSlide(index));
     indicatorsContainer.appendChild(indicator);
   });
   var slidembti = document.getElementById("slidembti");
@@ -1804,9 +1811,8 @@ function createIndicators() {
   updateIndicators();
 }
 
-
 function showSlide(index) {
-  const slides = document.querySelectorAll('.process');
+  const slides = document.querySelectorAll(".process");
   if (index >= slides.length) {
     currentSlide = 0;
   } else if (index < 0) {
@@ -1815,7 +1821,7 @@ function showSlide(index) {
     currentSlide = index;
   }
   const offset = -currentSlide * 100;
-  var contaiprocess = document.getElementById("contaiprocess")
+  var contaiprocess = document.getElementById("contaiprocess");
   contaiprocess.style.left = `${offset}%`;
   updateIndicators();
 }
@@ -1842,7 +1848,6 @@ function arleftM() {
   webM--;
   allowClickM--;
 }
-
 
 function CountM(e) {
   if (e.keyCode === 39) {
