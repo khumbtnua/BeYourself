@@ -131,7 +131,14 @@ function savePomoBg(fileUrl) {
 }
 
 window.addEventListener("load", function () {
-  getPomoBg();
+  setTimeout(() => {
+    getPomoBg();
+    getPomoTime();
+    getTodolist();
+    getEventlist();
+    getTimetable();
+    getNotesData();
+  }, 5000);
 });
 
 function getPomoBg() {
@@ -139,6 +146,61 @@ function getPomoBg() {
     .then((res) => res.json())
     .then((data) => checkPomoBg(data))
     .catch((err) => console.log(err.message));
+}
+
+function getTimetable() {
+  fetch("/save/timetable")
+    .then((res) => res.json())
+    .then((data) => checkTimetable(data))
+    .catch((err) => console.log(err.message));
+}
+
+function getPomoTime() {
+  fetch("/save/pomotime")
+    .then((res) => res.json())
+    .then((data) => checkPomoTime(data))
+    .catch((err) => console.log(err.message));
+}
+
+function getTodolist() {
+  fetch("/save/todolist")
+    .then((res) => res.json())
+    .then((data) => checkTodolist(data))
+    .catch((err) => console.log(err.message));
+}
+
+function getEventlist() {
+  fetch("/save/eventlist")
+    .then((res) => res.json())
+    .then((data) => checkEventlist(data))
+    .catch((err) => console.log(err.message));
+}
+
+function getNotesData() {
+  fetch("/save/notesdata")
+    .then((res) => res.json())
+    .then((data) => checkNotesData(data))
+    .catch((err) => console.log(err.message));
+}
+
+function checkEventlist(data) {
+  addEventServer(data);
+}
+
+function checkNotesData(data) {
+  addNotesDataServer(data);
+}
+
+function checkTimetable(data) {
+  addTimetableServer(data);
+}
+
+function checkPomoTime(data) {
+  addPomoTimeServer(data);
+}
+
+function checkTodolist(data) {
+  addTaskServer(data);
 }
 
 function checkPomoBg(data) {
@@ -167,6 +229,7 @@ function handleDragLeave() {
 }
 
 function saveSettings() {
+  var PomoTime = [];
   timers.pomodoro = pomodoroInput.value * 60;
   timers.shortBreak = shortBreakInput.value * 60;
   timers.longBreak = longBreakInput.value * 60;
@@ -183,6 +246,44 @@ function saveSettings() {
 
   updateDisplay();
   closeSettings();
+  PomoTime.push(timers);
+  savePomoTime(PomoTime);
+}
+
+function addPomoTimeServer(data) {
+  var dataTime = data[0];
+  timers.pomodoro = dataTime.pomodoro;
+  timers.shortBreak = dataTime.shortBreak;
+  timers.longBreak = dataTime.longBreak;
+  pomodoroInput.value = dataTime.pomodoro / 60;
+  shortBreakInput.value = dataTime.shortBreak / 60;
+  longBreakInput.value = dataTime.longBreak / 60;
+  if (currentTimer === "pomodoro") {
+    timeLeft = timers.pomodoro;
+  } else if (currentTimer === "shortBreak") {
+    timeLeft = timers.shortBreak;
+  } else if (currentTimer === "longBreak") {
+    timeLeft = timers.longBreak;
+  }
+  if (backgroundFile) {
+    handleFile(backgroundFile);
+  }
+  updateDisplay();
+}
+
+function savePomoTime(Pomotime) {
+  fetch("/save/pomotime", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(Pomotime),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log("Success:", data);
+    })
+    .catch((err) => console.log(err.message));
 }
 
 modeButtons.forEach((button) => {
@@ -320,19 +421,41 @@ const tilemagic = document.getElementById("titlemagic");
 const listask = document.getElementById("list");
 let currentEditingTask = null;
 
+function addTaskServer(data) {
+  var tasks = data;
+  if (tasks) {
+    tasks.forEach((task) => {
+      var taskcontai = document.createElement("div");
+      taskcontai.classList.add("taskcontai");
+      taskcontai.innerHTML = `
+                <span class="task-text">${task}</span>
+                <div class="options">
+                    <button class="btnedit" onclick="edittask(this)"><img src="/img/tool_imgs/edit.png" style="width: 100%; height:100%"></button>
+                    <button class="btndelete" onclick="deletetask(this)"><img src="/img/tool_imgs/delete.png" style="width: 100%; height:100%"></button>
+                <label class="custom-checkbox">
+                <input type="checkbox" onclick="toggleComplete(this)">
+                <div class="checkmark"></div>
+                </label>
+            </div>
+                </div>`;
+      listask.appendChild(taskcontai);
+    });
+  }
+}
+
 function addTask() {
   tilemagic.style.top = "-35px";
   const taskcontent = document.getElementById("inputTask").value;
-  if (taskcontent.length > 0) {
+  if (taskcontent.length !== 0) {
     if (currentEditingTask) {
       // Nếu đang trong chế độ chỉnh sửa
       const taskText = currentEditingTask.querySelector(".task-text");
       taskText.textContent = taskcontent;
       resetInput();
     } else {
-      // Nếu là thêm mới
       const taskcontai = document.createElement("div");
       taskcontai.classList.add("taskcontai");
+      // Nếu là thêm mới
       taskcontai.innerHTML = `
                 <span class="task-text">${taskcontent}</span>
                 <div class="options">
@@ -365,9 +488,15 @@ function edittask(button) {
 }
 
 function deletetask(button) {
+  var taskTestsArr = [];
   const taskcontai = button.closest(".taskcontai");
   taskcontai.remove();
-  resetInput(); // Đảm bảo khi xóa một nhiệm vụ, các nút và input trở về trạng thái ban đầu
+  var taskTests = document.querySelectorAll(".task-text");
+  taskTests.forEach((taskTest) => {
+    taskTestsArr.push(taskTest.textContent);
+  });
+  saveTodolist(taskTestsArr);
+  resetInput()// Đảm bảo khi xóa một nhiệm vụ, các nút và input trở về trạng thái ban đầu
 }
 
 function toggleComplete(checkbox) {
@@ -381,12 +510,33 @@ function toggleComplete(checkbox) {
 }
 
 function resetInput() {
+  var taskTestsArr = [];
+  var taskTests = document.querySelectorAll(".task-text");
+  taskTests.forEach((taskTest) => {
+    taskTestsArr.push(taskTest.textContent);
+  });
+  saveTodolist(taskTestsArr);
   currentEditingTask = null;
   document.getElementById("inputTask").value = "";
   document.getElementById(
     "btn-addtask"
   ).innerHTML = `<img src="/img/tool_imgs/edit.png" style="width: 100%; height:100%">`;
   tilemagic.style.top = "0px";
+}
+
+function saveTodolist(arr) {
+  fetch("/save/todolist", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(arr),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log("Success:", data);
+    })
+    .catch((err) => console.log(err.message));
 }
 
 //calender code
@@ -474,9 +624,23 @@ document.getElementById("saveTimetable").addEventListener("click", () => {
   currentWeekOffset = 0;
   updateMainCalendar();
   movecalendar();
-  console.log(timetable);
-  console.log(notesData);
+  saveTimetable(timetable);
 });
+
+function saveTimetable(timetable) {
+  fetch("/save/timetable", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(timetable),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log("Success:", data);
+    })
+    .catch((err) => console.log(err.message));
+}
 
 document.getElementById("prevWeek").addEventListener("click", () => {
   currentWeekOffset--;
@@ -507,14 +671,18 @@ function getWeekDates(offset) {
     };
   });
 }
+function addNotesDataServer(data) {
+  notesData = data[0];
+  getTimetable();
+}
 
-function updateMainCalendar() {
+function addTimetableServer(data) {
   const mainCalendar = document.getElementById("calendarContent");
   mainCalendar.innerHTML = "";
 
   const dates = getWeekDates(currentWeekOffset);
   const calendarTitle = document.getElementById("calendarTitle");
-  calendarTitle.textContent = `Week of ${dates[0].date} - ${dates[6].date}`;
+  calendarTitle.textContent = `Tuần ${dates[0].date} - ${dates[6].date}`;
 
   const table = document.createElement("table");
   const headerRow = document.createElement("tr");
@@ -531,7 +699,7 @@ function updateMainCalendar() {
   `;
   table.appendChild(headerRow);
 
-  timetable.forEach((slot) => {
+  data.forEach((slot) => {
     const row = document.createElement("tr");
     row.innerHTML = `
           <td>${slot.time}</td>
@@ -544,8 +712,7 @@ function updateMainCalendar() {
               return `
               <td>
               <div class="contai-event-content">
-                  <div class="event-content">${event}
-                  </div><button class="notes-btn"><img src="/img/tool_imgs/edit2.png" style="width: 100%; height:100%"></button>
+                  <div class="event-content">${event}</div><button class="notes-btn"><img src="/img/tool_imgs/edit2.png" style="width: 100%; height:100%"></button>
                   </div>
                   ${
                     noteText
@@ -553,7 +720,7 @@ function updateMainCalendar() {
                       <div class="event-note ${
                         isCompleted ? "completed-note" : ""
                       }">
-                      <label class="custom-checkbox" id="custom-checkbox2">
+                      <label class="custom-checkbox custom-checkbox2">
                           <input type="checkbox" class="complete-note-checkbox" ${
                             isCompleted ? "checked" : ""
                           } data-note-key="${dateKey}">
@@ -616,7 +783,7 @@ function updateMainCalendar() {
         container.style.display = "none";
         notesBtn.style.display = "inline";
 
-        updateIncompleteNotesCount(dates);
+        updateIncompleteNotesCount();
         return;
       }
 
@@ -628,7 +795,7 @@ function updateMainCalendar() {
 
       let noteDiv = eventCell.querySelector(".event-note");
       if (noteDiv) {
-        noteDiv.innerHTML = `<label class="custom-checkbox" id="custom-checkbox2">
+        noteDiv.innerHTML = `<label class="custom-checkbox custom-checkbox2">
               <input type="checkbox" class="complete-note-checkbox" data-note-key="${dateKey}">
               <div class="checkmark"></div>
               </label>
@@ -636,7 +803,161 @@ function updateMainCalendar() {
       } else {
         noteDiv = document.createElement("div");
         noteDiv.className = "event-note";
-        noteDiv.innerHTML = `<label class="custom-checkbox" id="custom-checkbox2">
+        noteDiv.innerHTML = `<label class="custom-checkbox custom-checkbox2">
+              <input type="checkbox" class="complete-note-checkbox" data-note-key="${dateKey}">
+              <div class="checkmark"></div>
+              </label>
+              ${noteText}`;
+        eventCell.appendChild(noteDiv);
+      }
+
+      const notesBtn = eventCell.querySelector(".notes-btn");
+      notesBtn.innerHTML =
+        '<img src="/img/tool_imgs/edit2.png" style="width: 100%; height:100%">';
+
+      container.style.display = "none";
+      notesBtn.style.display = "inline";
+
+      addCompleteNoteListenerServer();
+      updateIncompleteNotesCount();
+      saveNotesData(notesData);
+    });
+  });
+
+  addCompleteNoteListenerServer();
+  updateIncompleteNotesCount();
+}
+
+function updateMainCalendar() {
+  const mainCalendar = document.getElementById("calendarContent");
+  mainCalendar.innerHTML = "";
+
+  const dates = getWeekDates(currentWeekOffset);
+  const calendarTitle = document.getElementById("calendarTitle");
+  calendarTitle.textContent = `Tuần ${dates[0].date} - ${dates[6].date}`;
+
+  const table = document.createElement("table");
+  const headerRow = document.createElement("tr");
+  headerRow.innerHTML = `
+      <th>Thời gian</th>
+      ${dates
+        .map(
+          (d) =>
+            `<th${d.isToday ? ' class="current-day"' : ""}>${d.dayName} (${
+              d.date
+            })</th>`
+        )
+        .join("")}
+  `;
+  table.appendChild(headerRow);
+
+  timetable.forEach((slot) => {
+    const row = document.createElement("tr");
+    row.innerHTML = `
+          <td>${slot.time}</td>
+          ${slot.events
+            .map((event, index) => {
+              const dateKey = `${dates[index].date}_${slot.time}`;
+              const noteText = notesData[dateKey]?.noteText || "";
+              const isCompleted = notesData[`${dateKey}_completed`] || false;
+
+              return `
+              <td>
+              <div class="contai-event-content">
+                  <div class="event-content">${event}</div><button class="notes-btn"><img src="/img/tool_imgs/edit2.png" style="width: 100%; height:100%"></button>
+                  </div>
+                  ${
+                    noteText
+                      ? `
+                      <div class="event-note ${
+                        isCompleted ? "completed-note" : ""
+                      }">
+                      <label class="custom-checkbox custom-checkbox2">
+                          <input type="checkbox" class="complete-note-checkbox" ${
+                            isCompleted ? "checked" : ""
+                          } data-note-key="${dateKey}">
+                      <div class="checkmark"></div>
+                      </label>
+                          ${noteText}
+                      </div>
+                  `
+                      : ""
+                  }
+                  <div class="notes-input-container" style="display:none;">
+                      <input type="text" class="notes-input" placeholder="Bài tập..." value="${noteText}">
+                      <button class="save-note-btn"><img src="/img/tool_imgs/plus2.png" style="width: 100%; height:100%"></button>
+                  </div>
+              </td>`;
+            })
+            .join("")}
+      `;
+    table.appendChild(row);
+  });
+
+  mainCalendar.appendChild(table);
+
+  document.querySelectorAll(".notes-btn").forEach((btn) => {
+    btn.addEventListener("click", function () {
+      const container = this.parentElement;
+      const tdcontainer = container.parentElement;
+      const notesinputcontainer = tdcontainer.querySelector(
+        ".notes-input-container"
+      );
+      notesinputcontainer.style.display = "flex";
+      this.style.display = "none";
+    });
+  });
+
+  document.querySelectorAll(".save-note-btn").forEach((btn) => {
+    btn.addEventListener("click", function () {
+      const container = this.parentElement;
+      const noteInput = container.querySelector(".notes-input");
+      const eventCell = this.closest("td");
+      const eventName = eventCell.querySelector(".event-content").textContent
+      const noteText = noteInput.value.trim();
+      const timeSlot = eventCell.closest("tr").children[0].textContent;
+      const dayIndex =
+        Array.from(eventCell.parentElement.children).indexOf(eventCell) - 1;
+      const dateKey = `${dates[dayIndex].date}_${timeSlot}`;
+
+      if (noteText === "") {
+        delete notesData[dateKey];
+        delete notesData[`${dateKey}_completed`];
+
+        const noteDiv = eventCell.querySelector(".event-note");
+        if (noteDiv) {
+          noteDiv.remove();
+        }
+
+        const notesBtn = eventCell.querySelector(".notes-btn");
+        notesBtn.innerHTML =
+          '<img src="/img/tool_imgs/edit2.png" style="width: 100%; height:100%">';
+
+        container.style.display = "none";
+        notesBtn.style.display = "inline";
+
+        updateIncompleteNotesCount();
+        return;
+      }
+
+      notesData[dateKey] = {
+        noteText: noteText,
+        dayName: dates[dayIndex].dayName,
+        eventname:eventName
+      };
+      notesData[`${dateKey}_completed`] = false;
+
+      let noteDiv = eventCell.querySelector(".event-note");
+      if (noteDiv) {
+        noteDiv.innerHTML = `<label class="custom-checkbox custom-checkbox2">
+              <input type="checkbox" class="complete-note-checkbox" data-note-key="${dateKey}">
+              <div class="checkmark"></div>
+              </label>
+              ${noteText}`;
+      } else {
+        noteDiv = document.createElement("div");
+        noteDiv.className = "event-note";
+        noteDiv.innerHTML = `<label class="custom-checkbox custom-checkbox2">
               <input type="checkbox" class="complete-note-checkbox" data-note-key="${dateKey}">
               <div class="checkmark"></div>
               </label>
@@ -652,12 +973,13 @@ function updateMainCalendar() {
       notesBtn.style.display = "inline";
 
       addCompleteNoteListener();
-      updateIncompleteNotesCount(dates);
+      updateIncompleteNotesCount();
+      saveNotesData(notesData);
     });
   });
 
   addCompleteNoteListener();
-  updateIncompleteNotesCount(dates);
+  updateIncompleteNotesCount();
 }
 
 function addCompleteNoteListener() {
@@ -665,19 +987,25 @@ function addCompleteNoteListener() {
     checkbox.addEventListener("change", function () {
       const noteKey = this.dataset.noteKey;
       notesData[`${noteKey}_completed`] = this.checked;
-      updateIncompleteNotesCount(getWeekDates(currentWeekOffset)); // Cập nhật phần thống kê
+      updateIncompleteNotesCount() // Cập nhật phần thống kê
     });
   });
 }
 
-function updateIncompleteNotesCount(dates) {
-  if (!dates || !Array.isArray(dates)) {
-    console.error(
-      "dates is undefined or not an array. Please check the source of the issue."
-    );
-    return;
-  }
+function addCompleteNoteListenerServer() {
+  document.querySelectorAll(".complete-note-checkbox").forEach((checkbox) => {
+    checkbox.addEventListener("change", function () {
+      const noteKey = this.dataset.noteKey;
+      notesData[`${noteKey}_completed`] = this.checked;
+      updateIncompleteNotesCount();
+      saveNotesData(notesData); // Cập nhật phần thống kê
+    });
+  });
+}
+ 
+ 
 
+function updateIncompleteNotesCount() {
   let incompleteCount = 0;
   const incompleteNotesList = [];
 
@@ -685,18 +1013,18 @@ function updateIncompleteNotesCount(dates) {
     if (key.endsWith("_completed") && notesData[key] === false) {
       const noteKey = key.replace("_completed", "");
       const [date, time] = noteKey.split("_");
-      const noteData = notesData[noteKey];
-
+      const notecontent = notesData[noteKey].noteText;
+      const noteDayname = notesData[noteKey].dayName;
+      const eventName =notesData[noteKey].eventname;
       incompleteCount++;
-      const dayIndex = dates.findIndex((d) => d.date === date);
-      const eventName =
-        timetable.find((slot) => slot.time === time)?.events?.[dayIndex] || "";
+        console.log(eventName)
+        console.log(notesData)
       incompleteNotesList.push({
         key: noteKey,
         date,
         time,
-        note: noteData.noteText,
-        dayName: noteData.dayName || dates[dayIndex].dayName,
+        note: notecontent,
+        dayName: noteDayname,
         eventName,
       });
     }
@@ -739,22 +1067,22 @@ function updateIncompleteNotesCount(dates) {
     checkbox.addEventListener("change", function () {
       const noteKey = this.dataset.noteKey;
       notesData[`${noteKey}_completed`] = this.checked;
-      updateIncompleteNotesCount(dates);
+      updateIncompleteNotesCount();
       updateMainCalendar();
     });
 
     const noteText = document.createElement("span");
-    noteText.innerHTML = `<div class="titlenotesincom"><h1>${item.eventName}</h1> <h3> - ${item.time}</h3></div> <h2>${item.note}</h2>`;
+    noteText.innerHTML = `<div class="titlenotesincom"><div class="textnotescount"><h1>${item.eventName}</h1> <h3> - ${item.time}</h3></div></div> <h2>${item.note}</h2>`;
 
     const labelcheckbox = document.createElement("label");
-    labelcheckbox.className = "custom-checkbox";
+    labelcheckbox.className = "custom-checkbox custom-checkbox2";
     const checkmark = document.createElement("div");
     checkmark.className = "checkmark";
     labelcheckbox.append(checkmark);
     labelcheckbox.append(checkbox);
 
     noteElement.appendChild(noteText);
-    noteElement.appendChild(labelcheckbox);
+    noteElement.querySelector(".titlenotesincom").append(labelcheckbox);
 
     const lastDayDiv = incompleteNotesContainer.lastElementChild;
     lastDayDiv.appendChild(noteElement);
@@ -762,6 +1090,7 @@ function updateIncompleteNotesCount(dates) {
 
   // Liên kết checkbox trong phần thống kê với lịch chính
   document.querySelectorAll(".incomplete-note-checkbox").forEach((checkbox) => {
+    console.log("Done Tasks", incompleteNotesList);
     const noteKey = checkbox.dataset.noteKey;
     const correspondingCheckbox = document.querySelector(
       `.complete-note-checkbox[data-note-key="${noteKey}"]`
@@ -770,6 +1099,21 @@ function updateIncompleteNotesCount(dates) {
       checkbox.checked = correspondingCheckbox.checked;
     }
   });
+}
+
+function saveNotesData(notesData) {
+  fetch("/save/notesdata", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(notesData),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log("Success:", data);
+    })
+    .catch((err) => console.log(err.message));
 }
 
 window.onload = updateMainCalendar;
@@ -794,6 +1138,7 @@ document
       // Kiểm tra xem có sự kiện nào đang được chỉnh sửa không
       const editingEvent = document.querySelector(".editing");
       if (editingEvent) {
+        var eventsEditingArr = [];
         // Cập nhật sự kiện hiện tại với giá trị mới
         editingEvent.innerHTML = `<h1>${subjectInput}</h1><h2>${formattedDate}</h2><h2>${daysLeft} ngày nữa</h2><div class="event-controls">
                   <button class="edit-btn"><img src="/img/tool_imgs/edit.png" style="width: 100%; height:100%"></button>
@@ -803,9 +1148,20 @@ document
         // Xóa lớp "editing" sau khi chỉnh sửa
         editingEvent.classList.remove("editing");
 
+        var eventsEditingState = document.querySelectorAll(".event-item");
+        eventsEditingState.forEach((event) => {
+          eventsEditingArr.push({
+            Subject: event.querySelector("h1").textContent,
+            Calendar: event.querySelector("h2:first-of-type").textContent,
+            Dateleft: event.querySelector("h2:nth-of-type(2)").textContent,
+          });
+        });
+        saveEventLists(eventsEditingArr);
+
         // Thêm lại sự kiện cho nút Xóa và Chỉnh sửa
         addEventControlListeners(editingEvent);
       } else {
+        var eventsNewArr = [];
         // Tạo một sự kiện mới nếu không có sự kiện nào đang được chỉnh sửa
         const newEvent = document.createElement("li");
         newEvent.classList.add("event-item");
@@ -816,6 +1172,15 @@ document
 
         // Thêm sự kiện vào danh sách
         eventsList.appendChild(newEvent);
+        var eventsNewState = document.querySelectorAll(".event-item");
+        eventsNewState.forEach((event) => {
+          eventsNewArr.push({
+            Subject: event.querySelector("h1").textContent,
+            Calendar: event.querySelector("h2:first-of-type").textContent,
+            Dateleft: event.querySelector("h2:nth-of-type(2)").textContent,
+          });
+        });
+        saveEventLists(eventsNewArr);
 
         // Thêm sự kiện khi click vào nút Xóa và Chỉnh sửa
         addEventControlListeners(newEvent);
@@ -835,7 +1200,17 @@ function addEventControlListeners(eventElement) {
   eventElement
     .querySelector(".delete-btn")
     .addEventListener("click", function () {
+      var eventsDeleteArr = [];
       eventElement.remove();
+      var eventsNewState = document.querySelectorAll(".event-item");
+      eventsNewState.forEach((event) => {
+        eventsDeleteArr.push({
+          Subject: event.querySelector("h1").textContent,
+          Calendar: event.querySelector("h2:first-of-type").textContent,
+          Dateleft: event.querySelector("h2:nth-of-type(2)").textContent,
+        });
+      });
+      saveEventLists(eventsDeleteArr);
     });
 
   // Thêm sự kiện khi click vào nút Chỉnh sửa
@@ -850,6 +1225,36 @@ function addEventControlListeners(eventElement) {
       eventElement.classList.add("editing");
       toggleremind();
     });
+}
+
+function saveEventLists(arr) {
+  fetch("/save/eventlist", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(arr),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log("Success:", data);
+    })
+    .catch((err) => console.log(err.message));
+}
+
+function addEventServer(data) {
+  const eventsList = document.querySelector(".remind-list");
+  data.forEach((event) => {
+    const newEvent = document.createElement("li");
+    newEvent.classList.add("event-item");
+    newEvent.innerHTML = `<h1>${event.Subject}</h1><h2>${event.Calendar}</h2><h2>${event.Dateleft} </h2><div class="event-controls">
+                  <button class="edit-btn"><img src="/img/tool_imgs/edit.png" style="width: 100%; height:100%"></button>
+                  <button class="delete-btn"><img src="/img/tool_imgs/delete.png" style="width: 100%; height:100%"></button>
+              </div>`;
+    eventsList.appendChild(newEvent);
+    addEventControlListeners(newEvent);
+  });
+  sortEvents(eventsList);
 }
 
 function calculateDaysLeft(year, month, day) {
@@ -881,7 +1286,6 @@ function extractDateFromEvent(eventElement) {
   const [day, month, year] = dateText.split("/");
   return new Date(`${year}-${month}-${day}`);
 }
-
 
 document.getElementById("move-remind").style.top = "-100%";
 

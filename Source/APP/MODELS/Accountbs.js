@@ -41,6 +41,28 @@ const Account = new Schema(
       },
     ],
     Pomoimg: { type: String },
+    Todolist: [{ type: String }],
+    Eventlist: [
+      {
+        Calendar: { type: String },
+        Subject: { type: String },
+        Dateleft: { type: String },
+      },
+    ],
+    Pomotime: [
+      {
+        pomodoro: { type: Number },
+        shortBreak: { type: Number },
+        longBreak: { type: Number },
+      },
+    ],
+    Timetable: [
+      {
+        time: { type: String },
+        events: [{ type: String }],
+      },
+    ],
+    Notesdata: [{ type: Object }],
   },
   {
     collection: "accounts",

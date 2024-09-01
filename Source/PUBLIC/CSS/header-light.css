@@ -474,60 +474,28 @@ a {
 }
 
 /*Quote CSS Style*/
-.quote-container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  min-width: 400px;
-  max-width: 500px;
-  height: 250px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: goldenrod;
-  z-index: 1;
-  border-radius: 20px;
-  padding: 5px;
-  flex-direction: column;
-}
-
 .quote {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  font-weight: 900;
-  font-size: 1.3rem;
-  word-wrap: break-word;
-  margin: 5px;
-  padding: 10px;
-}
-
-.closequote {
-  display: flex;
-  justify-content: flex-end;
-  border-top-right-radius: 20px;
-  border-top-left-radius: 20px;
-  width: 100%;
+  width: 400px;
   background-color: orangered;
-  height: 37px;
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding: 5px;
+  text-align: center;
+  border-radius: 10px;
+  padding: 10px;
+  height: 100px;
+  word-break: break-all;
 }
 
-.closequote img {
-  width: 23px;
-  height: 23px;
-  margin-right: 4px;
-  margin-top: 2px;
-  z-index: 2;
+.quoteContent {
+  font-size: 16px;
+  color: black;
+  margin: auto;
+  font-weight: 900;
+  font-style: italic;
 }
 
-.quote-container img:hover {
-  cursor: pointer;
+.quoteAuthor {
+  font-size: 20px;
+  color: black;
+  font-weight: 900;
 }
 
 /*Blur Effect For Quote CSS Style*/
@@ -556,8 +524,14 @@ a {
 
 /*Media CSS Style*/
 
+.extra-info {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+}
+
 #footer {
-  position: relative;
+  position: absolute;
   background-image: url("/img/others_imgs/footer.png");
   color: rgb(2, 48, 33);
   width: 100%;
@@ -571,6 +545,14 @@ a {
   display: flex;
   flex-wrap: wrap;
 }
+
+.contact > p {
+  font-size: 16px;
+  width: 340px;
+  height: auto;
+  word-break: break-all;
+}
+
 .footer-col {
   padding: 20px;
   width: 33%;
@@ -1090,8 +1072,10 @@ a {
   outline: inherit !important;
 }
 
-iframe#chatbotContainer {
-  width: 400px !important;
+.css-2zp3tr {
+  width: 100% !important;
+  position: fixed !important;
+  left: 10px !important;
 }
 
 .alert {
@@ -1173,6 +1157,9 @@ iframe#chatbotContainer {
   gap: 15px;
   margin-top: 10px;
   font-size: 16px;
+  animation: appear linear;
+  animation-timeline: view();
+  animation-range: entry 30%;
 }
 
 .uniContainer {
@@ -1180,9 +1167,9 @@ iframe#chatbotContainer {
   display: flex;
   position: relative;
   gap: 10px;
-  padding: 10px;
+  padding: 6px;
   background-color: rgba(250, 250, 250);
-  border-radius: 20px;
+  border-radius: 15px;
   -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
   -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
@@ -1197,14 +1184,13 @@ iframe#chatbotContainer {
   height: auto;
   color: black;
   font-size: 25px;
-  font-weight: 900;
-  margin: 0;
+  font-weight: 900px;
 }
 
 .uniImg {
-  width: 50px !important;
-  height: 50px !important;
-  margin: 0;
+  margin-top: 21px;
+  width: 100%;
+  height: 100%;
 }
 
 @keyframes scroll {

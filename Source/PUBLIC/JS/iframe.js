@@ -9,6 +9,7 @@ var CollegeName = document.querySelector("h1").innerText;
 var slugsArr = [];
 var containComment = false;
 let currenteditcomment = null;
+var elementEditing = [];
 moment.updateLocale("vi", {
   relativeTime: {
     future: "trong %s",
@@ -95,6 +96,7 @@ function updateTimeAgo(element, timestamp) {
 }
 
 socket.on("comment", (comment) => {
+  var demo = [];
   const timeAgo = moment(comment.timestamp).fromNow();
   var userComment = document.createElement("div");
   userComment.classList.add("userComment");
@@ -114,13 +116,29 @@ socket.on("comment", (comment) => {
   timeElement.textContent = timeAgo;
   userComment.innerHTML = commentContent;
   userComment.querySelector(".userInfo").appendChild(timeElement);
+  demo.push(userComment);
   commentArea.insertBefore(userComment, commentArea.firstChild);
   updateTimeAgo(timeElement, comment.timestamp);
   setInterval(() => {
     updateTimeAgo(timeElement, comment.timestamp);
   }, 1000);
   containComment = true;
-  checkComments(containComment, userComment);
+  checkComments(containComment, demo, "post");
+});
+
+socket.on("edittedcomment", (data) => {
+  const { editvalue, Status } = data;
+  var currenteditcomment = elementEditing[0];
+  const editdiv = currenteditcomment.querySelector(".editdiv");
+  currenteditcomment.querySelector(".editextarea").value = "";
+  currenteditcomment.removeChild(editdiv);
+  currenteditcomment.querySelector(".userContent").innerHTML = editvalue;
+  var userInfo = currenteditcomment.querySelector(".userInfo");
+  var iEle = document.createElement("i");
+  iEle.classList.add("edittedState");
+  iEle.textContent = Status;
+  userInfo.appendChild(iEle);
+  elementEditing = [];
 });
 
 socket.on("loadComments", (comments) => {
@@ -133,7 +151,7 @@ socket.on("loadComments", (comments) => {
     var commentContent = `
     <div class="userInfo">
       <img src="${comment.img}" alt="User Img" />
-    <p class="userName">${comment.user}</p>
+      <p class="userName">${comment.user}</p>
     </div>
     <p class="userContent">${comment.message}</p>
     <div class="options">
@@ -146,6 +164,13 @@ socket.on("loadComments", (comments) => {
     timeElement.textContent = timeAgo;
     userComment.innerHTML = commentContent;
     userComment.querySelector(".userInfo").appendChild(timeElement);
+    if (comment.state) {
+      var iEle = document.createElement("i");
+      iEle.classList.add("edittedState");
+      iEle.textContent = comment.state;
+      var userInfo = userComment.querySelector(".userInfo");
+      userInfo.appendChild(iEle);
+    }
     demo.push(userComment);
     updateTimeAgo(timeElement, comment.timestamp);
     setInterval(() => {
@@ -154,49 +179,47 @@ socket.on("loadComments", (comments) => {
   });
   if (comments.length !== 0) {
     containComment = true;
-    checkComments(containComment, demo);
+    checkComments(containComment, demo, "load");
   } else {
     containComment = false;
-    checkComments(containComment, null);
+    checkComments(containComment, null, "load");
   }
 });
 function editcomment(buttonedit) {
   currenteditcomment = buttonedit.parentElement.parentElement;
+  elementEditing.push(currenteditcomment);
   if (currenteditcomment.querySelector(".editextarea")) {
-
   } else {
-    const contentcomment = currenteditcomment.querySelector(".userContent").textContent;
-    const editdiv = document.createElement("div")
-    editdiv.classList.add("editdiv")
+    const contentcomment =
+      currenteditcomment.querySelector(".userContent").textContent;
+    const editdiv = document.createElement("div");
+    editdiv.classList.add("editdiv");
     editdiv.innerHTML = `<textarea class="editextarea"></textarea>
     <div class="controlcomment">
     <button class="btn-savecomment"><img src="/img/tool_imgs/check-green.png"></button>
     <button class="btn-canceledit"><img src="/img/tool_imgs/turn-back-red.png"></button>
-    </div>`
+    </div>`;
     currenteditcomment.appendChild(editdiv);
     currenteditcomment.querySelector(".editextarea").value = contentcomment;
   }
   document.querySelectorAll(".btn-canceledit").forEach((item) => {
     item.addEventListener("click", function () {
-      const editdiv = currenteditcomment.querySelector(".editdiv")
+      const editdiv = currenteditcomment.querySelector(".editdiv");
       currenteditcomment.removeChild(editdiv);
       currenteditcomment.querySelector(".editextarea").value = "";
-    })
-  })
+    });
+  });
   document.querySelectorAll(".btn-savecomment").forEach((item) => {
     item.addEventListener("click", function () {
-        const editvalue = currenteditcomment.querySelector(".editextarea").value
-      console.log(editvalue)
-      currenteditcomment.querySelector(".userContent").innerHTML = editvalue;
-      const editdiv = currenteditcomment.querySelector(".editdiv")
-      currenteditcomment.removeChild(editdiv);
-      currenteditcomment.querySelector(".editextarea").value = "";
-    })
-  })
+      const editvalue = currenteditcomment.querySelector(".editextarea").value;
+      const currentvalue =
+        currenteditcomment.querySelector(".userContent").textContent;
+      socket.emit("editComment", { editvalue, currentvalue, universitySlug });
+    });
+  });
 }
 
-
-function checkComments(state, userComment) {
+function checkComments(state, userComment, content) {
   if (state === false && userComment === null) {
     commentArea.style.height = "400px";
     commentArea.innerHTML = `
@@ -205,16 +228,29 @@ function checkComments(state, userComment) {
       <p>Chưa có bình luận nào. Hãy là người đầu tiên bình luận</p>
      </div>
     `;
-  } else if (state === true && userComment !== null) {
+  } else if (state === true && userComment !== null && content === "load") {
     commentArea.style.height = "auto";
+    commentArea.innerHTML = "";
     if (commentArea.innerHTML === "") {
       userComment.forEach((usercomment) => {
         commentArea.appendChild(usercomment);
       });
-    } else {
+    }
+  } else if (state === true && userComment !== null && content === "post") {
+    commentArea.style.height = "auto";
+    var nocommentUser = commentArea.querySelector(".noCommentContainer");
+    console.log(nocommentUser);
+    if (nocommentUser) {
+      commentArea.innerHTML = "";
       userComment.forEach((usercomment) => {
         commentArea.appendChild(usercomment);
       });
+    } else {
+      if (commentArea.innerHTML === "") {
+        userComment.forEach((usercomment) => {
+          commentArea.appendChild(usercomment);
+        });
+      }
     }
   }
 }
@@ -262,20 +298,20 @@ function checkSaveUni(arr, slugData) {
   }
 }
 document.querySelectorAll(".commentcontai").forEach((e) => {
-  e.style.display = "none"
-})
+  e.style.display = "none";
+});
 
 document.querySelectorAll(".commenttile").forEach((item) => {
   item.addEventListener("click", function () {
     const comment = item.nextElementSibling;
-    const arrow = item.querySelector(".dropdowncommentimg")
-    arrow.style.transform="rotate(0)";
+    const arrow = item.querySelector(".dropdowncommentimg");
+    arrow.style.transform = "rotate(0)";
     if (comment.style.display == "block") {
       comment.style.display = "none";
-      arrow.style.transform="rotate(0)";
+      arrow.style.transform = "rotate(0)";
     } else {
-      comment.style.display = "block"
-      arrow.style.transform="rotate(-180deg)";
+      comment.style.display = "block";
+      arrow.style.transform = "rotate(-180deg)";
     }
-  })
-})
+  });
+});

@@ -1,4 +1,4 @@
-*{
+* {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
@@ -62,10 +62,10 @@ p {
   position: relative;
   background-color: rgb(150, 150, 150);
   font-size: 14px;
-    padding: 15px;
+  padding: 15px;
   display: flex;
   flex-direction: column;
-    border-bottom: 1px solid rgb(130, 130, 130);
+  border-bottom: 1px solid rgb(130, 130, 130);
 }
 
 .commentMsg {
@@ -80,7 +80,6 @@ p {
   resize: none;
   color: white;
 }
-
 
 .btn-hover {
   position: absolute;
@@ -145,9 +144,9 @@ p {
 
 .userComment {
   background-color: #fafafa;
-    padding: 15px;
-    border-bottom: 1px solid rgb(130, 130, 130);
-    position: relative;
+  padding: 15px;
+  border-bottom: 1px solid rgb(130, 130, 130);
+  position: relative;
 }
 
 .userInfo {
@@ -164,62 +163,62 @@ p {
 .userInfo img:hover {
   cursor: pointer;
 }
-.dropdowncommentimg{
+.dropdowncommentimg {
   height: 28px;
   transition-duration: 0.5s;
 }
-.editextarea{
+.editextarea {
   width: 100%;
-    height: 100px;
-    resize: none;
-    border-radius: 10px;
-    padding: 10px;
-    background-color: rgb(150, 150, 150);
-    color: white;
-    border: none;
-    font-size: 16px;
-    outline: none;
+  height: 100px;
+  resize: none;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: rgb(150, 150, 150);
+  color: white;
+  border: none;
+  font-size: 16px;
+  outline: none;
 }
-.controlcomment{
+.controlcomment {
   display: flex;
-    flex-direction: row-reverse;
+  flex-direction: row-reverse;
 }
-.controlcomment img{
+.controlcomment img {
   width: 100%;
   height: 100%;
 }
-.btn-savecomment{
+.btn-savecomment {
   padding: 8px;
-    border-radius: 10px;
-    border: 2px solid green;
-    margin: 5px 5px 0 5px;
-    width: 40px;
-    height: 40px;
-    cursor: pointer;
-    background-color: transparent;
+  border-radius: 10px;
+  border: 2px solid green;
+  margin: 5px 5px 0 5px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  background-color: transparent;
 }
-.btn-canceledit{
+.btn-canceledit {
   padding: 8px;
-    border-radius: 10px;
-    border: 2px solid red;
-    margin: 5px 5px 0 5px;
-    width: 40px;
-    height: 40px;
-    cursor: pointer;
-    background-color: transparent;
+  border-radius: 10px;
+  border: 2px solid red;
+  margin: 5px 5px 0 5px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  background-color: transparent;
 }
-.comment-area .userComment:nth-child(even){
+.comment-area .userComment:nth-child(even) {
   background-color: rgb(70, 70, 70);
 }
-.comment-area .userComment:nth-child(odd){
+.comment-area .userComment:nth-child(odd) {
   background-color: rgb(60, 60, 60);
 }
-.commenttile{
+.commenttile {
   justify-content: space-between;
   display: flex;
   background-color: rgb(50, 50, 50);
   color: white;
-  border: 1px solid rgb(130, 130, 130);;
+  border: 1px solid rgb(130, 130, 130);
   padding: 10px;
   border-radius: 10px;
   margin: 0;
@@ -228,21 +227,21 @@ p {
   width: 100%;
   cursor: pointer;
 }
-.total-contai-comment{
+.total-contai-comment {
   position: relative;
   overflow: hidden;
-    height: fit-content;
-  border-radius: 10px;
-    padding: 0 20px 40px 20px ;
-}
-.commentcontai{
   height: fit-content;
-    position: relative;
+  border-radius: 10px;
+  padding: 0 20px 40px 20px;
+}
+.commentcontai {
+  height: fit-content;
+  position: relative;
   width: 100%;
-    top: -10px;
-    padding: 0 10px;
-  }
-.commentlist{
+  top: -10px;
+  padding: 0 10px;
+}
+.commentlist {
   width: 100%;
   height: 100%;
   padding: 10px 0 0 0;
@@ -251,7 +250,7 @@ p {
   border-radius: 10px;
   overflow: hidden;
 }
-.comment-area div:last-child{
+.comment-area div:last-child {
   border-bottom: none;
 }
 .options {
@@ -263,7 +262,7 @@ p {
   padding: 7.9px 2.9px 7.9px 7.9px;
   border-bottom-left-radius: 10px;
   gap: 7.9px;
-  background-color: rgb(0,0, 0,0.5);
+  background-color: rgb(0, 0, 0, 0.5);
   height: 40px;
 }
 
@@ -282,7 +281,7 @@ p {
   cursor: pointer;
   width: 25px;
   height: 25px;
-  margin: auto 0
+  margin: auto 0;
 }
 
 .btndelete {
@@ -295,7 +294,7 @@ p {
   cursor: pointer;
   width: 25px;
   height: 25px;
-  margin: auto 0
+  margin: auto 0;
 }
 @keyframes glowing {
   0% {
@@ -323,7 +322,7 @@ table {
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
-table tr:last-child td{
+table tr:last-child td {
   border: none;
 }
 thead {
@@ -341,7 +340,7 @@ th {
   font-weight: 900px;
   padding: 10px;
   border-bottom: 1px solid rgb(130, 130, 130);
-  background-color: rgb(50, 50, 50);;
+  background-color: rgb(50, 50, 50);
 }
 
 tbody {
@@ -358,7 +357,7 @@ td {
   outline: none;
   border-bottom: 1px solid rgb(130, 130, 130);
 }
-.table-container{
+.table-container {
   margin: 30px 0;
   border-radius: 10px;
   overflow: hidden;
@@ -381,7 +380,7 @@ tr:last-child > td {
   display: flex;
   justify-content: space-between;
 }
-.introduction h1{
+.introduction h1 {
   margin: 0;
 }
 .uniLogo {
@@ -415,12 +414,12 @@ tr:last-child > td {
   text-align: center;
   color: white;
 }
-.introduction-text{
+.introduction-text {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
 }
-.introduction-content{
+.introduction-content {
   display: flex;
   gap: 30px;
 }
@@ -439,7 +438,6 @@ tr:last-child > td {
 }
 
 .noCommentContainer {
-
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -457,8 +455,14 @@ tr:last-child > td {
   width: 300px;
   height: 300px;
 }
-.saveUni{
+.saveUni {
   border: none;
   outline: none;
   background-color: transparent;
+}
+
+.edittedState {
+  color: rgb(150, 150, 150);
+  font-size: 13px;
+  margin-top: 5px;
 }

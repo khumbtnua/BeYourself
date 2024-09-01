@@ -302,17 +302,15 @@ function opensaved() {
 async function getCollegeData() {
   fetch("/history/university")
     .then((res) => res.json())
-    .then((data) => showCollegeData(data, null))
-    .catch((err) => showCollegeData(null, "error"));
+    .then((data) => showCollegeData(data))
+    .catch((err) => console.log(err.message));
 }
 
 var saveUniContainer = document.createElement("div");
 saveUniContainer.classList.add("saveUniContainer");
-function showCollegeData(data, msg) {
-  if (msg === "error") {
-    saveUniContainer.innerHTML = "";
-  } else {
-    var universityData = data;
+function showCollegeData(data) {
+  var universityData = data;
+  if (universityData.length !== 0) {
     var universitiesObj = universityData[0];
     var universitiesArr = universitiesObj.universities;
     saveUniContainer.innerHTML = "";
@@ -332,8 +330,10 @@ function showCollegeData(data, msg) {
       aElement.appendChild(uniContainer);
       saveUniContainer.appendChild(aElement);
     });
+    document.getElementById("savedpage").appendChild(saveUniContainer);
+  } else {
+    saveUniContainer.innerHTML = "";
   }
-  document.getElementById("savedpage").appendChild(saveUniContainer);
 }
 //change password
 function passclick() {
@@ -383,6 +383,7 @@ function clicklay() {
   deletes(feedpage);
   deletes(avatarpage);
   deletes(savdepage);
+  deletes(resultspages);
 }
 
 // picavatar
