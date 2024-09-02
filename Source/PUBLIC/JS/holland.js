@@ -77,6 +77,33 @@ hollandBtn.addEventListener("click", function () {
   createIntroduction();
 });
 var autoNext = false;
+const MAX_LOAD_TIME = 3000;
+const CHECK_INTERVAL = 100;
+let startTime = Date.now();
+let isPageLoaded = false;
+
+function checkLoadTime() {
+  if (Date.now() - startTime > MAX_LOAD_TIME && !isPageLoaded) {
+    console.log("Tải lại trang vì trang mất quá nhiều thời gian để tải.");
+    window.location.reload();
+  }
+}
+
+function checkIframe() {
+  const iframe = document.querySelector(".iframe-hidden");
+  if (
+    iframe &&
+    iframe.contentDocument &&
+    iframe.contentDocument.readyState === "complete"
+  ) {
+    startTime = Date.now();
+    isPageLoaded = true;
+    clearInterval(iframeCheckInterval);
+    setTimeout(checkLoadTime, 1000);
+  }
+}
+
+const iframeCheckInterval = setInterval(checkIframe, CHECK_INTERVAL);
 
 function createIntroduction() {
   var quesContent = document.createElement("h4");
@@ -160,7 +187,7 @@ function arleft() {
   web--;
   allowClick--;
 }
-var i = 1;
+var i = 50;
 var allowClick = 1;
 var rightimg = "/img/arrow_imgs/right.png";
 var leftimg = "/img/arrow_imgs/left.png";
@@ -770,7 +797,7 @@ body.addEventListener("keyup", function (e) {
   }
 });
 
-var web = 1;
+var web = 50;
 function Count(e) {
   if (e.keyCode === 39) {
     if (web < 70) {

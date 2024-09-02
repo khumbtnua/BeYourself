@@ -10,6 +10,46 @@ var slugsArr = [];
 var containComment = false;
 let currenteditcomment = null;
 var elementEditing = [];
+var alertInfo = document.querySelector(".alert");
+alertInfo.classList.add("hide");
+var closealertBtn = document.querySelector(".close-btn");
+
+closealertBtn.addEventListener("click", function () {
+  console.log("hi");
+  alertInfo.classList.remove("show");
+  alertInfo.classList.add("hide");
+});
+
+function userComments(userComments) {
+  userComments.forEach((userComment) => {
+    userComment.addEventListener("mouseover", (e) =>
+      showOptions(e.currentTarget)
+    );
+    userComment.addEventListener("mouseout", (e) =>
+      hideOptions(e.currentTarget)
+    );
+  });
+}
+
+function showOptions(userComment) {
+  var dataContainer = document.getElementById("data-container");
+  var userIdData = dataContainer.getAttribute("data-userId");
+  var userCommentId = userComment.getAttribute("data-user-id");
+  var option = userComment.querySelector(".options");
+  if (option) {
+    if (userCommentId === userIdData) {
+      option.style.display = "flex";
+    }
+  }
+}
+
+function hideOptions(userComment) {
+  var option = userComment.querySelector(".options");
+  if (option) {
+    option.style.display = "none";
+  }
+}
+
 moment.updateLocale("vi", {
   relativeTime: {
     future: "trong %s",
@@ -31,7 +71,19 @@ moment.updateLocale("vi", {
 
 saveUniBtn.addEventListener("click", function (e) {
   e.preventDefault();
-  changeUniState();
+  var isLogin = parent.document.querySelector("#user-avar");
+  var link = isLogin.querySelector('a[href][title="Tạo tài khoản"]');
+  if (link) {
+    alertInfo.classList.add("show");
+    alertInfo.classList.remove("hide");
+    alertInfo.classList.add("showAlert");
+    setTimeout(function () {
+      alertInfo.classList.remove("show");
+      alertInfo.classList.add("hide");
+    }, 5000);
+  } else {
+    changeUniState();
+  }
 });
 
 function changeUniState() {
@@ -86,9 +138,22 @@ function saveUni(university) {
 }
 postComment.addEventListener("click", function (e) {
   e.preventDefault();
-  var comment = newComment.value;
-  socket.emit("newComment", { comment, universitySlug });
-  newComment.value = "";
+  var isLogin = parent.document.querySelector("#user-avar");
+  var link = isLogin.querySelector('a[href][title="Tạo tài khoản"]');
+  if (link) {
+    newComment.value = "";
+    alertInfo.classList.add("show");
+    alertInfo.classList.remove("hide");
+    alertInfo.classList.add("showAlert");
+    setTimeout(function () {
+      alertInfo.classList.remove("show");
+      alertInfo.classList.add("hide");
+    }, 5000);
+  } else {
+    var comment = newComment.value;
+    socket.emit("newComment", { comment, universitySlug });
+    newComment.value = "";
+  }
 });
 
 function updateTimeAgo(element, timestamp) {
@@ -100,6 +165,8 @@ socket.on("comment", (comment) => {
   const timeAgo = moment(comment.timestamp).fromNow();
   var userComment = document.createElement("div");
   userComment.classList.add("userComment");
+  userComment.dataset.userId = comment.userId;
+  userComment.dataset.commentId = comment.commentId;
   var commentContent = `
      <div class="userInfo">
       <img src="${comment.img}" alt="User Img" />
@@ -126,7 +193,24 @@ socket.on("comment", (comment) => {
   checkComments(containComment, demo, "post");
 });
 
-socket.on("edittedcomment", (data) => {
+socket.on("deletedcomment", async (data) => {
+  const { commentId, userId, userComment } = data;
+  var userComments = document.querySelectorAll(".userComment");
+  userComments.forEach((usercomment) => {
+    var userCommentId = usercomment.getAttribute("data-comment-id");
+    var userIdClient = usercomment.getAttribute("data-user-id");
+    var userCommentMsg = usercomment.querySelector(".userContent").textContent;
+    if (
+      userCommentId === commentId &&
+      userIdClient === userId &&
+      userCommentMsg === userComment
+    ) {
+      usercomment.remove();
+    }
+  });
+});
+
+socket.on("edittedcomment", async (data) => {
   const { editvalue, Status } = data;
   var currenteditcomment = elementEditing[0];
   const editdiv = currenteditcomment.querySelector(".editdiv");
@@ -134,10 +218,14 @@ socket.on("edittedcomment", (data) => {
   currenteditcomment.removeChild(editdiv);
   currenteditcomment.querySelector(".userContent").innerHTML = editvalue;
   var userInfo = currenteditcomment.querySelector(".userInfo");
-  var iEle = document.createElement("i");
-  iEle.classList.add("edittedState");
-  iEle.textContent = Status;
-  userInfo.appendChild(iEle);
+  var checkIEle = currenteditcomment.querySelector(".edittedState");
+  if (checkIEle) {
+  } else {
+    var iEle = document.createElement("i");
+    iEle.classList.add("edittedState");
+    iEle.textContent = Status;
+    userInfo.appendChild(iEle);
+  }
   elementEditing = [];
 });
 
@@ -148,6 +236,8 @@ socket.on("loadComments", (comments) => {
     const timeAgo = moment(comment.timestamp).fromNow();
     var userComment = document.createElement("div");
     userComment.classList.add("userComment");
+    userComment.dataset.userId = comment.userId;
+    userComment.dataset.commentId = comment._id;
     var commentContent = `
     <div class="userInfo">
       <img src="${comment.img}" alt="User Img" />
@@ -219,6 +309,20 @@ function editcomment(buttonedit) {
   });
 }
 
+function deletecomment(buttondelete) {
+  var currentdeletecomment = buttondelete.parentElement.parentElement;
+  var commentId = currentdeletecomment.getAttribute("data-comment-id");
+  var userId = currentdeletecomment.getAttribute("data-user-id");
+  var userComment =
+    currentdeletecomment.querySelector(".userContent").textContent;
+  socket.emit("deleteComment", {
+    commentId,
+    userId,
+    userComment,
+    universitySlug,
+  });
+}
+
 function checkComments(state, userComment, content) {
   if (state === false && userComment === null) {
     commentArea.style.height = "400px";
@@ -239,7 +343,6 @@ function checkComments(state, userComment, content) {
   } else if (state === true && userComment !== null && content === "post") {
     commentArea.style.height = "auto";
     var nocommentUser = commentArea.querySelector(".noCommentContainer");
-    console.log(nocommentUser);
     if (nocommentUser) {
       commentArea.innerHTML = "";
       userComment.forEach((usercomment) => {
@@ -253,6 +356,7 @@ function checkComments(state, userComment, content) {
       }
     }
   }
+  userComments(document.querySelectorAll(".userComment"));
 }
 
 window.addEventListener("message", async function (event) {

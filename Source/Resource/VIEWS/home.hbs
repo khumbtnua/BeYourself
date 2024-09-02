@@ -1,7 +1,7 @@
 <div id="home">
   <div id="move-home">
     <div class="main-contai">
-      <div id="contai-timer">
+      <div id="contai-timer" class="step-seven-Home">
         <div id="move-contai">
           <div class="child-move-contai">
             <div class="modes">
@@ -49,7 +49,7 @@
               </div>
             </div>
             <div id="changebg">
-              <label for="backgroundImage">Hình nền:</label>
+              <label for="backgroundImage">Background Image:</label>
               <input type="file" id="backgroundImage" accept="image/*" hidden />
               <div id="dropArea" class="drop-area">
                 <p>kéo hoặc thả ảnh vào đây</p>
@@ -60,10 +60,10 @@
       </div>
 
       <div id="controlbar">
-        <button onclick="movehome()"><img
+        <button onclick="movehome()" class="step-ten-Home"><img
             src="/img/tool_imgs/app.png"
           /></button>
-        <button id="fullsceenbtn"><img
+        <button id="fullsceenbtn" class="step-nine-Home"><img
             src="/img/tool_imgs/fullscreen.png"
           /></button>
       </div>
@@ -222,4 +222,3 @@
   </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/intro.js@7.2.0/intro.min.js"></script>
-<template id="data-container" data-quote="{{quotes}}"></template>

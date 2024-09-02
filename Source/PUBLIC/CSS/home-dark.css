@@ -384,7 +384,7 @@ body{
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 10px;
-    background-color: rgb(260, 260, 260, 0.2);
+    background-color: rgb(50, 50, 50);
     word-break: break-word;
     overflow: hidden;
     min-height: 40px;
@@ -486,7 +486,7 @@ body{
 }
 
 .custom-checkbox .checkmark:after {
-    left: 6px;
+    left: 7px;
     top: 3px;
     width: 4px;
     height: 9px;

@@ -3,6 +3,36 @@ var testMBtn = document.getElementById("testM");
 var tescontai = document.getElementById("test-container");
 var dataContainer = document.getElementById("data-container");
 var testData = JSON.parse(dataContainer.getAttribute("data-test"));
+const MAX_LOAD_TIME = 3000;
+let startTime = Date.now();
+let isPageLoaded = false;
+
+function checkLoadTime() {
+  if (Date.now() - startTime > MAX_LOAD_TIME && !isPageLoaded) {
+    console.log("Tải lại trang vì trang mất quá nhiều thời gian để tải.");
+    window.location.reload();
+  }
+}
+
+function checkIframe() {
+  const iframe = document.querySelector(".iframe-hidden");
+  if (
+    iframe &&
+    iframe.contentDocument &&
+    iframe.contentDocument.readyState === "complete"
+  ) {
+    // Đặt lại thời gian bắt đầu khi iframe đã tải xong
+    startTime = Date.now();
+    isPageLoaded = true;
+    setTimeout(checkLoadTime, 1000); // Kiểm tra sau 1 giây
+  } else {
+    checkIframe();
+  }
+}
+
+window.addEventListener("load", function () {
+  checkIframe();
+});
 
 testHBtn.addEventListener("click", function (e) {
   e.preventDefault();

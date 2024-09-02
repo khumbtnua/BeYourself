@@ -130,15 +130,22 @@ function savePomoBg(fileUrl) {
     .catch((err) => console.log(err.message));
 }
 
-window.addEventListener("load", function () {
-  setTimeout(() => {
+function fetchData() {
+  var isLogin = document.querySelector("#user-avar");
+  var link = isLogin.querySelector('a[href][title="Tạo tài khoản"]');
+  if (link) {
+  } else {
     getPomoBg();
     getPomoTime();
-    getTodolist();
-    getEventlist();
-    getTimetable();
-    getNotesData();
-  }, 5000);
+    setTimeout(getTodolist, 2000);
+    setTimeout(getEventlist, 4000);
+    setTimeout(getTimetable, 6000);
+    setTimeout(getNotesData, 8000);
+  }
+}
+
+window.addEventListener("load", function () {
+  fetchData();
 });
 
 function getPomoBg() {
@@ -348,6 +355,7 @@ addEventListener("fullscreenchange", function () {
 if ("documentPictureInPicture" in window) {
   const togglePipButton = document.createElement("button");
   togglePipButton.innerHTML = `<img src="/img/tool_imgs/picinpic.png">`;
+  togglePipButton.classList.add("step-eight-Home");
   togglePipButton.addEventListener("click", togglePictureInPicture, false);
 
   document.getElementById("controlbar").appendChild(togglePipButton);
@@ -421,14 +429,43 @@ const tilemagic = document.getElementById("titlemagic");
 const listask = document.getElementById("list");
 let currentEditingTask = null;
 
+function debounce(func, delay) {
+  let timeout;
+  return function (...args) {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func.apply(this, args), delay);
+  };
+}
+
+var isLogin = document.querySelector("#user-avar");
+var link = isLogin.querySelector('a[href][title="Tạo tài khoản"]');
+if (link) {
+} else {
+  var saveTodolistDebounced = debounce(saveTodolist, 5000);
+}
+
 function addTaskServer(data) {
   var tasks = data;
   if (tasks) {
     tasks.forEach((task) => {
       var taskcontai = document.createElement("div");
       taskcontai.classList.add("taskcontai");
-      taskcontai.innerHTML = `
-                <span class="task-text">${task}</span>
+
+      if (task.status === true) {
+        taskcontai.innerHTML = `
+                <span class="task-text" style="text-decoration:line-through">${task.task}</span>
+                <div class="options">
+                    <button class="btnedit" onclick="edittask(this)"><img src="/img/tool_imgs/edit.png" style="width: 100%; height:100%"></button>
+                    <button class="btndelete" onclick="deletetask(this)"><img src="/img/tool_imgs/delete.png" style="width: 100%; height:100%"></button>
+                <label class="custom-checkbox">
+                <input type="checkbox" onclick="toggleComplete(this)" checked>
+                <div class="checkmark"></div>
+                </label>
+            </div>
+                </div>`;
+      } else {
+        taskcontai.innerHTML = `
+                <span class="task-text">${task.task}</span>
                 <div class="options">
                     <button class="btnedit" onclick="edittask(this)"><img src="/img/tool_imgs/edit.png" style="width: 100%; height:100%"></button>
                     <button class="btndelete" onclick="deletetask(this)"><img src="/img/tool_imgs/delete.png" style="width: 100%; height:100%"></button>
@@ -438,6 +475,7 @@ function addTaskServer(data) {
                 </label>
             </div>
                 </div>`;
+      }
       listask.appendChild(taskcontai);
     });
   }
@@ -488,34 +526,40 @@ function edittask(button) {
 }
 
 function deletetask(button) {
-  var taskTestsArr = [];
   const taskcontai = button.closest(".taskcontai");
   taskcontai.remove();
-  var taskTests = document.querySelectorAll(".task-text");
-  taskTests.forEach((taskTest) => {
-    taskTestsArr.push(taskTest.textContent);
-  });
-  saveTodolist(taskTestsArr);
-  resetInput()// Đảm bảo khi xóa một nhiệm vụ, các nút và input trở về trạng thái ban đầu
+  resetInput();
 }
 
 function toggleComplete(checkbox) {
-  const taskcontai = checkbox.closest(".taskcontai");
-  const taskText = taskcontai.querySelector(".task-text");
+  var taskcontai = checkbox.closest(".taskcontai");
+  var taskText = taskcontai.querySelector(".task-text");
   if (checkbox.checked) {
     taskText.style.textDecoration = "line-through";
   } else {
     taskText.style.textDecoration = "none";
   }
+  saveTasksDebounced();
 }
 
 function resetInput() {
   var taskTestsArr = [];
   var taskTests = document.querySelectorAll(".task-text");
   taskTests.forEach((taskTest) => {
-    taskTestsArr.push(taskTest.textContent);
+    const style = window.getComputedStyle(taskTest);
+    if (style.textDecoration === "line-through solid rgb(255, 255, 255)") {
+      taskTestsArr.push({
+        task: taskTest.textContent,
+        status: true,
+      });
+    } else {
+      taskTestsArr.push({
+        task: taskTest.textContent,
+        status: false,
+      });
+    }
   });
-  saveTodolist(taskTestsArr);
+  saveTasksDebounced();
   currentEditingTask = null;
   document.getElementById("inputTask").value = "";
   document.getElementById(
@@ -524,13 +568,33 @@ function resetInput() {
   tilemagic.style.top = "0px";
 }
 
-function saveTodolist(arr) {
+const saveTasksDebounced = debounce(() => {
+  var taskTestsArr = [];
+  var taskTests = document.querySelectorAll(".task-text");
+  taskTests.forEach((taskTest) => {
+    const style = window.getComputedStyle(taskTest);
+    if (style.textDecoration === "line-through solid rgb(255, 255, 255)") {
+      taskTestsArr.push({
+        task: taskTest.textContent,
+        status: true,
+      });
+    } else {
+      taskTestsArr.push({
+        task: taskTest.textContent,
+        status: false,
+      });
+    }
+  });
+  saveTodolistDebounced(taskTestsArr);
+}, 1000);
+
+function saveTodolist(tasks) {
   fetch("/save/todolist", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(arr),
+    body: JSON.stringify(tasks),
   })
     .then((res) => res.json())
     .then((data) => {
@@ -645,11 +709,13 @@ function saveTimetable(timetable) {
 document.getElementById("prevWeek").addEventListener("click", () => {
   currentWeekOffset--;
   updateMainCalendar();
+  getTimetable();
 });
 
 document.getElementById("nextWeek").addEventListener("click", () => {
   currentWeekOffset++;
   updateMainCalendar();
+  getTimetable();
 });
 
 function getWeekDates(offset) {
@@ -761,6 +827,7 @@ function addTimetableServer(data) {
       const container = this.parentElement;
       const noteInput = container.querySelector(".notes-input");
       const eventCell = this.closest("td");
+      const eventName = eventCell.querySelector(".event-content").textContent;
       const noteText = noteInput.value.trim();
       const timeSlot = eventCell.closest("tr").children[0].textContent;
       const dayIndex =
@@ -775,7 +842,6 @@ function addTimetableServer(data) {
         if (noteDiv) {
           noteDiv.remove();
         }
-
         const notesBtn = eventCell.querySelector(".notes-btn");
         notesBtn.innerHTML =
           '<img src="/img/tool_imgs/edit2.png" style="width: 100%; height:100%">';
@@ -783,13 +849,13 @@ function addTimetableServer(data) {
         container.style.display = "none";
         notesBtn.style.display = "inline";
 
-        updateIncompleteNotesCount();
         return;
       }
 
       notesData[dateKey] = {
         noteText: noteText,
         dayName: dates[dayIndex].dayName,
+        eventname: eventName,
       };
       notesData[`${dateKey}_completed`] = false;
 
@@ -818,13 +884,13 @@ function addTimetableServer(data) {
       container.style.display = "none";
       notesBtn.style.display = "inline";
 
-      addCompleteNoteListenerServer();
+      addCompleteNoteListener();
       updateIncompleteNotesCount();
       saveNotesData(notesData);
     });
   });
 
-  addCompleteNoteListenerServer();
+  addCompleteNoteListener();
   updateIncompleteNotesCount();
 }
 
@@ -913,7 +979,7 @@ function updateMainCalendar() {
       const container = this.parentElement;
       const noteInput = container.querySelector(".notes-input");
       const eventCell = this.closest("td");
-      const eventName = eventCell.querySelector(".event-content").textContent
+      const eventName = eventCell.querySelector(".event-content").textContent;
       const noteText = noteInput.value.trim();
       const timeSlot = eventCell.closest("tr").children[0].textContent;
       const dayIndex =
@@ -943,7 +1009,7 @@ function updateMainCalendar() {
       notesData[dateKey] = {
         noteText: noteText,
         dayName: dates[dayIndex].dayName,
-        eventname:eventName
+        eventname: eventName,
       };
       notesData[`${dateKey}_completed`] = false;
 
@@ -987,38 +1053,24 @@ function addCompleteNoteListener() {
     checkbox.addEventListener("change", function () {
       const noteKey = this.dataset.noteKey;
       notesData[`${noteKey}_completed`] = this.checked;
-      updateIncompleteNotesCount() // Cập nhật phần thống kê
+      saveNotesData(notesData);
+      updateIncompleteNotesCount();
     });
   });
 }
 
-function addCompleteNoteListenerServer() {
-  document.querySelectorAll(".complete-note-checkbox").forEach((checkbox) => {
-    checkbox.addEventListener("change", function () {
-      const noteKey = this.dataset.noteKey;
-      notesData[`${noteKey}_completed`] = this.checked;
-      updateIncompleteNotesCount();
-      saveNotesData(notesData); // Cập nhật phần thống kê
-    });
-  });
-}
- 
- 
 
 function updateIncompleteNotesCount() {
   let incompleteCount = 0;
   const incompleteNotesList = [];
-
   for (let key in notesData) {
     if (key.endsWith("_completed") && notesData[key] === false) {
       const noteKey = key.replace("_completed", "");
       const [date, time] = noteKey.split("_");
       const notecontent = notesData[noteKey].noteText;
       const noteDayname = notesData[noteKey].dayName;
-      const eventName =notesData[noteKey].eventname;
+      const eventName = notesData[noteKey].eventname;
       incompleteCount++;
-        console.log(eventName)
-        console.log(notesData)
       incompleteNotesList.push({
         key: noteKey,
         date,
@@ -1069,6 +1121,7 @@ function updateIncompleteNotesCount() {
       notesData[`${noteKey}_completed`] = this.checked;
       updateIncompleteNotesCount();
       updateMainCalendar();
+      saveNotesData(notesData);
     });
 
     const noteText = document.createElement("span");
@@ -1090,7 +1143,6 @@ function updateIncompleteNotesCount() {
 
   // Liên kết checkbox trong phần thống kê với lịch chính
   document.querySelectorAll(".incomplete-note-checkbox").forEach((checkbox) => {
-    console.log("Done Tasks", incompleteNotesList);
     const noteKey = checkbox.dataset.noteKey;
     const correspondingCheckbox = document.querySelector(
       `.complete-note-checkbox[data-note-key="${noteKey}"]`
@@ -1307,38 +1359,57 @@ function startIntro() {
   intro.setOptions({
     steps: [
       {
-        element: "#introduction",
+        element: "#introduction-Home",
         intro:
-          "Chào mừng đến với website hướng nghiệp cho mọi lứa tuổi. Hãy cùng khám phá một chút tính năng về website của chúng tôi nhé!",
+          "Chào mừng đến với Website hướng nghiệp BeYourself. Hãy cùng tôi đi một vòng tham quan website này nhé!",
       },
       {
-        element: "#step-one",
+        element: ".step-one-Home",
         intro:
-          "Đây là thanh navbar hay công cụ sẽ xuất hiện ở mọi trang của website chúng tôi",
+          "Đây là thanh navbar nơi sẽ mà bạn có thể chuyển qua lại giữa các trang của website",
       },
       {
-        element: "#step-two",
-        intro: "Đây chính là logo và châm ngôn chính của website chúng tôi.",
+        element: "#step-two-Home",
+        intro: "Đây chính là logo và tên website",
       },
       {
-        element: "#step-three",
+        element: "#step-three-Home",
         intro:
-          "Còn đây là nơi trang chủ của chúng tôi để bạn có thể quay về trang chủ bất cứ khi nào bạn muốn.",
+          "Đây là trang chủ nơi mà bạn có thể sử dụng một số công cụ hỗ trợ học tập",
       },
       {
-        element: "#step-four",
+        element: "#step-four-Home",
         intro:
-          "Kế bên đây là nơi sẽ dẫn bạn đến những bài test thú vị để tìm ra được công việc phù hợp của bạn trong tương lai dựa trên một sự pha trộn tuyệt vời",
+          "Đây là trang trắc nghiệm hướng nghiệp nơi mà bạn có thể tham gia vào các bài test hướng nghiệp và xem kết quả một cách chi tiết nhất",
       },
       {
-        element: "#step-five",
+        element: "#step-five-Home",
         intro:
-          "Kế cuối đây là nơi để bạn có thế tìm hiểu về bất cứ trường đại học nào ở mọi nơi trên thế giới để từ đó đưa ra những quyết định đúng đắn hơn trong việc chọn trường để học phù hợp với năng lực và sở thích cũng như đam mê của bản thân.",
+          "Đây là trang đại học nơi mà bạn sẽ có thể tìm hiểu các thông tin chi tiết về các trường đại học trong phạm vi tùy chỉnh",
       },
       {
-        element: "#step-six",
+        element: ".step-six-Home",
         intro:
-          "Cuối cùng là nơi để bạn có thể đọc những mẫu chuyển ngắn từ người thành công hay những videos từ họ để có thêm động lực và kinh nghiệm trên con đường đi đến thành công của bạn sau này.",
+          "Đây là nơi mà bạn có thể tùy chỉnh và sử dụng thêm một số tính năng khác của website",
+      },
+      {
+        element: ".step-seven-Home",
+        intro: "Đây là công cụ pomodoro để hỗ trợ bạn trong việc học tập",
+      },
+      {
+        element: ".step-eight-Home",
+        intro:
+          "Đây là nút tách màn hình pomodoro ra khỏi website để bạn có thể dễ dàng ghim ở màn hình máy tính của bạn",
+      },
+      {
+        element: ".step-nine-Home",
+        intro:
+          "Đây là nút để bạn có thể phóng to cả màn hình của công cụ pomodoro",
+      },
+      {
+        element: ".step-ten-Home",
+        intro:
+          "Đây là nút để bạn chuyển tới nơi có thêm nhiều công cụ hỗ trợ học tập hơn như Việc cần làm, Thời khóa biểu, Lịch kiểm tra",
       },
     ],
     showProgress: true,
