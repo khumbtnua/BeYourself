@@ -6,7 +6,7 @@
 #navbar {
   user-select: none;
   width: 100vw;
-  height: 6vh;
+  height: 45px;
   display: flex;
   background-color: rgba(50, 50, 50, 0.5);
   backdrop-filter: blur(30px);
@@ -383,7 +383,7 @@ nav button:hover {
   height: 100vh;
   transition: 0.3s ease-out;
   position: fixed;
-  padding-top: 6vh;
+  padding-top: 45px;
   background-color: transparent;
   backdrop-filter: blur(20px);
   z-index: 9999;
@@ -401,7 +401,7 @@ nav button:hover {
 .name-container {
   display: flex;
   flex-direction: row;
-  height: 6vh;
+  height: 45px;
 }
 .name-container img {
   width: 45px;

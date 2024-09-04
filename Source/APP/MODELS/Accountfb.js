@@ -65,7 +65,7 @@ const AccountFB = new Schema(
     ],
     Notesdata: [{ type: Object }],
   },
-  { versionKey: false },
+  { versionKey: false }
 );
 
 module.exports = mongoose.model("AccountFB", AccountFB, "accountsfb");

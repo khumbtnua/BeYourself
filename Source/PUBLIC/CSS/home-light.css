@@ -20,7 +20,7 @@ body{
 }
 
 .modes button {
-    background-color: rgb(260,260, 260,0.3);
+    background-color: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(15px);
     border: none;
     border-radius: 30px;
@@ -34,7 +34,7 @@ body{
 }
 
 .modes button:hover {
-    background: rgba(255, 255, 255, 0.5);
+    border: 2px solid white;
 }
 
 .timer {
@@ -82,12 +82,91 @@ body{
     display: none;
 }
 #settingpage label{
-    font-size: 14px;
+    font-size: 15px;
+    white-space: pre-line;
+    text-align: left;
+    letter-spacing: 0.5px;
+    line-height: 20px;
+    flex-shrink: 0;
+    flex-grow: 0;
+    margin: auto 0;
+}
+#dropArea p{
+   text-align: unset !important;
 }
 #settingpage p{
     color: rgb(220, 220, 220);
     font-size: 12px;
+    margin: 0;
+    text-align: right;
 }
+.spotify-embed{
+    position: absolute;
+    bottom: 10px;
+    height: 80px;
+    width: 500px;
+    overflow: hidden;
+}
+@media (max-height: 151px) {
+.TrackListWidget_trackListGridContainer__GZGxh{
+    padding: 8px 16px 8px 8px !important;
+}}
+/* The switch - the box around the slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+  }
+  
+  /* Hide the default HTML checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* The slider */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+  }
+  
+  /* The circle inside the slider */
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 4px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+  }
+  
+  /* When the checkbox is checked, change the background color */
+  input:checked + .slider {
+    background-color: #2196F3;
+  }
+  
+  /* Move the circle to the right when checked */
+  input:checked + .slider:before {
+    transform: translateX(26px);
+  }
+  
+  /* Rounded slider */
+  .slider.round {
+    border-radius: 34px;
+  }
+  
 .child-move-contai{
     flex-grow: 0;
     flex-shrink: 0;
@@ -98,14 +177,14 @@ body{
     display: flex;
     flex-direction: row;
     width: 100%;
-    background-color: rgb(260, 260, 260, 0.3);
+    background-color: rgb(0, 0, 0, 0.4);
     backdrop-filter: blur(20px);
     border-radius: 25px;
     height: 110px;
 }
 #changepomo-contai div:nth-of-type(2){
-    border-left: 1px solid rgb(260, 260, 260, 0.4) ;
-    border-right: 1px solid rgb(260, 260, 260, 0.4) ;
+    border-left: 1px solid rgb(260, 260, 260, 0.3) ;
+    border-right: 1px solid rgb(260, 260, 260, 0.3) ;
 }
 .changepomo{
     flex-grow: 1;
@@ -122,14 +201,14 @@ body{
     padding: 5px;
     border: none;
     margin: 5px 0;
-    background-color: rgb(0, 0, 0, 0.2);
+    background-color: rgb(260, 260, 260, 0.2);
     color: white;
     outline: none;
 }
 #changebg{
-    margin-top: 20px;
+    margin-top: 10px;
     width: 100%;
-    background-color: rgb(260, 260, 260, 0.3);
+    background-color: rgb(0, 0, 0, 0.4);
     backdrop-filter: blur(20px);
     border-radius: 25px;
     display: flex;
@@ -142,15 +221,25 @@ body{
     justify-content: center;
     padding: 0 10px 0 0;
 }
+#PomodoroSequence{
+    margin-top: 10px;
+    width: 100%;
+    background-color: rgb(0, 0, 0, 0.4);
+    backdrop-filter: blur(20px);
+    border-radius: 25px;
+    display: flex;
+    padding: 20px;
+    text-align: left;
+}
 #close {
     display: flex;
-    margin: 0 0 20px 0;
+    margin: 0 0 10px 0;
 }
 #imgclose{
 cursor: pointer;
 }
 #inclose{
-    background-color: rgb(260, 260, 260, 0.3);
+    background-color: rgb(0, 0, 0, 0.4);
     backdrop-filter: blur(20px);
     border-radius: 25px;
     padding: 0 20px;
@@ -170,10 +259,10 @@ cursor: pointer;
     justify-content: center;
     cursor: pointer;
     width: 100%;
-    background-color: rgb(0, 0, 0, 0.2);
+    background-color: rgb(260, 260, 260, 0.2);
 }
 .drop-area:hover{
-    background-color: rgb(0, 0, 0, 0.3);
+    background-color: rgb(260, 260, 260, 0.3);
 }
 .drop-area.dragover {
     background-color: #f0f0f0;
@@ -313,6 +402,7 @@ cursor: pointer;
     margin-left: 5px;
     font-size: 22px;
     letter-spacing: 2px;
+    font-weight: 1;
 }
 
 #contai-inputTask {
@@ -392,7 +482,7 @@ cursor: pointer;
 
 .task-text {
     font-size: 16px;
-    letter-spacing: 0.5px;
+    letter-spacing: 1px;
 }
 
 .options {
@@ -573,6 +663,7 @@ cursor: pointer;
     margin-left: 5px;
     font-size: 22px;
     letter-spacing: 2px;
+    font-weight: 1;
 }
 
 #toggleremind {
@@ -648,10 +739,11 @@ cursor: pointer;
     width: fit-content;
 }
 .event-item h2{
-    font-size: 15px;
+    font-weight: 100;
     font-size: 15px;
     margin: 0 0 5px 0;
     padding: 0 0 0 5px;
+    letter-spacing: 1px;
 }
 
 
@@ -809,7 +901,8 @@ th {
     border-bottom: 1px solid black;
     border-right: 1px solid black;
     padding: 5px;
-    min-width: 100px;
+    width: 120px;
+    height: fit-content;
 }
 #calendarContent td{
     background-color: rgb(227, 229, 218);
@@ -934,7 +1027,6 @@ th {
     margin-block-start: unset;
     margin-block-end: unset;
     font-family: monospace;
-    line-height: 20px;
     margin-left: 5px;
     color: black;
 }
@@ -1009,7 +1101,7 @@ th {
 #contaibacktotimer{
     background-color: rgb(50, 50, 50, 0.5);
     backdrop-filter: blur(30px);
-    border: 1px solid rgb(100, 100, 100);
+    border: 1px solid rgb(260, 260, 260);
     border-bottom: 0;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
@@ -1041,6 +1133,10 @@ th {
     display: flex;
     flex-direction: row;
 }
+.completed-note {
+    text-decoration: line-through;
+}
+
 @media only screen and (max-width: 850px) {
 
     #contai {
@@ -1079,9 +1175,8 @@ th {
 
 @media only screen and (max-width: 550px) {
  
- 
     #contai {
-        gap: 10px
+        gap: 5px
     }
     .modes button {
         font-size: 13px;
@@ -1095,4 +1190,97 @@ th {
     .child-move-contai{
         width: 400px;
     }
+    .child {
+        padding: 5px;
+        border-radius: 25px;
+    }
+#appcontai {
+    padding: 50px 5px 5px 5px;
+}
+#titlemagic h2 {
+    font-size: 14px;
+}
+#titleremind h2 {
+    font-size: 14px;
+}
+#incompleteNotesCountDiv h2 {
+    font-size: 16px;
+}
+#incompleteNotesCountDiv span {
+    margin-left: 5px;
+    font-size: 16px;
+}
+#calendarTitle {
+    font-size: 22px;
+    margin: auto 0;
+}
+.task-text {
+    font-size: 14px;
+}
+.event-item h1 {
+    font-size: 18px;
+    border-radius: 10px
+}
+.event-item h2 {
+    font-size: 14px;
+}
+.taskcontai {
+    margin-bottom: 5px;
+    border-radius: 15px;
+}
+.remind-list li {
+    margin-bottom: 5px;
+    border-radius: 15px;
+    padding: 5px;
+}
+.incomplete-note-item h3 {
+    font-size: 13px;
+}
+.incomplete-note-item h1 {
+    font-size: 14px;
+}
+.incomplete-note-item {
+    padding: 5px;
+    margin-top: 5px;
+}
+.day-note-group h4 {
+    font-size: 15px;
+}
+.day-note-group {
+    padding: 0 0 5px 0;
+}
+#contai-list-todo {
+    padding: 5px 0px 5px 5px;
+}
+#contai-remind-list {
+    padding: 5px 0px 5px 5px;
+}
+#contai-incompleteNotesContainer {
+    padding: 5px 0px 5px 5px;
+}
+#titleremind {
+    padding: 0 0px 5px 0px;
+}
+#input-wrapper {
+    padding: 0 0 5px 0;
+}
+.i4 {
+    padding: 0;
+}
+#mainCalendar {
+    padding: 5px;
+}
+#control-calendar {
+    margin-bottom: 5px;
+}
+#timetableForm {
+    padding: 5px;
+}
+#control-timetable {
+    margin-bottom: 5px;
+}
+.spotify-embed{
+    width: 350px;
+    bottom: 100px;
+}
 }

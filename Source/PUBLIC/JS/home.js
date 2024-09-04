@@ -8,6 +8,8 @@ let currentTimer = "pomodoro";
 let timer;
 let isRunning = false;
 let timeLeft = timers[currentTimer];
+let usePomodoroSequence = true; // Default to true (sequence enabled)
+let pomodoroCount = 1; // Track the number of completed Pomodoro sessions
 
 const startStopButton = document.getElementById("startStop");
 const resetButton = document.getElementById("reset");
@@ -25,8 +27,14 @@ const dropArea = document.getElementById("dropArea");
 const settingpage = document.getElementById("settingpage");
 const timercontai = document.getElementById("contai-timer");
 const playerContainer = document.getElementById("home");
-
 let backgroundFile;
+
+const usePomodoroSequenceInput = document.getElementById("usePomodoroSequence");
+
+// Update the sequence setting based on user input
+usePomodoroSequenceInput.addEventListener("change", function () {
+  usePomodoroSequence = usePomodoroSequenceInput.checked;
+});
 
 function updateDisplay() {
   const minutes = Math.floor(timeLeft / 60);
@@ -34,11 +42,13 @@ function updateDisplay() {
   minutesDisplay.textContent = minutes < 10 ? "0" + minutes : minutes;
   secondsDisplay.textContent = seconds < 10 ? "0" + seconds : seconds;
 }
+const alarmSound = new Audio('/sound/blingbling.mp3');
 
 function startStopTimer() {
   if (isRunning) {
     clearInterval(timer);
     startStopButton.innerHTML = `<img src="/img/tool_imgs/play.png">`;
+    startStopButton.title = "Bắt đầu pomodoro";
   } else {
     timer = setInterval(() => {
       if (timeLeft > 0) {
@@ -47,24 +57,51 @@ function startStopTimer() {
       } else {
         clearInterval(timer);
         startStopButton.innerHTML = `<img src="/img/tool_imgs/play.png">`;
+        startStopButton.title = "Bắt đầu pomodoro";
+        alarmSound.play()
+        if (usePomodoroSequence) {
+          handlePomodoroSequence(); // Handle the Pomodoro sequence logic
+        }
       }
     }, 1000);
     startStopButton.innerHTML = `<img src="/img/tool_imgs/square.png">`;
+    startStopButton.title = "Dừng pomodoro";
   }
   isRunning = !isRunning;
 }
+function handlePomodoroSequence() {
+  if (pomodoroCount % 4 === 0) {
+    // After 4 Pomodoro sessions, take a long break
+    switchMode("longBreak");
+    startStopTimer()
+  } else if (currentTimer === "pomodoro") {
+    // After each Pomodoro session, take a short break
+    switchMode("shortBreak");
+    startStopTimer()
+  } else {
+    // After a short break, go back to Pomodoro
+    switchMode("pomodoro");
+    startStopTimer()
+  }
 
+  startStopTimer(); // Automatically start the next session
+}
 function resetTimer() {
   clearInterval(timer);
   timeLeft = timers[currentTimer];
   isRunning = false;
   startStopButton.innerHTML = `<img src="/img/tool_imgs/play.png">`;
+  startStopButton.title = "Bắt đầu pomodoro";
   updateDisplay();
 }
 
 function switchMode(mode) {
-  currentTimer = mode;
-  resetTimer();
+  timeLeft = timers[currentTimer];
+  updateDisplay();
+  if (mode === "pomodoro") {
+    pomodoroCount++;
+    console.log(pomodoroCount)
+  }
 }
 
 function openSettings() {
@@ -116,18 +153,23 @@ function renderPomoBg(file, data) {
 }
 
 function savePomoBg(fileUrl) {
-  fetch("/save/pomodoroBackground", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ fileUrl }),
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      console.log("Success:", data);
+  var isLogin = document.querySelector("#user-avar");
+  var link = isLogin.querySelector('a[href][title="Tạo tài khoản"]');
+  if (link) {
+  } else {
+    fetch("/save/pomodoroBackground", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ fileUrl }),
     })
-    .catch((err) => console.log(err.message));
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("Success:", data);
+      })
+      .catch((err) => console.log(err.message));
+  }
 }
 
 function fetchData() {
@@ -240,6 +282,7 @@ function saveSettings() {
   timers.pomodoro = pomodoroInput.value * 60;
   timers.shortBreak = shortBreakInput.value * 60;
   timers.longBreak = longBreakInput.value * 60;
+  usePomodoroSequence = usePomodoroSequenceInput.checked;
   if (currentTimer === "pomodoro") {
     timeLeft = timers.pomodoro;
   } else if (currentTimer === "shortBreak") {
@@ -279,18 +322,23 @@ function addPomoTimeServer(data) {
 }
 
 function savePomoTime(Pomotime) {
-  fetch("/save/pomotime", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(Pomotime),
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      console.log("Success:", data);
+  var isLogin = document.querySelector("#user-avar");
+  var link = isLogin.querySelector('a[href][title="Tạo tài khoản"]');
+  if (link) {
+  } else {
+    fetch("/save/pomotime", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(Pomotime),
     })
-    .catch((err) => console.log(err.message));
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("Success:", data);
+      })
+      .catch((err) => console.log(err.message));
+  }
 }
 
 modeButtons.forEach((button) => {
@@ -300,8 +348,11 @@ modeButtons.forEach((button) => {
 });
 
 startStopButton.addEventListener("click", startStopTimer);
+startStopButton.title = "Bắt đầu pomodoro";
 resetButton.addEventListener("click", resetTimer);
+resetButton.title = "Cài lại pomodoro";
 settingsButton.addEventListener("click", openSettings);
+settingsButton.title = "Chuyển qua chế độ chỉnh sửa pomodoro";
 closesset.addEventListener("click", saveSettings);
 document.getElementById("fullsceenbtn").addEventListener("click", fullscreen);
 
@@ -356,6 +407,7 @@ if ("documentPictureInPicture" in window) {
   const togglePipButton = document.createElement("button");
   togglePipButton.innerHTML = `<img src="/img/tool_imgs/picinpic.png">`;
   togglePipButton.classList.add("step-eight-Home");
+  togglePipButton.title = "Chuyển qua chế độ Picture-In-Picture";
   togglePipButton.addEventListener("click", togglePictureInPicture, false);
 
   document.getElementById("controlbar").appendChild(togglePipButton);
@@ -455,11 +507,11 @@ function addTaskServer(data) {
         taskcontai.innerHTML = `
                 <span class="task-text" style="text-decoration:line-through">${task.task}</span>
                 <div class="options">
-                    <button class="btnedit" onclick="edittask(this)"><img src="/img/tool_imgs/edit.png" style="width: 100%; height:100%"></button>
-                    <button class="btndelete" onclick="deletetask(this)"><img src="/img/tool_imgs/delete.png" style="width: 100%; height:100%"></button>
+                    <button class="btnedit" onclick="edittask(this)" title="Chỉnh sửa việc cần làm"><img src="/img/tool_imgs/edit.png" style="width: 100%; height:100%"></button>
+                    <button class="btndelete" onclick="deletetask(this)" title="Xóa việc cần làm"><img src="/img/tool_imgs/delete.png" style="width: 100%; height:100%"></button>
                 <label class="custom-checkbox">
                 <input type="checkbox" onclick="toggleComplete(this)" checked>
-                <div class="checkmark"></div>
+                <div class="checkmark" title="Đánh dấu hoàn thành việc cần làm"></div>
                 </label>
             </div>
                 </div>`;
@@ -467,11 +519,11 @@ function addTaskServer(data) {
         taskcontai.innerHTML = `
                 <span class="task-text">${task.task}</span>
                 <div class="options">
-                    <button class="btnedit" onclick="edittask(this)"><img src="/img/tool_imgs/edit.png" style="width: 100%; height:100%"></button>
-                    <button class="btndelete" onclick="deletetask(this)"><img src="/img/tool_imgs/delete.png" style="width: 100%; height:100%"></button>
+                    <button class="btnedit" onclick="edittask(this)" title="Chỉnh sửa việc cần làm"><img src="/img/tool_imgs/edit.png" style="width: 100%; height:100%"></button>
+                    <button class="btndelete" onclick="deletetask(this)" title="Xóa việc cần làm"><img src="/img/tool_imgs/delete.png" style="width: 100%; height:100%"></button>
                 <label class="custom-checkbox">
                 <input type="checkbox" onclick="toggleComplete(this)">
-                <div class="checkmark"></div>
+                <div class="checkmark" title="Đánh dấu hoàn thành việc cần làm"></div>
                 </label>
             </div>
                 </div>`;
@@ -497,11 +549,11 @@ function addTask() {
       taskcontai.innerHTML = `
                 <span class="task-text">${taskcontent}</span>
                 <div class="options">
-                    <button class="btnedit" onclick="edittask(this)"><img src="/img/tool_imgs/edit.png" style="width: 100%; height:100%"></button>
-                    <button class="btndelete" onclick="deletetask(this)"><img src="/img/tool_imgs/delete.png" style="width: 100%; height:100%"></button>
+                    <button class="btnedit" onclick="edittask(this)" title="Chỉnh sửa việc cần làm"><img src="/img/tool_imgs/edit.png" style="width: 100%; height:100%"></button>
+                    <button class="btndelete" onclick="deletetask(this)" title="Xóa việc cần làm"><img src="/img/tool_imgs/delete.png" style="width: 100%; height:100%"></button>
                 <label class="custom-checkbox">
                 <input type="checkbox" onclick="toggleComplete(this)">
-                <div class="checkmark"></div>
+                <div class="checkmark" title="Đánh dấu hoàn thành việc cần làm"></div>
                 </label>
             </div>
                 </div>`;
@@ -511,7 +563,7 @@ function addTask() {
   } else {
     document.getElementById(
       "btn-addtask"
-    ).innerHTML = `<img src="/img/tool_imgs/plus.png" style="width: 100%; height:100%">`;
+    ).innerHTML = `<img src="/img/tool_imgs/plus.png" style="width: 100%; height:100%" title="Lưu việc cần làm">`;
   }
 }
 
@@ -522,7 +574,7 @@ function edittask(button) {
   const inputTask = document.getElementById("inputTask");
   inputTask.value = taskText;
   const btnAddTask = document.getElementById("btn-addtask");
-  btnAddTask.innerHTML = `<img src="/img/tool_imgs/check.png" style="width: 100%; height:100%">`;
+  btnAddTask.innerHTML = `<img src="/img/tool_imgs/check.png" style="width: 100%; height:100%" title="Lưu chỉnh sửa việc cần làm">`;
 }
 
 function deletetask(button) {
@@ -564,7 +616,7 @@ function resetInput() {
   document.getElementById("inputTask").value = "";
   document.getElementById(
     "btn-addtask"
-  ).innerHTML = `<img src="/img/tool_imgs/edit.png" style="width: 100%; height:100%">`;
+  ).innerHTML = `<img src="/img/tool_imgs/edit.png" style="width: 100%; height:100%" title="Chỉnh sửa việc cần làm">`;
   tilemagic.style.top = "0px";
 }
 
@@ -589,18 +641,23 @@ const saveTasksDebounced = debounce(() => {
 }, 1000);
 
 function saveTodolist(tasks) {
-  fetch("/save/todolist", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(tasks),
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      console.log("Success:", data);
+  var isLogin = document.querySelector("#user-avar");
+  var link = isLogin.querySelector('a[href][title="Tạo tài khoản"]');
+  if (link) {
+  } else {
+    fetch("/save/todolist", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(tasks),
     })
-    .catch((err) => console.log(err.message));
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("Success:", data);
+      })
+      .catch((err) => console.log(err.message));
+  }
 }
 
 //calender code
@@ -640,6 +697,7 @@ function generateTimetableRows() {
       const timeInput = document.createElement("input");
       timeInput.type = "time";
       timeInput.className = "time-input";
+      timeInput.title = "Chọn thời gian";
       timeCell.appendChild(timeInput);
     }
     tr.appendChild(timeCell);
@@ -647,7 +705,7 @@ function generateTimetableRows() {
     for (let j = 0; j < 7; j++) {
       const dayCell = document.createElement("td");
       if (i > 0) {
-        dayCell.innerHTML = `<select class="subject">
+        dayCell.innerHTML = `<select class="subject" title="Chọn môn học">
                                   <option value=""></option>
                                   <option value="Toán">Toán</option>
                                   <option value="Vật Lý">Vật Lý</option>
@@ -692,18 +750,23 @@ document.getElementById("saveTimetable").addEventListener("click", () => {
 });
 
 function saveTimetable(timetable) {
-  fetch("/save/timetable", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(timetable),
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      console.log("Success:", data);
+  var isLogin = document.querySelector("#user-avar");
+  var link = isLogin.querySelector('a[href][title="Tạo tài khoản"]');
+  if (link) {
+  } else {
+    fetch("/save/timetable", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(timetable),
     })
-    .catch((err) => console.log(err.message));
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("Success:", data);
+      })
+      .catch((err) => console.log(err.message));
+  }
 }
 
 document.getElementById("prevWeek").addEventListener("click", () => {
@@ -778,7 +841,7 @@ function addTimetableServer(data) {
               return `
               <td>
               <div class="contai-event-content">
-                  <div class="event-content">${event}</div><button class="notes-btn"><img src="/img/tool_imgs/edit2.png" style="width: 100%; height:100%"></button>
+                  <div class="event-content">${event}</div><button class="notes-btn" title="Tạo ghi chú"><img src="/img/tool_imgs/edit2.png" style="width: 100%; height:100%"></button>
                   </div>
                   ${
                     noteText
@@ -790,7 +853,7 @@ function addTimetableServer(data) {
                           <input type="checkbox" class="complete-note-checkbox" ${
                             isCompleted ? "checked" : ""
                           } data-note-key="${dateKey}">
-                      <div class="checkmark"></div>
+                      <div class="checkmark" title="Đánh dấu hoàn thành ghi chú"></div>
                       </label>
                           ${noteText}
                       </div>
@@ -799,7 +862,7 @@ function addTimetableServer(data) {
                   }
                   <div class="notes-input-container" style="display:none;">
                       <input type="text" class="notes-input" placeholder="Bài tập..." value="${noteText}">
-                      <button class="save-note-btn"><img src="/img/tool_imgs/plus2.png" style="width: 100%; height:100%"></button>
+                      <button class="save-note-btn" title="Thêm ghi chú"><img src="/img/tool_imgs/plus2.png" style="width: 100%; height:100%"></button>
                   </div>
               </td>`;
             })
@@ -844,7 +907,7 @@ function addTimetableServer(data) {
         }
         const notesBtn = eventCell.querySelector(".notes-btn");
         notesBtn.innerHTML =
-          '<img src="/img/tool_imgs/edit2.png" style="width: 100%; height:100%">';
+          '<img src="/img/tool_imgs/edit2.png" style="width: 100%; height:100%" title="Tạo ghi chú">';
 
         container.style.display = "none";
         notesBtn.style.display = "inline";
@@ -863,7 +926,7 @@ function addTimetableServer(data) {
       if (noteDiv) {
         noteDiv.innerHTML = `<label class="custom-checkbox custom-checkbox2">
               <input type="checkbox" class="complete-note-checkbox" data-note-key="${dateKey}">
-              <div class="checkmark"></div>
+              <div class="checkmark" title="Đánh dấu hoàn thành ghi chú"></div>
               </label>
               ${noteText}`;
       } else {
@@ -871,7 +934,7 @@ function addTimetableServer(data) {
         noteDiv.className = "event-note";
         noteDiv.innerHTML = `<label class="custom-checkbox custom-checkbox2">
               <input type="checkbox" class="complete-note-checkbox" data-note-key="${dateKey}">
-              <div class="checkmark"></div>
+              <div class="checkmark" title="Đánh dấu hoàn thành ghi chú"></div>
               </label>
               ${noteText}`;
         eventCell.appendChild(noteDiv);
@@ -879,7 +942,7 @@ function addTimetableServer(data) {
 
       const notesBtn = eventCell.querySelector(".notes-btn");
       notesBtn.innerHTML =
-        '<img src="/img/tool_imgs/edit2.png" style="width: 100%; height:100%">';
+        '<img src="/img/tool_imgs/edit2.png" style="width: 100%; height:100%" title="Tạo ghi chú">';
 
       container.style.display = "none";
       notesBtn.style.display = "inline";
@@ -930,7 +993,7 @@ function updateMainCalendar() {
               return `
               <td>
               <div class="contai-event-content">
-                  <div class="event-content">${event}</div><button class="notes-btn"><img src="/img/tool_imgs/edit2.png" style="width: 100%; height:100%"></button>
+                  <div class="event-content">${event}</div><button class="notes-btn" title="Tạo ghi chú" ><img src="/img/tool_imgs/edit2.png" style="width: 100%; height:100%"></button>
                   </div>
                   ${
                     noteText
@@ -942,7 +1005,7 @@ function updateMainCalendar() {
                           <input type="checkbox" class="complete-note-checkbox" ${
                             isCompleted ? "checked" : ""
                           } data-note-key="${dateKey}">
-                      <div class="checkmark"></div>
+                      <div class="checkmark" title="Đánh dấu hoàn thành ghi chú"></div>
                       </label>
                           ${noteText}
                       </div>
@@ -951,7 +1014,7 @@ function updateMainCalendar() {
                   }
                   <div class="notes-input-container" style="display:none;">
                       <input type="text" class="notes-input" placeholder="Bài tập..." value="${noteText}">
-                      <button class="save-note-btn"><img src="/img/tool_imgs/plus2.png" style="width: 100%; height:100%"></button>
+                      <button class="save-note-btn" title="Thêm ghi chú"><img src="/img/tool_imgs/plus2.png" style="width: 100%; height:100%"></button>
                   </div>
               </td>`;
             })
@@ -997,7 +1060,7 @@ function updateMainCalendar() {
 
         const notesBtn = eventCell.querySelector(".notes-btn");
         notesBtn.innerHTML =
-          '<img src="/img/tool_imgs/edit2.png" style="width: 100%; height:100%">';
+          '<img src="/img/tool_imgs/edit2.png" style="width: 100%; height:100%" title="Tạo ghi chú">';
 
         container.style.display = "none";
         notesBtn.style.display = "inline";
@@ -1017,7 +1080,7 @@ function updateMainCalendar() {
       if (noteDiv) {
         noteDiv.innerHTML = `<label class="custom-checkbox custom-checkbox2">
               <input type="checkbox" class="complete-note-checkbox" data-note-key="${dateKey}">
-              <div class="checkmark"></div>
+              <div class="checkmark" title="Đánh dấu hoàn thành ghi chú"></div>
               </label>
               ${noteText}`;
       } else {
@@ -1025,7 +1088,7 @@ function updateMainCalendar() {
         noteDiv.className = "event-note";
         noteDiv.innerHTML = `<label class="custom-checkbox custom-checkbox2">
               <input type="checkbox" class="complete-note-checkbox" data-note-key="${dateKey}">
-              <div class="checkmark"></div>
+              <div class="checkmark" title="Đánh dấu hoàn thành ghi chú"></div>
               </label>
               ${noteText}`;
         eventCell.appendChild(noteDiv);
@@ -1033,7 +1096,7 @@ function updateMainCalendar() {
 
       const notesBtn = eventCell.querySelector(".notes-btn");
       notesBtn.innerHTML =
-        '<img src="/img/tool_imgs/edit2.png" style="width: 100%; height:100%">';
+        '<img src="/img/tool_imgs/edit2.png" style="width: 100%; height:100%" title="Tạo ghi chú">';
 
       container.style.display = "none";
       notesBtn.style.display = "inline";
@@ -1054,11 +1117,16 @@ function addCompleteNoteListener() {
       const noteKey = this.dataset.noteKey;
       notesData[`${noteKey}_completed`] = this.checked;
       saveNotesData(notesData);
+            const noteDiv = this.closest(".event-note");
+      if (this.checked) {
+        noteDiv.classList.add("completed-note");
+      } else {
+        noteDiv.classList.remove("completed-note");
+      }
       updateIncompleteNotesCount();
     });
   });
 }
-
 
 function updateIncompleteNotesCount() {
   let incompleteCount = 0;
@@ -1121,6 +1189,7 @@ function updateIncompleteNotesCount() {
       notesData[`${noteKey}_completed`] = this.checked;
       updateIncompleteNotesCount();
       updateMainCalendar();
+      getTimetable()
       saveNotesData(notesData);
     });
 
@@ -1131,6 +1200,7 @@ function updateIncompleteNotesCount() {
     labelcheckbox.className = "custom-checkbox custom-checkbox2";
     const checkmark = document.createElement("div");
     checkmark.className = "checkmark";
+    checkmark.title = "Đánh dấu hoàn thành ghi chú";
     labelcheckbox.append(checkmark);
     labelcheckbox.append(checkbox);
 
@@ -1154,18 +1224,23 @@ function updateIncompleteNotesCount() {
 }
 
 function saveNotesData(notesData) {
-  fetch("/save/notesdata", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(notesData),
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      console.log("Success:", data);
+  var isLogin = document.querySelector("#user-avar");
+  var link = isLogin.querySelector('a[href][title="Tạo tài khoản"]');
+  if (link) {
+  } else {
+    fetch("/save/notesdata", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(notesData),
     })
-    .catch((err) => console.log(err.message));
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("Success:", data);
+      })
+      .catch((err) => console.log(err.message));
+  }
 }
 
 window.onload = updateMainCalendar;
@@ -1193,8 +1268,8 @@ document
         var eventsEditingArr = [];
         // Cập nhật sự kiện hiện tại với giá trị mới
         editingEvent.innerHTML = `<h1>${subjectInput}</h1><h2>${formattedDate}</h2><h2>${daysLeft} ngày nữa</h2><div class="event-controls">
-                  <button class="edit-btn"><img src="/img/tool_imgs/edit.png" style="width: 100%; height:100%"></button>
-                  <button class="delete-btn"><img src="/img/tool_imgs/delete.png" style="width: 100%; height:100%"></button>
+                  <button class="edit-btn" title="Chỉnh sửa nhắc kiểm tra"><img src="/img/tool_imgs/edit.png" style="width: 100%; height:100%"></button>
+                  <button class="delete-btn" title="Xóa nhắc kiểm tra"><img src="/img/tool_imgs/delete.png" style="width: 100%; height:100%"></button>
               </div>`;
 
         // Xóa lớp "editing" sau khi chỉnh sửa
@@ -1218,8 +1293,8 @@ document
         const newEvent = document.createElement("li");
         newEvent.classList.add("event-item");
         newEvent.innerHTML = `<h1>${subjectInput}</h1><h2>${formattedDate}</h2><h2>${daysLeft} ngày nữa</h2><div class="event-controls">
-                  <button class="edit-btn"><img src="/img/tool_imgs/edit.png" style="width: 100%; height:100%"></button>
-                  <button class="delete-btn"><img src="/img/tool_imgs/delete.png" style="width: 100%; height:100%"></button>
+                  <button class="edit-btn" title="Chỉnh sửa nhắc kiểm tra"><img src="/img/tool_imgs/edit.png" style="width: 100%; height:100%"></button>
+                  <button class="delete-btn" title="Xóa nhắc kiểm tra"><img src="/img/tool_imgs/delete.png" style="width: 100%; height:100%"></button>
               </div>`;
 
         // Thêm sự kiện vào danh sách
@@ -1280,18 +1355,23 @@ function addEventControlListeners(eventElement) {
 }
 
 function saveEventLists(arr) {
-  fetch("/save/eventlist", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(arr),
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      console.log("Success:", data);
+  var isLogin = document.querySelector("#user-avar");
+  var link = isLogin.querySelector('a[href][title="Tạo tài khoản"]');
+  if (link) {
+  } else {
+    fetch("/save/eventlist", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(arr),
     })
-    .catch((err) => console.log(err.message));
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("Success:", data);
+      })
+      .catch((err) => console.log(err.message));
+  }
 }
 
 function addEventServer(data) {
@@ -1300,8 +1380,8 @@ function addEventServer(data) {
     const newEvent = document.createElement("li");
     newEvent.classList.add("event-item");
     newEvent.innerHTML = `<h1>${event.Subject}</h1><h2>${event.Calendar}</h2><h2>${event.Dateleft} </h2><div class="event-controls">
-                  <button class="edit-btn"><img src="/img/tool_imgs/edit.png" style="width: 100%; height:100%"></button>
-                  <button class="delete-btn"><img src="/img/tool_imgs/delete.png" style="width: 100%; height:100%"></button>
+                  <button class="edit-btn" title="Chỉnh sửa nhắc kiểm tra"><img src="/img/tool_imgs/edit.png" style="width: 100%; height:100%"></button>
+                  <button class="delete-btn" title="Xóa nhắc kiểm tra"><img src="/img/tool_imgs/delete.png" style="width: 100%; height:100%"></button>
               </div>`;
     eventsList.appendChild(newEvent);
     addEventControlListeners(newEvent);
@@ -1347,10 +1427,10 @@ function toggleremind() {
 
   if (moveRemind.style.top === "-100%") {
     moveRemind.style.top = "0%";
-    toggleRemindBtn.innerHTML = `<img src="/img/tool_imgs/turn-back.png" style="width: 100%; height:100%">`;
+    toggleRemindBtn.innerHTML = `<img src="/img/tool_imgs/turn-back.png" style="width: 100%; height:100%" title="Thoát khỏi tạo nhắc kiểm tra">`;
   } else {
     moveRemind.style.top = "-100%";
-    toggleRemindBtn.innerHTML = `<img src="/img/tool_imgs/edit.png" style="width: 100%; height:100%">`;
+    toggleRemindBtn.innerHTML = `<img src="/img/tool_imgs/edit.png" style="width: 100%; height:100%" title="Tạo nhắc kiểm tra">`;
   }
 }
 

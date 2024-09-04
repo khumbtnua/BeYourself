@@ -65,8 +65,7 @@ const AccountGG = new Schema(
     ],
     Notesdata: [{ type: Object }],
   },
-  { versionKey: false },
-
+  { versionKey: false }
 );
 
 module.exports = mongoose.model("AccountGG", AccountGG, "accountsgg");

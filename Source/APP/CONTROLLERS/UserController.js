@@ -3,6 +3,7 @@ const Accountgg = require("../MODELS/Accountgg");
 const Accountfb = require("../MODELS/Accountfb");
 const University = require("../MODELS/University");
 const { mutipleMongooseToObject } = require("../../UTIL/mongoose");
+const Quote = require("../MODELS/Quote");
 
 class UserController {
   async avatar(req, res) {
@@ -63,6 +64,7 @@ class UserController {
               },
               { new: true }
             );
+            res.json({ success: true });
           } else {
             const { note, type, A, B, C, D, E, F } = req.body;
             await Accountfb.findOneAndUpdate(
@@ -76,6 +78,7 @@ class UserController {
               },
               { new: true }
             );
+            res.json({ success: true });
           }
         } else if (req.body.type === "Mbti") {
           const {
@@ -114,6 +117,7 @@ class UserController {
               },
               { new: true }
             );
+            res.json({ success: true });
           } else {
             await Accountfb.findOneAndUpdate(
               { name: req.user.name },
@@ -135,6 +139,7 @@ class UserController {
               },
               { new: true }
             );
+            res.json({ success: true });
           }
         }
         res.json({ success: true });
@@ -154,6 +159,7 @@ class UserController {
               },
               { new: true }
             );
+            res.json({ success: true });
           }
         } else if (req.body.type === "Mbti") {
           const {
@@ -192,10 +198,11 @@ class UserController {
               },
               { new: true }
             );
+            res.json({ success: true });
           }
         }
-        res.json({ success: true });
       }
+      res.json({ success: false });
     } catch (err) {
       console.log(err.messsage);
     }
@@ -404,6 +411,7 @@ class UserController {
         userimg = req.user.img;
       }
     }
+    const dataQuote = await Quote.find({});
     res.render("history", {
       layout: "main",
       style: "history-light.css",
@@ -411,6 +419,7 @@ class UserController {
       navbar: "navbar.js",
       username: req.user.name,
       userimg: userimg,
+      quotes: JSON.stringify(mutipleMongooseToObject(dataQuote)),
       tests: JSON.stringify(testsData),
     });
   }

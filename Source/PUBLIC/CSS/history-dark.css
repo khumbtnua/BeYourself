@@ -19,15 +19,14 @@ body {
   display: flex;
   width: 100%;
   height: 100vh;
-  gap: 10px;
   justify-content: center;
   position: relative;
-  padding-top: 40px;
+  padding-top: 45px;
 }
 .container .btn {
   position: relative;
+  margin: 0 10px;
   top: 10px;
-  /* left: 0; */
   width: 250px;
   height: 50px;
   margin: 0;
@@ -39,19 +38,13 @@ body {
   overflow: hidden;
   font-family: hywen;
   background-color:rgba(50, 50, 50, 0.3) ;
-  border: 2px solid white;
 }
 .container .btn a {
   color: white;
-  transition-duration: 0.2s;
-
 }
-  
-.container .btn:hover a {
-  letter-spacing: 10px;
+.container .btn:hover {
+  border: 2px solid white;
 }
-
-
 .active {
   display: block;
 }
@@ -127,7 +120,7 @@ body {
 }
 #slidembti p {
   font-family: "hywen";
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.3;
   letter-spacing: 0.5px;
   white-space: pre-line;
@@ -222,12 +215,13 @@ body {
 .comment h4{
   line-height: 25px;
   font-size: 20px;
-  font-family: hywen;
-  font-weight: 100;
+  font-family: system-ui;
+  font-weight: 500;
   height: 100%;
   width: 100%;
   overflow: auto;
   color: white;
+  white-space: pre-line;
 }
 .comment h3 {
   font-size: 20px;
@@ -235,7 +229,7 @@ body {
   overflow: auto;
   height: 100%;
   white-space: pre-line;
-  font-weight: 400;
+  font-weight: 500;
   color: white;
 }
 .indicators {
@@ -283,4 +277,201 @@ body {
   background: rgba(50, 50, 50, 0.3);
   backdrop-filter: blur(40px);
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+@media only screen and (max-width: 1100px) {
+  h4 {
+    font-size: 18px;
+  }
+
+  #butchose button {
+    width: 170px;
+    height: 170px;
+  }
+
+  #butchose {
+    padding: 20px;
+    padding-top: 45px;
+  }
+}
+
+@media only screen and (max-width: 850px) {
+
+  #choose {
+    width: 500px;
+    height: 330px;
+  }
+  #butchose button {
+    width: 150px;
+    height: 150px;
+  }
+
+  .testc {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 5%;
+  }
+  .quesans2 {
+    margin-top: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    width: 50%;
+    height: 85%;
+  }
+
+
+  .dividem {
+    flex-direction: column;
+    height: fit-content;
+    margin: auto;
+  }
+
+  #demoM {
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .quesans {
+    padding: 10px;
+    margin-top: 0px;
+    margin-bottom: 20%;
+    width: 50%;
+    height: 60%;
+    flex-wrap: wrap;
+  }
+
+  .quesans button {
+    width: 95%;
+    height: 35%;
+  }
+  #fistest1 {
+    height: 50px;
+  }
+  .divide {
+    height: 100%;
+    width: 45%;
+    margin-bottom: 25px;
+  }
+
+  .divide button {
+    width: 100%;
+    height: 46%;
+  }
+  .comment{
+    width: 100%;
+    height: 48%;
+  }
+  #contaidiagram{
+    width: 100%;
+    height: 48%;
+  }
+  #slidembti{
+    width: 100%;
+    height: 48%;
+    padding: 10px 10px 20px 10px;;
+  }
+  .process img {
+    padding: 20px;
+    margin: 0;
+  }
+  .contenimgprocess {
+    flex-direction: row;
+    overflow: hidden;
+  }
+  #slidembti p{
+    overflow: auto;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  h2 {
+    font-size: 22px;
+  }
+
+  #choose {
+    width: 90%;
+    height: 300px;
+  }
+
+  #butchose button {
+    width: 130px;
+    height: 130px;
+  }
+
+  #butchose {
+    padding-top: 40px;
+  }
+
+  .instruction {
+    font-size: 20px;
+  }
+
+  .ques {
+    width: 100%;
+    height: 35%;
+    margin: 0;
+  }
+
+  .quesans {
+    margin-top: 0px;
+    margin-bottom: 80px;
+    width: 100%;
+    height: 40%;
+    flex-wrap: wrap;
+  }
+
+  .quesans button {
+    width: 95%;
+    height: 35%;
+  }
+  #fistest1 {
+    margin: 0;
+    height: 50px;
+  }
+  .divide {
+    height: 90%;
+    width: 45%;
+    margin-bottom: 20px;
+  }
+
+  .divide button {
+    width: 100%;
+    height: 44%;
+  }
+
+  .submitBtnContainer {
+    height: 50px;
+  }
+
+  #demoM {
+    width: 100%;
+    height: 40%;
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+
+  .dividem {
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 100%;
+    width: 100%;
+  }
+
+  .quesans2 {
+    width: 100%;
+    height: 50%;
+    padding: 20px;
+  }
+  .process img {
+    padding: 10px;
+    width: 80%;
+    margin: 0 auto;
+  }
+  .contenimgprocess {
+    flex-direction: column;
+    overflow: auto;
+}
+#slidembti p {
+  overflow: unset;
+}
 }

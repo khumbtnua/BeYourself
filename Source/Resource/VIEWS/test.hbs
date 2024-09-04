@@ -5,19 +5,41 @@
     <span class="fas fa-times"></span>
   </div>
 </div>
-<div id="main-pic"></div>
+
+<div class="alertsuccess hide">
+  <i class="fa-solid fa-circle-check"></i>
+  <span class="msg">Kết quả trắc nghiệm đã được lưu thành công!</span>
+  <div class="close-btn">
+    <span class="fas fa-times"></span>
+  </div>
+</div>
+
+<div class="alerterror hide">
+  <span class="fas fa-exclamation-circle"></span>
+  <span class="msg">Kết quả trắc nghiệm chưa được lưu thành công! Vui lòng đăng
+    nhập để lưu kết quả trắc nghiệm</span>
+  <div class="close-btn">
+    <span class="fas fa-times"></span>
+  </div>
+</div>
+<div id="main-pic">
 
 <div id="choose" class="step-one-Test">
   <h2>Chọn bài trắc nghiệm</h2>
   <div id="butchose">
-    <button id="holland" class="step-two-Test">
+    <button
+      id="holland"
+      class="step-two-Test"
+      title="Tham gia trắc nghiệm Holland"
+    >
       <h3>Holand</h3>
     </button>
-    <button id="mbti" class="step-three-Test">
+    <button id="mbti" class="step-three-Test" title="Tham gia trắc nghiệm Mbti">
       <h3>MBTI</h3>
     </button>
   </div>
 </div>
 <div id="test-container">
+</div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/intro.js@7.2.0/intro.min.js"></script>

@@ -1,6 +1,11 @@
 <div id="home">
   <div id="move-home">
     <div class="main-contai">
+      <div class="spotify-embed">
+              <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DWZwtERXCS82H?utm_source=generator" 
+              width="100%" height="100%" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+              loading="lazy"></iframe>
+            </div>
       <div id="contai-timer" class="step-seven-Home">
         <div id="move-contai">
           <div class="child-move-contai">
@@ -13,22 +18,13 @@
               <span id="minutes">25</span>:<span id="seconds">00</span>
             </div>
             <div class="controls">
-              <button id="startStop"><img
-                  src="/img/tool_imgs/play.png"
-                /></button>
-              <button id="reset"><img
-                  src="/img/tool_imgs/rotate.png"
-                /></button>
-              <button id="settings"><img
-                  src="/img/tool_imgs/settings.png"
-                /></button>
+              <button id="startStop"><img src="/img/tool_imgs/play.png" /></button>
+              <button id="reset"><img src="/img/tool_imgs/rotate.png" /></button>
+              <button id="settings"><img src="/img/tool_imgs/settings.png" /></button>
             </div>
           </div>
           <div class="child-move-contai" id="settingpage">
-            <span id="close"><img
-                id="imgclose"
-                src="/img/tool_imgs/back1.png"
-              />
+            <span id="close" title="Chuyển qua chế độ pomodoro"><img id="imgclose" src="/img/tool_imgs/back1.png" />
               <div id="inclose">Tuỳ chỉnh</div>
             </span>
             <div id="changepomo-contai">
@@ -47,34 +43,40 @@
                 <input type="number" id="longBreakTime" min="1" value="15" />
                 <p>minutes</p>
               </div>
+
             </div>
             <div id="changebg">
-              <label for="backgroundImage">Background Image:</label>
+              <label for="backgroundImage">Đổi hình nền:</label>
               <input type="file" id="backgroundImage" accept="image/*" hidden />
               <div id="dropArea" class="drop-area">
                 <p>kéo hoặc thả ảnh vào đây</p>
               </div>
+            </div>
+            <div id="PomodoroSequence">
+              Use Pomodoro Sequence :
+              Pomodoro → short break, repeat 4x, then one long break
+              <label class="switch">
+                <input type="checkbox" id="usePomodoroSequence">
+                <span class="slider round"></span>
+              </label>
+
             </div>
           </div>
         </div>
       </div>
 
       <div id="controlbar">
-        <button onclick="movehome()" class="step-ten-Home"><img
-            src="/img/tool_imgs/app.png"
-          /></button>
-        <button id="fullsceenbtn" class="step-nine-Home"><img
-            src="/img/tool_imgs/fullscreen.png"
-          /></button>
+        <button onclick="movehome()" class="step-ten-Home" title="Chuyển qua các công cụ khác"><img
+            src="/img/tool_imgs/app.png" /></button>
+        <button id="fullsceenbtn" class="step-nine-Home" title="Chuyển qua chế độ toàn màn hình"><img
+            src="/img/tool_imgs/fullscreen.png" /></button>
       </div>
     </div>
 
     <div id="appcontai">
       <div id="contaibacktotimer">
-        <button onclick="movehome()"><img
-            src="/img/tool_imgs/up.png"
-            style="width: 100%; height:100%"
-          /></button>
+        <button onclick="movehome()" title="Chuyển qua chế độ pomodoro"><img src="/img/tool_imgs/up.png"
+            style="width: 100%; height:100%" /></button>
       </div>
       <div id="contai">
         <div class="child i1">
@@ -84,17 +86,14 @@
                 <h2>Việc cần làm</h2>
                 <div id="contai-inputTask">
                   <input id="inputTask" type="text" placeholder="Add a task" />
-                  <button id="backTask" onclick="resetInput()"><img
-                      src="/img/tool_imgs/turn-back.png"
-                      style="width: 100%; height:100%"
-                    /></button>
+                  <button id="backTask" onclick="resetInput()"
+                    title="Thoát tạo việc cần làm hoặc chỉnh sửa việc cần làm"><img src="/img/tool_imgs/turn-back.png"
+                      style="width: 100%; height:100%" /></button>
                 </div>
               </div>
             </div>
-            <button id="btn-addtask" onclick="addTask()"><img
-                src="/img/tool_imgs/edit.png"
-                style="width: 100%; height:100%"
-              /></button>
+            <button id="btn-addtask" onclick="addTask()" title="Thêm việc cần làm"><img src="/img/tool_imgs/edit.png"
+                style="width: 100%; height:100%" /></button>
           </div>
           <div id="contai-list-todo">
             <div id="list"></div>
@@ -103,19 +102,17 @@
         <div class="child i2">
           <div id="titleremind">
             <h2>Lịch Kiểm Tra</h2>
-            <button onclick="toggleremind()" id="toggleremind"><img
-                src="/img/tool_imgs/edit.png"
-                style="width: 100%; height:100%"
-              /></button>
+            <button onclick="toggleremind()" id="toggleremind" title="Tạo nhắc kiểm tra"><img
+                src="/img/tool_imgs/edit.png" style="width: 100%; height:100%" /></button>
           </div>
           <div id="remind-contai">
             <div id="move-remind">
               <form id="eventForm">
-                <div>
+                <div title="Chọn ngày kiểm tra">
                   <label for="eventDate">Ngày:</label>
                   <input type="date" id="eventDate" required />
                 </div>
-                <div>
+                <div title="Chọn môn kiểm tra">
                   <label for="subject">Môn:</label>
                   <select id="subject" class="subject">
                     <option value=""></option>
@@ -135,7 +132,7 @@
                     <option value="HĐTN">HĐTN</option>
                   </select>
                 </div>
-                <button id="btn-addremind" type="submit">Thêm nhắc nhở</button>
+                <button id="btn-addremind" type="submit" title="Thêm nhắc kiểm tra">Thêm nhắc nhở</button>
               </form>
               <div id="contai-remind-list">
                 <ul class="remind-list"></ul>
@@ -160,14 +157,10 @@
               <div id="control-timetable">
                 <h2>Thời khoá biểu</h2>
                 <div>
-                  <button id="saveTimetable"><img
-                      src="/img/tool_imgs/check.png"
-                      style="width: 100%; height:100%"
-                    /></button>
-                  <button id="backfromcalendarform"><img
-                      src="/img/tool_imgs/turn-back.png"
-                      style="width: 100%; height:100%"
-                    /></button>
+                  <button id="saveTimetable" title="Lưu thời khóa biểu"><img src="/img/tool_imgs/check.png"
+                      style="width: 100%; height:100%" /></button>
+                  <button id="backfromcalendarform" title="Thoái khỏi tạo thời khóa biểu"><img
+                      src="/img/tool_imgs/turn-back.png" style="width: 100%; height:100%" /></button>
                 </div>
               </div>
               <div id="timetable-contai">
@@ -194,21 +187,15 @@
             <div id="mainCalendar">
               <div id="control-calendar">
                 <div>
-                  <button id="prevWeek"><img
-                      src="/img/tool_imgs/back1.png"
-                      style="width: 100%; height:100%"
-                    /></button>
-                  <button id="nextWeek"><img
-                      src="/img/tool_imgs/lauch1.png"
-                      style="width: 100%; height:100%"
-                    /></button>
+                  <button id="prevWeek" title="Chuyển sang tuần trước đó"><img src="/img/tool_imgs/back1.png"
+                      style="width: 100%; height:100%" /></button>
+                  <button id="nextWeek" title="Chuyển sang tuần kế tiếp"><img src="/img/tool_imgs/lauch1.png"
+                      style="width: 100%; height:100%" /></button>
                 </div>
                 <h2 id="calendarTitle"></h2>
                 <div>
-                  <button id="showTimetableForm"><img
-                      src="/img/tool_imgs/plus.png"
-                      style="width: 100%; height:100%"
-                    /></button>
+                  <button id="showTimetableForm" title="Tạo thời khóa biểu"><img src="/img/tool_imgs/plus.png"
+                      style="width: 100%; height:100%" /></button>
                 </div>
               </div>
               <div id="calendarContent">
