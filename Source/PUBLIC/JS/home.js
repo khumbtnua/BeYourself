@@ -81,7 +81,6 @@ function handlePomodoroSequence() {
     // After a short break, go back to Pomodoro
     switchMode("pomodoro");
     pomodoroCount++;
-    console.log(pomodoroCount)
   }
   startStopTimer(); // Automatically start the next session
 }
@@ -97,7 +96,18 @@ function resetTimer() {
 function switchMode(mode) {
   currentTimer = mode;
   resetTimer();
+  modeButtons.forEach(button => {
+    button.style.backgroundColor = "rgba(0, 0, 0, 0.2)";
+    button.style.color = "white"; 
+  });
+
+  const selectedButton = document.querySelector(`#${mode}`);
+  if (selectedButton) {
+    selectedButton.style.backgroundColor = "rgba(0, 0, 0)";
+    selectedButton.style.color = "rgb(257, 219, 164)";
+  }
 }
+
 modeButtons.forEach((button) => {
   button.addEventListener("click", (e) => {
     switchMode(e.target.id);
