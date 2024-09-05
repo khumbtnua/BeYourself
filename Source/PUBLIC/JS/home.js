@@ -9,7 +9,7 @@ let timer;
 let isRunning = false;
 let timeLeft = timers[currentTimer];
 let usePomodoroSequence = true; // Default to true (sequence enabled)
-let pomodoroCount = 1; // Track the number of completed Pomodoro sessions
+let pomodoroCount = 0; // Track the number of completed Pomodoro sessions
 
 const startStopButton = document.getElementById("startStop");
 const resetButton = document.getElementById("reset");
@@ -70,20 +70,19 @@ function startStopTimer() {
   isRunning = !isRunning;
 }
 function handlePomodoroSequence() {
-  if (pomodoroCount % 4 === 0) {
+  if (pomodoroCount === 3) {
     // After 4 Pomodoro sessions, take a long break
     switchMode("longBreak");
-    startStopTimer()
+    pomodoroCount = 0;
   } else if (currentTimer === "pomodoro") {
     // After each Pomodoro session, take a short break
     switchMode("shortBreak");
-    startStopTimer()
   } else {
     // After a short break, go back to Pomodoro
     switchMode("pomodoro");
-    startStopTimer()
+    pomodoroCount++;
+    console.log(pomodoroCount)
   }
-
   startStopTimer(); // Automatically start the next session
 }
 function resetTimer() {
@@ -96,14 +95,14 @@ function resetTimer() {
 }
 
 function switchMode(mode) {
-  timeLeft = timers[currentTimer];
-  updateDisplay();
-  if (mode === "pomodoro") {
-    pomodoroCount++;
-    console.log(pomodoroCount)
-  }
+  currentTimer = mode;
+  resetTimer();
 }
-
+modeButtons.forEach((button) => {
+  button.addEventListener("click", (e) => {
+    switchMode(e.target.id);
+  });
+});
 function openSettings() {
   settingpage.style.display = "block";
   movecontai.style.left = "-100%";
@@ -341,11 +340,7 @@ function savePomoTime(Pomotime) {
   }
 }
 
-modeButtons.forEach((button) => {
-  button.addEventListener("click", (e) => {
-    switchMode(e.target.id);
-  });
-});
+
 
 startStopButton.addEventListener("click", startStopTimer);
 startStopButton.title = "Bắt đầu pomodoro";
@@ -818,13 +813,12 @@ function addTimetableServer(data) {
   headerRow.innerHTML = `
       <th>Thời gian</th>
       ${dates
-        .map(
-          (d) =>
-            `<th${d.isToday ? ' class="current-day"' : ""}>${d.dayName} (${
-              d.date
-            })</th>`
-        )
-        .join("")}
+      .map(
+        (d) =>
+          `<th${d.isToday ? ' class="current-day"' : ""}>${d.dayName} (${d.date
+          })</th>`
+      )
+      .join("")}
   `;
   table.appendChild(headerRow);
 
@@ -833,40 +827,37 @@ function addTimetableServer(data) {
     row.innerHTML = `
           <td>${slot.time}</td>
           ${slot.events
-            .map((event, index) => {
-              const dateKey = `${dates[index].date}_${slot.time}`;
-              const noteText = notesData[dateKey]?.noteText || "";
-              const isCompleted = notesData[`${dateKey}_completed`] || false;
+        .map((event, index) => {
+          const dateKey = `${dates[index].date}_${slot.time}`;
+          const noteText = notesData[dateKey]?.noteText || "";
+          const isCompleted = notesData[`${dateKey}_completed`] || false;
 
-              return `
+          return `
               <td>
               <div class="contai-event-content">
                   <div class="event-content">${event}</div><button class="notes-btn" title="Tạo ghi chú"><img src="/img/tool_imgs/edit2.png" style="width: 100%; height:100%"></button>
                   </div>
-                  ${
-                    noteText
-                      ? `
-                      <div class="event-note ${
-                        isCompleted ? "completed-note" : ""
-                      }">
+                  ${noteText
+              ? `
+                      <div class="event-note ${isCompleted ? "completed-note" : ""
+              }">
                       <label class="custom-checkbox custom-checkbox2">
-                          <input type="checkbox" class="complete-note-checkbox" ${
-                            isCompleted ? "checked" : ""
-                          } data-note-key="${dateKey}">
+                          <input type="checkbox" class="complete-note-checkbox" ${isCompleted ? "checked" : ""
+              } data-note-key="${dateKey}">
                       <div class="checkmark" title="Đánh dấu hoàn thành ghi chú"></div>
                       </label>
                           ${noteText}
                       </div>
                   `
-                      : ""
-                  }
+              : ""
+            }
                   <div class="notes-input-container" style="display:none;">
                       <input type="text" class="notes-input" placeholder="Bài tập..." value="${noteText}">
                       <button class="save-note-btn" title="Thêm ghi chú"><img src="/img/tool_imgs/plus2.png" style="width: 100%; height:100%"></button>
                   </div>
               </td>`;
-            })
-            .join("")}
+        })
+        .join("")}
       `;
     table.appendChild(row);
   });
@@ -970,13 +961,12 @@ function updateMainCalendar() {
   headerRow.innerHTML = `
       <th>Thời gian</th>
       ${dates
-        .map(
-          (d) =>
-            `<th${d.isToday ? ' class="current-day"' : ""}>${d.dayName} (${
-              d.date
-            })</th>`
-        )
-        .join("")}
+      .map(
+        (d) =>
+          `<th${d.isToday ? ' class="current-day"' : ""}>${d.dayName} (${d.date
+          })</th>`
+      )
+      .join("")}
   `;
   table.appendChild(headerRow);
 
@@ -985,40 +975,37 @@ function updateMainCalendar() {
     row.innerHTML = `
           <td>${slot.time}</td>
           ${slot.events
-            .map((event, index) => {
-              const dateKey = `${dates[index].date}_${slot.time}`;
-              const noteText = notesData[dateKey]?.noteText || "";
-              const isCompleted = notesData[`${dateKey}_completed`] || false;
+        .map((event, index) => {
+          const dateKey = `${dates[index].date}_${slot.time}`;
+          const noteText = notesData[dateKey]?.noteText || "";
+          const isCompleted = notesData[`${dateKey}_completed`] || false;
 
-              return `
+          return `
               <td>
               <div class="contai-event-content">
                   <div class="event-content">${event}</div><button class="notes-btn" title="Tạo ghi chú" ><img src="/img/tool_imgs/edit2.png" style="width: 100%; height:100%"></button>
                   </div>
-                  ${
-                    noteText
-                      ? `
-                      <div class="event-note ${
-                        isCompleted ? "completed-note" : ""
-                      }">
+                  ${noteText
+              ? `
+                      <div class="event-note ${isCompleted ? "completed-note" : ""
+              }">
                       <label class="custom-checkbox custom-checkbox2">
-                          <input type="checkbox" class="complete-note-checkbox" ${
-                            isCompleted ? "checked" : ""
-                          } data-note-key="${dateKey}">
+                          <input type="checkbox" class="complete-note-checkbox" ${isCompleted ? "checked" : ""
+              } data-note-key="${dateKey}">
                       <div class="checkmark" title="Đánh dấu hoàn thành ghi chú"></div>
                       </label>
                           ${noteText}
                       </div>
                   `
-                      : ""
-                  }
+              : ""
+            }
                   <div class="notes-input-container" style="display:none;">
                       <input type="text" class="notes-input" placeholder="Bài tập..." value="${noteText}">
                       <button class="save-note-btn" title="Thêm ghi chú"><img src="/img/tool_imgs/plus2.png" style="width: 100%; height:100%"></button>
                   </div>
               </td>`;
-            })
-            .join("")}
+        })
+        .join("")}
       `;
     table.appendChild(row);
   });
@@ -1117,7 +1104,7 @@ function addCompleteNoteListener() {
       const noteKey = this.dataset.noteKey;
       notesData[`${noteKey}_completed`] = this.checked;
       saveNotesData(notesData);
-            const noteDiv = this.closest(".event-note");
+      const noteDiv = this.closest(".event-note");
       if (this.checked) {
         noteDiv.classList.add("completed-note");
       } else {
