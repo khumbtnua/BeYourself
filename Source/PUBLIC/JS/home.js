@@ -42,7 +42,7 @@ function updateDisplay() {
   minutesDisplay.textContent = minutes < 10 ? "0" + minutes : minutes;
   secondsDisplay.textContent = seconds < 10 ? "0" + seconds : seconds;
 }
-const alarmSound = new Audio('/sound/blingbling.mp3');
+var alarmSound = document.getElementById("alarmSound");
 
 function startStopTimer() {
   if (isRunning) {

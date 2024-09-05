@@ -238,6 +238,7 @@ app.engine(
 app.set("view engine", "hbs");
 app.set("views", path.join(__dirname, "Resource/VIEWS"));
 app.use("/img", express.static("img"));
+app.use("/sound", express.static("sound"));
 app.use(express.static(path.join(__dirname, "PUBLIC/CSS/")));
 app.use(express.static(path.join(__dirname, "PUBLIC/JS/")));
 app.use(express.json({ limit: "1000mb" }));
