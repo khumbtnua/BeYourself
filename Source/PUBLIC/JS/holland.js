@@ -111,13 +111,13 @@ function createIntroduction() {
 
   Với mỗi câu hỏi sẽ có 5 mức độ tương ứng từ 0 đến 4 điểm ở phía dưới:
   
-  (1) Chưa bao giờ đúng: 0 điểm;
-  (2) Đúng trong một vài trường hợp: 1 điểm
-  (3) Đúng trong khoảng ½ trường hợp: 2 điểm
-  (4) Đúng trong đa số các trường hợp: 3 điểm
-  (5) Đúng trong tất cả trường hợp: 4 điểm
+  0 - Chưa bao giờ đúng với tôi
+  1 - Chỉ đúng với tôi trong một vài trường hợp
+  2 - Chỉ một nửa là đúng với tôi
+  3 - Gần như là đúng với tôi trong hầu hết mọi trường hợp, chỉ có một vài trường hợp là chưa đúng lắm
+  4 - Hoàn toàn đúng với tôi, không thể nào khác đi được
 
-  Sau khi hoàn thành bài test chúng tôi sẽ trả về kết quả bạn thuộc nhóm nào trong tất cả 6 nhóm do Holland đã chia ra và gợi ý một số ngành nghề phù hợp với nhóm nghề của bạn.`;
+  Sau khi hoàn thành bài test chúng tôi sẽ trả về kết quả bạn thuộc nhóm nào trong tất cả 6 Socialo Holland đã chia ra và gợi ý một số ngành nghề phù hợp với nhóm nghề của bạn.`;
 
   var divQues = document.createElement("div");
   divQues.classList.add("instruction");
@@ -913,9 +913,9 @@ function createFinalPage(result, A, B, C, D, E, F) {
   var notes = "";
   switch (result) {
     case "A": {
-      notes = `Nhóm nghề có thể phù hợp với bạn nhất là nhóm A 
+      notes = `Nhóm nghề có thể phù hợp với bạn nhất là Realistic 
 
-      A: Realistic - Người thực tế 
+      R: Realistic - Người thực tế 
 
       Người thuộc nhóm sở thích nghề nghiệp này thường có khả năng về: kỹ thuật, công nghệ, hệ thống; ưa thích làm việc với đồ vật, máy móc, động thực vật; thích làm các công việc ngoài trời. 
       
@@ -924,9 +924,9 @@ function createFinalPage(result, A, B, C, D, E, F) {
       break;
     }
     case "B": {
-      notes = `Nhóm nghề có thể phù hợp với bạn nhất là nhóm B
+      notes = `Nhóm nghề có thể phù hợp với bạn nhất là Investigative
       
-      B: Investigative - Người nghiên cứu
+      I: Investigative - Người nghiên cứu
       
       Có khả năng về: quan sát, khám phá, phân tích đánh giá và giải quyết các vấn đề.
 
@@ -935,17 +935,17 @@ function createFinalPage(result, A, B, C, D, E, F) {
       break;
     }
     case "C": {
-      notes = `Nhóm nghề có thể phù hợp với bạn nhất là nhóm C
+      notes = `Nhóm nghề có thể phù hợp với bạn nhất là Artistic
       
-      C:  Artistic - Người có tính nghệ sĩ <br> <br>  Có khả năng về: nghệ thuật, khả năng về trực giác, khả năng tưởng tượng cao, thích làm việc trong các môi trường mang tính ngẫu hứng, không khuôn mẫu.
+      A:  Artistic - Người có tính nghệ sĩ <br> <br>  Có khả năng về: nghệ thuật, khả năng về trực giác, khả năng tưởng tượng cao, thích làm việc trong các môi trường mang tính ngẫu hứng, không khuôn mẫu.
       
       Ngành nghề phù hợp với nhóm này bao gồm: Các ngành về văn chương; báo chí (bình luận viên, dẫn chương trình…); điện ảnh, sân khấu, mỹ thuật, ca nhạc, múa, kiến trúc, thời trang, hội họa, giáo viên dạy sử/Anh văn, bảo tàng, bảo tồn...`;
       contentcomment.innerHTML = notes;
     }
     case "D": {
-      notes = `Nhóm nghề có thể phù hợp với bạn nhất là nhóm D 
+      notes = `Nhóm nghề có thể phù hợp với bạn nhất là Social 
       
-      D:  Social - Người có tính xã hội 
+      S:  Social - Người có tính xã hội 
       
       Có khả năng về: ngôn ngữ, giảng giải, thích làm những việc như giảng dạy, cung cấp thông tin, sự chăm sóc, giúp đỡ, hoặc huấn luyện cho người khác. 
       
@@ -954,7 +954,7 @@ function createFinalPage(result, A, B, C, D, E, F) {
       break;
     }
     case "E": {
-      notes = `Nhóm nghề có thể phù hợp với bạn nhất là nhóm E 
+      notes = `Nhóm nghề có thể phù hợp với bạn nhất là Enterprising 
       
       E: Enterprising - Dám nghĩ, dám làm 
       
@@ -965,9 +965,9 @@ function createFinalPage(result, A, B, C, D, E, F) {
       break;
     }
     case "F": {
-      notes = `Nhóm nghề có thể phù hợp với bạn nhất là nhóm F 
+      notes = `Nhóm nghề có thể phù hợp với bạn nhất là Conventional 
 
-      F: Conventional - Người công chức
+      C: Conventional - Người công chức
       
       Có khả năng về: số học, thích thực hiện những công việc chi tiết, thích làm việc với những số liệu, theo chỉ dẫn của người khác hoặc các công việc văn phòng. 
       
@@ -1007,7 +1007,7 @@ function createSpiderChart(A, B, C, D, E, F) {
       size: "80%",
     },
     xAxis: {
-      categories: ["Nhóm A", "Nhóm B", "Nhóm C", "Nhóm D", "Nhóm E", "Nhóm F"],
+      categories: ["Realistic", "Investigative", "Artistic", "Social", "Enterprising", "Conventional"],
       tickmarkPlacement: "on",
       lineWidth: 0,
     },

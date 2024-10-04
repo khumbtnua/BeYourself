@@ -912,6 +912,12 @@ th {
 #calendarContent td{
     background-color: rgb(227, 229, 218);
 }
+#calendarContent td .notes-btn{
+    display: none;
+}
+#calendarContent td:hover .notes-btn{
+    display: block;
+}
 #calendarContent table td:nth-child(1) {
     background-color: rgb(163, 159, 147);
     position: sticky;

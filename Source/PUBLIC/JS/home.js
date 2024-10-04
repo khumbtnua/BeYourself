@@ -726,6 +726,7 @@ function generateTimetableRows() {
                                   <option value="GDĐP">GDĐP</option>
                                   <option value="GDQP-AN">GDQP-AN</option>
                                   <option value="HĐTN">HĐTN</option>
+                                  <option value="HĐTN">TCAV</option>
                                   </select>`;
       }
       tr.appendChild(dayCell);
@@ -749,6 +750,7 @@ document.getElementById("saveTimetable").addEventListener("click", () => {
   });
   notesData = {};
   currentWeekOffset = 0;
+  saveNotesData(notesData);
   updateMainCalendar();
   movecalendar();
   saveTimetable(timetable);
@@ -912,7 +914,9 @@ function addTimetableServer(data) {
 
         container.style.display = "none";
         notesBtn.style.display = "inline";
-
+        saveNotesData(notesData);
+        updateMainCalendar();
+        getTimetable();
         return;
       }
 
@@ -1186,7 +1190,7 @@ function updateIncompleteNotesCount() {
       notesData[`${noteKey}_completed`] = this.checked;
       updateIncompleteNotesCount();
       updateMainCalendar();
-      getTimetable()
+      getTimetable();
       saveNotesData(notesData);
     });
 
