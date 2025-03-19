@@ -79,7 +79,9 @@ p {
   outline: none;
   resize: none;
 }
-
+.commentMsg::placeholder{
+  color: black;
+}
 .btn-hover {
   position: absolute;
   right: 0px;

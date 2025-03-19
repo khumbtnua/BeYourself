@@ -80,7 +80,9 @@ p {
   resize: none;
   color: white;
 }
-
+.commentMsg::placeholder{
+  color: black;
+}
 .btn-hover {
   position: absolute;
   right: 0px;

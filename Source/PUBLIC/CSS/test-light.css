@@ -376,6 +376,7 @@ h4 {
   transition: width 0.5s ease-in-out;
 }
 #choose {
+  transition-duration: 0.75s;
   position: absolute;
   display: block;
   border-radius: 20px;
@@ -531,6 +532,7 @@ h4 {
   display: flex;
   top: 53%;
   transform: translateY(-50%);
+  transition-duration: 0.75s;
 }
 
 .sceentest {
@@ -811,6 +813,7 @@ h4 {
   #choose {
     width: 90%;
     height: 300px;
+    transition-duration: 0.5s;
   }
 
   #butchose button {
@@ -893,6 +896,9 @@ h4 {
 }
 #slidembti p {
   overflow: unset;
+}
+#test-container {
+  transition-duration: 0.5s;
 }
 }
 
