@@ -221,20 +221,24 @@ class UserController {
         if (checkUni) {
         } else {
           const getCollegeData = await University.findOne({ name: university });
-          var name = getCollegeData.name;
-          var address = getCollegeData.address;
+          var Name = getCollegeData.Name;
+          var Intro = getCollegeData.Intro;
           var img = getCollegeData.img;
           var slug = getCollegeData.slug;
-          var facility = getCollegeData.facility;
-          var history = getCollegeData.history;
+          var News = getCollegeData.News;
+          var Info = getCollegeData.Info;
+          var Curr = getCollegeData.Curr;
+          var Field = getCollegeData.Field;
           if (getCollegeData) {
             const newUniversity = {
-              name: name,
-              address: address,
-              img: img,
+              Name: Name,
+              Intro: Intro,
+              News: News,
+              Info: Info,
+              Curr: Curr,
+              Field: Field,
               slug: slug,
-              history: history,
-              facility: facility,
+              img: img
             };
             checkUser.universities.push(newUniversity);
             await checkUser.save();
@@ -260,20 +264,24 @@ class UserController {
               const getCollegeData = await University.findOne({
                 name: university,
               });
-              var name = getCollegeData.name;
-              var address = getCollegeData.address;
+              var Name = getCollegeData.Name;
+              var Intro = getCollegeData.Intro;
               var img = getCollegeData.img;
               var slug = getCollegeData.slug;
-              var facility = getCollegeData.facility;
-              var history = getCollegeData.history;
+              var News = getCollegeData.News;
+              var Info = getCollegeData.Info;
+              var Curr = getCollegeData.Curr;
+              var Field = getCollegeData.Field;
               if (getCollegeData) {
                 const newUniversity = {
-                  name: name,
-                  address: address,
-                  img: img,
+                  Name: Name,
+                  Intro: Intro,
+                  News: News,
+                  Info: Info,
+                  Curr: Curr,
+                  Field: Field,
                   slug: slug,
-                  history: history,
-                  facility: facility,
+                  img: img
                 };
                 checkUser.universities.push(newUniversity);
                 await checkUser.save();
@@ -294,20 +302,24 @@ class UserController {
             const getCollegeData = await University.findOne({
               name: university,
             });
-            var name = getCollegeData.name;
-            var address = getCollegeData.address;
+            var Name = getCollegeData.Name;
+            var Intro = getCollegeData.Intro;
             var img = getCollegeData.img;
             var slug = getCollegeData.slug;
-            var facility = getCollegeData.facility;
-            var history = getCollegeData.history;
+            var News = getCollegeData.News;
+            var Info = getCollegeData.Info;
+            var Curr = getCollegeData.Curr;
+            var Field = getCollegeData.Field;
             if (getCollegeData) {
               const newUniversity = {
-                name: name,
-                address: address,
-                img: img,
+                Name: Name,
+                Intro: Intro,
+                News: News,
+                Info: Info,
+                Curr: Curr,
+                Field: Field,
                 slug: slug,
-                history: history,
-                facility: facility,
+                img: img
               };
               checkUser.universities.push(newUniversity);
               await checkUser.save();

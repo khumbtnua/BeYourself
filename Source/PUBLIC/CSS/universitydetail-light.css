@@ -562,3 +562,8 @@ tr:last-child > td {
     transform: translateX(-10px);
   }
 }
+@media only screen and (max-width: 550px) {
+  .introduction h1{
+    font-size: 20px;
+  }
+}

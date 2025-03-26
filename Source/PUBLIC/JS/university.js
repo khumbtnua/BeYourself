@@ -96,8 +96,7 @@ function renderCollege(data) {
               <img id="college"  src="${college.img}" onclick="detail(this)">
             </div>
             <div class="info">
-                    <h2>${college.name}</h2>
-                    <h4>${college.address}</h4>
+                    <h2>${college.Name}</h2>
             </div>
         </div>
     `;

@@ -2,14 +2,14 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const University = new Schema(
-  {
-    name: { type: String },
-    address: { type: String },
-    img: { type: String },
+  { Name: { type: String },
+    Intro: { type: String },
+    News: { type: String },
+    Info: { type: String },
+    Curr: { type: String },
+    Field: { type: String },
     slug: { type: String },
-    history: { type: String },
-    facility: { type: String },
-    subject: [{ type: String }],
+    img: { type: String },
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now },
   },

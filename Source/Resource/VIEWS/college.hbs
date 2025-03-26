@@ -14,11 +14,7 @@
           <img src="{{img}}" alt="" class="uniLogo" />
         </div>
         <div class="introduction-text">
-          <h1>{{name}}</h1>
-          <div class="location">
-            <i class="fa-solid fa-location-dot"></i>
-            <p class="address">{{address}}</p>
-          </div>
+          <h1>{{Name}}</h1>
         </div>
       </div>
       <div>
@@ -27,33 +23,31 @@
           ></i></button>
       </div>
     </div>
-
-    {{#if history}}
-      <h2 class="heading">Lịch sử hình thành và phát triển</h2>
-      <p>{{history}}</p>
+    {{#if Intro}}
+      <h2 class="heading">Giới thiệu</h2>
+      {{{Intro}}}
     {{else}}
     {{/if}}
-    {{#if facility}}
-      <h2 class="heading">Cơ sở vật chất</h2>
-      <p>{{facility}}</p>
+    {{#if News}}
+      <h2 class="heading">Tin tức mới nhất</h2>
+      {{{News}}}
     {{else}}
     {{/if}}
-    <div class="table-container">
-      <table border="1">
-        <thead>
-          <tr>
-            <th>Ngành đào tạo</th>
-          </tr>
-        </thead>
-        <tbody>
-          {{#each subject}}
-            <tr>
-              <td>{{this}}</td>
-            </tr>
-          {{/each}}
-        </tbody>
-      </table>
-    </div>
+   {{#if Info}}
+      <h2 class="heading">Thông tin tuyển sinh</h2>
+      {{{Info}}}
+    {{else}}
+    {{/if}}
+    {{#if Curr}}
+      <h2 class="heading">Chương trình đào tạo</h2>
+      {{{Curr}}}
+    {{else}}
+    {{/if}}
+    {{#if Field}}
+      <h2 class="heading">Ngành học và lĩnh vực</h2>
+      {{{Field}}}
+    {{else}}
+    {{/if}}
   {{/with}}
 </div>
 <div class="total-contai-comment">
