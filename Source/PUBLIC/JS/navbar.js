@@ -323,7 +323,7 @@ function showCollegeData(data) {
       iElement.classList.add("uniImg");
       var aElement = document.createElement("a");
       var pElement = document.createElement("p");
-      pElement.textContent = university.name;
+      pElement.textContent = university.Name;
       aElement.href = `http://localhost:5500/university?slug=${university.slug}`;
       pElement.classList.add("uniName");
       uniContainer.appendChild(iElement);

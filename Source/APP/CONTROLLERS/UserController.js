@@ -455,7 +455,7 @@ class UserController {
 
     if (checkUni) {
       updatedUniversities = checkUni.universities.filter(
-        (university) => university.name !== req.body.university
+        (university) => university.Name !== req.body.university
       );
       checkUni.universities = updatedUniversities;
       await checkUni.save();

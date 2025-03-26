@@ -50,7 +50,7 @@ searchInput.addEventListener("keyup", function (e) {
   inputValue = e.target.value.toLowerCase();
   setTimeout(function () {
     var filterCollege = universityData.filter((university) => {
-      return university.name.toLowerCase().includes(inputValue);
+      return university.Name.toLowerCase().includes(inputValue);
     });
     if (Object.keys(filterCollege).length === 0) {
       renderCollege(filterCollege);
