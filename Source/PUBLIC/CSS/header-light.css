@@ -323,24 +323,22 @@ a img {
 
 nav {
   margin: auto 0px auto auto;
-  padding: 0.5vh;
+  height: 100%;
 }
 nav button {
   appearance: none;
   border: none;
   background: none;
-  height: 5vh;
-  padding: 5px 10px;
+  height: 100%;
   cursor: pointer;
-  border-radius: 5px;
+  margin: auto;
+  padding: 10px;
 }
 #extend-navbar img {
   width: 33px;
   height: 33px;
 }
 #extend-navbar a {
-  width: 100%;
-  height: 100%;
   display: flex;
 }
 #extend-navbar h3 {

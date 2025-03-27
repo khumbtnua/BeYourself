@@ -818,6 +818,7 @@ overflow: hidden;
   #choose {
     width: 90%;
     height: 300px;
+    transition-duration: 0.5s;
   }
 
   #butchose button {
@@ -900,6 +901,9 @@ overflow: hidden;
   }
 #slidembti p {
   overflow: unset;
+}
+#test-container {
+  transition-duration: 0.5s;
 }
 }
 

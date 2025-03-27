@@ -415,17 +415,15 @@ cursor: pointer;
     flex-direction: row;
     background-color: rgb(260, 260, 260, 0.2);
     border-radius: 20px;
-    padding-right: 5px;
 }
 
 #backTask {
-    background-color: rgb(260, 260, 260,0.3);
+    background-color: rgb(260, 260, 260, 0.3);
     border: none;
     border-radius: 15px;
-    width: 25px;
-    height: 25px;
-    margin: auto 0;
-    padding: 5px;
+    width: 35px;
+    height: 35px;
+    padding: 9px;
     flex-grow: 0;
     flex-shrink: 0;
     cursor: pointer;
@@ -463,7 +461,6 @@ cursor: pointer;
     width: 100%;
     height: 100%;
     border-radius: 20px;
-    padding:8px 5px 8px 8px;
     overflow: hidden;
 }
 #list{
@@ -471,15 +468,13 @@ cursor: pointer;
     height: 100%;
     overflow: auto;
     border-radius: 12px;
-    padding-right: 5px;
 }
 .taskcontai {
     position: relative;
     height: fit-content;
     padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 10px;
-    background-color: rgb(50, 50, 50);
+    margin-bottom: 2px;
+    background-color: rgb(0, 0, 0, 0.5);
     word-break: break-word;
     overflow: hidden;
     min-height: 40px;
@@ -616,7 +611,6 @@ cursor: pointer;
     height: 100%;
     flex-grow: 0;
     flex-shrink: 0;
-    padding: 8px 5px 8px 8px;
     overflow: hidden;
 }
 .remind-list {
@@ -624,15 +618,13 @@ cursor: pointer;
     height: 100%;
     border-radius: 12px;
     overflow: auto;
-    padding-right: 5px;
 }
 
 .remind-list li {
     white-space: pre-line;
     padding: 10px;
-    background-color: rgb(50,50,50);
-    margin-bottom:10px;
-    border-radius: 10px;
+    background-color: rgb(0, 0, 0, 0.5);
+    margin-bottom: 2px;
     position: relative;
     height: fit-content;
     min-height: 40px;
@@ -736,7 +728,6 @@ cursor: pointer;
     font-size: 20px;
     padding: 0;
     font-weight: 100;
-    background-color: black;
     color: rgb(257, 219, 164);
     border-radius: 5px;
     padding: 2.5px 5px;
@@ -996,14 +987,13 @@ th {
 }
 /*thống kê cho calendar*/
 .day-note-group{
-    padding: 0 0 10px 0;
+    margin: 0 0 2px 0;
 }
 .incomplete-note-item{
-    background-color: rgb(210, 205, 186);
-    border-radius: 10px;
+    background-color: rgb(0, 0, 0, 0.5);
     padding: 10px;
     position: relative;
-    margin-top: 10px;
+    margin-top: 2px;
     word-break: break-word;
     display: flex;
     justify-content: space-between;
@@ -1020,18 +1010,17 @@ th {
     padding: 0;
     font-size: 17px;
     font-weight: 1;
-    color: black;
+    color: white;
 }
 .incomplete-note-item h2{
     font-size: 17px;
     font-family: monospace;
     font-weight: 400;
-    background-color: rgb(227, 229, 218);
     padding: 5px;
     border-radius: 5px;
     width: 100%;
     margin-top: 5px;
-    color: black;
+    color: white;
 }
 .incomplete-note-item h3{
     font-size: 14px;
@@ -1039,7 +1028,7 @@ th {
     margin-block-end: unset;
     font-family: monospace;
     margin-left: 5px;
-    color: black;
+    color: white;
 }
 .incomplete-note-item span{
     white-space: pre-line;
@@ -1054,12 +1043,15 @@ th {
     display: flex;
     align-items: center;
     font-weight: 100;
+    padding: 10px;
+    background-color: rgb(0, 0, 0, 0.5);
+    color: rgb(257, 219, 164);
 }
 .day-note-group h4::after {
     content: '';
     flex-grow: 1;
-    border-bottom: 2.5px dotted white; 
-    margin-left: 3px; 
+    border-bottom: 2.5px dotted;
+    margin-left: 3px;
   }
 #incompleteNotesCountDiv{
     height: 30px;
@@ -1095,7 +1087,6 @@ th {
     height: 100%;
     background-color: rgb(260, 260, 260, 0.1);
     border-radius: 20px;
-    padding:8px 5px 8px 8px ;
     overflow: hidden;
 }
 #incompleteNotesContainer{
@@ -1103,7 +1094,6 @@ th {
     height: 100%;
     overflow: auto;
     border-radius: 12px;
-    padding: 2px 5px 2px 2px;
 }
 .current-day {
     background-color: black !important;
@@ -1187,7 +1177,8 @@ th {
 @media only screen and (max-width: 550px) {
  
     #contai {
-        gap: 5px
+        display: flex;
+        flex-direction: column;
     }
     .modes button {
         font-size: 13px;
@@ -1202,24 +1193,25 @@ th {
         width: 400px;
     }
     .child {
-        padding: 5px;
-        border-radius: 25px;
+        height: 300px;
+        flex-shrink: 0;
+        flex-grow: 0;
     }
 #appcontai {
-    padding: 50px 5px 5px 5px;
+    overflow: auto
 }
 #titlemagic h2 {
-    font-size: 14px;
+    font-size: 18px;
 }
 #titleremind h2 {
-    font-size: 14px;
+    font-size: 18px;
 }
 #incompleteNotesCountDiv h2 {
-    font-size: 16px;
+    font-size: 18px;
 }
 #incompleteNotesCountDiv span {
     margin-left: 5px;
-    font-size: 16px;
+    font-size: 18px;
 }
 #calendarTitle {
     font-size: 22px;
@@ -1235,40 +1227,18 @@ th {
 .event-item h2 {
     font-size: 14px;
 }
-.taskcontai {
-    margin-bottom: 5px;
-    border-radius: 15px;
-}
-.remind-list li {
-    margin-bottom: 5px;
-    border-radius: 15px;
-    padding: 5px;
-}
+
 .incomplete-note-item h3 {
     font-size: 13px;
 }
 .incomplete-note-item h1 {
     font-size: 14px;
 }
-.incomplete-note-item {
-    padding: 5px;
-    margin-top: 5px;
-}
+
 .day-note-group h4 {
     font-size: 15px;
 }
-.day-note-group {
-    padding: 0 0 5px 0;
-}
-#contai-list-todo {
-    padding: 5px 0px 5px 5px;
-}
-#contai-remind-list {
-    padding: 5px 0px 5px 5px;
-}
-#contai-incompleteNotesContainer {
-    padding: 5px 0px 5px 5px;
-}
+
 #titleremind {
     padding: 0 0px 5px 0px;
 }
@@ -1277,6 +1247,7 @@ th {
 }
 .i4 {
     padding: 0;
+    height: 465px;
 }
 #mainCalendar {
     padding: 5px;
@@ -1293,5 +1264,11 @@ th {
 .spotify-embed{
     width: 350px;
     bottom: 80px;
+}
+#contaibacktotimer {
+    border-bottom: 1px solid rgb(260, 260, 260);     border-radius: 20px;
+    border-radius: 20px;
+    position: static;
+    margin: 20px auto;
 }
 }

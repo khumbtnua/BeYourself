@@ -50,7 +50,7 @@ searchInput.addEventListener("keyup", function (e) {
   inputValue = e.target.value.toLowerCase();
   setTimeout(function () {
     var filterCollege = universityData.filter((university) => {
-      return university.name.toLowerCase().includes(inputValue);
+      return university.Name.toLowerCase().includes(inputValue);
     });
     if (Object.keys(filterCollege).length === 0) {
       renderCollege(filterCollege);
@@ -96,8 +96,7 @@ function renderCollege(data) {
               <img id="college"  src="${college.img}" onclick="detail(this)">
             </div>
             <div class="info">
-                    <h2>${college.name}</h2>
-                    <h4>${college.address}</h4>
+                    <h2>${college.Name}</h2>
             </div>
         </div>
     `;
