@@ -1265,4 +1265,10 @@ th {
     width: 350px;
     bottom: 80px;
 }
+#contaibacktotimer {
+    border-bottom: 1px solid rgb(260, 260, 260);     border-radius: 20px;
+    border-radius: 20px;
+    position: static;
+    margin: 20px auto;
+}
 }
